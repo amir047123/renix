@@ -14,7 +14,7 @@ import Services from "../Pages/Services";
 
 const PublicRoutes = [
   { path: "/", Component: Home },
-  { path: "/services", Component: Services },
+  { path: "/security-check", Component: Services },
   { path: "/products", Component: Products },
   { path: "/news-media", Component: NewsMedia },
   { path: "/blogs", Component: Blogs },
