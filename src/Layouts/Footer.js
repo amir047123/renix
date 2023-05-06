@@ -7,14 +7,14 @@ const Footer = () => {
   return (
     <div>
       <footer className="bg-secondary dark:bg-gray-900">
-        <div className="px-8 sm:px-10 lg:px-[103px] pt-6 pb-10">
-          <div className="flex gap-6 justify-center lg:justify-around items-center flex-wrap   md1:flex-wrap lg:flex-nowrap">
-            <div className="w-full  lg:w-2/5  ">
-              <div className="mt-8">
-                <Link to={"/"} className="flex items-center">
+        <div className="px-8 sm:px-10 lg:px-[103px] pt-10 pb-10">
+          <div className="flex gap-6 justify-center lg:justify-around  flex-wrap   md1:flex-wrap lg:flex-nowrap">
+            <div className="w-full  lg:w-4/12  ">
+              <div className="">
+                <Link to={"/"} className="flex items-center mb-5">
                   <img src={logo} className="h-8 mr-3" alt="Renix Logo" />
                 </Link>
-                <p className="py-3 text-lightTextColor text-sm leading-7 ">
+                <p className=" text-lightTextColor text-sm leading-7 ">
                   Renix Laboratories (Unani) Ltd. is a healthcare company that
                   produces high-quality complete medicines using natural herbs,
                   contributing to the shift towards alternative medicine. The
@@ -23,7 +23,7 @@ const Footer = () => {
                 </p>
               </div>
             </div>
-            <div className="w-full  lg:w-1/5 ">
+            <div className="w-full  lg:w-2/12 mt-2">
               <h2 className="mb-4 text-sm font-semibold text-[#f7f7f7] capitalize dark:text-white">
                 Quick Links
               </h2>
@@ -55,7 +55,7 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div className="w-full  lg:w-1/5 ">
+            <div className="w-full  lg:w-2/12 mt-2">
               <h2 className="mb-4 text-sm font-semibold text-[#f7f7f7] capitalize dark:text-white">
                 Services
               </h2>
@@ -82,7 +82,7 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div className="w-full  lg:w-1/5 ">
+            <div className="w-full  lg:w-4/12 mt-2 ">
               <h2 className="mb-4 text-sm font-semibold text-[#f7f7f7] capitalize dark:text-white">
                 Contact Info
               </h2>

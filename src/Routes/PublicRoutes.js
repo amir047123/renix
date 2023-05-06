@@ -11,6 +11,7 @@ import Products from "../Pages/Products";
 import Refound from "../Pages/Refound";
 import Services from "../Pages/Services";
 
+
 const PublicRoutes = [
   { path: "/", Component: Home },
   { path: "/services", Component: Services },
@@ -23,6 +24,7 @@ const PublicRoutes = [
   { path: "/terms-conditions", Component: Conditions },
   { path: "/products/details", Component: ProductDetails },
   { path: "/Checkout", Component: Checkout },
+  
 ];
 
 export default PublicRoutes;

@@ -28,6 +28,7 @@ const WebNav = () => {
         borderBottom: '2px solid #90C347'
     };
 
+    //close sidenav when clicking outside
     useEffect(() => {
 
 

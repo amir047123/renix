@@ -6,8 +6,8 @@ const AllEmails = () => {
         <section className="py-10 md:py-14">
             <div className="container px-6 md:max-w-6xl w-full ">
                 {/* search bar */}
-
-                {/* <form className="flex items-center justify-end text-right gap-3 mb-6">
+                {/* 
+                <form className="flex items-center justify-end text-right gap-3 mb-6">
                     <label for="simple-search" className="text-sm text-textColor">Search</label>
                     <div className="relative ">
                         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -20,10 +20,12 @@ const AllEmails = () => {
 
                 </form> */}
 
+
                 {/* medicine list table */}
                 <div className="relative overflow-x-auto">
                     <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border border-[#D0D2DA]  table_head rounded-lg">
+
                             <tr className='py-4 rounded-lg'>
                                 <th scope="col" className="px-6 py-3  text-[13px] font-medium capitalize">
                                     Seriol No
@@ -37,7 +39,6 @@ const AllEmails = () => {
                                     Action
                                 </th>
                             </tr>
-
                         </thead>
                         <tbody>
                             <tr className="bg-white border-b border-[#D0D2DA]">

@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import { useForm } from 'react-hook-form';
-
+import JoditEditor from 'jodit-react';
 const AddMedicine = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const editor = useRef(null);
+    //description content
+    const [content, setContent] = useState('');
 
-
+    console.log(content)
     //handle add medicine
     const handleAddMedicine = () => {
 
@@ -24,7 +27,7 @@ const AddMedicine = () => {
                             <input
                                 type="text"
                                 id="name"
-                                className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-500"
+                                className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:outline-none  block w-full p-2.5 focus:border-none"
                                 placeholder="Medicine Name"
                                 {...register("name", {
                                     required: "Medicine brand Name is required",
@@ -98,12 +101,12 @@ const AddMedicine = () => {
 
                             })}
                         />
-                        {errors.categoryId && <p className='text-red-500 mt-1'>{errors.categoryId.message}</p>}
+                        {errors.price && <p className='text-red-500 mt-1'>{errors.price.message}</p>}
                     </div>
                     {/* medicine description */}
                     <div className="mb-1">
                         <label for="repeat-password" class="block mb-2 text-[13px] font-normal text-gray-900 dark:text-white">Medicine description</label>
-                        <textarea
+                        {/* <textarea
                             rows="5"
                             className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-500"
 
@@ -113,7 +116,19 @@ const AddMedicine = () => {
 
 
                             })}
-                        ></textarea>
+                        ></textarea> */}
+                        <JoditEditor
+                            ref={editor}
+                            value={content}
+                            {...register("description", {
+                                required: "Medicine description is required",
+
+
+                            })}
+                            //tabIndex={1} // tabIndex of textarea
+                            onChange={newContent => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
+                        // onChange={newContent => { }}
+                        />
                         {errors.description && <p className='text-red-500 mt-1'>{errors.description.message}</p>}
                     </div>
                     {/* medicine strength */}

@@ -1,7 +1,14 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import { useForm } from 'react-hook-form';
+import JoditEditor from 'jodit-react';
+
 
 const AddBlog = () => {
+    const editor = useRef(null);
+    //description content
+    const [blogDescription, setBlogDescription] = useState('');
+
+
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -69,7 +76,7 @@ const AddBlog = () => {
                     {/*news description */}
                     <div className="mb-1">
                         <label for="repeat-password" className="block mb-2 text-[13px] font-normal text-gray-900 dark:text-white">Description</label>
-                        <textarea
+                        {/* <textarea
                             rows="5"
                             className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-500"
 
@@ -80,7 +87,20 @@ const AddBlog = () => {
 
                             })}
                         ></textarea>
-                        {errors.newsDescription && <p className='text-red-500 mt-1'>{errors.newsDescription.message}</p>}
+                        {errors.newsDescription && <p className='text-red-500 mt-1'>{errors.newsDescription.message}</p>} */ }
+                        <JoditEditor
+                            ref={editor}
+                            value={blogDescription}
+                            // {...register("doctorDescription", {
+                            //     required: "Description is required",
+
+
+                            // })}
+                            //tabIndex={1} // tabIndex of textarea
+                            onChange={newContent => setBlogDescription(newContent)} // preferred to use only this option to update the content for performance reasons
+                        // onChange={newContent => { }}
+                        />
+
                     </div>
 
 

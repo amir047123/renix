@@ -26,7 +26,7 @@ const About = () => {
                                 <li>
                                     <NavLink
                                         to={'company-profile'}
-                                        className='flex items-center gap-1 text-[13px] capitalize bg-textColor text-white  hover:bg-secondary py-4 pl-1 hover:pl-[14px] transition_move border-b border-secondary'
+                                        className='flex items-center gap-1 text-[13px] capitalize bg-primary text-white  hover:bg-secondary py-4 pl-1 hover:pl-[14px] transition_move border-b border-secondary'
                                         style={({ isActive }) =>
                                             isActive ? activeStyle : undefined}
                                     >
@@ -41,7 +41,7 @@ const About = () => {
                                 <li >
                                     <NavLink
                                         to={'message-from-managing-director'}
-                                        className='flex items-center gap-1 text-[13px] capitalize bg-textColor text-white  hover:bg-secondary py-4 pl-1 hover:pl-[14px] transition_move border-b border-secondary'
+                                        className='flex items-center gap-1 text-[13px] capitalize bg-primary text-white  hover:bg-secondary py-4 pl-1 hover:pl-[14px] transition_move border-b border-secondary'
                                         style={({ isActive }) =>
                                             isActive ? activeStyle : undefined}
                                     >
@@ -56,7 +56,7 @@ const About = () => {
                                 <li>
                                     <NavLink
                                         to={'mission-vission'}
-                                        className='flex items-center gap-1 text-[13px] capitalize bg-textColor text-white  hover:bg-secondary py-4 pl-1 hover:pl-[14px] transition_move border-b border-secondary'
+                                        className='flex items-center gap-1 text-[13px] capitalize bg-primary text-white  hover:bg-secondary py-4 pl-1 hover:pl-[14px] transition_move border-b border-secondary'
                                         style={({ isActive }) =>
                                             isActive ? activeStyle : undefined}
                                     >
@@ -71,7 +71,7 @@ const About = () => {
                                 <li>
                                     <NavLink
                                         to={'corporate-social-responsibility'}
-                                        className='flex items-center gap-1 text-[13px] capitalize bg-textColor text-white  hover:bg-secondary py-4 pl-1 hover:pl-[14px] transition_move border-b border-secondary'
+                                        className='flex items-center gap-1 text-[13px] capitalize bg-primary text-white  hover:bg-secondary py-4 pl-1 hover:pl-[14px] transition_move border-b border-secondary'
                                         style={({ isActive }) =>
                                             isActive ? activeStyle : undefined}
                                     >
