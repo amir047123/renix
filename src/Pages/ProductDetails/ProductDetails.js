@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import img1 from "../../Assets/images/Products/p1.png";
+import img1 from "../../Assets/images/Products/Bottle (1).png";
 
 const ProductDetails = () => {
   const [addToCart, setAddToCart] = useState(false);
@@ -9,8 +9,8 @@ const ProductDetails = () => {
   return (
     <div className="w-3/5 mx-auto">
       <div className="grid grid-cols-2 gap-6">
-        <div className="border flex justify-center items-center  border-gray-300">
-          <img src={img1} className="" alt="" />
+        <div className=" border flex justify-center items-center  border-gray-300">
+          <img src={img1} className=" w-72 h-50 p-4" alt="" />
         </div>
         <div className="">
           <div className="shadow-lg p-7">

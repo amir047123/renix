@@ -1,8 +1,8 @@
 import React from 'react'
-import img1 from '../../../Assets/images/Products/p1.png'
-import img2 from '../../../Assets/images/Products/p2.webp'
-import img3 from '../../../Assets/images/Products/p3.webp'
-import img4 from '../../../Assets/images/Products/p4.webp'
+import img1 from '../../../Assets/images/Products/Box-MOckup (2).png'
+import img2 from '../../../Assets/images/Products/Syrup-Bottle-Mockup.png'
+import img3 from '../../../Assets/images/Products/box (2).png'
+import img4 from '../../../Assets/images/Products/Box (1).png'
 
 const NewArrivals = () => {
 

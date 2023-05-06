@@ -1,8 +1,10 @@
 import React from "react";
-import img1 from "../Assets/images/Products/p1.png";
-import img2 from "../Assets/images/Products/p2.webp";
-import img3 from "../Assets/images/Products/p3.webp";
-import img4 from "../Assets/images/Products/p4.webp";
+import img1 from "../Assets/images/Products/Bottle (1).png";
+import img2 from "../Assets/images/Products/Bottle (2).png";
+import img3 from "../Assets/images/Products/Bottle.png";
+import img4 from "../Assets/images/Products/Box (1).png";
+import img5 from "../Assets/images/Products/Syrup-Bottle-Mockup.png";
+import img6 from "../Assets/images/Products/Box.png";
 import { Link } from "react-router-dom";
 
 const Products = () => {
@@ -51,7 +53,7 @@ const Products = () => {
       stock: "15",
 
       price: "600",
-      image: `${img4}`,
+      image: `${img5}`,
     },
     {
       _id: 6,
@@ -60,7 +62,7 @@ const Products = () => {
       strength: "15 MG",
       stock: "11",
       price: "600",
-      image: `${img4}`,
+      image: `${img6}`,
     },
   ];
   return (
