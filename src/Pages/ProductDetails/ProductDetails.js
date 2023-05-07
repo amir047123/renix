@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import img1 from "../../Assets/images/Products/p1.png";
-import { Tab } from "@headlessui/react";
+import img1 from "../../Assets/images/Products/Bottle (1).png";
 import ProductTable from "./ProductTable";
 import ProductInfo from "./ProductInfo";
 
@@ -23,10 +22,10 @@ const ProductDetails = () => {
     }
   };
   return (
-    <div className="container lg:w-3/5  mx-auto mt-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="border m-3 flex justify-center items-start place-content-center border-blue-gray-500">
-          <img src={img1} className="h-[400px] w-[250px]" alt="" />
+    <div className="w-3/5 mx-auto">
+      <div className="grid grid-cols-2 gap-6">
+        <div className=" border flex justify-center items-center  border-gray-300">
+          <img src={img1} className=" w-72 h-50 p-4" alt="" />
         </div>
         <div className="m-3">
           <div className="shadow-lg p-7 ">
