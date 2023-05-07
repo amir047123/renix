@@ -1,13 +1,12 @@
-import React from "react";
-import img1 from "../Assets/images/Products/Bottle (1).png";
-import img2 from "../Assets/images/Products/Bottle (2).png";
-import img3 from "../Assets/images/Products/Bottle.png";
-import img4 from "../Assets/images/Products/Box (1).png";
-import img5 from "../Assets/images/Products/Syrup-Bottle-Mockup.png";
-import img6 from "../Assets/images/Products/Box.png";
+import React, { useState } from "react";
+import img1 from "../Assets/images/Products/p1.png";
+import img2 from "../Assets/images/Products/p2.webp";
+import img3 from "../Assets/images/Products/p3.webp";
+import img4 from "../Assets/images/Products/p4.webp";
 import { Link } from "react-router-dom";
 
 const Products = () => {
+  const [displayButton, setDisplayButton] = useState("");
   const products = [
     {
       _id: 1,
@@ -53,7 +52,7 @@ const Products = () => {
       stock: "15",
 
       price: "600",
-      image: `${img5}`,
+      image: `${img4}`,
     },
     {
       _id: 6,
@@ -62,7 +61,7 @@ const Products = () => {
       strength: "15 MG",
       stock: "11",
       price: "600",
-      image: `${img6}`,
+      image: `${img4}`,
     },
   ];
   return (
@@ -91,49 +90,58 @@ const Products = () => {
           <div className=" flex gap-6 flex-wrap mx-auto justify-center ">
             {products.map((product) => (
               <Link to={"/products/details"}>
-                <div className="w-72" key={product._id}>
-                  <div className="w-72 h-80 p-4 px-8 rounded-xl border-2 border-whiteSmoke ">
-                    <div className="flex justify-between items-center mt-4">
-                      <span class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">
-                        Sold out
-                      </span>
-
-                      <span class="bg-green-100 self-end  text-green-800 text-xs font-medium  px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
-                        sale !
-                      </span>
-                      {/* <h2 className="bg-primary  text-xs rounded-sm ml-44 text-white mt-3">
-                      sold out
-                    </h2>
-
-                    <h2 className="bg-primary w-10 text-xs rounded-sm ml-44 text-white mt-3">
-                      Sale!
-                    </h2> */}
-                    </div>
-                    <img
-                      src={product.image}
-                      alt=""
-                      className="w-44 mx-auto  h-52 mt-7"
-                    />
-
-                    <div className="text-xs float-right mb-4">
-                      <p className="text-lightPrimary font-medium">
+                <div
+                  className="relative w-full"
+                  onMouseEnter={() => setDisplayButton(product._id)}
+                  onMouseLeave={() => setDisplayButton("")}
+                >
+                  <div
+                    className="w-80  px-8 py-4 shadow-md rounded-lg"
+                    key={product._id}
+                  >
+                    <div className="w-full  h-64 rounded-xl ">
+                      <div className="flex justify-between items-center ">
+                        <span class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">
+                          Sold out
+                        </span>
+                        <span class="bg-green-100 self-end  text-green-800 text-xs font-medium  px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
+                          sale !
+                        </span>
+                      </div>
+                      <img
+                        src={product.image}
+                        alt=""
+                        className="w-44 mx-auto h-52 "
+                      />
+                      <p className="text-lightPrimary my-2 font-medium text-xs float-right">
                         Stock: {product.stock}
                       </p>
                     </div>
+                    <div>
+                      <h1 className="text-secondary text-sm mt-2">
+                        {product.productName}
+                      </h1>
+                      <h1 className="text-secondary text-sm mt-2">
+                        Generic Name: {product.genericName}
+                      </h1>
+                      <h1 className="text-secondary text-sm mt-2">
+                        Strength: {product.strength}
+                      </h1>
+                      <p className="text-lightPrimary text-sm mt-2">
+                        BDT {product.price}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h1 className="text-secondary text-sm mt-2">
-                      {product.productName}
-                    </h1>
-                    <h1 className="text-secondary text-sm mt-2">
-                      Generic Name: {product.genericName}
-                    </h1>
-                    <h1 className="text-secondary text-sm mt-2">
-                      Strength: {product.strength}
-                    </h1>
-                    <p className="text-lightPrimary text-sm mt-2">
-                      BDT {product.price}
-                    </p>
+                  <div className="w-full">
+                    {displayButton === product?._id && (
+                      <button
+                        className="bg-primary 
+                       opacity-100 w-full
+                        py-2  text-center top-1/2 text-white absolute"
+                      >
+                        Add to cart
+                      </button>
+                    )}
                   </div>
                 </div>
               </Link>

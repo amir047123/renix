@@ -1,5 +1,4 @@
 import Checkout from "../Components/Checkout/Checkout";
-
 import Blogs from "../Pages/Blogs";
 import Conditions from "../Pages/Conditions";
 import Contact from "../Pages/Contact";

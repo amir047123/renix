@@ -23,9 +23,17 @@ table th {
 
 /*******about page*******/
 .transition_move {
-    transition: all 0.3s ease-in;
+    transition: all 0.3s;
 }
 
 .bottom_border {
     border-bottom: 1px solid #ddd;
+}
+
+
+/******jodit editor toolbar bg ******/
+
+.jodit-toolbar__box:not(:empty):not(:empty),
+.jodit-status-bar {
+    background-color: #F0FDF4 !important;
 }

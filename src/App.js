@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import PublicRoutes from "./Routes/PublicRoutes";
 import WebNav from "./Layouts/WebNav";
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
 import Footer from "./Layouts/Footer";
 import Main from "./mainLayout/Main";
 import AdminDashboard from "./dashboardLayout/AdminDashboard";
@@ -9,10 +9,34 @@ import AdminRoutes from "./Routes/AdminRoute";
 import { aboutRoutes } from "./Routes/AboutRoutes";
 import About from "./Pages/About";
 import Profile from "./Pages/AboutUs/Profile";
+import OrderFLoatingCart from "./Layouts/OrderFLoatingCart";
+import { useState } from "react";
+import { BsFillBagFill } from "react-icons/bs";
 
 function App() {
+  const [openCart, setOpenCart] = useState(false);
   return (
-    <div>
+    <div className="relative">
+      {openCart ? (
+        <OrderFLoatingCart setOpenCart={setOpenCart}></OrderFLoatingCart>
+      ) : (
+        <div className="fixed z-20 top-[45vh] right-0 cursor-pointer">
+          {" "}
+          <div
+            onClick={() => setOpenCart(true)}
+            className="bg-primary rounded-l-lg"
+          >
+            <div className="flex flex-col justify-center items-center text-white">
+              <div className="flex flex-col justify-center items-center py-2 ">
+                {" "}
+                <BsFillBagFill className="text-2xl "></BsFillBagFill>
+                <p className="pt-2 text-xs">0 item</p>
+              </div>
+              <p className="bg-secondary rounded-bl-lg p-2 text-xs">500 tk</p>
+            </div>
+          </div>
+        </div>
+      )}
 
       <Routes>
         {/* main Routes */}
@@ -35,8 +59,6 @@ function App() {
             <Route key={index} path={path} element={<Component />} />
           ))}
         </Route>
-
-
       </Routes>
 
       <Toaster />
