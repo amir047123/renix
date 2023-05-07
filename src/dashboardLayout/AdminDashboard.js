@@ -691,11 +691,11 @@ const AdminDashboard = () => {
                                 ref={navWrapper}
                                 className="">
 
-                                <div id="drawer-navigation" className={`side_nav block lg:hidden z-40 h-screen p-4  bg-secondary w-80 dark:bg-gray-800 ${issideNavOpen === true ? 'activ' : ''}`} tabindex="-1" >
+                                <div id="drawer-navigation" className={`side_nav_admin block lg:hidden z-40 h-screen p-4  bg-secondary w-80 dark:bg-gray-800 ${issideNavOpen === true ? 'activ' : ''}`} tabindex="-1" >
                                     {/* <h5 id="drawer-navigation-label" className="text-base font-semibold text-gray-500 uppercase dark:text-gray-400">Menu</h5> */}
 
 
-                                    <button type="button" data-drawer-dismiss="drawer-navigation" aria-controls="drawer-navigation" className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-3 right-3 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                                    <button type="button" data-drawer-dismiss="drawer-navigation" aria-controls="drawer-navigation" className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-5 right-5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
                                         onClick={handleToggle}
                                     >
                                         <svg aria-hidden="true" className="w-6 h-6" fill="white" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
@@ -704,14 +704,14 @@ const AdminDashboard = () => {
                                     <div className=" overflow-y-auto px-7">
 
 
-                                        <NavLink to={'/'} className="flex items-center justify-center">
+                                        <NavLink to={'/'} className="flex items-center justify-center pt-10">
 
                                             <img src={logo} className="h-8 mr-3" alt="Renix Logo" />
                                         </NavLink>
 
 
-                                        <hr className="divider_line my-3" />
-                                        <ul className="space-y-2 pt-4">
+
+                                        <ul className="space-y-2 pt-8">
                                             <li>
                                                 <a href='/adminDashboard/overview'
 

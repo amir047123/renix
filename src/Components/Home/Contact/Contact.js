@@ -35,8 +35,8 @@ const Contact = () => {
 
 
     return (
-        <div className='mb-24 lg:w-[80%] mx-auto'>
-            <div className="w-full md:p-14 p-5 grid grid-cols-1 lg:grid-cols-2 gap-5">
+        <div className='py-14 lg:w-[80%] mx-auto'>
+            <div className="w-full  p-5 grid grid-cols-1 lg:grid-cols-2 gap-5">
                 <div className="py-14 px-7 rounded-md">
                     <div className="px-5 lg:px-1">
                         <div>
@@ -89,7 +89,7 @@ const Contact = () => {
                                 <p className="text-sm font-semibold text-[#535353]">
                                     {/* {officeInfo?.officeEmail} */}
                                     Info@Renixlaboratories.com
-                                    </p>
+                                </p>
                                 <p className="text-sm font-semibold text-[#535353]">
                                     {/* {officeInfo?.officeEmail} */}
                                 </p>

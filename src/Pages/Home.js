@@ -8,6 +8,7 @@ import NewArrivals from "../Components/Home/NewArrivals/NewArrivals";
 import BestDoctors from "../Components/Home/BestDoctors/BestDoctors";
 import Contact from "../Components/Home/Contact/Contact";
 import HomeSlider from "../Components/Home/HomeSlider/HomeSlider/HomeSlider";
+import NewsAndMedia from "../Components/Home/newAndMedia/NewsAndMedia";
 
 const Home = () => {
   return (
@@ -21,8 +22,9 @@ const Home = () => {
       <NewArrivals />
       <BestDoctors />
       <Contact />
+      <NewsAndMedia />
       <LocationMap />
-    
+
     </div>
   );
 };

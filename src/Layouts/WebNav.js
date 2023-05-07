@@ -131,6 +131,17 @@ const WebNav = () => {
                             </li>
                             <li >
                                 <a
+                                    href="/products"
+                                    className='text-textColor p-2 uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition'
+
+
+
+                                >
+                                    Our Products
+                                </a>
+                            </li>
+                            <li >
+                                <a
                                     href="/news-media"
                                     className='text-textColor p-2 uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition'
 

@@ -1,4 +1,4 @@
-.side_nav {
+.side_nav_admin {
     background-color: #0A2004 !important;
     position: fixed;
     left: -100%;
@@ -10,7 +10,7 @@
     transition: 0.7s;
 }
 
-.side_nav.activ {
+.side_nav_admin.activ {
     left: 0;
 }
 

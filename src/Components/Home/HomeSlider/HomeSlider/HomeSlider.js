@@ -9,7 +9,8 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Pagination, Navigation, Autoplay } from "swiper";
-import SlideComponent from "../SlideComponent/SlideComponent";
+import SlideComponent, { SlideComponentOne, SlideComponentThree, SlideComponentTwo } from "../SlideComponent/SlideComponent";
+import SlideComponentFour from "../SlideComponent/SlideComponent";
 
 const HomeSlider = () => {
   return (
@@ -30,16 +31,16 @@ const HomeSlider = () => {
         }}
       >
         <SwiperSlide>
-          <SlideComponent></SlideComponent>
+          <SlideComponentOne></SlideComponentOne>
         </SwiperSlide>
         <SwiperSlide>
-          <SlideComponent></SlideComponent>
+          <SlideComponentTwo></SlideComponentTwo>
         </SwiperSlide>
         <SwiperSlide>
-          <SlideComponent></SlideComponent>
+          <SlideComponentThree></SlideComponentThree>
         </SwiperSlide>
         <SwiperSlide>
-          <SlideComponent></SlideComponent>
+          <SlideComponentFour></SlideComponentFour>
         </SwiperSlide>
       </Swiper>
     </div>

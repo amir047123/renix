@@ -12,6 +12,8 @@ import Profile from "./Pages/AboutUs/Profile";
 import OrderFLoatingCart from "./Layouts/OrderFLoatingCart";
 import { useState } from "react";
 import { BsFillBagFill } from "react-icons/bs";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function App() {
   const [openCart, setOpenCart] = useState(false);
