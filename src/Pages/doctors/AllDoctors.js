@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { TbEdit } from 'react-icons/tb';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { CiSearch } from 'react-icons/ci';
@@ -8,6 +8,15 @@ import doctorImg from '../../Assets/images/users/t3.jpg';
 const AllDoctors = () => {
 
     const [enabled, setEnabled] = useState(false)
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:8080/api/v1/doctors/')
+          .then((res) => res.json())
+          .then((data) => setData(data.data));
+      }, []);
+      console.log(data)
+
     return (
         <section className="py-10 md:py-14">
             <div className="container px-6 md:max-w-6xl w-full ">
@@ -63,120 +72,47 @@ const AllDoctors = () => {
 
                         </thead>
                         <tbody>
-                            <tr className="bg-white border-b border-[#D0D2DA]">
-                                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    01
-                                </th>
-                                <td className="px-6 py-4">
-                                    John Doe
-                                </td>
-                                <td className="px-6 py-4">
-                                    <img src={doctorImg} className='w-26  rounded' alt="doctor image" />
-                                </td>
-                                <td className="px-6 py-4">
-                                    john234@gmail.com
-                                </td>
-                                <td className="px-6 py-4">
-                                    +88126856545
-                                </td>
-                                <td className="px-6 py-4">
-                                    New York,USA
-                                </td>
-                                <td className="px-6 py-4">
-                                    Cardiologist
-                                </td>
-                                <td className="px-6 py-4">
-                                    <SwitchToggle enabled={enabled} setEnabled={setEnabled} />
-                                </td>
-
-                                <td className="px-6 py-4">
-                                    <span className="flex items-center gap-3">
-                                        {/* <button className="text-lg text-[#0077FF] bg-[#BBDDFF] w-7  h-7 rounded-lg flex items-center justify-center">
-                                            <TbEdit />
-                                        </button> */}
-                                        <button className="text-lg text-[#F87171] bg-[#FEE2E2] w-7  h-7 rounded-lg flex items-center justify-center">
-                                            <RiDeleteBin6Line />
-                                        </button>
-
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr className="bg-white border-b border-[#D0D2DA]">
-                                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    02
-                                </th>
-                                <td className="px-6 py-4">
-                                    John Doe
-                                </td>
-                                <td className="px-6 py-4">
-                                    <img src={doctorImg} className='w-26  rounded' alt="doctor image" />
-                                </td>
-                                <td className="px-6 py-4">
-                                    john234@gmail.com
-                                </td>
-                                <td className="px-6 py-4">
-                                    +88126856545
-                                </td>
-                                <td className="px-6 py-4">
-                                    New York,USA
-                                </td>
-                                <td className="px-6 py-4">
-                                    Cardiologist
-                                </td>
-                                <td className="px-6 py-4">
-                                    <SwitchToggle enabled={enabled} setEnabled={setEnabled} />
-                                </td>
-
-                                <td className="px-6 py-4">
-                                    <span className="flex items-center gap-3">
-                                        {/* <button className="text-lg text-[#0077FF] bg-[#BBDDFF] w-7  h-7 rounded-lg flex items-center justify-center">
-                                            <TbEdit />
-                                        </button> */}
-                                        <button className="text-lg text-[#F87171] bg-[#FEE2E2] w-7  h-7 rounded-lg flex items-center justify-center">
-                                            <RiDeleteBin6Line />
-                                        </button>
-
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr className="bg-white border-b border-[#D0D2DA]">
-                                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    03
-                                </th>
-                                <td className="px-6 py-4">
-                                    John Doe
-                                </td>
-                                <td className="px-6 py-4">
-                                    <img src={doctorImg} className='w-26  rounded' alt="doctor image" />
-                                </td>
-                                <td className="px-6 py-4">
-                                    john234@gmail.com
-                                </td>
-                                <td className="px-6 py-4">
-                                    +88126856545
-                                </td>
-                                <td className="px-6 py-4">
-                                    New York,USA
-                                </td>
-                                <td className="px-6 py-4">
-                                    Cardiologist
-                                </td>
-                                <td className="px-6 py-4">
-                                    <SwitchToggle enabled={enabled} setEnabled={setEnabled} />
-                                </td>
-
-                                <td className="px-6 py-4">
-                                    <span className="flex items-center gap-3">
-                                        {/* <button className="text-lg text-[#0077FF] bg-[#BBDDFF] w-7  h-7 rounded-lg flex items-center justify-center">
-                                            <TbEdit />
-                                        </button> */}
-                                        <button className="text-lg text-[#F87171] bg-[#FEE2E2] w-7  h-7 rounded-lg flex items-center justify-center">
-                                            <RiDeleteBin6Line />
-                                        </button>
-
-                                    </span>
-                                </td>
-                            </tr>
+                            {
+                                data?.map((info,index)=> {
+                                    return <tr className="bg-white border-b border-[#D0D2DA]">
+                                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" key={index}>
+                                       {index+1}
+                                    </th>
+                                    <td className="px-6 py-4">
+                                       {info.fullName}
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        <img src={`http://localhost:8080/images/${info.image}`} className='w-26  rounded' alt="doctor image" />
+                                    </td>
+                                    <td className="px-6 py-4">
+                                    {info.email}
+                                    </td>
+                                    <td className="px-6 py-4">
+                                    {info.phone}
+                                    </td>
+                                    <td className="px-6 py-4">
+                                    {info.address}
+                                    </td>
+                                    <td className="px-6 py-4">
+                                    {info.expertise}
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        <SwitchToggle enabled={enabled} setEnabled={setEnabled} />
+                                    </td>
+    
+                                    <td className="px-6 py-4">
+                                        <span className="flex items-center gap-3">
+                                            <button className="text-lg text-[#F87171] bg-[#FEE2E2] w-7  h-7 rounded-lg flex items-center justify-center">
+                                                <RiDeleteBin6Line />
+                                            </button>
+    
+                                        </span>
+                                    </td>
+                                </tr>
+                                })
+                            }
+                            
+                           
 
 
                         </tbody>
