@@ -9,20 +9,29 @@ const AllDoctors = () => {
 
     const [enabled, setEnabled] = useState(false)
     const [data, setData] = useState([]);
+    const [inputValue, setInputValue] = useState("");
+
 
     useEffect(() => {
         fetch('http://localhost:8080/api/v1/doctors/')
           .then((res) => res.json())
           .then((data) => setData(data.data));
       }, []);
-      console.log(data)
+    
+      const handleSearch = (event) => {
+        if (event.key === "Enter") {
+          fetch(`http://localhost:8080/api/v1/doctors/searchDoctors/${inputValue}`)
+          .then((res) => res.json())
+          .then((data) =>setData([data.data]));
+        }
+      };
 
     return (
         <section className="py-10 md:py-14">
             <div className="container px-6 md:max-w-6xl w-full ">
                 {/* search bar */}
 
-                <form className="flex items-center justify-end text-right gap-3 mb-6">
+                <div className="flex items-center justify-end text-right gap-3 mb-6">
                     <label for="simple-search" className="text-sm text-textColor">Search</label>
                     <div className="relative shadow-md shadow-gray-100 rounded">
                         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -30,10 +39,12 @@ const AllDoctors = () => {
                                 <CiSearch />
                             </span>
                         </div>
-                        <input type="text" className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 px-2.5 py-3 border-none" placeholder="" required />
+                        <input type="text" className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 px-2.5 py-3 border-none"  placeholder="Type name"
+          onChange={(event) => setInputValue(event.target.value)}
+          onKeyDown={handleSearch} required />
                     </div>
 
-                </form>
+                </div>
 
                 {/* doctor list table */}
                 <div className="relative overflow-x-auto">
@@ -79,22 +90,22 @@ const AllDoctors = () => {
                                        {index+1}
                                     </th>
                                     <td className="px-6 py-4">
-                                       {info.fullName}
+                                       {info?.fullName}
                                     </td>
                                     <td className="px-6 py-4">
-                                        <img src={`http://localhost:8080/images/${info.image}`} className='w-26  rounded' alt="doctor image" />
+                                        <img src={`http://localhost:8080/images/${info?.image}`} className='w-26  rounded' alt="doctor image" />
                                     </td>
                                     <td className="px-6 py-4">
-                                    {info.email}
+                                    {info?.email}
                                     </td>
                                     <td className="px-6 py-4">
-                                    {info.phone}
+                                    {info?.phone}
                                     </td>
                                     <td className="px-6 py-4">
-                                    {info.address}
+                                    {info?.address}
                                     </td>
                                     <td className="px-6 py-4">
-                                    {info.expertise}
+                                    {info?.expertise}
                                     </td>
                                     <td className="px-6 py-4">
                                         <SwitchToggle enabled={enabled} setEnabled={setEnabled} />
