@@ -1,10 +1,8 @@
-import React from "react";
-import img1 from "../Assets/images/Products/Bottle (1).png";
-import img2 from "../Assets/images/Products/Bottle (2).png";
-import img3 from "../Assets/images/Products/Bottle.png";
-import img4 from "../Assets/images/Products/Box (1).png";
-import img5 from "../Assets/images/Products/Syrup-Bottle-Mockup.png";
-import img6 from "../Assets/images/Products/Box.png";
+import React, { useState } from "react";
+import img1 from "../Assets/images/Products/p1.png";
+import img2 from "../Assets/images/Products/p2.webp";
+import img3 from "../Assets/images/Products/p3.webp";
+import img4 from "../Assets/images/Products/p4.webp";
 import { Link } from "react-router-dom";
 
 const Products = () => {
@@ -54,7 +52,7 @@ const Products = () => {
       stock: "15",
 
       price: "600",
-      image: `${img5}`,
+      image: `${img4}`,
     },
     {
       _id: 6,
@@ -63,13 +61,13 @@ const Products = () => {
       strength: "15 MG",
       stock: "11",
       price: "600",
-      image: `${img6}`,
+      image: `${img4}`,
     },
   ];
   return (
     <div className="md:px-[103px]">
-      <div className="grid grid-cols-1 md:grid-cols-4 md:gap-4">
-        <div className="p-8 md:col-span-1">
+      <div className="grid grid-cols-4 gap-4">
+        <div className="col-span-1">
           <div className="  border border-blue-gray-300 p-11">
             <h1 className="text-2xl font-semibold">Products Categories</h1>
             <div className="mt-8">
@@ -88,7 +86,7 @@ const Products = () => {
             </div>
           </div>
         </div>
-        <div class="col-span-3 my-4">
+        <div class="col-span-3">
           <div className=" flex gap-6 flex-wrap mx-auto justify-center ">
             {products.map((product) => (
               <Link to={"/products/details"}>
