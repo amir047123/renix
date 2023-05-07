@@ -25,6 +25,21 @@ const AllDoctors = () => {
           .then((data) =>setData([data.data]));
         }
       };
+      const handleStatus = (data) => {
+
+          fetch(`http://localhost:8080/api/v1/doctors/status`, {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify({id: data._id}),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+               window.location.reload()
+            })
+
+      }
 
     return (
         <section className="py-10 md:py-14">
@@ -107,8 +122,8 @@ const AllDoctors = () => {
                                     <td className="px-6 py-4">
                                     {info?.expertise}
                                     </td>
-                                    <td className="px-6 py-4">
-                                        <SwitchToggle enabled={enabled} setEnabled={setEnabled} />
+                                    <td className="px-6 py-4" onClick={()=>handleStatus(info)}>
+                                        <SwitchToggle enabled={info.status ? info.status : false}/>
                                     </td>
     
                                     <td className="px-6 py-4">

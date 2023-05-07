@@ -39,9 +39,9 @@ const AddDoctor = () => {
             linkedin,
             twitter,
             youtube,
-            image
+            image,
+            status: false
         }
-        console.log(info)
 
         fetch(`http://localhost:8080/api/v1/doctors/`, {
             method: "POST",
