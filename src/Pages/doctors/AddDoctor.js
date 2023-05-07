@@ -1,11 +1,59 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
+import { singleImageUpload } from '../../Hooks/imageUploadHook';
+import { Navigate } from 'react-router-dom';
 
 const AddDoctor = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
-    const handleAddDoctor = () => {
+    const [singleImg, setSingleImg] = useState([]);
 
+    const handleChangeUploadImage = async (event) => {
+        const image = event.target.files[0];
+        const formData = new FormData();
+        formData.append("image", image);
+        singleImageUpload(formData, setSingleImg);
+      };
+
+    const handleAddDoctor = (data) => {
+       const fullName = data.name;
+        const email =data.email;
+        const phone = data.phone;
+        const address = data.address;
+        const expertise = data.expertise;
+        const image = singleImg;
+        const description = data.description;
+        const facebook = data.facebook;
+        const linkedin = data.linkedin;
+        const twitter = data.twitter;
+        const youtube = data.youtube;
+
+        const info = {
+            fullName,
+            email,
+            phone,
+            address,
+            expertise,
+            description,
+            facebook,
+            linkedin,
+            twitter,
+            youtube,
+            image
+        }
+        console.log(info)
+
+        fetch(`http://localhost:8080/api/v1/doctors/`, {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(info),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+               window.location.reload()
+            })
     }
     return (
 
@@ -23,6 +71,7 @@ const AddDoctor = () => {
                             <input
                                 type="text"
                                 id="name"
+                                name='fullName'
                                 className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-500"
                                 placeholder="Full Name"
                                 {...register("name", {
@@ -56,7 +105,6 @@ const AddDoctor = () => {
                         <label for="repeat-password" className="block mb-2 text-[13px] font-normal text-gray-900 dark:text-white"> Phone Number</label>
                         <input
                             type="text"
-
                             className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-500"
                             placeholder="Phone Number"
                             {...register("phone", {
@@ -72,7 +120,7 @@ const AddDoctor = () => {
                         <label for="repeat-password" className="block mb-2 text-[13px] font-normal text-gray-900 dark:text-white"> Address</label>
                         <input
                             type="text"
-
+name='address'
                             className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-500"
                             placeholder="Address"
                             {...register("address", {
@@ -88,12 +136,14 @@ const AddDoctor = () => {
 
                     <div className="mb-1">
                         <label for="repeat-password" className="block mb-2 text-[13px] font-normal text-gray-900 dark:text-white"> Doctor Photo</label>
-                        <input className="block w-full text-sm text-gray-900  rounded-lg cursor-pointer bg-[#F0FDF4] dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 p-2" id="file_input" type="file"
+                        <input  type="file"
+                name="image" className="block w-full text-sm text-gray-900  rounded-lg cursor-pointer bg-[#F0FDF4] dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 p-2" id="file_input" 
                             {...register("image", {
                                 required: "Doctor photo is required",
 
 
                             })}
+                            onChange={handleChangeUploadImage}
                         />
                         {errors.image && <p className='text-red-500 mt-1'>{errors.image.message}</p>}
                     </div>
@@ -101,7 +151,7 @@ const AddDoctor = () => {
                     {/* expertise */}
                     <div className="mb-1  w-full ">
                         <label for="repeat-password" className="block mb-2 text-[13px] font-normal text-gray-900 dark:text-white">Expertise</label>
-                        <select id="condition"
+                        <select name='expertise' id="condition"
                             className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-500"
                             {...register("expertise", {
                                 required: "Expertise is required",
@@ -122,6 +172,7 @@ const AddDoctor = () => {
                         <label for="repeat-password" className="block mb-2 text-[13px] font-normal text-gray-900 dark:text-white">Description</label>
                         <textarea
                             rows="5"
+                            name='description'
                             className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-500"
 
                             placeholder="Description here..."
@@ -146,7 +197,7 @@ const AddDoctor = () => {
                             <label for="repeat-password" className="block mb-2 text-[13px] font-normal text-gray-900 dark:text-white"> Facebook Url</label>
                             <input
                                 type="text"
-
+name='facebook'
                                 className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-500"
                                 placeholder="Facebook Url"
                                 {...register("facebook", {
@@ -163,7 +214,7 @@ const AddDoctor = () => {
                             <label for="repeat-password" className="block mb-2 text-[13px] font-normal text-gray-900 dark:text-white"> Linkedin Url</label>
                             <input
                                 type="text"
-
+name='linkedin'
                                 className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-500"
                                 placeholder="Linkedin Url"
                                 {...register("linkedin", {
@@ -185,7 +236,7 @@ const AddDoctor = () => {
                             <label for="repeat-password" className="block mb-2 text-[13px] font-normal text-gray-900 dark:text-white"> Twitter Url</label>
                             <input
                                 type="text"
-
+name='twitter'
                                 className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-500"
                                 placeholder="Twitter Url"
                                 {...register("twitter", {
@@ -202,7 +253,7 @@ const AddDoctor = () => {
                             <label for="repeat-password" className="block mb-2 text-[13px] font-normal text-gray-900 dark:text-white"> Youtube Url</label>
                             <input
                                 type="text"
-
+name='youtube'
                                 className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-500"
                                 placeholder="Youtube Url"
                                 {...register("youtube", {
