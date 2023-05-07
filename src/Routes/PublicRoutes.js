@@ -1,5 +1,4 @@
 import Checkout from "../Components/Checkout/Checkout";
-import About from "../Pages/About";
 import Blogs from "../Pages/Blogs";
 import Conditions from "../Pages/Conditions";
 import Contact from "../Pages/Contact";
@@ -14,7 +13,7 @@ import Services from "../Pages/Services";
 
 const PublicRoutes = [
   { path: "/", Component: Home },
-  { path: "/services", Component: Services },
+  { path: "/security-check", Component: Services },
   { path: "/products", Component: Products },
   { path: "/news-media", Component: NewsMedia },
   { path: "/blogs", Component: Blogs },
