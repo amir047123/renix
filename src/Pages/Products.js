@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import img1 from "../Assets/images/sliderImages/p1.png";
 import img2 from "../Assets/images/sliderImages/p2.png";
 import img3 from "../Assets/images/sliderImages/p3.png";
@@ -6,66 +6,26 @@ import img4 from "../Assets/images/sliderImages/p4.png";
 import img5 from "../Assets/images/sliderImages/p5.png";
 import img6 from "../Assets/images/sliderImages/p6.png";
 import { Link } from "react-router-dom";
+import Pagination from "../shared/Pagination/Pagination";
 
 const Products = () => {
   const [displayButton, setDisplayButton] = useState("");
-  const products = [
-    {
-      _id: 1,
-      productName: "Nature Hazmina Plus",
-      genericName: " MIRTAZAPINE",
-      strength: "15 MG",
-      stock: "14",
-      price: "800",
-      image: `${img1}`,
-    },
-    {
-      _id: 2,
-      productName: "Nature Hazmina Plus",
-      genericName: " MIRTAZAPINE",
-      strength: "15 MG",
-      stock: "13",
-      price: "600",
-      image: `${img2}`,
-    },
-    {
-      _id: 3,
-      productName: "Karkuma Superfood",
-      genericName: " MIRTAZAPINE",
-      strength: "15 MG",
-      stock: "12",
-      price: "500",
-      image: `${img3}`,
-    },
-    {
-      _id: 4,
-      productName: "Nature Hazmina Plus",
-      genericName: " MIRTAZAPINE",
-      strength: "15 MG",
-      stock: "12",
-      price: "700",
-      image: `${img4}`,
-    },
-    {
-      _id: 5,
-      productName: "Nature Hazmina Plus",
-      genericName: " MIRTAZAPINE",
-      strength: "15 MG",
-      stock: "15",
+  const [products, setProducts] = useState([]);
+  // for pagination
+  const [quantity, setQuantity] = useState(0);
+  const [page, setPage] = useState(0);
+  const [size, setSize] = useState(6);
 
-      price: "600",
-      image: `${img5}`,
-    },
-    {
-      _id: 6,
-      productName: "Nature Hazmina Plus",
-      genericName: " MIRTAZAPINE",
-      strength: "15 MG",
-      stock: "11",
-      price: "600",
-      image: `${img6}`,
-    },
-  ];
+  useEffect(() => {
+    const url = `http://localhost:5000/api/v1/medicine?size=${size}&page=${page}`;
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setProducts(data?.data);
+        setQuantity(data?.total);
+      });
+  }, [size, page]);
   return (
     <div className="md:px-[103px]">
       <div className="grid grid-cols-4 gap-4">
@@ -88,18 +48,19 @@ const Products = () => {
             </div>
           </div>
         </div>
-        <div class="col-span-3">
+        <div class="col-span-3 pb-5">
           <div className=" flex gap-6 flex-wrap mx-auto justify-center ">
-            {products.map((product) => (
-              <Link to={"/products/details"}>
+            {/* single medicine card */}
+            {products?.map((product) => (
+              <Link to={`/products/${product?._id}`}>
                 <div
                   className="relative w-full"
-                  onMouseEnter={() => setDisplayButton(product._id)}
+                  onMouseEnter={() => setDisplayButton(product?._id)}
                   onMouseLeave={() => setDisplayButton("")}
                 >
                   <div
                     className="w-80  px-8 py-4 shadow-md rounded-lg"
-                    key={product._id}
+                    key={product?._id}
                   >
                     <div className="w-full  h-64 rounded-xl ">
                       <div className="flex justify-between items-center ">
@@ -111,26 +72,26 @@ const Products = () => {
                         </span>
                       </div>
                       <img
-                        src={product.image}
+                        src={product?.img}
                         alt=""
                         className="w-44 mx-auto h-52 "
                       />
                       <p className="text-lightPrimary my-2 font-medium text-xs float-right">
-                        Stock: {product.stock}
+                        Stock: {product?.stock}
                       </p>
                     </div>
                     <div>
                       <h1 className="text-secondary text-sm mt-2">
-                        {product.productName}
+                        {product?.name}
                       </h1>
                       <h1 className="text-secondary text-sm mt-2">
-                        Generic Name: {product.genericName}
+                        Generic Name: {product?.genericName}
                       </h1>
                       <h1 className="text-secondary text-sm mt-2">
-                        Strength: {product.strength}
+                        Strength: {product?.strength}
                       </h1>
                       <p className="text-lightPrimary text-sm mt-2">
-                        BDT {product.price}
+                        BDT {product?.price}
                       </p>
                     </div>
                   </div>
@@ -149,6 +110,14 @@ const Products = () => {
               </Link>
             ))}
           </div>
+          {/* pagination */}
+          <Pagination
+            quantity={quantity}
+            page={page}
+            setPage={setPage}
+            size={size}
+            setSize={setSize}
+          />
         </div>
       </div>
     </div>

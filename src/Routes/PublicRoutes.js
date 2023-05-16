@@ -11,7 +11,6 @@ import Products from "../Pages/Products";
 import Refound from "../Pages/Refound";
 import Services from "../Pages/Services";
 
-
 const PublicRoutes = [
   { path: "/", Component: Home },
   { path: "/security-check", Component: Services },
@@ -22,9 +21,8 @@ const PublicRoutes = [
   { path: "/privacy-policy", Component: Privacy },
   { path: "/refound-return", Component: Refound },
   { path: "/terms-conditions", Component: Conditions },
-  { path: "/products/details", Component: ProductDetails },
+  { path: "/products/:id", Component: ProductDetails },
   { path: "/Checkout", Component: Checkout },
-  
 ];
 
 export default PublicRoutes;
