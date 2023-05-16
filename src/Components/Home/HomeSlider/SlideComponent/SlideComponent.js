@@ -1,10 +1,10 @@
 import React from "react";
 import leavesBgPattern from "../../../../Assets/images/sliderImages/leaves bg pattern.svg";
 import tree from "../../../../Assets/images/sliderImages/tree.svg";
-import product1 from "../../../../Assets/images/sliderImages/p5.png";
-import product2 from "../../../../Assets/images/sliderImages/p2.png";
-import product3 from "../../../../Assets/images/sliderImages/p3.png";
-import product4 from "../../../../Assets/images/sliderImages/p4.png";
+import product1 from "../../../../Assets/images/sliderImages/02. Apelon Syrup.webp";
+import product2 from "../../../../Assets/images/sliderImages/Aptivate.webp";
+import product3 from "../../../../Assets/images/sliderImages/Syrup  R-Reniton.webp";
+import product4 from "../../../../Assets/images/sliderImages/Procid.webp";
 import "./SlideComponent.css";
 export const SlideComponentOne = () => {
 
@@ -25,7 +25,7 @@ export const SlideComponentOne = () => {
             </button>
           </div>
           <div className="flex justify-center items-center">
-            <img className="w-[200px] h-[250px] lg:w-[300px] lg:h-[350px] mb-6  ml-12" src={product1} alt="" />
+            <img className="w-full  lg:w-[450px] lg:h-[350px]  mb-6  ml-12" src={product1} alt="" />
           </div>
         </div>
         <div className=" absolute bottom-3 left-2 md:left-0 md:bottom-0 lg:bottom-11 lg:left-10 w-1/3 md:w-1/6 ">
@@ -71,7 +71,7 @@ export const SlideComponentTwo = () => {
             </button>
           </div>
           <div className="flex justify-center items-center">
-            <img className="w-[200px] h-[250px] lg:w-[300px] lg:h-[350px] mb-6  ml-12" src={product2} alt="" />
+            <img className="w-full  lg:w-[450px] lg:h-[350px]  mb-6  ml-12" src={product2} alt="" />
           </div>
 
         </div>
@@ -116,7 +116,7 @@ export const SlideComponentThree = () => {
             </button>
           </div>
           <div className="flex justify-center items-center">
-            <img className="w-[200px] h-[250px] lg:w-[300px] lg:h-[350px] mb-6  ml-12" src={product3} alt="" />
+            <img className="w-full  lg:w-[450px] lg:h-[350px]  mb-6  ml-12" src={product3} alt="" />
           </div>
 
         </div>
@@ -164,7 +164,7 @@ const SlideComponentFour = () => {
             </button>
           </div>
           <div className="flex justify-center items-center">
-            <img className="w-[300px] h-[350px] lg:w-[400px] lg:h-[450px] mb-6  ml-12" src={product4} alt="" />
+            <img className="w-full  lg:w-[450px] lg:h-[350px]  mb-6  ml-12" src={product4} alt="" />
           </div>
 
         </div>

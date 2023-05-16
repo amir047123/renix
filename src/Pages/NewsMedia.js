@@ -1,9 +1,10 @@
 import React from 'react';
+import News from '../Pages/News/News';
 
 const NewsMedia = () => {
     return (
         <div>
-            <h1>Welcome to our New & Media page</h1>
+        <News></News>
         </div>
     );
 };

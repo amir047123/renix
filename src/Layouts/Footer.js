@@ -57,29 +57,21 @@ const Footer = () => {
             </div>
             <div className="w-full  lg:w-2/12 mt-2">
               <h2 className="mb-4 text-sm font-semibold text-[#f7f7f7] capitalize dark:text-white">
-                Services
+                Renix
               </h2>
               <ul className="text-lightTextColor flex flex-col gap-y-2 text-sm font-normal capitalize mb-6">
                 <li>
-                  <a to="" className="hover:underline">
-                    Services
-                  </a>
+                  <Link to="/gallery" className="hover:underline">
+                    Gallery
+                  </Link>
                 </li>
                 <li>
-                  <a to="" className="hover:underline">
-                    Services
-                  </a>
+                  <Link to="/team" className="hover:underline">
+                    Team
+                  </Link>
                 </li>
-                <li>
-                  <a to="" className="hover:underline">
-                    Services
-                  </a>
-                </li>
-                <li>
-                  <a to="" className="hover:underline">
-                    Services
-                  </a>
-                </li>
+                
+             
               </ul>
             </div>
             <div className="w-full  lg:w-4/12 mt-2 ">
@@ -87,7 +79,7 @@ const Footer = () => {
                 Contact Info
               </h2>
               <ul className="text-lightTextColor flex flex-col gap-y-2 text-sm font-normal capitalize mb-8">
-                <li>+8801724-024373</li>
+                <li>+(880)1884442022</li>
                 <li>info@renixlaboratories.com</li>
                 <li>RENIX UNANI LABORATORIES LIMITED,</li>
                 <li>Fatullah 1421 Dhaka, Dhaka Division, Bangladesh</li>
