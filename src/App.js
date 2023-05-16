@@ -14,6 +14,7 @@ import { useState } from "react";
 import { BsFillBagFill } from "react-icons/bs";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Dashboard from "./Pages/dashboard/Dashboard";
 
 function App() {
   const [openCart, setOpenCart] = useState(false);
@@ -50,6 +51,7 @@ function App() {
 
         {/* dashboard routes */}
         <Route path="/adminDashboard" element={<AdminDashboard />}>
+          <Route index element={<Dashboard />}></Route>
           {AdminRoutes.map(({ path, Component }, index) => (
             <Route key={index} path={path} element={<Component />} />
           ))}
