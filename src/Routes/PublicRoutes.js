@@ -24,7 +24,8 @@ const PublicRoutes = [
   { path: "/terms-conditions", Component: Conditions },
   { path: "/products/details", Component: ProductDetails },
   { path: "/Checkout", Component: Checkout },
-  
+  { path: "/product/productId", Component: ProductDetails }
+
 ];
 
 export default PublicRoutes;

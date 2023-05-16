@@ -7,12 +7,29 @@ import img5 from "../Assets/images/sliderImages/p5.png";
 import img6 from "../Assets/images/sliderImages/p6.png";
 import { Link } from "react-router-dom";
 import { TbCurrencyTaka } from "react-icons/tb"
+import { useEffect } from "react";
 
 const Products = () => {
+
+
+
   const [displayButton, setDisplayButton] = useState("");
-  const handleClick = (p) => {
-    console.log(p)
+  const [seletedProduct, setSelectedProduct] = useState(null);
+  // useEffect(() => {
+  //   console.log(seletedProduct);
+  // }, [seletedProduct]);
+
+  const handleClick = (data) => {
+
+
+    console.log(data)
+
+
   }
+  // console.log(seletedProduct)
+
+
+
   const products = [
     {
       _id: 1,
@@ -69,7 +86,12 @@ const Products = () => {
       price: "600",
       image: `${img6}`,
     },
+
   ];
+
+
+
+
   return (
     <div className="md:px-[103px] pt-14 ">
       <div className="lg:flex  ">
@@ -98,8 +120,8 @@ const Products = () => {
           <div class="col-span-3">
             <div className=" flex gap-6 flex-wrap mx-auto justify-center ">
               {products.map((product) => (
-                <Link to={"/products/details"}>
-                  <div
+                <Link to={`/product/productId/${product._id}`} >
+                  <div key={product._id} onClick={() => handleClick(product)}
                     className="relative w-full"
                     onMouseEnter={() => setDisplayButton(product._id)}
                     onMouseLeave={() => setDisplayButton("")}
@@ -136,7 +158,7 @@ const Products = () => {
                         <h1 className="text-secondary text-sm mt-2">
                           Strength: {product.strength}
                         </h1>
-                        <div className="flex  items-center  justify-center">
+                        <div className="flex  items-center text-left">
                           <span className="text-lg mt-2 mr-2">
                             <TbCurrencyTaka></TbCurrencyTaka>
                           </span>
@@ -146,7 +168,7 @@ const Products = () => {
                     </div>
                     <div className="w-full">
                       {displayButton === product?._id && (
-                        <button onClick={() => handleClick(product)}
+                        <button
                           className="bg-primary 
                opacity-100 w-full
                 py-2  text-center top-1/2 text-white absolute"

@@ -3,10 +3,48 @@ import img1 from "../../Assets/images/Products/Bottle (1).png";
 import ProductTable from "./ProductTable";
 import ProductInfo from "./ProductInfo";
 import { TbCurrencyTaka } from "react-icons/tb"
+import { useLocation, useParams } from "react-router-dom";
 
 const ProductDetails = () => {
   const [addToCart, setAddToCart] = useState(false);
   const [activeTab, setActiveTab] = useState("tab1");
+
+  // const currentUrl = window.location.href;
+
+  // const [baseURL, queryString] = currentUrl.split('?');
+  // const queryParams = {};
+  // if (queryString) {
+  //   const params = queryString.split('&');
+  //   params.forEach(param => {
+  //     const [key, value] = param.split('=');
+  //     queryParams[key] = value;
+  //   });
+  // }
+  // const productId = queryParams.id;
+  // const productName = queryParams.name;
+  // console.log(productId)
+
+
+
+
+
+  // const productElement = document.querySelector('.product');
+  // productElement.addEventListener('click', function (event) {
+  //   const productId = event.target.dataset.productId;
+  //   console.log(productId)
+  // })
+
+
+
+  // const url = new URL(currentUrl);
+  // const productId = url.searchParams.get('id');
+  // console.log(productId)
+
+  const { productId } = useParams()
+  console.log(productId);
+  fetch("productId")
+    .then(res => res.json())
+    .then(data => console.log(data))
 
   const active = {
     border: "none",
