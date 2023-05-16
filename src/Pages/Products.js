@@ -6,6 +6,7 @@ import img4 from "../Assets/images/sliderImages/p4.png";
 import img5 from "../Assets/images/sliderImages/p5.png";
 import img6 from "../Assets/images/sliderImages/p6.png";
 import { Link } from "react-router-dom";
+import { TbCurrencyTaka } from "react-icons/tb"
 
 
 // function product ({id,name,price,image,addToCart}){
@@ -34,6 +35,9 @@ import { Link } from "react-router-dom";
 
 const Products = () => {
   const [displayButton, setDisplayButton] = useState("");
+  const handleClick = (p) => {
+    console.log(p)
+  }
   const products = [
     {
       _id: 1,
@@ -92,90 +96,98 @@ const Products = () => {
     },
   ];
   return (
-    <div className="md:px-[103px]">
-      <div className="grid grid-cols-4 gap-4">
-        <div className="col-span-1">
-          <div className="  border border-blue-gray-300 p-11">
-            <h1 className="text-2xl font-semibold">Products Categories</h1>
-            <div className="mt-8">
-              <div className="flex items-center mt-4 mb-8">
-                <input type="checkbox" className="w-5 h-5 mr-5" />
-                <label>All Medicine</label>
-              </div>
-              <div className="flex items-center mt-4 mb-8">
-                <input type="checkbox" className="w-5 h-5 mr-5" />
-                <label>Organic Medicine</label>
-              </div>
-              <div className="flex items-center mt-4 mb-8">
-                <input type="checkbox" className="w-5 h-5 mr-5" />
-                <label>Inorganic Medicine</label>
-              </div>
+    <div className="md:px-[103px] pt-14 ">
+      <div className="lg:flex  ">
+        <div className="   lg:sticky  top-0  w-[200px]  ">
+          <h1 className="text-2xl font-semibold"> Categories</h1>
+          <div className="mt-8">
+            <div className="flex items-center mt-4 mb-8">
+              <input type="checkbox" className="w-5 h-5 mr-5" />
+              <label>All Medicine</label>
+            </div>
+            <div className="flex items-center mt-4 mb-8">
+              <input type="checkbox" className="w-5 h-5 mr-5" />
+              <label>Organic Medicine</label>
+            </div>
+            <div className="flex items-center mt-4 mb-8">
+              <input type="checkbox" className="w-5 h-5 mr-5" />
+              <label>Inorganic Medicine</label>
             </div>
           </div>
         </div>
-        <div class="col-span-3">
-          <div className=" flex gap-6 flex-wrap mx-auto justify-center ">
-            {products.map((product) => (
-              <Link to={"/products/details"}>
-                <div
-                  className="relative w-full"
-                  onMouseEnter={() => setDisplayButton(product._id)}
-                  onMouseLeave={() => setDisplayButton("")}
-                >
+        <div className="grid lg:grid-cols-3 lg:ml-[100px] gap gap-3  sm:grid-cols-1  ">
+
+          <div className="col-span-1  ">
+
+          </div>
+          <div class="col-span-3">
+            <div className=" flex gap-6 flex-wrap mx-auto justify-center ">
+              {products.map((product) => (
+                <Link to={"/products/details"}>
                   <div
-                    className="w-80  px-8 py-4 shadow-md rounded-lg"
-                    key={product._id}
+                    className="relative w-full"
+                    onMouseEnter={() => setDisplayButton(product._id)}
+                    onMouseLeave={() => setDisplayButton("")}
                   >
-                    <div className="w-full  h-64 rounded-xl ">
-                      <div className="flex justify-between items-center ">
-                        <span class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">
-                          Sold out
-                        </span>
-                        <span class="bg-green-100 self-end  text-green-800 text-xs font-medium  px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
-                          sale !
-                        </span>
+                    <div
+                      className="w-80  px-8 py-4 shadow-md rounded-lg"
+                      key={product._id}
+                    >
+                      <div className="w-full  h-64 rounded-xl ">
+                        <div className="flex justify-between items-center ">
+                          <span class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">
+                            Sold out
+                          </span>
+                          <span class="bg-green-100 self-end  text-green-800 text-xs font-medium  px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
+                            sale !
+                          </span>
+                        </div>
+                        <img
+                          src={product.image}
+                          alt=""
+                          className="w-44 mx-auto h-52 "
+                        />
+                        <p className="text-lightPrimary my-2 font-medium text-xs float-right">
+                          Stock: {product.stock}
+                        </p>
                       </div>
-                      <img
-                        src={product.image}
-                        alt=""
-                        className="w-44 mx-auto h-52 "
-                      />
-                      <p className="text-lightPrimary my-2 font-medium text-xs float-right">
-                        Stock: {product.stock}
-                      </p>
+                      <div>
+                        <h1 className="text-secondary text-sm mt-2">
+                          {product.productName}
+                        </h1>
+                        <h1 className="text-secondary text-sm mt-2">
+                          Generic Name: {product.genericName}
+                        </h1>
+                        <h1 className="text-secondary text-sm mt-2">
+                          Strength: {product.strength}
+                        </h1>
+                        <div className="flex  items-center  justify-center">
+                          <span className="text-lg mt-2 mr-2">
+                            <TbCurrencyTaka></TbCurrencyTaka>
+                          </span>
+                          <p className='text-lightPrimary text-lg mt-2'> {product.price}</p>
+                        </div>
+                      </div>
                     </div>
-                    <div>
-                      <h1 className="text-secondary text-sm mt-2">
-                        {product.productName}
-                      </h1>
-                      <h1 className="text-secondary text-sm mt-2">
-                        Generic Name: {product.genericName}
-                      </h1>
-                      <h1 className="text-secondary text-sm mt-2">
-                        Strength: {product.strength}
-                      </h1>
-                      <p className="text-lightPrimary text-sm mt-2">
-                        BDT {product.price}
-                      </p>
+                    <div className="w-full">
+                      {displayButton === product?._id && (
+                        <button onClick={() => handleClick(product)}
+                          className="bg-primary 
+               opacity-100 w-full
+                py-2  text-center top-1/2 text-white absolute"
+                        >
+                          Add to cart
+                        </button>
+                      )}
                     </div>
                   </div>
-                  <div className="w-full">
-                    {displayButton === product?._id && (
-                      <button
-                        className="bg-primary 
-                       opacity-100 w-full
-                        py-2  text-center top-1/2 text-white absolute"
-                      >
-                        Add to cart
-                      </button>
-                    )}
-                  </div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </div>
+
     </div>
   );
 };

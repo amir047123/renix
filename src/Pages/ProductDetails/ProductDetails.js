@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import img1 from "../../Assets/images/Products/Bottle (1).png";
 import ProductTable from "./ProductTable";
 import ProductInfo from "./ProductInfo";
+import { TbCurrencyTaka } from "react-icons/tb"
 
 const ProductDetails = () => {
   const [addToCart, setAddToCart] = useState(false);
@@ -23,9 +24,9 @@ const ProductDetails = () => {
   };
   return (
     <div className="w-3/5 mx-auto">
-      <div className="grid grid-cols-2 gap-6">
-        <div className=" border flex justify-center items-center  border-gray-300">
-          <img src={img1} className=" w-72 h-50 p-4" alt="" />
+      <div className="grid sm:grid-cols-1 lg:grid-cols-2 gap-6 mt-10">
+        <div className="  flex justify-center items-center rounded-lg shadow-xl  border-gray-300">
+          <img src={img1} className=" w-[180px] h-50 p-4" alt="" />
         </div>
         <div className="m-3">
           <div className="shadow-lg p-7 ">
@@ -42,11 +43,17 @@ const ProductDetails = () => {
             </p>
             <div className="flex items-center self-start gap-4 mt-3 ">
               {" "}
-              <span className="py-4 text-3xl font-medium">BDT - 9</span>
+              <div className="flex  items-center">
+                <span className="text-3xl font-medium mr-[10px]">
+                  <TbCurrencyTaka></TbCurrencyTaka>
+                </span>
+                <span className="py-4 text-3xl font-medium"> 9</span>
+              </div>
+
             </div>
             {addToCart ? (
               <div>
-                <div className=" border border-primary p-1  flex justify-evenly items-center">
+                <div className="  border-primary p-1  flex justify-evenly items-center">
                   <span
                     onClick={handleCountMinus}
                     className="text-4xl font-medium cursor-pointer"
@@ -75,6 +82,7 @@ const ProductDetails = () => {
               >
                 Add to Cart
               </button>
+
             )}
           </div>
         </div>
