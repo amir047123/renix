@@ -7,6 +7,31 @@ import img5 from "../Assets/images/sliderImages/p5.png";
 import img6 from "../Assets/images/sliderImages/p6.png";
 import { Link } from "react-router-dom";
 
+
+// function product ({id,name,price,image,addToCart}){
+
+//    const [quantity,setQuantity]= useState(1);
+
+//   const handleAddTocart =()=>{
+//     // addCart function passed in as a prop
+//     addToCart (id,quantity);
+
+//     const handleQuantityChange = (change)=> {
+ 
+//       // change the quantity of the product based on the button click
+    
+//       setQuantity(prevQuantityChange=> prevQuantity + change);
+    
+    
+//     };
+    
+//   };
+ 
+
+// };
+
+
+
 const Products = () => {
   const [displayButton, setDisplayButton] = useState("");
   const products = [

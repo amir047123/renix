@@ -104,7 +104,7 @@ const Contact = () => {
                                 {/* <p className="font-bold text-lg">Call Us</p> */}
                                 <p className="text-sm font-semibold text-[#535353]">
                                     {/* {officeInfo?.officePhone} */}
-                                    +(880)1724-024373
+                                    +(880)1884442022
 
 
                                 </p>
