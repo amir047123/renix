@@ -3,10 +3,19 @@ import img1 from "../../Assets/images/Products/Bottle (1).png";
 import ProductTable from "./ProductTable";
 import ProductInfo from "./ProductInfo";
 import { TbCurrencyTaka } from "react-icons/tb"
+import { useParams } from "react-router-dom";
 
 const ProductDetails = () => {
   const [addToCart, setAddToCart] = useState(false);
   const [activeTab, setActiveTab] = useState("tab1");
+
+  const { productId } = useParams(); // Access the productId parameter from the URL
+
+  // Find the selected product from your data source using the productId
+  // You can replace this logic with your own implementation
+  const selectedProduct = productId.find((product) => product._id === parseInt(productId));
+  console.log('Selected Product:', selectedProduct); // Add console log statement
+
 
   const active = {
     border: "none",

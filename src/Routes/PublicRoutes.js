@@ -33,7 +33,7 @@ const PublicRoutes = [
   {path: "/login", Component:LoginPage},
   {path: "/gallery",Component:Gallery},
   {path:"/team",Component:Team},
-  
+{path:"/products/:productId" ,Component:ProductDetails}  
   
  
   

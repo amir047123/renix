@@ -13,6 +13,7 @@ import { TbCurrencyTaka } from "react-icons/tb"
 
 const FeatureProducts = () => {
     const [displayButton, setDisplayButton] = useState("");
+    const [selectedProduct,setSelectedProduct]= useState(null);
 
     const products = [
         {
@@ -71,6 +72,14 @@ const FeatureProducts = () => {
             image: `${img6}`,
         },
     ];
+
+    const handleProductClick = (productId) => {
+        const selected = products.find((product) => product._id === productId);
+        setSelectedProduct(selected);
+        console.log('Selected Product:', selected);
+
+      };
+    
     return (
 
         <Link to='/products/details'>  <div className='lg:w-[90%] w-full mx-auto my-10 text-center '>
@@ -84,7 +93,8 @@ const FeatureProducts = () => {
 
                         <div
                             className="w-80  px-8 py-4 shadow-md rounded-lg"
-                            key={product._id}
+                              key={product._id}  onClick={() => handleProductClick(product._id)}
+
                         >
                             <div className="w-full  h-64 rounded-xl ">
                                 <div className="flex justify-between items-center ">
