@@ -35,7 +35,7 @@ function App() {
                 <BsFillBagFill className="text-2xl "></BsFillBagFill>
                 <p className="pt-2 text-xs">0 item</p>
               </div>
-              <p className="bg-secondary rounded-bl-lg p-2 text-xs">500 tk</p>
+              <p className="bg-secondary rounded-bl-lg p-2 text-xs">00 BDT</p>
             </div>
           </div>
         </div>

@@ -1,11 +1,96 @@
-import React from "react";
+import React, { useEffect ,useState } from "react";
 import { Link } from "react-router-dom";
+import districtsData from "../../../src/Components/BangladeshApi/bd.json";
+
+ 
+
 
 const Checkout = () => {
+
+
+  // const option = district.map((name)=>({
+  //   value:name.division_id,
+  //   label:name.division_name,
+
+    
+
+  // }));
+
+  // const districtOptions = districtsData.map((district) => (
+  //   <option key={district} value={district.name}>
+  //     {district.name}
+  //   </option>
+  // ));
+
+  // const [formData, setFormData] = useState({
+  //   firstName: '',
+  //   lastName: '',
+  //   companyName: '',
+  //   country: '',
+  //   streetAddress: '',
+  //   apartment: '',
+  //   city: '',
+  //   state: '',
+  //   zipCode: '',
+  //   phone: '',
+  //   email: '',
+  //   orderNotes: '',
+  // });
+
+  const [showPopup, setShowPopup] = useState(false);
+  const [orderInfo, setOrderInfo] = useState(null);
+
+  // useEffect(() => {
+  //   if (showPopup) {
+  //     setTimeout(() => {
+  //       setShowPopup(false);
+  //       setOrderInfo(null);
+  //       history.push('/');
+  //     }, 3000); // Redirect after 3 seconds
+  //   }
+  // }, [showPopup, history]);
+  const handlePlaceOrder = () => {
+    setShowPopup(true);
+    // Place order logic and data saving here
+    // ...
+  };
+
+  const handleClosePopup = () => {
+    setShowPopup(false);
+    setOrderInfo(null);
+  };
+
+
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setFormData((prevData) => ({ ...prevData, [name]: value }));
+  // };
+
+  // const handlePlaceOrder = () => {
+  //   setOrderInfo(formData);
+  //   setShowPopup(true);
+  //   setFormData({
+  //     firstName: '',
+  //     lastName: '',
+  //     companyName: '',
+  //     country: '',
+  //     streetAddress: '',
+  //     apartment: '',
+  //     city: '',
+  //     state: '',
+  //     zipCode: '',
+  //     phone: '',
+  //     email: '',
+  //     orderNotes: '',
+  //   });
+  // };
+
+
   return (
     <div className="container mx-auto p-8  mt-4">
       <div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+       <form>
+       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <div>
             <h1 className="text-xl font-medium">Billing Details</h1>
             <div className="lg:flex  lg:justify-between lg:items-center my-4">
@@ -52,8 +137,14 @@ const Checkout = () => {
                   <option disabled selected>
                     Choose District
                   </option>
-                  <option>Dhaka</option>
+                  <option>Rajshai</option>
                   <option>Dinajpur</option>
+                  <option>Rangpur</option>
+                  <option>Khulna</option>
+                  <option>Sylet</option>
+                  <option>Chittagong</option>
+                  <option>Brishal</option>
+                  <option>dhaka</option>
                 </select>
               </div>
               <div className="my-4">
@@ -188,12 +279,29 @@ const Checkout = () => {
                 Pay with cash upon delivery
               </p>
               <hr className="text-secondLightPrimary" />
-              <button className="bg-primary text-xs py-4 px-6 my-4 text-white font-medium">
+              <button  onClick={handlePlaceOrder} className="bg-primary text-xs py-4 px-6 my-4 text-white font-medium">
                 Place order
               </button>
+              
+        
             </div>
+            {showPopup && (
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-8">
+            <h2 className="text-xl font-semibold mb-4">Order Placed!</h2>
+            <p>Thank you for your order. Your order has been placed successfully.</p>
+            <button
+              className="bg-primary text-xs py-2 px-4 mt-4 text-white font-medium"
+              onClick={handleClosePopup}
+            >
+              Close
+            </button>
           </div>
         </div>
+      )}
+          </div>
+        </div>
+       </form>
       </div>
     </div>
     // </div>

@@ -108,7 +108,7 @@ const FeatureProducts = () => {
 
     return (
 
-        <Link to='/products/details'>  <div className='lg:w-[90%] w-full mx-auto my-10 text-center '>
+        <Link to='/checkout'>  <div className='lg:w-[90%] w-full mx-auto my-10 text-center '>
 
             <h3 className='bg-thirdLightPrimary w-36 mx-auto font '>F e a t u r e</h3>
             <h1 className='text-secondary font-semibold text-3xl mt-3'>Feature Products</h1>
@@ -127,7 +127,7 @@ const FeatureProducts = () => {
                                     {/* <span class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">
                                         Sold out
                                     </span> */}
-                                    <span class="bg-green-100 self-end  text-green-800 text-xs font-medium  px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
+                                    <span class="bg-primary self-end  text-white text-xs font-medium  px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
                                         sale !
                                     </span>
                                 </div>
@@ -136,7 +136,7 @@ const FeatureProducts = () => {
                                     alt=""
                                     className="w-full mx-auto h-52 "
                                 />
-                                <p className="text-lightPrimary my-2 font-medium text-xs float-right">
+                                <p className="text-secondary my-2 font-medium text-xs float-right">
                                     Stock: {product.stock}
                                 </p>
                             </div>

@@ -2,6 +2,8 @@ import React from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
 import { Link } from "react-router-dom";
+import { TbCurrencyTaka } from "react-icons/tb"
+
 
 const OrderFLoatingCart = ({ setOpenCart }) => {
   return (
@@ -18,7 +20,7 @@ const OrderFLoatingCart = ({ setOpenCart }) => {
           <ImCross></ImCross>
         </button>
       </div>
-      <h1> ok</h1>
+      <h1>Website Under Construction</h1>
       <div className="absolute bottom-0 w-full ">
         <hr className="max-w-full " />
         <div className="py-3 px-2">
@@ -26,12 +28,15 @@ const OrderFLoatingCart = ({ setOpenCart }) => {
             <div className="flex justify-between items-center">
               <p>Total Items</p>
 
-              <p>5</p>
+              <p>00</p>
             </div>
             <div className="flex justify-between items-center">
               <p>Total Price</p>
 
-              <p>0.00tk</p>
+             
+               
+               <TbCurrencyTaka> </TbCurrencyTaka>
+            
             </div>
           </div>
           <div className="flex justify-center items-center">
