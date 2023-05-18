@@ -1,10 +1,10 @@
 import React from "react";
 import leavesBgPattern from "../../../../Assets/images/sliderImages/leaves bg pattern.svg";
 import tree from "../../../../Assets/images/sliderImages/tree.svg";
-import product1 from "../../../../Assets/images/sliderImages/02. Apelon Syrup.webp";
-import product2 from "../../../../Assets/images/sliderImages/Aptivate.webp";
-import product3 from "../../../../Assets/images/sliderImages/Syrup  R-Reniton.webp";
-import product4 from "../../../../Assets/images/sliderImages/Procid.webp";
+import product1 from "../../../../Assets/images/sliderImages/21. RENIX-GINSENG-SYRUP.webp";
+import product2 from "../../../../Assets/images/sliderImages/20. Capsule Valaria.webp";
+import product3 from "../../../../Assets/images/sliderImages/19. Capsule Renivit.webp";
+import product4 from "../../../../Assets/images/sliderImages/18. Capsul Hazmina Plus.webp";
 import "./SlideComponent.css";
 export const SlideComponentOne = () => {
 

@@ -1,22 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import img1 from "../../Assets/images/Products/Bottle (1).png";
 import ProductTable from "./ProductTable";
 import ProductInfo from "./ProductInfo";
-import { TbCurrencyTaka } from "react-icons/tb"
 import { useParams } from "react-router-dom";
 
 const ProductDetails = () => {
+  const [product, setProduct] = useState({});
   const [addToCart, setAddToCart] = useState(false);
   const [activeTab, setActiveTab] = useState("tab1");
+  const { id } = useParams();
+  useEffect(() => {
+    fetch(`http://localhost:5000/api/v1/medicine/medicineDetails/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setProduct(data?.data);
+      });
+  }, [id]);
 
-  const { productId } = useParams(); // Access the productId parameter from the URL
+  const { description, genericName, img, name, price, supplierName } = product;
 
-  // Find the selected product from your data source using the productId
-  // You can replace this logic with your own implementation
-  const selectedProduct = productId.find((product) => product._id === parseInt(productId));
-  console.log('Selected Product:', selectedProduct); // Add console log statement
-
-
+  // console.log(img);
   const active = {
     border: "none",
     backgroundColor: "primary",
@@ -33,32 +37,26 @@ const ProductDetails = () => {
   };
   return (
     <div className="w-3/5 mx-auto">
-      <div className="grid sm:grid-cols-1 lg:grid-cols-2 gap-6 mt-10">
-        <div className="  flex justify-center items-center rounded-lg shadow-xl  border-gray-300">
-          <img src={img1} className=" w-[180px] h-50 p-4" alt="" />
+      <div className="grid grid-cols-2 gap-6">
+        <div className=" border flex justify-center items-center  border-gray-300">
+          <img src={img} className=" w-72 h-50 p-4" alt={name} />
         </div>
         <div className="m-3">
           <div className="shadow-lg p-7 ">
             <h1 className="text-3xl font-semibold uppercase tracking-widest">
-              Mirapro 15mg tab
+              {name}
             </h1>{" "}
             <p>
               <span className="font-medium text-lg">Generic Name : </span>
-              MIRTAZAPINE
+              {genericName}
             </p>
             <p>
               <span className="font-medium text-lg">Supplier Name : </span>
-              SQUARE PHARMACEUTICALS LIMITED
+              {supplierName}
             </p>
             <div className="flex items-center self-start gap-4 mt-3 ">
               {" "}
-              <div className="flex  items-center">
-                <span className="text-3xl font-medium mr-[10px]">
-                  <TbCurrencyTaka></TbCurrencyTaka>
-                </span>
-                <span className="py-4 text-3xl font-medium"> 9</span>
-              </div>
-
+              <span className="py-4 text-3xl font-medium">BDT - {price}</span>
             </div>
             {addToCart ? (
               <div>
@@ -126,9 +124,9 @@ const ProductDetails = () => {
       </div>
       <div className="border lg:mb-12 m-3 border-gray px-4 mt-8 ">
         {activeTab === "tab1" ? (
-          <ProductTable></ProductTable>
+          <ProductTable product={product}></ProductTable>
         ) : (
-          <ProductInfo></ProductInfo>
+          <ProductInfo description={description.replace(/<\/?p>/g, '')}></ProductInfo>
         )}
       </div>
     </div>

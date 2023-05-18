@@ -3,6 +3,10 @@ import { useForm } from "react-hook-form";
 import JoditEditor from "jodit-react";
 import { Markup } from "interweave";
 import { singleImageUpload } from "../../Hooks/ImageUpload";
+import PostHooks from "../../Hooks/PostHooks";
+
+
+
 const AddMedicine = () => {
   const [image, setImage] = useState(null);
   const {
@@ -33,6 +37,7 @@ const AddMedicine = () => {
       genericName: data.genericName,
       medicineCategory: data.medicineCategory,
       img: image,
+      supplierName: data.supplierName,
       price: data.price,
       description: content,
       strength: data.strength,
@@ -42,6 +47,12 @@ const AddMedicine = () => {
       medicineStatus: data.medicineStatus,
     };
     console.log(medicine);
+    // post api call
+    PostHooks(
+      "http://localhost:5000/api/v1/medicine/postMedicine",
+      medicine,
+      "Medicine successfully posted"
+    );
   };
   return (
     <section className="py-10 md:py-14">
@@ -191,6 +202,7 @@ const AddMedicine = () => {
             <JoditEditor
               ref={editor}
               value={content}
+
               // config={config}
               // tabIndex={1} // tabIndex of textarea
               onBlur={(newContent) => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
@@ -201,6 +213,10 @@ const AddMedicine = () => {
               //tabIndex={1} // tabIndex of textarea
               onChange={(newContent) => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
               // onChange={newContent => { }}
+              // config={{
+              //   cleanHTML: false, // Disable auto-paragraph feature
+              //   // Other configuration options...
+              // }}
             />
             {/* {errors.description && <p className='text-red-500 mt-1'>{errors.description.message}</p>} */}
           </div>
@@ -223,6 +239,27 @@ const AddMedicine = () => {
             />
             {errors.strength && (
               <p className="text-red-500 mt-1">{errors.strength.message}</p>
+            )}
+          </div>
+          {/* supplier name */}
+          <div className="mb-1">
+            <label
+              for="supplier name"
+              class="block mb-2 text-[13px] font-normal text-gray-900 dark:text-white"
+            >
+              {" "}
+              Supplier name
+            </label>
+            <input
+              type="text"
+              className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-500"
+              placeholder="supplier name"
+              {...register("supplierName", {
+                required: "supplier name is required",
+              })}
+            />
+            {errors.supplierName && (
+              <p className="text-red-500 mt-1">{errors.supplierName.message}</p>
             )}
           </div>
           {/* medicine security code */}

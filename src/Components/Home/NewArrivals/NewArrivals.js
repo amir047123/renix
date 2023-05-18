@@ -1,10 +1,10 @@
 import React from 'react'
-import img1 from "../../../Assets/images/sliderImages/p1.png";
-import img2 from "../../../Assets/images/sliderImages/p2.png";
-import img3 from "../../../Assets/images/sliderImages/p3.png";
-import img4 from "../../../Assets/images/sliderImages/p4.png";
-import img5 from "../../../Assets/images/sliderImages/p5.png";
-import img6 from "../../../Assets/images/sliderImages/p6.png";
+import img1 from "../../../Assets/images/NewArrival/16. Syrup Parsley.webp";
+import img2 from "../../../Assets/images/NewArrival/15. Capsul Ranix-Ginseng.webp";
+import img3 from "../../../Assets/images/NewArrival/14. Suspension Procid.webp";
+import img4 from "../../../Assets/images/NewArrival/09. S.Solid Dykmuni.webp";
+import img5 from "../../../Assets/images/NewArrival/07. Syrup Hazmina Plus.webp";
+import img6 from "../../../Assets/images/NewArrival/08. Syrup R-Kuli.webp";
 import Slider from 'react-slick'
 
 const NewArrivals = () => {
@@ -93,16 +93,17 @@ const NewArrivals = () => {
             stock: "15",
 
             price: "600",
-            image: `${img5}`,
+            image: `${img6}`,
         },
         {
             _id: 6,
-            productName: "Nature Hazmina Plus",
-            genericName: " MIRTAZAPINE",
-            strength: "15 MG",
-            stock: "11",
-            price: "600",
-            image: `${img6}`,
+            productName: "Syrup Hazmina-Plus",
+            genericName: " Sharbat Hazmina",
+            strength: "450 ML/200 ML",
+            Catgory:"Syrup",
+            stock: "200",
+            price: "225/115",
+            image: `${img5}`,
         },
     ];
     return (
@@ -117,7 +118,7 @@ const NewArrivals = () => {
                             <div className='w-full sm:w-6/12 md:w-4/12' key={product._id}>
                                 <div className='m-4  rounded-xl border-2 border-whiteSmoke '>
                                     <h2 className='bg-primary w-10 text-xs rounded-sm ml-44 text-white mt-3'>Sale!</h2>
-                                    <img src={product.image} alt='' className='w-44 mx-auto  h-52 mt-7' />
+                                    <img src={product.image} alt='' className='w-full mx-auto  h-auto mt-7' />
                                 </div>
                                 <div>
                                     <h1 className='text-secondary text-sm mt-2'>{product.productName}</h1>

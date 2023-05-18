@@ -16,7 +16,6 @@ import Products from "../Pages/Products";
 import Refound from "../Pages/Refound";
 import Services from "../Pages/Services";
 
-
 const PublicRoutes = [
   { path: "/", Component: Home },
   { path: "/security-check", Component: Services },
@@ -27,16 +26,12 @@ const PublicRoutes = [
   { path: "/privacy-policy", Component: Privacy },
   { path: "/refound-return", Component: Refound },
   { path: "/terms-conditions", Component: Conditions },
-  { path: "/products/details", Component: ProductDetails },
+  { path: "/products/:id", Component: ProductDetails },
   { path: "/Checkout", Component: Checkout },
   {path : "/registration",Component: RegistrationPage },
   {path: "/login", Component:LoginPage},
   {path: "/gallery",Component:Gallery},
   {path:"/team",Component:Team},
-{path:"/products/:productId" ,Component:ProductDetails}  
-  
- 
-  
 ];
 
 export default PublicRoutes;
