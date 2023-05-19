@@ -269,6 +269,10 @@ const WebNav = () => {
 
                 {/* call to action button */}
                 <Link to={"/appointment"}><button className='hidden lg:flex items-center px-2  py-2 rounded text-white border bg-primary border-primary text-base'>Appoinments +</button></Link>
+                <div className=' item-right' >
+
+          <Link to={"/login"} ><button className="hidden lg:flex items-center px-2  py-2 rounded text-white border bg-primary border-primary text-base">Login</button></Link>
+        </div>
             </nav>
         </header>
 

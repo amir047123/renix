@@ -19,6 +19,7 @@ import ProductDemo from "../Pages/ProductDemo";
 import Appointments from "../Pages/Appointments";
 import PopupMessage from "../Components/PopUp/PopupMessage ";
 import BlogSinglePage from "../Pages/ProductDetails/BlogPage/BlogSinglePage";
+import UserProfile from "../Pages/UserProfile/UserProfile";
 
 
 const PublicRoutes = [
@@ -39,7 +40,9 @@ const PublicRoutes = [
   {path:"/team",Component:Team},
   {path:"/appoinments", Component:Appointments},
   {path:"/popup",Component:PopupMessage},
-  {path:"/blogview",Component:BlogSinglePage}
+  {path:"/blogview",Component:BlogSinglePage},
+  {path:"/userprofile",Component:UserProfile},
+
 
   
  

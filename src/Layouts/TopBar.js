@@ -31,7 +31,7 @@ const TopBar = () => {
                     </div>
                 </div>
             </div>
-
+                   
             {/* top social icon */}
             <div className='flex items-center gap-2 '>
                 <div className="w-7 h-7 rounded-full bg-primary hover:bg-lightOrange text-white  hover:bg-lightPrimary flex items-center justify-center">
@@ -52,7 +52,7 @@ const TopBar = () => {
                     <Link to={'https://www.youtube.com/@RenixLaboratoriesLtd.'} className='text-[12px] '><AiFillYoutube /></Link>
                 </div>
 
-
+                
 
 
             </div>
