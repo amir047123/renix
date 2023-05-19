@@ -7,12 +7,8 @@ const SocialIcon = () => {
   return (
     <div className="flex items-center gap-3 mt-4 md1:mt-4 lg:mt-0">
       <div className="w-7 h-7 rounded-full bg-primary hover:bg-lightOrange text-[#191919]  hover:bg-lightPrimary flex items-center justify-center">
-        <Link
-          href={"https://www.facebook.com/Renixlaboratoriesltd1/"}
-          className="text-sm "
-        >
-          <FaFacebookF />
-        </Link>
+      {/* <Link to={'https://www.facebook.com/Renixlaboratoriesltd1/'} className='text-[12px] '><FaFacebookF /></Link> */}
+      <a href="https://www.facebook.com/Renixlaboratoriesltd1/"className='text-[12px] '><FaFacebookF /></a>
       </div>
       {/* <div className="w-7 h-7 rounded-full bg-primary hover:bg-lightOrange text-[#191919]  hover:bg-lightPrimary flex items-center justify-center">
 
@@ -20,7 +16,7 @@ const SocialIcon = () => {
             </div> */}
       <div className="w-7 h-7 rounded-full bg-primary hover:bg-lightOrange text-[#191919]  hover:bg-lightPrimary flex items-center justify-center">
         <Link
-          href={"https://www.facebook.com/Renixlaboratoriesltd1/"}
+          to={"https://www.facebook.com/Renixlaboratoriesltd1/"}
           className="text-sm "
         >
           <FaTwitter />
@@ -29,7 +25,7 @@ const SocialIcon = () => {
 
       <div className="w-7 h-7 rounded-full bg-primary hover:bg-lightOrange text-[#191919]  hover:bg-lightPrimary flex items-center justify-center">
         <Link
-          href={"https://youtube.com/@RenixLaboratoriesLtd."}
+          to={"https://www.youtube.com/@RenixLaboratoriesLtd."}
           className="text-sm "
         >
           <AiFillYoutube />

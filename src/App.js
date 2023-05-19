@@ -15,6 +15,7 @@ import { BsFillBagFill } from "react-icons/bs";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Dashboard from "./Pages/dashboard/Dashboard";
+import PopupMessage from "./Components/PopUp/PopupMessage ";
 
 function App() {
   const [openCart, setOpenCart] = useState(false);
@@ -42,8 +43,10 @@ function App() {
       )}
 
       <Routes>
+
         {/* main Routes */}
-        <Route path="/" element={<Main />}>
+        
+        <Route path="/"  element={<><Main /></>}>
           {PublicRoutes.map(({ path, Component }, index) => (
             <Route key={index + 45} path={path} element={<Component />} />
           ))}
@@ -63,6 +66,7 @@ function App() {
             <Route key={index} path={path} element={<Component />} />
           ))}
         </Route>
+        
       </Routes>
 
       <Toaster />

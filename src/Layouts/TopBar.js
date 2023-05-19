@@ -14,7 +14,7 @@ const TopBar = () => {
                 <div className="flex  gap-3 justify-center">
                     <span className="text-lg text-primary"><BsTelephoneFill /></span>
                     <div className="">
-                        <span className="text-[12px] text-textColor mb-2 block">+8801724-024373</span>
+                        <span className="text-[12px] text-textColor mb-2 block">+8801884442022</span>
                     </div>
                 </div>
                 <div className="flex gap-3 justify-center">
@@ -36,7 +36,7 @@ const TopBar = () => {
             <div className='flex items-center gap-2 '>
                 <div className="w-7 h-7 rounded-full bg-primary hover:bg-lightOrange text-white  hover:bg-lightPrimary flex items-center justify-center">
 
-                    <Link href={'https://www.facebook.com/Renixlaboratoriesltd1/'} className='text-[12px] '><FaFacebookF /></Link>
+                    <Link to={'https://www.facebook.com/Renixlaboratoriesltd1/'} className='text-[12px] '><FaFacebookF /></Link>
                 </div>
                 {/* <div className="w-7 h-7 rounded-full bg-primary hover:bg-lightOrange text-white  hover:bg-lightPrimary flex items-center justify-center">
 
@@ -44,12 +44,12 @@ const TopBar = () => {
                 </div> */}
                 <div className="w-7 h-7 rounded-full bg-primary hover:bg-lightOrange text-white  hover:bg-lightPrimary flex items-center justify-center">
 
-                    <Link href={'https://www.facebook.com/Renixlaboratoriesltd1/'} className='text-[12px] '><FaTwitter /></Link>
+                    <Link to={'https://www.facebook.com/Renixlaboratoriesltd1/'} className='text-[12px] '><FaTwitter /></Link>
                 </div>
 
                 <div className="w-7 h-7 rounded-full bg-primary hover:bg-lightOrange text-white  hover:bg-lightPrimary flex items-center justify-center">
 
-                    <Link href={'https://youtube.com/@RenixLaboratoriesLtd.'} className='text-[12px] '><AiFillYoutube /></Link>
+                    <Link to={'https://www.youtube.com/@RenixLaboratoriesLtd.'} className='text-[12px] '><AiFillYoutube /></Link>
                 </div>
 
 

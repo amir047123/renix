@@ -15,11 +15,16 @@ import ProductDetails from "../Pages/ProductDetails/ProductDetails";
 import Products from "../Pages/Products";
 import Refound from "../Pages/Refound";
 import Services from "../Pages/Services";
+import ProductDemo from "../Pages/ProductDemo";
+import Appointments from "../Pages/Appointments";
+import PopupMessage from "../Components/PopUp/PopupMessage ";
+import BlogSinglePage from "../Pages/ProductDetails/BlogPage/BlogSinglePage";
+
 
 const PublicRoutes = [
   { path: "/", Component: Home },
   { path: "/security-check", Component: Services },
-  { path: "/products", Component: Products },
+  { path: "/products", Component: ProductDemo },
   { path: "/news-media", Component: NewsMedia },
   { path: "/blogs", Component: Blogs },
   { path: "/contact", Component: Contact },
@@ -32,6 +37,12 @@ const PublicRoutes = [
   {path: "/login", Component:LoginPage},
   {path: "/gallery",Component:Gallery},
   {path:"/team",Component:Team},
+  {path:"/appoinments", Component:Appointments},
+  {path:"/popup",Component:PopupMessage},
+  {path:"/blogview",Component:BlogSinglePage}
+
+  
+ 
 ];
 
 export default PublicRoutes;

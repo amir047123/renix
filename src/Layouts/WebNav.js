@@ -154,11 +154,7 @@ const WebNav = () => {
                             <li >
                                 <a
                                     href="/blogs"
-                                    className='text-textColor p-2 uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition'
-
-
-
-                                >
+                                    className='text-textColor p-2 uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition'>
                                     Blogs
                                 </a>
                             </li>
@@ -174,7 +170,9 @@ const WebNav = () => {
                                 </a>
                             </li>
                             <li>
-                                <Link to={"/"}><button className=' px-2  py-2 rounded text-white border bg-primary border-primary text-base'>Appoinments +</button></Link>
+                                <a  
+                                       href="/appoinments" > <button className=' px-2  py-2 rounded text-white border bg-primary border-primary text-base'>Appoinments +</button></a>
+                               
                             </li>
 
 
@@ -270,7 +268,7 @@ const WebNav = () => {
                 </div>
 
                 {/* call to action button */}
-                <Link to={"/"}><button className='hidden lg:flex items-center px-2  py-2 rounded text-white border bg-primary border-primary text-base'>Appoinments +</button></Link>
+                <Link to={"/appointment"}><button className='hidden lg:flex items-center px-2  py-2 rounded text-white border bg-primary border-primary text-base'>Appoinments +</button></Link>
             </nav>
         </header>
 
