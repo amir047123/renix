@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
-import img1 from "../Assets/images/sliderImages/p1.png";
-import img2 from "../Assets/images/sliderImages/p2.png";
-import img3 from "../Assets/images/sliderImages/p3.png";
-import img4 from "../Assets/images/sliderImages/p4.png";
-import img5 from "../Assets/images/sliderImages/p5.png";
-import img6 from "../Assets/images/sliderImages/p6.png";
+
 import { Link } from "react-router-dom";
 import Pagination from "../shared/Pagination/Pagination";
 
+
+
+
+
+
+
+
+// Manual image upload 
 
 // function product ({id,name,price,image,addToCart}){
 
@@ -30,6 +33,9 @@ import Pagination from "../shared/Pagination/Pagination";
  
 
 // };
+
+
+
 
 
 
