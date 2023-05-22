@@ -16,10 +16,10 @@ import Products from "../Pages/Products";
 import Refound from "../Pages/Refound";
 import Services from "../Pages/Services";
 import ProductDemo from "../Pages/ProductDemo";
-import Appointments from "../Pages/Appointments";
 import PopupMessage from "../Components/PopUp/PopupMessage ";
 import BlogSinglePage from "../Pages/ProductDetails/BlogPage/BlogSinglePage";
 import UserProfile from "../Pages/UserProfile/UserProfile";
+import Appointments from "../Pages/Appointments";
 
 
 const PublicRoutes = [
