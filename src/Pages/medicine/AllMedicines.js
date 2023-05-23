@@ -1,14 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { TbEdit } from "react-icons/tb";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { CiSearch } from "react-icons/ci";
+import Pagination from "../../shared/Pagination/Pagination";
 
 const AllMedicines = () => {
+  const [products, setProducts] = useState([]);
+  // for pagination
+  const [quantity, setQuantity] = useState(0);
+  const [page, setPage] = useState(0);
+  const [size, setSize] = useState(6);
+  useEffect(() => {
+    const url = `http://localhost:5000/api/v1/medicine?size=${size}&page=${page}`;
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setProducts(data?.data);
+        setQuantity(data?.total);
+      });
+  }, [size, page]);
   return (
     <section className="py-10 md:py-14">
       <div className="container px-6 md:max-w-6xl w-full ">
         {/* search bar */}
-
         <form className="flex items-center justify-end text-right gap-3 mb-6">
           <label for="simple-search" className="text-sm text-textColor">
             Search
@@ -90,35 +105,49 @@ const AllMedicines = () => {
               </tr>
             </thead>
             <tbody>
-              <tr className="bg-white border-b border-[#D0D2DA]">
-                <th
-                  scope="row"
-                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+              {products?.map((product, i) => (
+                <tr
+                  key={product?._id}
+                  product={product}
+                  className="bg-white border-b border-[#D0D2DA]"
                 >
-                  01
-                </th>
-                <td className="px-6 py-4">Napa</td>
-                <td className="px-6 py-4">Nasal</td>
-                <td className="px-6 py-4">$20</td>
-                <td className="px-6 py-4">Paracetamol</td>
-                <td className="px-6 py-4">40</td>
-                <td className="px-6 py-4">Sale</td>
-                <td className="px-6 py-4">50mg</td>
-                <td className="px-6 py-4">
-                  <span className="flex items-center gap-3">
-                    <button className="text-lg text-[#0077FF] bg-[#BBDDFF] w-7  h-7 rounded-lg flex items-center justify-center">
-                      <TbEdit />
-                    </button>
-                    <button className="text-lg text-[#F87171] bg-[#FEE2E2] w-7  h-7 rounded-lg flex items-center justify-center">
-                      <RiDeleteBin6Line />
-                    </button>
-                  </span>
-                </td>
-              </tr>
+                  <th
+                    scope="row"
+                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  >
+                    {i + 1}
+                  </th>
+                  <td className="px-6 py-4">{product?.name}</td>
+                  <td className="px-6 py-4">{product?.medicineCategory}</td>
+                  <td className="px-6 py-4">{product?.price}</td>
+                  <td className="px-6 py-4">{product?.genericName}</td>
+                  <td className="px-6 py-4">{product?.stock}</td>
+                  <td className="px-6 py-4">{product?.medicineStatus}</td>
+                  <td className="px-6 py-4">{product?.strength}</td>
+                  <td className="px-6 py-4">
+                    <span className="flex items-center gap-3">
+                      <button className="text-lg text-[#0077FF] bg-[#BBDDFF] w-7  h-7 rounded-lg flex items-center justify-center">
+                        <TbEdit />
+                      </button>
+                      <button className="text-lg text-[#F87171] bg-[#FEE2E2] w-7  h-7 rounded-lg flex items-center justify-center">
+                        <RiDeleteBin6Line />
+                      </button>
+                    </span>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
       </div>
+      {/* pagination */}
+      <Pagination
+        quantity={quantity}
+        page={page}
+        setPage={setPage}
+        size={size}
+        setSize={setSize}
+      />
     </section>
   );
 };
