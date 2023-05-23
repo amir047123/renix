@@ -15,17 +15,15 @@ import ProductDetails from "../Pages/ProductDetails/ProductDetails";
 import Products from "../Pages/Products";
 import Refound from "../Pages/Refound";
 import Services from "../Pages/Services";
-import ProductDemo from "../Pages/ProductDemo";
 import PopupMessage from "../Components/PopUp/PopupMessage ";
 import BlogSinglePage from "../Pages/ProductDetails/BlogPage/BlogSinglePage";
 import UserProfile from "../Pages/UserProfile/UserProfile";
 import Appointments from "../Pages/Appointments";
 
-
 const PublicRoutes = [
   { path: "/", Component: Home },
   { path: "/security-check", Component: Services },
-  { path: "/products", Component: ProductDemo },
+  { path: "/products", Component: Products },
   { path: "/news-media", Component: NewsMedia },
   { path: "/blogs", Component: Blogs },
   { path: "/contact", Component: Contact },
@@ -34,18 +32,14 @@ const PublicRoutes = [
   { path: "/terms-conditions", Component: Conditions },
   { path: "/products/:id", Component: ProductDetails },
   { path: "/Checkout", Component: Checkout },
-  {path : "/registration",Component: RegistrationPage },
-  {path: "/login", Component:LoginPage},
-  {path: "/gallery",Component:Gallery},
-  {path:"/team",Component:Team},
-  {path:"/appoinments", Component:Appointments},
-  {path:"/popup",Component:PopupMessage},
-  {path:"/blogview",Component:BlogSinglePage},
-  {path:"/userprofile",Component:UserProfile},
-
-
-  
- 
+  { path: "/registration", Component: RegistrationPage },
+  { path: "/login", Component: LoginPage },
+  { path: "/gallery", Component: Gallery },
+  { path: "/team", Component: Team },
+  { path: "/appoinments", Component: Appointments },
+  { path: "/popup", Component: PopupMessage },
+  { path: "/blogview", Component: BlogSinglePage },
+  { path: "/userprofile", Component: UserProfile },
 ];
 
 export default PublicRoutes;
