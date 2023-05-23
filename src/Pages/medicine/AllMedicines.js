@@ -3,6 +3,7 @@ import { TbEdit } from "react-icons/tb";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { CiSearch } from "react-icons/ci";
 import Pagination from "../../shared/Pagination/Pagination";
+import Swal from "sweetalert2";
 
 const AllMedicines = () => {
   const [products, setProducts] = useState([]);
@@ -10,6 +11,7 @@ const AllMedicines = () => {
   const [quantity, setQuantity] = useState(0);
   const [page, setPage] = useState(0);
   const [size, setSize] = useState(6);
+  const [refresh, setRefresh] = useState(false);
   useEffect(() => {
     const url = `http://localhost:5000/api/v1/medicine?size=${size}&page=${page}`;
     fetch(url)
@@ -19,7 +21,30 @@ const AllMedicines = () => {
         setProducts(data?.data);
         setQuantity(data?.total);
       });
-  }, [size, page]);
+  }, [size, page, refresh]);
+
+  const handelDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/api/v1/medicine/deleteMedicine/${id}`, {
+          method: "DELETE",
+        }).then((res) => {
+          if (res.status === 200) {
+            setRefresh(!refresh);
+            Swal.fire("Deleted!", "Your file has been deleted.", "success");
+          }
+        });
+      }
+    });
+  };
   return (
     <section className="py-10 md:py-14">
       <div className="container px-6 md:max-w-6xl w-full ">
@@ -129,7 +154,10 @@ const AllMedicines = () => {
                       <button className="text-lg text-[#0077FF] bg-[#BBDDFF] w-7  h-7 rounded-lg flex items-center justify-center">
                         <TbEdit />
                       </button>
-                      <button className="text-lg text-[#F87171] bg-[#FEE2E2] w-7  h-7 rounded-lg flex items-center justify-center">
+                      <button
+                        onClick={() => handelDelete(product?._id)}
+                        className="text-lg text-[#F87171] bg-[#FEE2E2] w-7  h-7 rounded-lg flex items-center justify-center"
+                      >
                         <RiDeleteBin6Line />
                       </button>
                     </span>
