@@ -1,5 +1,4 @@
 import Checkout from "../Components/Checkout/Checkout";
-import About from "../Pages/About";
 import Blogs from "../Pages/Blogs";
 import Conditions from "../Pages/Conditions";
 import Contact from "../Pages/Contact";
@@ -8,7 +7,6 @@ import Team from "../Pages/Gallery/Team/Team";
 import Home from "../Pages/Home";
 import LoginPage from "../Pages/Login/Login";
 import RegistrationPage from "../Pages/Login/User/RegistrationPage";
-
 import NewsMedia from "../Pages/NewsMedia";
 import Privacy from "../Pages/Privacy";
 import ProductDetails from "../Pages/ProductDetails/ProductDetails";
