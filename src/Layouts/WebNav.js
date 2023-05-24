@@ -10,7 +10,7 @@ import AuthUser from "../Hooks/authUser";
 const WebNav = () => {
   //sticky nav
   const [stickyNav, setStickyNav] = useState(false);
-
+  const [user, setUser] = useState({});
   const navWrapper = useRef();
   //state for hamburger menu
   const [isOpen, setIsopen] = useState(false);
@@ -18,7 +18,9 @@ const WebNav = () => {
   const handleToggle = () => {
     isOpen === true ? setIsopen(false) : setIsopen(true);
   };
-
+  useEffect(() => {
+    setUser(userInfo);
+  }, [userInfo]);
   //nav menu active style
   let activeStyle = {
     borderBottom: "2px solid #90C347",
@@ -236,8 +238,8 @@ const WebNav = () => {
         </Link>
         <div className=" item-right">
           {localStorage.getItem("access") ? (
-            <button className="bg-gradient-to-r from-[#747ffcef] via-[#4ab2e2e2] to-[#3ae2dfc9] w-24 py-3 rounded-md">
-              <Link to="/" onClick={logout} className="capitalize text-white">
+            <button className="hidden lg:flex items-center px-2  py-2 rounded text-white border bg-red-500 border-red-500 text-base">
+              <Link to="/" onClick={logout}>
                 Log Out
               </Link>
             </button>
