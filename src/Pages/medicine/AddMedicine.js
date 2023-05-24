@@ -4,11 +4,11 @@ import JoditEditor from "jodit-react";
 import { Markup } from "interweave";
 import { singleImageUpload } from "../../Hooks/ImageUpload";
 import PostHooks from "../../Hooks/PostHooks";
-
-
+import { useEffect } from "react";
 
 const AddMedicine = () => {
   const [image, setImage] = useState(null);
+  const [category, setCategory] = useState([]);
   const {
     register,
     handleSubmit,
@@ -18,7 +18,16 @@ const AddMedicine = () => {
   //description content
   const [content, setContent] = useState("");
   const parsed = <Markup content={content} />;
-
+  // get category
+  useEffect(() => {
+    const url = `http://localhost:5000/api/v1/category`;
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setCategory(data?.data);
+      });
+  }, []);
   const handleChangeUploadImage = async (event) => {
     const image = event.target.files[0];
     const formData = new FormData();
@@ -46,7 +55,7 @@ const AddMedicine = () => {
       medicineType: data.medicineType,
       medicineStatus: data.medicineStatus,
     };
-    console.log(medicine);
+    console.log(parsed);
     // post api call
     PostHooks(
       "http://localhost:5000/api/v1/medicine/postMedicine",
@@ -131,9 +140,11 @@ const AddMedicine = () => {
               <option value="" disabled selected>
                 Choose a category
               </option>
-              <option value="onchology">Onchology</option>
-              <option value="herbal">Herbal </option>
-              <option value="unani">Unani</option>
+              {category?.map((cat) => (
+                <option key={cat?._id} cat={cat} value={cat?.name}>
+                  {cat?.name}
+                </option>
+              ))}
             </select>
             {errors.category && (
               <p className="text-red-500 mt-1">{errors.category.message}</p>
@@ -202,7 +213,6 @@ const AddMedicine = () => {
             <JoditEditor
               ref={editor}
               value={content}
-
               // config={config}
               // tabIndex={1} // tabIndex of textarea
               onBlur={(newContent) => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
