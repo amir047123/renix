@@ -25,6 +25,7 @@ module.exports = withMT({
       exl: "1440px",
       // 1440px for our regular desktop device size
     },
+ 
     colors: {
       primary: "#90C347",
       lightPrimary: "#A6CF6C",
@@ -38,6 +39,8 @@ module.exports = withMT({
       darkGray: "#9DA69B",
       gray: "#CED2CD"
     },
+
+
     extend: {},
   },
   plugins: [],
