@@ -1,13 +1,72 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import swal from "sweetalert";
+import AuthUser from "../../Hooks/authUser";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+  const { http, setToken, getToken, userInfo, userIp } = AuthUser();
+  const [loading, setLoading] = useState(false);
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
+  // const handelSubmit = (e) => {
+
+  // };
+
   const handelSubmit = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    console.log(email, password);
+    http
+      .post("/user/login", { email: email, password: password })
+      .then((res) => {
+        if (res?.data?.status === "success") {
+          console.log(res.data.data);
+          swal("Success", "Successfully Login ", "success");
+          setToken(
+            res.data.data.user.email,
+            res.data.data.token,
+            res.data.data.user.role,
+            res.data.data.user,
+            res.data.data.userIp
+          );
+          setLoading(false);
+          // window.location.reload();
+        } else {
+          // console.log("rrrrrr");
+        }
+      })
+      .catch((err) => {
+        console.log("Error", err.response.data.message);
+        setLoading(false);
+        if (
+          err.response.data.message ===
+          "No user Found. Please Create an account"
+        ) {
+          swal("Error", "No user Found. Please Create an account!", "error");
+        }
+        if (
+          err.response.data.message ===
+          "Please check your email to verify your account."
+        ) {
+          swal(
+            "Error",
+            "Please check your email to verify your account!",
+            "error"
+          );
+        }
+        if (err.response.data.message === "email or password are not correct") {
+          swal("Error", "Email or Password Wrong! ", "error");
+        }
+        if (err.response.data.message === "Device limit exceeded") {
+          swal("Error", "Device limit exceeded! ", "error");
+        }
+      });
   };
+
+  if (userInfo?.email) {
+    return navigate("/user-dashboard");
+  }
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
