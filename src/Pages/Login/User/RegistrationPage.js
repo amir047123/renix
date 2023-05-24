@@ -1,7 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import CreateUserHook from "../../../Hooks/createUserHook";
 
 const RegistrationPage = () => {
+  const navigate = useNavigate();
   const handelSubmit = (e) => {
     e.preventDefault();
     const fullName = e.target.fullName.value;
@@ -9,6 +11,8 @@ const RegistrationPage = () => {
     const password = e.target.password.value;
     const confirmPassword = e.target.confirmPassword.value;
     console.log(fullName, email, password, confirmPassword);
+    const user = { fullName, email, password, confirmPassword };
+    CreateUserHook(user, navigate);
   };
   return (
     <section className="bg-gray-50 dark:bg-gray-900">

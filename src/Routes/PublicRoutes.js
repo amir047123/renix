@@ -17,6 +17,7 @@ import PopupMessage from "../Components/PopUp/PopupMessage ";
 import BlogSinglePage from "../Pages/ProductDetails/BlogPage/BlogSinglePage";
 import UserProfile from "../Pages/UserProfile/UserProfile";
 import Appointments from "../Pages/Appointments";
+import VerifyEmail from "../Utils/VerifyEmail";
 
 const PublicRoutes = [
   { path: "/", Component: Home },
@@ -38,6 +39,7 @@ const PublicRoutes = [
   { path: "/popup", Component: PopupMessage },
   { path: "/blogview", Component: BlogSinglePage },
   { path: "/userprofile", Component: UserProfile },
+  { path: "/:id/verify", Component: VerifyEmail },
 ];
 
 export default PublicRoutes;
