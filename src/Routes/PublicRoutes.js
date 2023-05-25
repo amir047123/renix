@@ -18,6 +18,9 @@ import BlogSinglePage from "../Pages/ProductDetails/BlogPage/BlogSinglePage";
 import UserProfile from "../Pages/UserProfile/UserProfile";
 import Appointments from "../Pages/Appointments";
 import VerifyEmail from "../Utils/VerifyEmail";
+import ResetPassword from "../Components/ResetPassword/ResetPassword";
+import InsertOtp from "../Components/ResetPassword/InsertOtp";
+import SetNewPassword from "../Components/ResetPassword/NewPassword";
 
 const PublicRoutes = [
   { path: "/", Component: Home },
@@ -40,6 +43,9 @@ const PublicRoutes = [
   { path: "/blogview", Component: BlogSinglePage },
   { path: "/userprofile", Component: UserProfile },
   { path: "/:id/verify", Component: VerifyEmail },
+  { path: "/resetPassword", Component: ResetPassword },
+  { path: "/insert-token", Component: InsertOtp },
+  { path: "/setNewPassword", Component: SetNewPassword },
 ];
 
 export default PublicRoutes;
