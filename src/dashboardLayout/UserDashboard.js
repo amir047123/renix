@@ -1,25 +1,22 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./AdminDashboard.css";
+// import "./AdminDashboard.css";
 import { NavLink, useNavigate, Outlet, Link } from "react-router-dom";
 import logo from "../Assets/images/logo.svg";
 import { TbMedicineSyrup } from "react-icons/tb";
 import { FiUsers } from "react-icons/fi";
-import { BiBorderAll, BiNews, BiSearch } from "react-icons/bi";
-import { GrArticle } from "react-icons/gr";
+import { BiBorderAll, BiNews } from "react-icons/bi";
 import {
   MdOutlineDashboardCustomize,
   MdOutlineMailOutline,
   MdOutlineArticle,
 } from "react-icons/md";
 import { IoMdNotificationsOutline } from "react-icons/io";
-import { RxCaretUp, RxCaretDown } from "react-icons/rx";
+import { RxCaretDown } from "react-icons/rx";
 import { FiSettings } from "react-icons/fi";
-import { TbEqual } from "react-icons/tb";
-import { HiOutlineBars3BottomLeft } from "react-icons/hi";
 import profilePic from "../Assets/images/users/us1.jpg";
 import SearchBar from "../Components/searchBar/SearchBar";
 
-const AdminDashboard = () => {
+const UserDashboard = () => {
   const navWrapper = useRef();
   //hide sidenav by default
   const [issideNavOpen, setSidenavOpen] = useState(false);
@@ -38,8 +35,6 @@ const AdminDashboard = () => {
 
   //show blog
   const [openBlog, setOpenBlog] = useState(false);
-
-  const navigate = useNavigate();
 
   //show sidenav on toggle
   const handleToggle = () => {
@@ -130,7 +125,7 @@ const AdminDashboard = () => {
                         <MdOutlineDashboardCustomize />
                       </span>
 
-                      <span className="">Dashboard</span>
+                      <span className="">Dashboard user</span>
                     </NavLink>
                   </li>
                   <li>
@@ -991,4 +986,4 @@ const AdminDashboard = () => {
   );
 };
 
-export default AdminDashboard;
+export default UserDashboard;

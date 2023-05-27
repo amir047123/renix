@@ -1,21 +1,19 @@
 import { Route, Routes } from "react-router-dom";
 import PublicRoutes from "./Routes/PublicRoutes";
-import WebNav from "./Layouts/WebNav";
-import toast, { Toaster } from "react-hot-toast";
-import Footer from "./Layouts/Footer";
+import { Toaster } from "react-hot-toast";
 import Main from "./mainLayout/Main";
 import AdminDashboard from "./dashboardLayout/AdminDashboard";
 import AdminRoutes from "./Routes/AdminRoute";
 import { aboutRoutes } from "./Routes/AboutRoutes";
 import About from "./Pages/About";
-import Profile from "./Pages/AboutUs/Profile";
 import OrderFLoatingCart from "./Layouts/OrderFLoatingCart";
 import { useState } from "react";
 import { BsFillBagFill } from "react-icons/bs";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Dashboard from "./Pages/dashboard/Dashboard";
-import PopupMessage from "./Components/PopUp/PopupMessage ";
+import AdminDashboardOverview from "./Pages/dashboard/AdminDashboardOverview";
+import UserDashboard from "./dashboardLayout/UserDashboard";
+import UserDashboardIndex from "./Pages/dashboard/userDashboard/UserDashboardIndex";
 
 function App() {
   const [openCart, setOpenCart] = useState(false);
@@ -43,18 +41,31 @@ function App() {
       )}
 
       <Routes>
-
         {/* main Routes */}
-        
-        <Route path="/"  element={<><Main /></>}>
+
+        <Route
+          path="/"
+          element={
+            <>
+              <Main />
+            </>
+          }
+        >
           {PublicRoutes.map(({ path, Component }, index) => (
             <Route key={index + 45} path={path} element={<Component />} />
           ))}
         </Route>
 
-        {/* dashboard routes */}
+        {/*Admin dashboard routes */}
         <Route path="/adminDashboard" element={<AdminDashboard />}>
-          <Route index element={<Dashboard />}></Route>
+          <Route index element={<AdminDashboardOverview />}></Route>
+          {AdminRoutes.map(({ path, Component }, index) => (
+            <Route key={index} path={path} element={<Component />} />
+          ))}
+        </Route>
+        {/*Admin dashboard routes */}
+        <Route path="/userDashboard" element={<UserDashboard />}>
+          <Route index element={<UserDashboardIndex />}></Route>
           {AdminRoutes.map(({ path, Component }, index) => (
             <Route key={index} path={path} element={<Component />} />
           ))}
@@ -66,7 +77,6 @@ function App() {
             <Route key={index} path={path} element={<Component />} />
           ))}
         </Route>
-        
       </Routes>
 
       <Toaster />
