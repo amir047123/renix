@@ -7,7 +7,7 @@ import { CgProfile } from "react-icons/cg";
 import { FiSettings } from "react-icons/fi";
 import profilePic from "../Assets/images/users/us1.jpg";
 import SearchBar from "../Components/searchBar/SearchBar";
-import { FaEye } from "react-icons/fa";
+import { FaEye, FaSitemap } from "react-icons/fa";
 
 const UserDashboard = () => {
   const navWrapper = useRef();
@@ -106,6 +106,21 @@ const UserDashboard = () => {
                       </span>
 
                       <span className="">View Profile</span>
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to={"myOrders"}
+                      className="flex items-center gap-4 px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"
+                      style={({ isActive }) =>
+                        isActive ? activeStyle : undefined
+                      }
+                    >
+                      <span className="text-lg">
+                        <FaSitemap className="text-white" />
+                      </span>
+
+                      <span className="">My Orders</span>
                     </NavLink>
                   </li>
                 </ul>
