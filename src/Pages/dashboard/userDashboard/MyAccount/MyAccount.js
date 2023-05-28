@@ -110,7 +110,7 @@ const MyAccount = () => {
     <div className="bg-[#f5f8ff] w-full">
       <div className="pt-10 w-[80%] mx-auto">
         {/* img here */}
-        <div className="w-lg h-48 bg-gradient-to-r from-[#6069d3ef] to-[#67f6f3c9] rounded-2xl"></div>
+        <div className="w-lg h-48 bg-gradient-to-r from-primary to-thirdLightPrimary rounded-2xl"></div>
         <div className="grid grid-cols-12 w-fit mx-auto md:gap-10">
           <div className="col-span-12 lg:col-span-3 flex justify-center">
             <div className="-mt-12">
@@ -135,13 +135,13 @@ const MyAccount = () => {
           <div className="col-span-12 lg:col-span-9 w-fit lg:w-full mx-auto mb-8">
             <h2 className="text-2xl font-semibold pt-5">Profile </h2>
 
-            <div className="h-[3px] w-10 bg-gradient-to-r from-[#6069d3ef] to-[#67f6f3c9]"></div>
+            <div className="h-[3px] w-10 bg-gradient-to-r from-primary to-thirdLightPrimary"></div>
             <input
               onChange={handleChangeUploadImage}
               type={"file"}
               // accept="image/png"
               accept="image/*"
-              className="bg-gradient-to-r from-[#6069d3ef] to-[#67f6f3c9] py-2 px-7 text-white font-medium rounded-md mt-3"
+              className="bg-gradient-to-r from-primary to-thirdLightPrimary py-2 px-7 text-white font-medium rounded-md mt-3"
             />
 
             {/* Account settings changing password input form */}
@@ -160,7 +160,7 @@ const MyAccount = () => {
                       {...register("number", { required: false })}
                       pattern="^(?:(?:\+|00)88|01)?\d{11}$"
                       defaultValue={user?.number}
-                      className="mt-2 px-3 py-2 border-2 shadow-sm focus:outline-none border-blue-300 bg-transparent placeholder-slate-400  block w-full rounded-md sm:text-sm "
+                      className="mt-2 px-3 py-2 border-2 shadow-sm focus:outline-none border-thirdLightPrimary bg-transparent placeholder-slate-400  block w-full rounded-md sm:text-sm "
                       placeholder="01934****39"
                     />
                   </label>
@@ -176,7 +176,7 @@ const MyAccount = () => {
                   <select
                     {...register("city", { required: false })}
                     defaultValue={user?.city}
-                    className="border-2 text-gray-900 mb-6 text-sm rounded-lg block w-full p-2.5 focus:outline-none border-blue-300 bg-transparent"
+                    className="border-2 text-gray-900 mb-6 text-sm rounded-lg block w-full p-2.5 focus:outline-none border-thirdLightPrimary bg-transparent"
                   >
                     <option selected hidden>
                       Choose One
@@ -204,7 +204,7 @@ const MyAccount = () => {
                   <select
                     {...register("country", { required: false })}
                     defaultValue={user?.country}
-                    className="border-2 text-gray-900 mb-6 text-sm rounded-lg block w-full p-2.5 focus:outline-none border-blue-300 bg-transparent"
+                    className="border-2 text-gray-900 mb-6 text-sm rounded-lg block w-full p-2.5 focus:outline-none border-thirdLightPrimary bg-transparent"
                   >
                     <option selected hidden>
                       Choose One
@@ -224,7 +224,7 @@ const MyAccount = () => {
                     type="text"
                     {...register("address", { required: false })}
                     defaultValue={user?.address}
-                    className="mt-2 px-3 py-2 border-2 shadow-sm focus:outline-none border-blue-300 bg-transparent placeholder-slate-400  block w-full rounded-md sm:text-sm "
+                    className="mt-2 px-3 py-2 border-2 shadow-sm focus:outline-none border-thirdLightPrimary bg-transparent placeholder-slate-400  block w-full rounded-md sm:text-sm "
                     placeholder="Enter your address"
                   />
                 </label>
@@ -234,7 +234,7 @@ const MyAccount = () => {
                     type="number"
                     {...register("zipCode", { required: false })}
                     defaultValue={user?.zipCode}
-                    className="mt-2 px-3 py-2 border-2 shadow-sm focus:outline-none border-blue-300 bg-transparent placeholder-slate-400  block w-full rounded-md sm:text-sm "
+                    className="mt-2 px-3 py-2 border-2 shadow-sm focus:outline-none border-thirdLightPrimary bg-transparent placeholder-slate-400  block w-full rounded-md sm:text-sm "
                     placeholder="Enter your zip code"
                   />
                 </label>
@@ -242,7 +242,7 @@ const MyAccount = () => {
 
               <button
                 type="submit"
-                className="bg-gradient-to-r from-[#6069d3ef] to-[#67f6f3c9] py-2 px-7 text-white font-medium rounded-md mt-3 ml-auto block"
+                className="bg-gradient-to-r from-primary to-thirdLightPrimary py-2 px-7 text-white font-medium rounded-md mt-3 ml-auto block"
               >
                 Save changes
               </button>
