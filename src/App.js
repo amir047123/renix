@@ -14,6 +14,7 @@ import "slick-carousel/slick/slick-theme.css";
 import AdminDashboardOverview from "./Pages/dashboard/AdminDashboardOverview";
 import UserDashboard from "./dashboardLayout/UserDashboard";
 import UserDashboardIndex from "./Pages/dashboard/userDashboard/UserDashboardIndex";
+import UserRoutes from "./Routes/UserRoutes";
 
 function App() {
   const [openCart, setOpenCart] = useState(false);
@@ -66,7 +67,7 @@ function App() {
         {/*Admin dashboard routes */}
         <Route path="/userDashboard" element={<UserDashboard />}>
           <Route index element={<UserDashboardIndex />}></Route>
-          {AdminRoutes.map(({ path, Component }, index) => (
+          {UserRoutes.map(({ path, Component }, index) => (
             <Route key={index} path={path} element={<Component />} />
           ))}
         </Route>
