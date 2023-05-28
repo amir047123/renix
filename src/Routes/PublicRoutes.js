@@ -1,5 +1,4 @@
 import Checkout from "../Components/Checkout/Checkout";
-import About from "../Pages/About";
 import Blogs from "../Pages/Blogs";
 import Conditions from "../Pages/Conditions";
 import Contact from "../Pages/Contact";
@@ -8,24 +7,26 @@ import Team from "../Pages/Gallery/Team/Team";
 import Home from "../Pages/Home";
 import LoginPage from "../Pages/Login/Login";
 import RegistrationPage from "../Pages/Login/User/RegistrationPage";
-
 import NewsMedia from "../Pages/NewsMedia";
 import Privacy from "../Pages/Privacy";
 import ProductDetails from "../Pages/ProductDetails/ProductDetails";
 import Products from "../Pages/Products";
 import Refound from "../Pages/Refound";
 import Services from "../Pages/Services";
-import ProductDemo from "../Pages/ProductDemo";
-import Appointments from "../Pages/Appointments";
 import PopupMessage from "../Components/PopUp/PopupMessage ";
 import BlogSinglePage from "../Pages/ProductDetails/BlogPage/BlogSinglePage";
 import UserProfile from "../Pages/UserProfile/UserProfile";
-
+import Appointments from "../Pages/Appointments";
+import VerifyEmail from "../Utils/VerifyEmail";
+import ResetPassword from "../Components/ResetPassword/ResetPassword";
+import InsertOtp from "../Components/ResetPassword/InsertOtp";
+import SetNewPassword from "../Components/ResetPassword/NewPassword";
+import Dashboard from "../Pages/dashboard/Dashboard";
 
 const PublicRoutes = [
   { path: "/", Component: Home },
   { path: "/security-check", Component: Services },
-  { path: "/products", Component: ProductDemo },
+  { path: "/products", Component: Products },
   { path: "/news-media", Component: NewsMedia },
   { path: "/blogs", Component: Blogs },
   { path: "/contact", Component: Contact },
@@ -34,18 +35,19 @@ const PublicRoutes = [
   { path: "/terms-conditions", Component: Conditions },
   { path: "/products/:id", Component: ProductDetails },
   { path: "/Checkout", Component: Checkout },
-  {path : "/registration",Component: RegistrationPage },
-  {path: "/login", Component:LoginPage},
-  {path: "/gallery",Component:Gallery},
-  {path:"/team",Component:Team},
-  {path:"/appoinments", Component:Appointments},
-  {path:"/popup",Component:PopupMessage},
-  {path:"/blogview",Component:BlogSinglePage},
-  {path:"/userprofile",Component:UserProfile},
-
-
-  
- 
+  { path: "/registration", Component: RegistrationPage },
+  { path: "/login", Component: LoginPage },
+  { path: "/gallery", Component: Gallery },
+  { path: "/team", Component: Team },
+  { path: "/appoinments", Component: Appointments },
+  { path: "/popup", Component: PopupMessage },
+  { path: "/blogview", Component: BlogSinglePage },
+  { path: "/userprofile", Component: UserProfile },
+  { path: "/:id/verify", Component: VerifyEmail },
+  { path: "/resetPassword", Component: ResetPassword },
+  { path: "/insert-token", Component: InsertOtp },
+  { path: "/setNewPassword", Component: SetNewPassword },
+  {path:"/dashboard",Component:Dashboard}
 ];
 
 export default PublicRoutes;

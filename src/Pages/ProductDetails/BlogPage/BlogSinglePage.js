@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaFacebook, FaTwitter, FaLinkedin } from 'react-icons/fa';
+import { FaFacebook, FaTwitter, FaLinkedin,FaInstagram ,FaWhatsapp} from 'react-icons/fa';
 
 const BlogSinglePage = () => {
   // Dummy data for the blog content
@@ -15,9 +15,9 @@ const BlogSinglePage = () => {
 
   // Dummy data for recent blogs in the sidebar
   const recentBlogs = [
-    { id: 1, title: 'Recent Blog 1' },
-    { id: 2, title: 'Recent Blog 2' },
-    { id: 3, title: 'Recent Blog 3' },
+    { id: 1, title: 'Welcome to Renix ' },
+    { id: 2, title: 'Renix Medicin World' },
+    { id: 3, title: 'Unani Medicin can chnage your personal life.' },
   ];
 
   const shareOnSocialMedia = () => {
@@ -27,15 +27,18 @@ const BlogSinglePage = () => {
   };
 
   return (
-    <div className="flex">
-      <div className="w-3/4 p-6">
-        <img src={blog.src} alt={blog.title} className="mb-4 w-full h-auto" />
+    <div>
+
+
+      <div className="lgl:flex ">
+      <div className="  lgl:p-4  sm:p-4 sm:w-full  ">
+        <img src={blog.src} alt={blog.title} className="mb-4 w-full h-auto sm:rounded" />
         <h1 className="text-3xl font-bold mb-2">{blog.title}</h1>
         <p className="text-gray-500 text-sm mb-2">
           By {blog.author} - {blog.publisher} - {blog.date}
         </p>
-        <p className="text-gray-600 mb-4">{blog.description}</p>
-        <div className="flex justify-end items-center">
+        <p className="text-gray-600 mb-4 sm:text-justify">{blog.description}</p>
+        <div className="flex items-center sm:text-left lgl:text-right">
           
           <button
             className="mr-2 text-blue-500 hover:text-blue-700"
@@ -43,6 +46,15 @@ const BlogSinglePage = () => {
           >
             <FaFacebook size={24} />
           </button>
+           
+           
+          <button
+            className="mr-2 text-blue-400 hover:text-blue-600"
+            onClick={() => shareOnSocialMedia('Twitter')}
+          >
+            <FaInstagram size={24} />
+          </button>
+
           <button
             className="mr-2 text-blue-400 hover:text-blue-600"
             onClick={() => shareOnSocialMedia('Twitter')}
@@ -50,23 +62,36 @@ const BlogSinglePage = () => {
             <FaTwitter size={24} />
           </button>
           <button
-            className="text-blue-800 hover:text-blue-900"
+            className=" mr-2 text-blue-800 hover:text-blue-900"
             onClick={() => shareOnSocialMedia('LinkedIn')}
           >
             <FaLinkedin size={24} />
           </button>
+
+          <button
+            className="mr-2 text-blue-400 hover:text-blue-600"
+            onClick={() => shareOnSocialMedia('Twitter')}
+          >
+            <FaWhatsapp size={24} />
+          </button>
+          
         </div>
       </div>
-      <div className="w-1/4 p-6">
-        <h2 className="text-lg font-bold mb-4">Recent Blogs</h2>
+      <div className="sm:w-full lgl:p-4 lgl:w-80  sm:p-3  ">
+        <h2 className="text-lg font-bold mb-4">Recent Blogs Post</h2>
         <ul>
           {recentBlogs.map((recentBlog) => (
-            <li key={recentBlog.id} className="mb-2">
+            <li key={recentBlog.id} className="mb-2 flex hover:text-primary">
               <a href={`/blogs/${recentBlog.id}`}>{recentBlog.title}</a>
             </li>
           ))}
         </ul>
       </div>
+    </div>
+
+ 
+     
+
     </div>
   );
 };
