@@ -26,6 +26,7 @@ const Products = () => {
   // const { description, genericName, img, name, price, supplierName } = products;
   return (
     <div className="md:px-[103px]">
+    <h1 className=' text-2xl text-center text-primary '>🇴​​🇺​​🇷​ ​🇵​​🇷​​🇴​​🇩​​🇺​​🇨​​🇹​</h1>
       <div className="grid grid-cols-4 gap-4">
         <div className="col-span-1">
           <div className="  border border-blue-gray-300 p-11">
