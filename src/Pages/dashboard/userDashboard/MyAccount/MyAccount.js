@@ -13,9 +13,6 @@ const MyAccount = () => {
   const { userInfo } = AuthUser();
   const [isUserLoading, setIsUserLoading] = useState(true);
   const [user, setUser] = useState({});
-  const [nidFront, setNidFront] = useState(null);
-  const [nidBack, setNidBack] = useState(null);
-  const [certificate, setCertificate] = useState(null);
 
   const BASE_URL = `${server_url}/user/${userInfo?._id}`;
   // useEffect(() => {
@@ -26,23 +23,7 @@ const MyAccount = () => {
     setMyImageUrl(user?.imageURL);
   }, [user]);
 
-  useEffect(() => {
-    setNidFront(user?.nidFront);
-  }, [user]);
-  useEffect(() => {
-    setNidBack(user?.nidBack);
-  }, [user]);
-
   const { register, handleSubmit } = useForm();
-
-  const [open, setOpen] = useState(false);
-
-  const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-    setOpen(false);
-  };
 
   const handleChangeUploadImage = async (event) => {
     const image = event.target.files[0];
@@ -52,28 +33,6 @@ const MyAccount = () => {
     singleImageUpload(formData, setMyImageUrl);
   };
 
-  const handleNidFront = async (event) => {
-    const image = event.target.files[0];
-    const formData = new FormData();
-    formData.append("image", image);
-
-    singleImageUpload(formData, setNidFront);
-  };
-  const handleNidBack = async (event) => {
-    const image = event.target.files[0];
-    const formData = new FormData();
-    formData.append("image", image);
-
-    singleImageUpload(formData, setNidBack);
-  };
-  const handleCertificate = async (event) => {
-    const image = event.target.files[0];
-    const formData = new FormData();
-    formData.append("image", image);
-
-    singleImageUpload(formData, setCertificate);
-  };
-  // -----------------end profile image upload-------------------
   //---------------------update profile-------------
   const handleUpdateProfile = async (data) => {
     data.imageURL = imageUrl;
@@ -83,22 +42,13 @@ const MyAccount = () => {
 
     const newData = {
       number: data.number || user.number,
-      language: data.language || user.language,
-      studentType: data.studentType || user.studentType,
-      gender: data.gender || user.gender,
       city: data.city || user.gender,
       country: data.country || user.country,
-      birth: data.birth || user.birth,
       address: data.address || user.address,
       zipCode: data.zipCode || user.zipCode,
-      facebookURL: data.facebookURL || user.facebookURL,
-      linkedinURL: data.linkedinURL || user.linkedinURL,
-      imageURL: imageUrl,
-      nidImageFront: nidFront,
-      nidImageBack: nidBack,
-      certificate: certificate,
+      img: imageUrl,
     };
-
+    console.log(newData);
     UpdateHooks(BASE_URL, newData, true, "Profile Updated");
   };
 
