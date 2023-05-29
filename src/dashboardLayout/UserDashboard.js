@@ -4,13 +4,15 @@ import logo from "../Assets/images/logo.svg";
 import { MdOutlineDashboardCustomize } from "react-icons/md";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { CgProfile } from "react-icons/cg";
-import { FiSettings } from "react-icons/fi";
+import { FiLogIn, FiSettings } from "react-icons/fi";
 import profilePic from "../Assets/images/users/us1.jpg";
 import SearchBar from "../Components/searchBar/SearchBar";
 import { FaEye, FaSitemap } from "react-icons/fa";
+import AuthUser from "../Hooks/authUser";
 
 const UserDashboard = () => {
   const navWrapper = useRef();
+  const { logout } = AuthUser();
   //hide sidenav by default
   const [issideNavOpen, setSidenavOpen] = useState(false);
 
@@ -122,6 +124,16 @@ const UserDashboard = () => {
 
                       <span className="">My Orders</span>
                     </NavLink>
+                  </li>
+                  <li
+                    onClick={logout}
+                    className="flex items-center gap-4 px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"
+                  >
+                    <span className="text-lg">
+                      <FiLogIn className="text-white" />
+                    </span>
+
+                    <span className="">LogOut</span>
                   </li>
                 </ul>
               </div>
@@ -269,18 +281,50 @@ const UserDashboard = () => {
                         </a>
                       </li>
                       <li>
-                        <a
-                          href="/userDashboard/myAccount"
-                          // onClick={(e) => e.preventDefault()}
-
+                        <NavLink
+                          to={"myAccount"}
                           className="flex items-center gap-5 px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"
                         >
                           <span className="text-lg">
-                            <MdOutlineDashboardCustomize />
+                            <CgProfile />
                           </span>
 
-                          <span className="">MyAccount</span>
-                        </a>
+                          <span className="">Update Account</span>
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink
+                          to={"viewProfile"}
+                          className="flex items-center gap-5 px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"
+                        >
+                          <span className="text-lg">
+                            <FaEye className="text-white" />
+                          </span>
+
+                          <span className="">View Profile</span>
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink
+                          to={"myOrders"}
+                          className="flex items-center gap-5 px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"
+                        >
+                          <span className="text-lg">
+                            <FaSitemap className="text-white" />
+                          </span>
+
+                          <span className="">My Orders</span>
+                        </NavLink>
+                      </li>
+                      <li
+                        onClick={logout}
+                        className="flex items-center gap-5 px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"
+                      >
+                        <span className="text-lg">
+                          <FiLogIn className="text-white" />
+                        </span>
+
+                        <span className="">LogOut</span>
                       </li>
                     </ul>
                   </div>
