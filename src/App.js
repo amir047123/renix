@@ -15,73 +15,86 @@ import AdminDashboardOverview from "./Pages/dashboard/AdminDashboardOverview";
 import UserDashboard from "./dashboardLayout/UserDashboard";
 import UserDashboardIndex from "./Pages/dashboard/userDashboard/UserDashboardIndex";
 import UserRoutes from "./Routes/UserRoutes";
+import { useEffect } from "react";
+import { createContext } from "react";
+import MyContext from "./Utils/Context/MyContext";
 
 function App() {
   const [openCart, setOpenCart] = useState(false);
+  const [order, setOrder] = useState([]);
+  const [refresh, setRefresh] = useState(false);
+  useEffect(() => {
+    const items = JSON.parse(localStorage.getItem("order"));
+    setOrder(items);
+  }, [refresh]);
   return (
-    <div className="relative">
-      {openCart ? (
-        <OrderFLoatingCart setOpenCart={setOpenCart}></OrderFLoatingCart>
-      ) : (
-        <div className="fixed z-20 top-[45vh] right-0 cursor-pointer">
-          {" "}
-          <div
-            onClick={() => setOpenCart(true)}
-            className="bg-primary rounded-l-lg"
-          >
-            <div className="flex flex-col justify-center items-center text-white">
-              <div className="flex flex-col justify-center items-center py-2 ">
-                {" "}
-                <BsFillBagFill className="text-2xl "></BsFillBagFill>
-                <p className="pt-2 text-xs">0 item</p>
+    <MyContext.Provider value={{ refresh, setRefresh }}>
+      <div className="relative">
+        {openCart ? (
+          <OrderFLoatingCart setOpenCart={setOpenCart}></OrderFLoatingCart>
+        ) : (
+          <div className="fixed z-20 top-[45vh] right-0 cursor-pointer">
+            {" "}
+            <div
+              onClick={() => setOpenCart(true)}
+              className="bg-primary rounded-l-lg"
+            >
+              <div className="flex flex-col justify-center items-center text-white">
+                <div className="flex flex-col justify-center items-center py-2 ">
+                  {" "}
+                  <BsFillBagFill className="text-2xl "></BsFillBagFill>
+                  <p className="pt-2 text-xs">
+                    {order?.length ? order.length : 0} item
+                  </p>
+                </div>
+                <p className="bg-secondary rounded-bl-lg p-2 text-xs">00 BDT</p>
               </div>
-              <p className="bg-secondary rounded-bl-lg p-2 text-xs">00 BDT</p>
             </div>
           </div>
-        </div>
-      )}
+        )}
 
-      <Routes>
-        {/* main Routes */}
+        <Routes>
+          {/* main Routes */}
 
-        <Route
-          path="/"
-          element={
-            <>
-              <Main />
-            </>
-          }
-        >
-          {PublicRoutes.map(({ path, Component }, index) => (
-            <Route key={index + 45} path={path} element={<Component />} />
-          ))}
-        </Route>
+          <Route
+            path="/"
+            element={
+              <>
+                <Main />
+              </>
+            }
+          >
+            {PublicRoutes.map(({ path, Component }, index) => (
+              <Route key={index + 45} path={path} element={<Component />} />
+            ))}
+          </Route>
 
-        {/*Admin dashboard routes */}
-        <Route path="/adminDashboard" element={<AdminDashboard />}>
-          <Route index element={<AdminDashboardOverview />}></Route>
-          {AdminRoutes.map(({ path, Component }, index) => (
-            <Route key={index} path={path} element={<Component />} />
-          ))}
-        </Route>
-        {/*Admin dashboard routes */}
-        <Route path="/userDashboard" element={<UserDashboard />}>
-          <Route index element={<UserDashboardIndex />}></Route>
-          {UserRoutes.map(({ path, Component }, index) => (
-            <Route key={index} path={path} element={<Component />} />
-          ))}
-        </Route>
+          {/*Admin dashboard routes */}
+          <Route path="/adminDashboard" element={<AdminDashboard />}>
+            <Route index element={<AdminDashboardOverview />}></Route>
+            {AdminRoutes.map(({ path, Component }, index) => (
+              <Route key={index} path={path} element={<Component />} />
+            ))}
+          </Route>
+          {/*Admin dashboard routes */}
+          <Route path="/userDashboard" element={<UserDashboard />}>
+            <Route index element={<UserDashboardIndex />}></Route>
+            {UserRoutes.map(({ path, Component }, index) => (
+              <Route key={index} path={path} element={<Component />} />
+            ))}
+          </Route>
 
-        {/* about routes */}
-        <Route path="/about" element={<About />}>
-          {aboutRoutes.map(({ path, Component }, index) => (
-            <Route key={index} path={path} element={<Component />} />
-          ))}
-        </Route>
-      </Routes>
+          {/* about routes */}
+          <Route path="/about" element={<About />}>
+            {aboutRoutes.map(({ path, Component }, index) => (
+              <Route key={index} path={path} element={<Component />} />
+            ))}
+          </Route>
+        </Routes>
 
-      <Toaster />
-    </div>
+        <Toaster />
+      </div>
+    </MyContext.Provider>
   );
 }
 

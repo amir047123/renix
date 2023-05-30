@@ -3,12 +3,15 @@ import img1 from "../../Assets/images/Products/Bottle (1).png";
 import ProductTable from "./ProductTable";
 import ProductInfo from "./ProductInfo";
 import { useParams } from "react-router-dom";
+import MyContext from "../../Utils/Context/MyContext";
+import { useContext } from "react";
 
 const ProductDetails = () => {
   const [product, setProduct] = useState({});
   const [addToCart, setAddToCart] = useState(false);
   const [activeTab, setActiveTab] = useState("tab1");
   const [quantity, setQuantity] = useState(1);
+  const { refresh, setRefresh } = useContext(MyContext);
   const { id } = useParams();
   useEffect(() => {
     fetch(`http://localhost:5000/api/v1/medicine/medicineDetails/${id}`)
@@ -51,6 +54,7 @@ const ProductDetails = () => {
       const order = JSON.stringify([{ ...product, quantity: quantity }]);
       localStorage.setItem("order", order);
     }
+    setRefresh(!refresh);
   };
 
   const handleQuantity = (action) => {
@@ -63,14 +67,25 @@ const ProductDetails = () => {
         );
 
         if (action === "odd") {
-          exist.quantity = exist.quantity - 1;
+          if (exist?.quantity === 1) {
+            localStorage.setItem("order", JSON.stringify([...filterOrder]));
+          } else {
+            exist.quantity = exist.quantity - 1;
+            localStorage.setItem(
+              "order",
+              JSON.stringify([...filterOrder, exist])
+            );
+          }
         } else {
           exist.quantity = exist.quantity + 1;
+          localStorage.setItem(
+            "order",
+            JSON.stringify([...filterOrder, exist])
+          );
         }
-
-        localStorage.setItem("order", JSON.stringify([...filterOrder, exist]));
       }
     }
+    setRefresh(!refresh);
   };
   return (
     <div className="w-3/5 mx-auto">
