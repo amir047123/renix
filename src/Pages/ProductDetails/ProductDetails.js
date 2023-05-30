@@ -8,6 +8,7 @@ const ProductDetails = () => {
   const [product, setProduct] = useState({});
   const [addToCart, setAddToCart] = useState(false);
   const [activeTab, setActiveTab] = useState("tab1");
+  const [quantity, setQuantity] = useState(1);
   const { id } = useParams();
   useEffect(() => {
     fetch(`http://localhost:5000/api/v1/medicine/medicineDetails/${id}`)
@@ -17,22 +18,58 @@ const ProductDetails = () => {
         setProduct(data?.data);
       });
   }, [id]);
-
-  const { description, genericName, img, name, price, supplierName } = product;
-
-  // console.log(img);
-  const active = {
-    border: "none",
-    backgroundColor: "primary",
-    textWeight: "700",
-    color: "white",
-  };
-  const [count, setCount] = useState(1);
+  const { description, genericName, img, name, price, supplierName, _id } =
+    product;
   const handleCountMinus = () => {
-    if (count === 1) {
+    if (quantity === 1) {
       setAddToCart(false);
     } else {
-      setCount((prevCount) => prevCount - 1);
+      setQuantity((prevCount) => prevCount - 1);
+    }
+  };
+
+  // set order data in localStorage
+  const addOrderInLocalStorage = () => {
+    const existingOrder = JSON.parse(localStorage.getItem("order"));
+    if (existingOrder) {
+      const exist = existingOrder.find((item) => item._id === _id);
+      if (exist) {
+        const filterOrder = existingOrder.filter(
+          (item) => item._id !== exist?._id
+        );
+        const newQuantity = exist?.quantity + 1;
+        exist.quantity = newQuantity;
+        localStorage.setItem("order", JSON.stringify([...filterOrder, exist]));
+      } else {
+        const newOrders = [
+          ...existingOrder,
+          { ...product, quantity: quantity },
+        ];
+        localStorage.setItem("order", JSON.stringify(newOrders));
+      }
+    } else {
+      const order = JSON.stringify([{ ...product, quantity: quantity }]);
+      localStorage.setItem("order", order);
+    }
+  };
+
+  const handleQuantity = (action) => {
+    const existingOrder = JSON.parse(localStorage.getItem("order"));
+    if (existingOrder) {
+      const exist = existingOrder.find((item) => item._id === _id);
+      if (exist) {
+        const filterOrder = existingOrder.filter(
+          (item) => item._id !== exist?._id
+        );
+
+        if (action === "odd") {
+          exist.quantity = exist.quantity - 1;
+        } else {
+          exist.quantity = exist.quantity + 1;
+        }
+
+        localStorage.setItem("order", JSON.stringify([...filterOrder, exist]));
+      }
     }
   };
   return (
@@ -62,7 +99,10 @@ const ProductDetails = () => {
               <div>
                 <div className="  border-primary p-1  flex justify-evenly items-center">
                   <span
-                    onClick={handleCountMinus}
+                    onClick={() => {
+                      handleQuantity("odd");
+                      handleCountMinus();
+                    }}
                     className="text-4xl font-medium cursor-pointer"
                   >
                     -
@@ -71,11 +111,14 @@ const ProductDetails = () => {
                     <input
                       className="lg:px-8 py-2 text-center lg:text-xl font-semibold border-none outline-primary bg-primary text-white"
                       type="text"
-                      value={count}
+                      value={quantity}
                     />
                   </aside>
                   <span
-                    onClick={() => setCount(Number(count) + 1)}
+                    onClick={() => {
+                      handleQuantity("even");
+                      setQuantity(Number(quantity) + 1);
+                    }}
                     className="text-4xl font-medium cursor-pointer"
                   >
                     +
@@ -84,12 +127,14 @@ const ProductDetails = () => {
               </div>
             ) : (
               <button
-                onClick={() => setAddToCart(true)}
+                onClick={() => {
+                  addOrderInLocalStorage();
+                  setAddToCart(true);
+                }}
                 className="border-2 w-full border-primary p-3 rounded-md text-primary text-md hover:text-white hover:bg-primary"
               >
                 Add to Cart
               </button>
-
             )}
           </div>
         </div>
@@ -126,7 +171,9 @@ const ProductDetails = () => {
         {activeTab === "tab1" ? (
           <ProductTable product={product}></ProductTable>
         ) : (
-          <ProductInfo description={description.replace(/<\/?p>/g, '')}></ProductInfo>
+          <ProductInfo
+            description={description.replace(/<\/?p>/g, "")}
+          ></ProductInfo>
         )}
       </div>
     </div>
