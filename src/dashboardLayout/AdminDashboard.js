@@ -412,6 +412,17 @@ const AdminDashboard = () => {
                       </li>
                       <li>
                         <NavLink
+                          to={"blog/allBlogCategory"}
+                          className="flex items-center p-2 text-[14px] hover:bg-textColor  font-normal py-2.5  rounded-md dark:text-white dark:hover:bg-gray-700 text-white"
+                          style={({ isActive }) =>
+                            isActive ? activeStyle : undefined
+                          }
+                        >
+                          <span className="ml-3">all Blogs Category</span>
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink
                           to={"blog/addBlog"}
                           className="flex items-center p-2 text-[14px] hover:bg-textColor  font-normal py-2.5  rounded-md dark:text-white dark:hover:bg-gray-700 text-white"
                           style={({ isActive }) =>
