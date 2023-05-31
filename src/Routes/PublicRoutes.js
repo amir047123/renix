@@ -21,7 +21,8 @@ import VerifyEmail from "../Utils/VerifyEmail";
 import ResetPassword from "../Components/ResetPassword/ResetPassword";
 import InsertOtp from "../Components/ResetPassword/InsertOtp";
 import SetNewPassword from "../Components/ResetPassword/NewPassword";
-import Dashboard from "../Pages/dashboard/Dashboard";
+import UserDashboard from "../dashboardLayout/UserDashboard";
+// import Dashboard from "../Pages/dashboard/Dashboard";
 
 const PublicRoutes = [
   { path: "/", Component: Home },
@@ -47,7 +48,9 @@ const PublicRoutes = [
   { path: "/resetPassword", Component: ResetPassword },
   { path: "/insert-token", Component: InsertOtp },
   { path: "/setNewPassword", Component: SetNewPassword },
-  {path:"/dashboard",Component:Dashboard}
+  // {path:"/dashboard",Component:Dasbord},
+  {path:"/userdashbord",Component:UserDashboard},
+  
 ];
 
 export default PublicRoutes;
