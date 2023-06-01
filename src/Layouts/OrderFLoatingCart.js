@@ -5,14 +5,24 @@ import { TbCurrencyTaka } from "react-icons/tb";
 import { useContext } from "react";
 import MyContext from "../Utils/Context/MyContext";
 import CartCard from "./cartCard";
+import { Link } from "react-router-dom";
 
 const OrderFLoatingCart = ({ setOpenCart }) => {
   const [order, setOrder] = useState([]);
+  const [subTotal, setSubTotal] = useState(0);
   const { refresh, setRefresh } = useContext(MyContext);
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem("order"));
     setOrder(items);
+    const totalPrice = items?.reduce((acc, cartItem) => {
+      return acc + cartItem.price * cartItem.quantity;
+    }, 0);
+    setSubTotal(totalPrice);
   }, [refresh]);
+  const handelClear = () => {
+    localStorage.removeItem("order");
+    setRefresh(!refresh);
+  };
   return (
     <div className="w-1/2 h-full fixed z-50 top-[15vh] shadow-2xl  max-w-[550px] max-h-[400px] overflow-x-hidden tr right-0 bg-secondLightPrimary">
       <div className="flex text-white justify-between items-center bg-primary p-2 ">
@@ -41,20 +51,28 @@ const OrderFLoatingCart = ({ setOpenCart }) => {
             <div className="flex justify-between items-center">
               <p>Total Items</p>
 
-              <p>00</p>
+              <p>{order?.length}</p>
             </div>
             <div className="flex justify-between items-center">
               <p>Total Price</p>
-
-              <TbCurrencyTaka> </TbCurrencyTaka>
+              <div className="flex gap-2">
+                {subTotal}
+                <TbCurrencyTaka> </TbCurrencyTaka>
+              </div>
             </div>
           </div>
           <div className="flex justify-center items-center">
             {" "}
-            <button className="shadow-md w-1/2 py-2 px-4 bg-thirdLightPrimary text-white">
-              <a href={"/checkout"}>Order Now</a>
-            </button>
-            <button className="shadow-md w-1/2 py-2 px-4 bg-secondary text-white">
+            <Link
+              to={"/checkout"}
+              className="shadow-md w-1/2 py-2 px-4 bg-thirdLightPrimary text-white flex justify-center"
+            >
+              Order Now
+            </Link>
+            <button
+              onClick={handelClear}
+              className="shadow-md w-1/2 py-2 px-4 bg-secondary text-white"
+            >
               Clear Now
             </button>
           </div>

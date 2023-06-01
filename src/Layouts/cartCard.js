@@ -5,6 +5,14 @@ import { AiFillDelete } from "react-icons/ai";
 const CartCard = ({ order }) => {
   const { _id } = order;
   const { refresh, setRefresh } = useContext(MyContext);
+  const handelDelete = () => {
+    const items = JSON.parse(localStorage.getItem("order"));
+    const findOrder = items.find((item) => item._id === _id);
+    const filterOrder = items.filter((item) => item._id !== findOrder?._id);
+    localStorage.setItem("order", JSON.stringify([...filterOrder]));
+    setRefresh(!refresh);
+  };
+
   const handleQuantity = (action) => {
     const existingOrder = JSON.parse(localStorage.getItem("order"));
     if (existingOrder) {
@@ -44,8 +52,8 @@ const CartCard = ({ order }) => {
         alt=""
       />
       <div className="text-xl font-semibold text-white col-span-3">
-        <h4>Name there</h4>
-        <h4>500</h4>
+        <h4>{order?.genericName}</h4>
+        <h4>{order?.price}</h4>
       </div>
       <div className="col-span-3 border border-white p-2 rounded-lg">
         <div className="  border-primary p-1  flex justify-evenly items-center">
@@ -72,7 +80,10 @@ const CartCard = ({ order }) => {
         </div>
       </div>
       <div className="col-span-3 w-full flex justify-center items-center">
-        <div className="w-fit p-2 rounded-full bg-red-200 cursor-pointer">
+        <div
+          onClick={handelDelete}
+          className="w-fit p-2 rounded-full bg-red-200 cursor-pointer"
+        >
           <AiFillDelete className="text-2xl text-red-500" />
         </div>
       </div>
