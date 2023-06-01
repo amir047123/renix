@@ -10,7 +10,7 @@ const ProductDetails = () => {
   const [product, setProduct] = useState({});
   const [addToCart, setAddToCart] = useState(false);
   const [activeTab, setActiveTab] = useState("tab1");
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(0);
   const { refresh, setRefresh } = useContext(MyContext);
   const { id } = useParams();
   useEffect(() => {
@@ -126,7 +126,7 @@ const ProductDetails = () => {
                     <input
                       className="lg:px-8 py-2 text-center lg:text-xl font-semibold border-none outline-primary bg-primary text-white"
                       type="text"
-                      value={quantity}
+                      value={quantity === 0 ? 1 : quantity}
                     />
                   </aside>
                   <span

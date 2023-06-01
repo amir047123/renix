@@ -4,8 +4,12 @@ import JoditEditor from "jodit-react";
 import { useEffect } from "react";
 import { singleImageUpload } from "../../Hooks/ImageUpload";
 import PostHooks from "../../Hooks/PostHooks";
+import AuthUser from "../../Hooks/authUser";
+import { server_url } from "../../Config/API";
 
 const AddBlog = () => {
+  const [user, setUser] = useState();
+  const { userInfo } = AuthUser();
   const editor = useRef(null);
   const [image, setImage] = useState(null);
   const [category, setCategory] = useState([]);
@@ -16,6 +20,13 @@ const AddBlog = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  // get User
+
+  useEffect(() => {
+    fetch(`${server_url}/user/${userInfo?._id}`)
+      .then((res) => res.json())
+      .then((data) => setUser(data?.data));
+  }, [userInfo?._id]);
   // get category
   useEffect(() => {
     const url = `http://localhost:5000/api/v1/blogsCategory`;
@@ -25,7 +36,6 @@ const AddBlog = () => {
         setCategory(data?.data);
       });
   }, []);
-
   const handleChangeUploadImage = async (event) => {
     console.log("anyThing");
     const image = event.target.files[0];
@@ -44,8 +54,9 @@ const AddBlog = () => {
       img: image,
       category: data.category,
       description: blogDescription,
+      authorImg: user?.img,
+      author: user?.fullName,
     };
-    console.log(blog);
 
     // post api call
     PostHooks(
