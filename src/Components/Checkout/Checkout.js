@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import MyContext from "../../Utils/Context/MyContext";
 import PostHooks from "../../Hooks/PostHooks";
+import AuthUser from "../../Hooks/authUser";
 
 const Checkout = () => {
+  const { userInfo } = AuthUser();
   const { refresh, setRefresh } = useContext(MyContext);
   const [order, setOrder] = useState(null);
   const [subTotal, setSubTotal] = useState(null);
+  const navigate = useNavigate();
+  const customerId = userInfo._id;
 
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem("order"));
@@ -18,7 +22,7 @@ const Checkout = () => {
     setSubTotal(totalPrice);
   }, [refresh]);
 
-  const handlePlaceOrder = (e) => {
+  const handlePlaceOrder = async (e) => {
     e.preventDefault();
     const firstName = e.target.firstName.value;
     const lastName = e.target.lastName.value;
@@ -28,6 +32,7 @@ const Checkout = () => {
     const zipCode = e.target.zipCode.value;
     const phone = e.target.phone.value;
     const email = e.target.email.value;
+
     const customerDetails = {
       firstName,
       lastName,
@@ -38,11 +43,13 @@ const Checkout = () => {
       phone,
       email,
     };
-    PostHooks(
+    await PostHooks(
       "http://localhost:5000/api/v1/order/postOrder",
-      { customerDetails, order },
+      { customerDetails, order, customerId },
       "order successfully submitted"
     );
+    navigate("/products");
+
     console.log(customerDetails, order);
   };
 
