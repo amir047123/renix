@@ -46,11 +46,7 @@ const CartCard = ({ order }) => {
   const handleCountMinus = () => {};
   return (
     <div className="border border-white rounded-lg grid grid-cols-12 justify-between items-center gap-2">
-      <img
-        className="col-span-3 rounded-lg w-[70%]"
-        src="https://theproductmanager.b-cdn.net/wp-content/uploads/sites/4/2020/05/what-does-a-product-manager-do-featured-image-01-800x800.png"
-        alt=""
-      />
+      <img className="col-span-3 rounded-lg w-[70%]" src={order?.img} alt="" />
       <div className="text-xl font-semibold text-white col-span-3">
         <h4>{order?.genericName}</h4>
         <h4>{order?.price}</h4>
