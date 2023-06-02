@@ -32,6 +32,8 @@ const Checkout = () => {
     const zipCode = e.target.zipCode.value;
     const phone = e.target.phone.value;
     const email = e.target.email.value;
+    const note = e.target.note.value;
+    const address = e.target.address.value;
 
     const customerDetails = {
       firstName,
@@ -42,12 +44,16 @@ const Checkout = () => {
       zipCode,
       phone,
       email,
+      address,
+      note,
     };
     await PostHooks(
       "http://localhost:5000/api/v1/order/postOrder",
       { customerDetails, order, customerId },
       "order successfully submitted"
     );
+    localStorage.removeItem("order");
+    setRefresh(!refresh);
     navigate("/products");
 
     console.log(customerDetails, order);
@@ -94,9 +100,6 @@ const Checkout = () => {
                     required
                     className="border text-xs border-gray box-border px-4 leading-6 py-2 outline-0 w-full"
                   >
-                    <option disabled selected>
-                      Choose District
-                    </option>
                     <option>Rajshai</option>
                     <option>Dinajpur</option>
                     <option>Rangpur</option>
@@ -127,6 +130,19 @@ const Checkout = () => {
                   <input
                     type="text"
                     name="state"
+                    required
+                    id=""
+                    className="border border-gray box-border px-4 leading-6 py-2 outline-0 w-full"
+                  />
+                </div>
+                <div className="my-4">
+                  <label className="text-sm font-medium">
+                    Address<span> *</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="address"
+                    required
                     id=""
                     className="border border-gray box-border px-4 leading-6 py-2 outline-0 w-full"
                   />
