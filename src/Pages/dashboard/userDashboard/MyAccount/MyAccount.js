@@ -11,7 +11,6 @@ import { disctricData } from "../../../../Utils/DistricData";
 const MyAccount = () => {
   const [imageUrl, setMyImageUrl] = useState(null);
   const { userInfo } = AuthUser();
-  const [isUserLoading, setIsUserLoading] = useState(true);
   const [user, setUser] = useState({});
 
   const BASE_URL = `${server_url}/user/${userInfo?._id}`;

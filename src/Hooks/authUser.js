@@ -62,8 +62,8 @@ export default function AuthUser() {
       .then((response) => response.json())
       .then((data) => {
         if (data?.modifiedCount === 1) {
-          window.location.reload();
           navigate("/");
+          window.location.reload();
         }
       });
   };

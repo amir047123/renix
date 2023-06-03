@@ -17,8 +17,12 @@ import UserDashboardIndex from "./Pages/dashboard/userDashboard/UserDashboardInd
 import UserRoutes from "./Routes/UserRoutes";
 import { useEffect } from "react";
 import MyContext from "./Utils/Context/MyContext";
+import AuthUser from "./Hooks/authUser";
+import { server_url } from "./Config/API";
 
 function App() {
+  const [user, setUser] = useState();
+  const { userInfo } = AuthUser();
   const [openCart, setOpenCart] = useState(false);
   const [order, setOrder] = useState([]);
   const [refresh, setRefresh] = useState(false);
@@ -27,8 +31,14 @@ function App() {
     setOrder(items);
   }, [refresh]);
 
+  useEffect(() => {
+    fetch(`${server_url}/user/${userInfo?._id}`)
+      .then((res) => res.json())
+      .then((data) => setUser(data?.data));
+  }, [userInfo?._id]);
+
   return (
-    <MyContext.Provider value={{ refresh, setRefresh }}>
+    <MyContext.Provider value={{ refresh, setRefresh, user }}>
       <div className="relative">
         {openCart ? (
           <OrderFLoatingCart setOpenCart={setOpenCart}></OrderFLoatingCart>
