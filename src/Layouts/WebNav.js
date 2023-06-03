@@ -14,13 +14,11 @@ const WebNav = () => {
   const navWrapper = useRef();
   //state for hamburger menu
   const [isOpen, setIsopen] = useState(false);
-  const { logout, userInfo, userRole } = AuthUser();
+  const { userInfo } = AuthUser();
   const handleToggle = () => {
     isOpen === true ? setIsopen(false) : setIsopen(true);
   };
-  useEffect(() => {
-    setUser(userInfo);
-  }, [userInfo]);
+  console.log(userInfo);
   //nav menu active style
   let activeStyle = {
     borderBottom: "2px solid #90C347",
@@ -238,11 +236,12 @@ const WebNav = () => {
         </Link>
         <div className=" item-right">
           {localStorage.getItem("access") ? (
-            <button className="hidden lg:flex items-center px-2  py-2 rounded text-white border bg-red-500 border-red-500 text-base">
-              <Link to="/" onClick={logout}>
-                Log Out
-              </Link>
-            </button>
+            <Link
+              to={`/${userInfo?.role}Dashboard`}
+              className="hidden lg:flex items-center px-2  py-2 rounded text-white border bg-red-500 border-red-500 text-base"
+            >
+              Dashboard
+            </Link>
           ) : (
             <Link to={"/login"}>
               <button className="hidden lg:flex items-center px-2  py-2 rounded text-white border bg-primary border-primary text-base">

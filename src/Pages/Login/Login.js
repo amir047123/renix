@@ -31,6 +31,7 @@ const LoginPage = () => {
             res.data.data.userIp
           );
           setLoading(false);
+          window.location.reload();
           // window.location.reload();
         } else {
           // console.log("rrrrrr");
@@ -64,9 +65,6 @@ const LoginPage = () => {
       });
   };
 
-  if (userInfo?.email) {
-    return navigate("/user-dashboard");
-  }
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">

@@ -16,10 +16,13 @@ import UserDashboard from "./dashboardLayout/UserDashboard";
 import UserDashboardIndex from "./Pages/dashboard/userDashboard/UserDashboardIndex";
 import UserRoutes from "./Routes/UserRoutes";
 import { useEffect } from "react";
-import { createContext } from "react";
 import MyContext from "./Utils/Context/MyContext";
+import AuthUser from "./Hooks/authUser";
+import { server_url } from "./Config/API";
 
 function App() {
+  const [user, setUser] = useState();
+  const { userInfo } = AuthUser();
   const [openCart, setOpenCart] = useState(false);
   const [order, setOrder] = useState([]);
   const [refresh, setRefresh] = useState(false);
@@ -27,8 +30,15 @@ function App() {
     const items = JSON.parse(localStorage.getItem("order"));
     setOrder(items);
   }, [refresh]);
+
+  useEffect(() => {
+    fetch(`${server_url}/user/${userInfo?._id}`)
+      .then((res) => res.json())
+      .then((data) => setUser(data?.data));
+  }, [userInfo?._id]);
+
   return (
-    <MyContext.Provider value={{ refresh, setRefresh }}>
+    <MyContext.Provider value={{ refresh, setRefresh, user }}>
       <div className="relative">
         {openCart ? (
           <OrderFLoatingCart setOpenCart={setOpenCart}></OrderFLoatingCart>
@@ -40,14 +50,16 @@ function App() {
               className="bg-primary rounded-l-lg"
             >
               <div className="flex flex-col justify-center items-center text-white">
-                <div className="flex flex-col justify-center items-center py-2 ">
+                <div className="flex flex-col justify-center items-center p-2 ">
                   {" "}
                   <BsFillBagFill className="text-2xl "></BsFillBagFill>
                   <p className="pt-2 text-xs">
                     {order?.length ? order.length : 0} item
                   </p>
                 </div>
-                <p className="bg-secondary rounded-bl-lg p-2 text-xs">00 BDT</p>
+                {/* <p className="bg-secondary rounded-bl-lg p-2 text-xs">
+                  {subTotal} BDT
+                </p> */}
               </div>
             </div>
           </div>

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { NavLink, Outlet, Link } from "react-router-dom";
+import { NavLink, Outlet, Link, useNavigate } from "react-router-dom";
 import logo from "../Assets/images/logo.svg";
 import { MdOutlineDashboardCustomize } from "react-icons/md";
 import { IoMdNotificationsOutline } from "react-icons/io";
@@ -7,12 +7,16 @@ import { CgProfile } from "react-icons/cg";
 import { FiLogIn, FiSettings } from "react-icons/fi";
 import profilePic from "../Assets/images/users/us1.jpg";
 import SearchBar from "../Components/searchBar/SearchBar";
+import Home from "../Pages/Home";
 import { FaEye, FaSitemap } from "react-icons/fa";
 import AuthUser from "../Hooks/authUser";
 
 const UserDashboard = () => {
+  const { logout, userInfo } = AuthUser();
+  const navigate = useNavigate();
+
   const navWrapper = useRef();
-  const { logout } = AuthUser();
+
   //hide sidenav by default
   const [issideNavOpen, setSidenavOpen] = useState(false);
 
@@ -20,8 +24,6 @@ const UserDashboard = () => {
   const handleToggle = () => {
     issideNavOpen === true ? setSidenavOpen(false) : setSidenavOpen(true);
   };
-
-  //close sidebar on click
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -41,6 +43,11 @@ const UserDashboard = () => {
 
     //return wrapper.current;
   }, [issideNavOpen]);
+  if (userInfo?.role === "user") {
+  } else {
+    navigate("/");
+    return <Home />;
+  }
 
   //active style for sidenav
 
@@ -127,7 +134,7 @@ const UserDashboard = () => {
                   </li>
                   <li
                     onClick={logout}
-                    className="flex items-center gap-4 px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"
+                    className="flex cursor-pointer items-center gap-4 px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"
                   >
                     <span className="text-lg">
                       <FiLogIn className="text-white" />
@@ -318,7 +325,7 @@ const UserDashboard = () => {
                       </li>
                       <li
                         onClick={logout}
-                        className="flex items-center gap-5 px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"
+                        className="flex cursor-pointer items-center gap-5 px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"
                       >
                         <span className="text-lg">
                           <FiLogIn className="text-white" />

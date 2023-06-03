@@ -41,7 +41,7 @@ const PublicRoutes = [
   { path: "/team", Component: Team },
   { path: "/appoinments", Component: Appointments },
   { path: "/popup", Component: PopupMessage },
-  { path: "/blogview", Component: BlogSinglePage },
+  { path: "/blogDetails/:id", Component: BlogSinglePage },
   { path: "/userprofile", Component: UserProfile },
   { path: "/:id/verify", Component: VerifyEmail },
   { path: "/resetPassword", Component: ResetPassword },

@@ -7,6 +7,7 @@ import MyContext from "../../Utils/Context/MyContext";
 import { useContext } from "react";
 
 const ProductDetails = () => {
+  const [order, setOrder] = useState([]);
   const [product, setProduct] = useState({});
   const [addToCart, setAddToCart] = useState(false);
   const [activeTab, setActiveTab] = useState("tab1");
@@ -21,10 +22,15 @@ const ProductDetails = () => {
         setProduct(data?.data);
       });
   }, [id]);
+  useEffect(() => {
+    const items = JSON.parse(localStorage.getItem("order"));
+    const findOrder = items?.find((item) => item?._id === product?._id);
+    setOrder(findOrder);
+  }, [refresh]);
   const { description, genericName, img, name, price, supplierName, _id } =
     product;
   const handleCountMinus = () => {
-    if (quantity === 1) {
+    if (order?.quantity === 1) {
       setAddToCart(false);
     } else {
       setQuantity((prevCount) => prevCount - 1);
@@ -69,6 +75,7 @@ const ProductDetails = () => {
         if (action === "odd") {
           if (exist?.quantity === 1) {
             localStorage.setItem("order", JSON.stringify([...filterOrder]));
+            setAddToCart(false);
           } else {
             exist.quantity = exist.quantity - 1;
             localStorage.setItem(
@@ -126,7 +133,7 @@ const ProductDetails = () => {
                     <input
                       className="lg:px-8 py-2 text-center lg:text-xl font-semibold border-none outline-primary bg-primary text-white"
                       type="text"
-                      value={quantity}
+                      value={order?.quantity}
                     />
                   </aside>
                   <span
