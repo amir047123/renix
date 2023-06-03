@@ -3,11 +3,15 @@ import { AiOutlineCheckCircle } from "react-icons/ai";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { CiSearch } from "react-icons/ci";
 import Pagination from "../../shared/Pagination/Pagination";
+import UpdateHooks from "../../Hooks/UpdateHooks";
+import { server_url } from "../../Config/API";
 const PendingOrders = () => {
+  const [refresh, setRefresh] = useState(false);
   const [order, setOrder] = useState([]);
   const [quantity, setQuantity] = useState(0);
   const [page, setPage] = useState(0);
   const [size, setSize] = useState(6);
+
   useEffect(() => {
     const url = `http://localhost:5000/api/v1/order/specific?page=${page}&&size=${size}&&fieldName=${"orderStatus"}&&fieldValue=${"pending"}`;
     fetch(url)
@@ -17,7 +21,27 @@ const PendingOrders = () => {
         setQuantity(data?.total);
         // console.log("data", data);
       });
-  }, [page, size]);
+  }, [page, size, refresh]);
+  const handelAccept = async (id) => {
+    const BASE_URL = `${server_url}/order/orderStatus/${id}`;
+    await UpdateHooks(
+      BASE_URL,
+      { orderStatus: "accept" },
+      true,
+      "Order Accepted"
+    );
+    setRefresh(!refresh);
+  };
+  const handelRejected = async (id) => {
+    const BASE_URL = `${server_url}/order/orderStatus/${id}`;
+    await UpdateHooks(
+      BASE_URL,
+      { orderStatus: "rejected" },
+      true,
+      "Order Rejected"
+    );
+    setRefresh(!refresh);
+  };
   return (
     <section className="py-10 md:py-14">
       <div className="container px-6 md:max-w-6xl w-full mb-5">
@@ -172,6 +196,7 @@ const PendingOrders = () => {
                     <td className="px-6 py-4">
                       <span className="flex items-center gap-3">
                         <button
+                          onClick={() => handelAccept(item?._id)}
                           title="Confirm Order"
                           className="text-lg text-[#0077FF] bg-[#BBDDFF] w-7  h-7 rounded-lg flex items-center justify-center"
                         >
@@ -179,6 +204,7 @@ const PendingOrders = () => {
                         </button>
 
                         <button
+                          onClick={() => handelRejected(item?._id)}
                           title="Reject Order"
                           className="text-lg text-[#F87171] bg-[#FEE2E2] w-7  h-7 rounded-lg flex items-center justify-center"
                         >
