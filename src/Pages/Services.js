@@ -1,5 +1,5 @@
 import React from 'react';
-
+import img1 from ".././Assets/images/Products/01. Syrup Cold Free.webp";
 const Services = () => {
     return (
         <section className='lg:w-[90%] mx-auto'>
@@ -27,7 +27,17 @@ const Services = () => {
             </div>
             <div>
                <h3 className='uppercase py-8 font-semibold underline underline-offset-8 decoration-2'>Security check Information</h3>
-               <p className='py-2'>Please Enter Your Security Code.!</p>
+               <div className='shadow w-1/2 rounded-lg ring-2 ring-primary ' >
+              <img src={img1} className='w-full' ></img>
+                 
+                 <div className='pl-3 pb-3 pt-1'>
+                  <h3 className='font-light' > <span className='font-bold' >Name:</span> Cold-Free</h3>
+                  <h3 className='font-light' ><span className='font-bold' >Generic Name:</span> Sharbat Tulsi  </h3>
+                  <p className='font-bold' >250 <span className='font-light' >BDT</span></p>
+
+                 </div>
+ 
+               </div>
             </div>
         </div>
         </section>
