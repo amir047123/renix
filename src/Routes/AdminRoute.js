@@ -1,3 +1,4 @@
+import AllAccounts from "../Pages/AllAccounts/AllAccounts";
 import AddNewsAndMedia from "../Pages/News and Media/AddNewsAndMedia";
 import AddNewsCategory from "../Pages/News and Media/AddNewsCategory";
 import AllNewsAndMedias from "../Pages/News and Media/AllNewsAndMedias";
@@ -38,6 +39,7 @@ const AdminRoutes = [
   { path: "doctor/addDoctor", Component: AddDoctor },
   { path: "doctor/allDoctors", Component: AllDoctors },
   { path: "email/allEmails", Component: AllEmails },
+  { path: "allAccounts", Component: AllAccounts },
 ];
 
 export default AdminRoutes;
