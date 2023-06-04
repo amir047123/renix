@@ -1,9 +1,11 @@
+import AllAccounts from "../Pages/AllAccounts/AllAccounts";
 import AddNewsAndMedia from "../Pages/News and Media/AddNewsAndMedia";
 import AddNewsCategory from "../Pages/News and Media/AddNewsCategory";
 import AllNewsAndMedias from "../Pages/News and Media/AllNewsAndMedias";
 import AddBlog from "../Pages/blog/AddBlog";
 import AddBlogCategory from "../Pages/blog/AddBlogCategory";
 import AllBlogs from "../Pages/blog/AllBlogs";
+import AllBlogsCategory from "../Pages/blog/AllBlogsCategory";
 import Dashboard from "../Pages/dashboard/AdminDashboardOverview";
 import AddDoctor from "../Pages/doctors/AddDoctor";
 import AllDoctors from "../Pages/doctors/AllDoctors";
@@ -32,10 +34,12 @@ const AdminRoutes = [
   { path: "news-media/allNewsandMedia", Component: AllNewsAndMedias },
   { path: "blog/addBlog", Component: AddBlog },
   { path: "blog/addBlogCategory", Component: AddBlogCategory },
+  { path: "blog/allBlogCategory", Component: AllBlogsCategory },
   { path: "blog/allBlogs", Component: AllBlogs },
   { path: "doctor/addDoctor", Component: AddDoctor },
   { path: "doctor/allDoctors", Component: AllDoctors },
   { path: "email/allEmails", Component: AllEmails },
+  { path: "allAccounts", Component: AllAccounts },
 ];
 
 export default AdminRoutes;

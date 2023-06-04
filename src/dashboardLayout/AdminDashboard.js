@@ -3,23 +3,25 @@ import "./AdminDashboard.css";
 import { NavLink, useNavigate, Outlet, Link } from "react-router-dom";
 import logo from "../Assets/images/logo.svg";
 import { TbMedicineSyrup } from "react-icons/tb";
-import { FiUsers } from "react-icons/fi";
-import { BiBorderAll, BiNews, BiSearch } from "react-icons/bi";
-import { GrArticle } from "react-icons/gr";
+import { FiLogIn, FiUsers } from "react-icons/fi";
+import { BiBorderAll, BiNews } from "react-icons/bi";
+
 import {
   MdOutlineDashboardCustomize,
   MdOutlineMailOutline,
   MdOutlineArticle,
 } from "react-icons/md";
 import { IoMdNotificationsOutline } from "react-icons/io";
-import { RxCaretUp, RxCaretDown } from "react-icons/rx";
+import { RxCaretDown } from "react-icons/rx";
 import { FiSettings } from "react-icons/fi";
-import { TbEqual } from "react-icons/tb";
-import { HiOutlineBars3BottomLeft } from "react-icons/hi";
+
 import profilePic from "../Assets/images/users/us1.jpg";
 import SearchBar from "../Components/searchBar/SearchBar";
+import AuthUser from "../Hooks/authUser";
+import Home from "../Pages/Home";
 
 const AdminDashboard = () => {
+  const { userInfo, logout } = AuthUser();
   const navWrapper = useRef();
   //hide sidenav by default
   const [issideNavOpen, setSidenavOpen] = useState(false);
@@ -94,6 +96,12 @@ const AdminDashboard = () => {
 
     //return wrapper.current;
   }, [issideNavOpen]);
+  if (userInfo?.role === "admin") {
+  } else {
+    navigate("/");
+    logout();
+    return <Home />;
+  }
 
   //active style for sidenav
 
@@ -131,6 +139,21 @@ const AdminDashboard = () => {
                       </span>
 
                       <span className="">Dashboard</span>
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to={"allAccounts"}
+                      className="flex items-center gap-4 px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"
+                      style={({ isActive }) =>
+                        isActive ? activeStyle : undefined
+                      }
+                    >
+                      <span className="text-lg">
+                        <FiUsers />
+                      </span>
+
+                      <span className="">All Accounts</span>
                     </NavLink>
                   </li>
                   <li>
@@ -412,6 +435,17 @@ const AdminDashboard = () => {
                       </li>
                       <li>
                         <NavLink
+                          to={"blog/allBlogCategory"}
+                          className="flex items-center p-2 text-[14px] hover:bg-textColor  font-normal py-2.5  rounded-md dark:text-white dark:hover:bg-gray-700 text-white"
+                          style={({ isActive }) =>
+                            isActive ? activeStyle : undefined
+                          }
+                        >
+                          <span className="ml-3">all Blogs Category</span>
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink
                           to={"blog/addBlog"}
                           className="flex items-center p-2 text-[14px] hover:bg-textColor  font-normal py-2.5  rounded-md dark:text-white dark:hover:bg-gray-700 text-white"
                           style={({ isActive }) =>
@@ -448,6 +482,16 @@ const AdminDashboard = () => {
 
                       <span>Subcribed Emails</span>
                     </NavLink>
+                  </li>
+                  <li
+                    onClick={logout}
+                    className="flex cursor-pointer items-center gap-4 px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"
+                  >
+                    <span className="text-lg">
+                      <FiLogIn className="text-white" />
+                    </span>
+
+                    <span className="">LogOut</span>
                   </li>
                 </ul>
               </div>
@@ -636,6 +680,20 @@ const AdminDashboard = () => {
                           </span>
 
                           <span className="">Dashboard</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="/adminDashboard/allAccounts"
+                          // onClick={(e) => e.preventDefault()}
+
+                          className="flex items-center gap-5 px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"
+                        >
+                          <span className="text-lg">
+                            <FiUsers />
+                          </span>
+
+                          <span className="">All Accounts</span>
                         </a>
                       </li>
                       <li>
@@ -978,6 +1036,16 @@ const AdminDashboard = () => {
 
                           <span className="ml-3">Subcribed Emails</span>
                         </a>
+                      </li>
+                      <li
+                        onClick={logout}
+                        className="flex cursor-pointer items-center gap-5 px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"
+                      >
+                        <span className="text-lg">
+                          <FiLogIn className="text-white" />
+                        </span>
+
+                        <span className="">LogOut</span>
                       </li>
                     </ul>
                   </div>

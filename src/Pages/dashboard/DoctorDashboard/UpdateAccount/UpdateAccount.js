@@ -6,7 +6,7 @@ import { singleImageUpload } from "../../../../Hooks/ImageUpload";
 import UpdateHooks from "../../../../Hooks/UpdateHooks";
 import { disctricData } from "../../../../Utils/DistricData";
 
-const MyAccount = () => {
+const UpdateAccount = () => {
   const [imageUrl, setMyImageUrl] = useState(null);
   const { userInfo } = AuthUser();
   const [user, setUser] = useState({});
@@ -43,6 +43,9 @@ const MyAccount = () => {
       country: data.country || user.country,
       address: data.address || user.address,
       zipCode: data.zipCode || user.zipCode,
+      doctorDegree: data.doctorDegree || user.doctorDegree,
+      doctorType: data.doctorType || user.doctorType,
+      department: data.department || user.department,
       img: imageUrl,
     };
     console.log(newData);
@@ -169,7 +172,7 @@ const MyAccount = () => {
                   <span className=" block text-sm font-medium">Address</span>
                   <input
                     type="text"
-                    {...register("address", { required: false })}
+                    {...register("address", { required: true })}
                     defaultValue={user?.address}
                     className="mt-2 px-3 py-2 border-2 shadow-sm focus:outline-none border-thirdLightPrimary bg-transparent placeholder-slate-400  block w-full rounded-md sm:text-sm "
                     placeholder="Enter your address"
@@ -183,6 +186,40 @@ const MyAccount = () => {
                     defaultValue={user?.zipCode}
                     className="mt-2 px-3 py-2 border-2 shadow-sm focus:outline-none border-thirdLightPrimary bg-transparent placeholder-slate-400  block w-full rounded-md sm:text-sm "
                     placeholder="Enter your zip code"
+                  />
+                </label>
+                <label className="block">
+                  <span className=" block text-sm font-medium">Department</span>
+                  <input
+                    type="text"
+                    {...register("department", { required: true })}
+                    defaultValue={user?.department}
+                    className="mt-2 px-3 py-2 border-2 shadow-sm focus:outline-none border-thirdLightPrimary bg-transparent placeholder-slate-400  block w-full rounded-md sm:text-sm "
+                    placeholder="Enter your department"
+                  />
+                </label>
+                <label className="block mt-5">
+                  <span className=" block text-sm font-medium">
+                    Type of doctor
+                  </span>
+                  <input
+                    type="text"
+                    {...register("doctorType", { required: true })}
+                    defaultValue={user?.doctorType}
+                    className="mt-2 px-3 py-2 border-2 shadow-sm focus:outline-none border-thirdLightPrimary bg-transparent placeholder-slate-400  block w-full rounded-md sm:text-sm "
+                    placeholder="Adults only"
+                  />
+                </label>
+                <label className="block mt-5">
+                  <span className=" block text-sm font-medium">
+                    Medical degree
+                  </span>
+                  <input
+                    type="text"
+                    {...register("doctorDegree", { required: true })}
+                    defaultValue={user?.doctorDegree}
+                    className="mt-2 px-3 py-2 border-2 shadow-sm focus:outline-none border-thirdLightPrimary bg-transparent placeholder-slate-400  block w-full rounded-md sm:text-sm "
+                    placeholder="B.Med, MB, BM"
                   />
                 </label>
               </div>
@@ -201,4 +238,4 @@ const MyAccount = () => {
   );
 };
 
-export default MyAccount;
+export default UpdateAccount;

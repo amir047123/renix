@@ -1,9 +1,20 @@
 import React from "react";
+import { useEffect } from "react";
 import { AiOutlineCheckCircle } from "react-icons/ai";
-import { AiOutlineCloseCircle } from "react-icons/ai";
-import { CiSearch } from "react-icons/ci";
 import { MdPendingActions } from "react-icons/md";
+import AuthUser from "../../../../Hooks/authUser";
+import { useState } from "react";
 const MyOrders = () => {
+  const [order, setOrder] = useState([]);
+  const { userInfo } = AuthUser();
+  useEffect(() => {
+    fetch(`http://localhost:5000/api/v1/order/getOrder/${userInfo?._id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setOrder(data?.data);
+      });
+  }, []);
   return (
     <section className="py-10 md:py-14">
       <div className="container px-6 md:max-w-6xl w-full ">
@@ -79,43 +90,77 @@ const MyOrders = () => {
               </tr>
             </thead>
             <tbody>
-              <tr className="bg-white border-b border-[#D0D2DA]">
-                <th
-                  scope="row"
-                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+              {order?.map((item, i) => (
+                <tr
+                  key={item?._id}
+                  item={item}
+                  className="bg-white border-b border-[#D0D2DA]"
                 >
-                  01
-                </th>
-                <td className="px-6 py-4">Napa</td>
-                <td className="px-6 py-4">Nasal</td>
-                <td className="px-6 py-4">$20</td>
-                <td className="px-6 py-4">50mg</td>
-                <td className="px-6 py-4">Paracetamol</td>
-                <td className="px-6 py-4">40</td>
+                  <th
+                    scope="row"
+                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  >
+                    {i + 1}
+                  </th>
+                  <td className="px-6 py-4">
+                    {item?.order?.map((or) => (
+                      <p>{or?.genericName}</p>
+                    ))}
+                  </td>
+                  <td className="px-6 py-4">
+                    {item?.order?.map((or) => (
+                      <p>{or?.medicineCategory}</p>
+                    ))}
+                  </td>
+                  <td className="px-6 py-4">
+                    {item?.order?.map((or) => (
+                      <p>{or?.price}</p>
+                    ))}
+                  </td>
+                  <td className="px-6 py-4">
+                    {item?.order?.map((or) => (
+                      <p>{or?.strength}</p>
+                    ))}
+                  </td>
+                  <td className="px-6 py-4">
+                    {item?.order?.map((or) => (
+                      <p>{or?.medicineType}</p>
+                    ))}
+                  </td>
+                  <td className="px-6 py-4">
+                    {item?.order?.map((or) => (
+                      <p>{or?.quantity}</p>
+                    ))}
+                  </td>
 
-                <td className="px-6 py-4">01215485544</td>
-                <td className="px-6 py-4">Dhaka,Bangladesh</td>
+                  <td className="px-6 py-4">01215485544</td>
+                  <td className="px-6 py-4">Dhaka,Bangladesh</td>
 
-                <td className="px-6 py-4">
-                  {true ? (
-                    <button
-                      title="Confirm Order"
-                      className="text-lg text-green-600 bg-thirdLightPrimary rounded-lg flex items-center justify-center"
-                    >
-                      <span className="text-sm px-2 py-1">Accepted</span>{" "}
-                      <AiOutlineCheckCircle />
-                    </button>
-                  ) : (
-                    <button
-                      title="Reject Order"
-                      className="text-lg text-[#F87171] bg-[#FEE2E2] rounded-lg flex items-center justify-center"
-                    >
-                      <span className="text-sm px-2 py-1">Pending</span>{" "}
-                      <MdPendingActions />
-                    </button>
-                  )}
-                </td>
-              </tr>
+                  <td className="px-6 py-4">
+                    {item?.orderStatus ? (
+                      <button
+                        title="Confirm Order"
+                        className="text-lg text-green-600 bg-thirdLightPrimary rounded-lg flex items-center justify-center"
+                      >
+                        <span className="text-sm px-2 py-1">
+                          {item?.orderStatus}
+                        </span>{" "}
+                        <AiOutlineCheckCircle />
+                      </button>
+                    ) : (
+                      <button
+                        title="Reject Order"
+                        className="text-lg text-[#F87171] bg-[#FEE2E2] rounded-lg flex items-center justify-center"
+                      >
+                        <span className="text-sm px-2 py-1">
+                          {item?.orderStatus}
+                        </span>{" "}
+                        <MdPendingActions />
+                      </button>
+                    )}
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

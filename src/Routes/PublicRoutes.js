@@ -21,8 +21,12 @@ import VerifyEmail from "../Utils/VerifyEmail";
 import ResetPassword from "../Components/ResetPassword/ResetPassword";
 import InsertOtp from "../Components/ResetPassword/InsertOtp";
 import SetNewPassword from "../Components/ResetPassword/NewPassword";
+<<<<<<< HEAD
 import UserDashboard from "../dashboardLayout/UserDashboard";
 // import Dashboard from "../Pages/dashboard/Dashboard";
+=======
+import AppointmentForm from "../Components/AppointmentForm/AppointmentForm";
+>>>>>>> ab4d984022df847043b7bba1588969bb8d1dfb1f
 
 const PublicRoutes = [
   { path: "/", Component: Home },
@@ -40,17 +44,21 @@ const PublicRoutes = [
   { path: "/login", Component: LoginPage },
   { path: "/gallery", Component: Gallery },
   { path: "/team", Component: Team },
-  { path: "/appoinments", Component: Appointments },
+  { path: "/appointment", Component: Appointments },
   { path: "/popup", Component: PopupMessage },
-  { path: "/blogview", Component: BlogSinglePage },
+  { path: "/blogDetails/:id", Component: BlogSinglePage },
   { path: "/userprofile", Component: UserProfile },
   { path: "/:id/verify", Component: VerifyEmail },
   { path: "/resetPassword", Component: ResetPassword },
   { path: "/insert-token", Component: InsertOtp },
   { path: "/setNewPassword", Component: SetNewPassword },
+<<<<<<< HEAD
   // {path:"/dashboard",Component:Dasbord},
   {path:"/userdashbord",Component:UserDashboard},
   
+=======
+  { path: "/appointment/:id", Component: AppointmentForm },
+>>>>>>> ab4d984022df847043b7bba1588969bb8d1dfb1f
 ];
 
 export default PublicRoutes;
