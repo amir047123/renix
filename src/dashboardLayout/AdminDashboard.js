@@ -142,6 +142,21 @@ const AdminDashboard = () => {
                     </NavLink>
                   </li>
                   <li>
+                    <NavLink
+                      to={"allAccounts"}
+                      className="flex items-center gap-4 px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"
+                      style={({ isActive }) =>
+                        isActive ? activeStyle : undefined
+                      }
+                    >
+                      <span className="text-lg">
+                        <FiUsers />
+                      </span>
+
+                      <span className="">All Accounts</span>
+                    </NavLink>
+                  </li>
+                  <li>
                     <span
                       onClick={handleMedicineDropdown}
                       className="flex items-center justify-between cursor-pointer gap-5 px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"
@@ -665,6 +680,20 @@ const AdminDashboard = () => {
                           </span>
 
                           <span className="">Dashboard</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="/adminDashboard/allAccounts"
+                          // onClick={(e) => e.preventDefault()}
+
+                          className="flex items-center gap-5 px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"
+                        >
+                          <span className="text-lg">
+                            <FiUsers />
+                          </span>
+
+                          <span className="">All Accounts</span>
                         </a>
                       </li>
                       <li>

@@ -18,7 +18,6 @@ const WebNav = () => {
   const handleToggle = () => {
     isOpen === true ? setIsopen(false) : setIsopen(true);
   };
-  console.log(userInfo);
   //nav menu active style
   let activeStyle = {
     borderBottom: "2px solid #90C347",
@@ -142,10 +141,10 @@ const WebNav = () => {
                 </a>
               </li>
               <li>
-                <a href="/appoinments">
+                <a href="/appointment">
                   {" "}
                   <button className=" px-2  py-2 rounded text-white border bg-primary border-primary text-base">
-                    Appoinments +
+                    Appointment +
                   </button>
                 </a>
               </li>
@@ -229,9 +228,9 @@ const WebNav = () => {
         </div>
 
         {/* call to action button */}
-        <Link to={"/appoinments"}>
+        <Link to={"/appointment"}>
           <button className="hidden lg:flex items-center px-2  py-2 rounded text-white border bg-primary border-primary text-base">
-            Appoinments +
+            Appointment +
           </button>
         </Link>
         <div className=" item-right">

@@ -21,7 +21,7 @@ import VerifyEmail from "../Utils/VerifyEmail";
 import ResetPassword from "../Components/ResetPassword/ResetPassword";
 import InsertOtp from "../Components/ResetPassword/InsertOtp";
 import SetNewPassword from "../Components/ResetPassword/NewPassword";
-import Dashboard from "../Pages/dashboard/Dashboard";
+import AppointmentForm from "../Components/AppointmentForm/AppointmentForm";
 
 const PublicRoutes = [
   { path: "/", Component: Home },
@@ -39,7 +39,7 @@ const PublicRoutes = [
   { path: "/login", Component: LoginPage },
   { path: "/gallery", Component: Gallery },
   { path: "/team", Component: Team },
-  { path: "/appoinments", Component: Appointments },
+  { path: "/appointment", Component: Appointments },
   { path: "/popup", Component: PopupMessage },
   { path: "/blogDetails/:id", Component: BlogSinglePage },
   { path: "/userprofile", Component: UserProfile },
@@ -47,7 +47,7 @@ const PublicRoutes = [
   { path: "/resetPassword", Component: ResetPassword },
   { path: "/insert-token", Component: InsertOtp },
   { path: "/setNewPassword", Component: SetNewPassword },
-  {path:"/dashboard",Component:Dashboard}
+  { path: "/appointment/:id", Component: AppointmentForm },
 ];
 
 export default PublicRoutes;
