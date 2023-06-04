@@ -18,7 +18,6 @@ const WebNav = () => {
   const handleToggle = () => {
     isOpen === true ? setIsopen(false) : setIsopen(true);
   };
-  console.log(userInfo);
   //nav menu active style
   let activeStyle = {
     borderBottom: "2px solid #90C347",
