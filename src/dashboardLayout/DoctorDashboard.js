@@ -10,6 +10,8 @@ import SearchBar from "../Components/searchBar/SearchBar";
 import Home from "../Pages/Home";
 import { FaEye, FaSitemap } from "react-icons/fa";
 import AuthUser from "../Hooks/authUser";
+import { BiBorderAll } from "react-icons/bi";
+import { RxCaretDown } from "react-icons/rx";
 
 const DoctorDashboard = () => {
   const { logout, userInfo } = AuthUser();
@@ -19,12 +21,17 @@ const DoctorDashboard = () => {
 
   //hide sidenav by default
   const [issideNavOpen, setSidenavOpen] = useState(false);
+  const [openOrder, setOpenOrder] = useState(false);
 
   //show sidenav on toggle
   const handleToggle = () => {
     issideNavOpen === true ? setSidenavOpen(false) : setSidenavOpen(true);
   };
 
+  const handleOrderDropdown = (e) => {
+    openOrder === true ? setOpenOrder(false) : setOpenOrder(true);
+    //console.log('clicked')
+  };
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -118,19 +125,64 @@ const DoctorDashboard = () => {
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink
-                      to={"myOrders"}
-                      className="flex items-center gap-4 px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"
-                      style={({ isActive }) =>
-                        isActive ? activeStyle : undefined
-                      }
+                    <span
+                      onClick={handleOrderDropdown}
+                      className="flex items-center justify-between cursor-pointer gap-5 px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"
                     >
-                      <span className="text-lg">
-                        <FaSitemap className="text-white" />
-                      </span>
+                      <div className="flex items-center gap-4">
+                        <span className="text-lg">
+                          <BiBorderAll />
+                        </span>
 
-                      <span className="">My Orders</span>
-                    </NavLink>
+                        <span className="">Appointment</span>
+                      </div>
+                      <span
+                        className={`text-2xl transition_move ${
+                          openOrder === true ? "rotate-180" : ""
+                        }`}
+                      >
+                        <RxCaretDown />
+                      </span>
+                    </span>
+                    <ul
+                      className={`drop_down  ${
+                        openOrder === true ? "block" : "hidden"
+                      }`}
+                    >
+                      <li>
+                        <NavLink
+                          to={"appointment/pendingAppointment"}
+                          className="flex items-center p-2 text-[14px]  hover:bg-textColor font-normal  py-2.5 rounded-md dark:text-white dark:hover:bg-gray-700 text-white"
+                          style={({ isActive }) =>
+                            isActive ? activeStyle : undefined
+                          }
+                        >
+                          <span className="ml-3">Pending Appointment</span>
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink
+                          to={"appointment/confirmedAppointment"}
+                          className="flex items-center p-2 text-[14px] hover:bg-textColor  font-normal py-2.5  rounded-md dark:text-white dark:hover:bg-gray-700 text-white"
+                          style={({ isActive }) =>
+                            isActive ? activeStyle : undefined
+                          }
+                        >
+                          <span className="ml-3">Confirmed Appointment</span>
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink
+                          to={"appointment/rejectedAppointment"}
+                          className="flex items-center p-2 text-[14px]  hover:bg-textColor font-normal  py-2.5 rounded-md dark:text-white dark:hover:bg-gray-700 text-white"
+                          style={({ isActive }) =>
+                            isActive ? activeStyle : undefined
+                          }
+                        >
+                          <span className="ml-3">Rejected Appointment</span>
+                        </NavLink>
+                      </li>
+                    </ul>
                   </li>
                   <li
                     onClick={logout}
@@ -312,16 +364,68 @@ const DoctorDashboard = () => {
                         </NavLink>
                       </li>
                       <li>
-                        <NavLink
-                          to={"myOrders"}
-                          className="flex items-center gap-5 px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"
+                        <span
+                          onClick={handleOrderDropdown}
+                          className="flex items-center cursor-pointer gap-4 justify-between px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"
                         >
-                          <span className="text-lg">
-                            <FaSitemap className="text-white" />
-                          </span>
+                          <div className="flex items-center gap-4">
+                            <span className="text-lg">
+                              <BiBorderAll />
+                            </span>
 
-                          <span className="">My Orders</span>
-                        </NavLink>
+                            <span className="">Orders</span>
+                          </div>
+
+                          <span
+                            className={`text-2xl transition_move ${
+                              openOrder === true ? "rotate-180" : ""
+                            }`}
+                          >
+                            <RxCaretDown />
+                          </span>
+                        </span>
+                        <ul
+                          className={`pl-3  ${
+                            openOrder === true ? "block" : "hidden"
+                          }`}
+                        >
+                          <li>
+                            <a
+                              href={"/adminDashboard/orders/pendingOrders"}
+                              className="flex items-center hover:bg-textColor  p-2 text-[14px] font-normal  rounded-lg dark:text-white dark:hover:bg-gray-700 text-white"
+                            >
+                              {/* <span className='text-lg'>
+                                                        <TbMedicineSyrup />
+                                                    </span> */}
+
+                              <span className="ml-3">Pending Orders</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              href={"/adminDashboard/orders/confirmedOrders"}
+                              className="flex items-center hover:bg-textColor  p-2 text-[14px] font-normal  rounded-lg dark:text-white dark:hover:bg-gray-700 text-white"
+                            >
+                              {/* <span className='text-lg'>
+                                                        <TbMedicineSyrup />
+                                                    </span> */}
+
+                              <span className="ml-3">Confirmed Orders</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              href={"/adminDashboard/orders/rejectedOrders"}
+                              className="flex items-center hover:bg-textColor  p-2 text-[14px] font-normal  rounded-lg dark:text-white dark:hover:bg-gray-700 text-white"
+                            >
+                              {/* <span className='text-lg'>
+                                                        <TbMedicineSyrup />
+                                                    </span> */}
+
+                              <span className="ml-3">Rejected Orders</span>
+                            </a>
+                          </li>
+                        </ul>
                       </li>
                       <li
                         onClick={logout}
