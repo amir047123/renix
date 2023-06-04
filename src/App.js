@@ -19,6 +19,9 @@ import { useEffect } from "react";
 import MyContext from "./Utils/Context/MyContext";
 import AuthUser from "./Hooks/authUser";
 import { server_url } from "./Config/API";
+import DoctorDashboard from "./dashboardLayout/DoctorDashboard";
+import DoctorDashboardIndex from "./Pages/dashboard/DoctorDashboard/DoctorDashboardIndex";
+import DoctorRoutes from "./Routes/DoctorRoutes";
 
 function App() {
   const [user, setUser] = useState();
@@ -88,10 +91,17 @@ function App() {
               <Route key={index} path={path} element={<Component />} />
             ))}
           </Route>
-          {/*Admin dashboard routes */}
+          {/*user dashboard routes */}
           <Route path="/userDashboard" element={<UserDashboard />}>
             <Route index element={<UserDashboardIndex />}></Route>
             {UserRoutes.map(({ path, Component }, index) => (
+              <Route key={index} path={path} element={<Component />} />
+            ))}
+          </Route>
+          {/*Admin dashboard routes */}
+          <Route path="/doctorDashboard" element={<DoctorDashboard />}>
+            <Route index element={<DoctorDashboardIndex />}></Route>
+            {DoctorRoutes.map(({ path, Component }, index) => (
               <Route key={index} path={path} element={<Component />} />
             ))}
           </Route>
