@@ -125,7 +125,7 @@ const NewArrivals = () => {
                         newProducts?.slice(0, 4)?.map((product) => (
 
                             <div className='w-80 sm:w-6/12 md:w-4/12' key={product._id}>
-                                <div className='m-4  rounded-xl border-2 border-whiteSmoke '>
+                                <div className='m-4 w-50 rounded-xl border-2 border-whiteSmoke '>
                                     <h2 className='bg-primary w-10 text-left text-xs pl-1 pt-1 pb-1  text-white mt-3'>Sale!</h2>
                                     <img src={product.image} alt='' className='w-full mx-auto  h-auto mt-7' />
                                     <div className='pl-4 pb-2' >

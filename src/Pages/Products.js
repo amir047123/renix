@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
 import Pagination from "../shared/Pagination/Pagination";
+import Paginations from "../Components/Pagination/Paginations";
 
 const Products = () => {
   const [displayButton, setDisplayButton] = useState("");
@@ -25,6 +26,7 @@ const Products = () => {
   // const { description, genericName, img, name, price, supplierName } = products;
   return (
     <div className="md:px-[103px]">
+    <h1 className=' text-2xl text-center text-primary '>🇴​​🇺​​🇷​ ​🇵​​🇷​​🇴​​🇩​​🇺​​🇨​​🇹​</h1>
       <div className="grid grid-cols-4 gap-4">
         <div className="col-span-1">
           <div className="  border border-blue-gray-300 p-11">
@@ -108,13 +110,15 @@ const Products = () => {
             ))}
           </div>
           {/* pagination */}
-          <Pagination
+          {/* <Pagination
             quantity={quantity}
             page={page}
             setPage={setPage}
             size={size}
             setSize={setSize}
-          />
+          /> */}
+
+          <Paginations></Paginations>
         </div>
       </div>
     </div>
