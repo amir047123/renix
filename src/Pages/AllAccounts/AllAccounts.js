@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { TbEdit } from "react-icons/tb";
 import { CiSearch } from "react-icons/ci";
 import Pagination from "../../shared/Pagination/Pagination";
+import { server_url } from "../../Config/API";
+import UpdateHooks from "../../Hooks/UpdateHooks";
 
 const AllAccounts = () => {
   const [input, setInput] = useState("");
@@ -25,6 +27,26 @@ const AllAccounts = () => {
   const handelFilter = (e) => {
     e.preventDefault();
     setInput(e.target.filter.value);
+  };
+  const makeDoctor = async (id) => {
+    const BASE_URL = `${server_url}/user/${id}`;
+    await UpdateHooks(
+      BASE_URL,
+      { role: "doctor" },
+      true,
+      "This user has been promoted to Doctor"
+    );
+    setRefresh(!refresh);
+  };
+  const makeUser = async (id) => {
+    const BASE_URL = `${server_url}/user/${id}`;
+    await UpdateHooks(
+      BASE_URL,
+      { role: "user" },
+      true,
+      "This Doctor has been demoted to User"
+    );
+    setRefresh(!refresh);
   };
   return (
     <section className="py-10 md:py-14">
@@ -50,17 +72,19 @@ const AllAccounts = () => {
           </div>
 
           <button
-            onClick={() => setInput("")}
+            type="submit"
             className="bg-primary text-white px-2 py-2 rounded-md"
           >
             Filter
           </button>
-          <button
-            onClick={() => setInput("")}
-            className="bg-red-500 text-white px-2 py-2 rounded-md"
+          <div
+            onClick={() => {
+              setInput("");
+            }}
+            className="bg-red-500 text-white px-2 py-2 rounded-md cursor-pointer"
           >
             Reset{" "}
-          </button>
+          </div>
         </form>
 
         {/* medicine list table */}
@@ -132,12 +156,21 @@ const AllAccounts = () => {
                   <td className="px-6 py-4">
                     {user?.role !== "admin" && (
                       <span className="flex items-center gap-3">
-                        <button className=" text-white bg-primary p-1  rounded-lg flex items-center justify-center gap-1">
-                          <TbEdit className="text-lg" /> Make_Doctor
-                        </button>
-                        <button className="text-[#F87171] bg-[#FEE2E2] p-1  rounded-lg flex items-center justify-center gap-1">
-                          <TbEdit className="text-lg" /> Make_Doctor
-                        </button>
+                        {user?.role !== "doctor" ? (
+                          <button
+                            onClick={() => makeDoctor(user?._id)}
+                            className=" text-white bg-primary p-1  rounded-lg flex items-center justify-center gap-1"
+                          >
+                            <TbEdit className="text-lg" /> Make_Doctor
+                          </button>
+                        ) : (
+                          <button
+                            onClick={() => makeUser(user?._id)}
+                            className="text-[#F87171] bg-[#FEE2E2] p-1  rounded-lg flex items-center justify-center gap-1"
+                          >
+                            <TbEdit className="text-lg" /> Make_User
+                          </button>
+                        )}
                       </span>
                     )}
                   </td>
