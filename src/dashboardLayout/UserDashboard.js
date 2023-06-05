@@ -3,6 +3,7 @@ import { NavLink, Outlet, Link, useNavigate } from "react-router-dom";
 import logo from "../Assets/images/logo.svg";
 import { MdOutlineDashboardCustomize } from "react-icons/md";
 import { IoMdNotificationsOutline } from "react-icons/io";
+import { BsFillBookmarkPlusFill } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
 import { FiLogIn, FiSettings } from "react-icons/fi";
 import profilePic from "../Assets/images/users/us1.jpg";
@@ -130,6 +131,21 @@ const UserDashboard = () => {
                       </span>
 
                       <span className="">My Orders</span>
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to={"myAppointment"}
+                      className="flex items-center gap-4 px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"
+                      style={({ isActive }) =>
+                        isActive ? activeStyle : undefined
+                      }
+                    >
+                      <span className="text-lg">
+                        <BsFillBookmarkPlusFill className="text-white" />
+                      </span>
+
+                      <span className="">My Appointment</span>
                     </NavLink>
                   </li>
                   <li
@@ -321,6 +337,18 @@ const UserDashboard = () => {
                           </span>
 
                           <span className="">My Orders</span>
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink
+                          to={"myAppointment"}
+                          className="flex items-center gap-5 px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"
+                        >
+                          <span className="text-lg">
+                            <BsFillBookmarkPlusFill className="text-white" />
+                          </span>
+
+                          <span className="">My Appointment</span>
                         </NavLink>
                       </li>
                       <li

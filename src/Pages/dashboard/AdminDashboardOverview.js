@@ -4,11 +4,24 @@ import img1 from "../../Assets/dasboard-icon/total-order.png";
 import img2 from "../../Assets/dasboard-icon/pending-order.png";
 import img3 from "../../Assets/dasboard-icon/complete-order.png";
 import img4 from "../../Assets/dasboard-icon/total-selling.png";
-import img5 from "../../Assets/dasboard-icon/total-appointment.png";
-import img6 from "../../Assets/dasboard-icon/pending-appointment.png";
-import img7 from "../../Assets/dasboard-icon/completed-appointment.png";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const AdminDashboardOverview = () => {
+  const [order, setOrder] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:5000/api/v1/order/`)
+      .then((res) => res.json())
+      .then((data) => {
+        setOrder(data?.data);
+      });
+  }, []);
+  const pending = order.filter((item) => item.orderStatus === "pending");
+  const confirmed = order.filter((item) => item.orderStatus === "accept");
+  const totalSelling = confirmed?.reduce((acc, confirm) => {
+    return acc + confirm.subTotal;
+  }, 0);
+  console.log(order);
   return (
     <section className="py-8">
       <div className="container w-full md:max-w-6xl px-8">
@@ -22,7 +35,9 @@ const AdminDashboardOverview = () => {
                 <h3 className="text-sm font-medium text-textColor ">
                   Total Order
                 </h3>
-                <span className="text-sm text-lightTextColor">20</span>
+                <span className="text-sm text-lightTextColor">
+                  {order?.length ? order?.length : 0}
+                </span>
               </div>
             </div>
           </div>
@@ -35,7 +50,9 @@ const AdminDashboardOverview = () => {
                 <h3 className="text-sm font-medium text-textColor ">
                   Pendnig Order
                 </h3>
-                <span className="text-sm text-lightTextColor">20</span>
+                <span className="text-sm text-lightTextColor">
+                  {pending?.length ? pending?.length : 0}
+                </span>
               </div>
             </div>
           </div>
@@ -48,7 +65,9 @@ const AdminDashboardOverview = () => {
                 <h3 className="text-sm font-medium text-textColor ">
                   Completed Order
                 </h3>
-                <span className="text-sm text-lightTextColor">20</span>
+                <span className="text-sm text-lightTextColor">
+                  {confirmed?.length ? confirmed?.length : 0}
+                </span>
               </div>
             </div>
           </div>
@@ -61,46 +80,9 @@ const AdminDashboardOverview = () => {
                 <h3 className="text-sm font-medium text-textColor ">
                   Total Selling
                 </h3>
-                <span className="text-sm text-lightTextColor">20</span>
-              </div>
-            </div>
-          </div>
-          <div className="w-full md:w-6/12 lg:w-4/12">
-            <div className="md:mx-3 my-3 m-0   shadow-lg shadow-gray-300 gap-5  bg-[#FEF0F9] rounded-lg flex  items-center px-5 py-9">
-              <div className="w-[50px] h-[50px] rounded-full flex items-center justify-center bg-[#FBCFE8]">
-                <img className=" w-[25px] h-[25px] " src={img5} alt="" />
-              </div>
-              <div>
-                <h3 className="text-sm font-medium text-textColor ">
-                  Total Appointment
-                </h3>
-                <span className="text-sm text-lightTextColor">20</span>
-              </div>
-            </div>
-          </div>
-          <div className="w-full md:w-6/12 lg:w-4/12">
-            <div className="md:mx-3 my-3 m-0   shadow-lg shadow-gray-300 gap-5  bg-[#F8ECFF] rounded-lg flex  items-center px-5 py-9">
-              <div className="w-[50px] h-[50px] rounded-full flex items-center justify-center bg-[#a78bfaa6]">
-                <img className=" w-[25px] h-[25px] " src={img6} alt="" />
-              </div>
-              <div>
-                <h3 className="text-sm font-medium text-textColor ">
-                  Pending Appointment
-                </h3>
-                <span className="text-sm text-lightTextColor">20</span>
-              </div>
-            </div>
-          </div>
-          <div className="w-full md:w-6/12 lg:w-4/12">
-            <div className="md:mx-3 my-3 m-0   shadow-lg shadow-gray-300 gap-5  bg-[#FAFFDE] rounded-lg flex  items-center px-5 py-9">
-              <div className="w-[50px] h-[50px] rounded-full flex items-center justify-center bg-[#FDE68A]">
-                <img className=" w-[25px] h-[25px] " src={img7} alt="" />
-              </div>
-              <div>
-                <h3 className="text-sm font-medium text-textColor ">
-                  Completed Appointment
-                </h3>
-                <span className="text-sm text-lightTextColor">20</span>
+                <span className="text-sm text-lightTextColor">
+                  {totalSelling}
+                </span>
               </div>
             </div>
           </div>

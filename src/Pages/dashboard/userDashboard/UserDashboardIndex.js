@@ -3,12 +3,42 @@ import React from "react";
 import img1 from "../../../Assets/dasboard-icon/total-order.png";
 import img2 from "../../../Assets/dasboard-icon/pending-order.png";
 import img3 from "../../../Assets/dasboard-icon/complete-order.png";
-import img4 from "../../../Assets/dasboard-icon/total-selling.png";
 import img5 from "../../../Assets/dasboard-icon/total-appointment.png";
 import img6 from "../../../Assets/dasboard-icon/pending-appointment.png";
 import img7 from "../../../Assets/dasboard-icon/completed-appointment.png";
+import { useEffect } from "react";
+import AuthUser from "../../../Hooks/authUser";
+import { useState } from "react";
 
 const AdminDashboardOverview = () => {
+  const [order, setOrder] = useState([]);
+  const [appointment, setAppointment] = useState([]);
+  const { userInfo } = AuthUser();
+  useEffect(() => {
+    fetch(`http://localhost:5000/api/v1/order/getOrder/${userInfo?._id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setOrder(data?.data);
+      });
+  }, []);
+  const pending = order.filter((item) => item.orderStatus === "pending");
+  const confirmed = order.filter((item) => item.orderStatus === "accept");
+  useEffect(() => {
+    fetch(
+      `http://localhost:5000/api/v1/appointment/getAppointment/${userInfo?._id}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setAppointment(data?.data);
+      });
+  }, []);
+
+  const pendingAppointment = appointment.filter(
+    (item) => item.appointmentStatus === "pending"
+  );
+  const confirmedAppointment = appointment.filter(
+    (item) => item.appointmentStatus === "confirmed"
+  );
   return (
     <section className="py-8">
       <div className="container w-full md:max-w-6xl px-8">
@@ -22,7 +52,9 @@ const AdminDashboardOverview = () => {
                 <h3 className="text-sm font-medium text-textColor ">
                   Total Order
                 </h3>
-                <span className="text-sm text-lightTextColor">20</span>
+                <span className="text-sm text-lightTextColor">
+                  {order?.length ? order?.length : 0}
+                </span>
               </div>
             </div>
           </div>
@@ -35,7 +67,9 @@ const AdminDashboardOverview = () => {
                 <h3 className="text-sm font-medium text-textColor ">
                   Pendnig Order
                 </h3>
-                <span className="text-sm text-lightTextColor">20</span>
+                <span className="text-sm text-lightTextColor">
+                  {pending?.length ? pending?.length : 0}
+                </span>
               </div>
             </div>
           </div>
@@ -46,22 +80,11 @@ const AdminDashboardOverview = () => {
               </div>
               <div>
                 <h3 className="text-sm font-medium text-textColor ">
-                  Completed Order
+                  Confirmed Order
                 </h3>
-                <span className="text-sm text-lightTextColor">20</span>
-              </div>
-            </div>
-          </div>
-          <div className="w-full md:w-6/12 lg:w-4/12">
-            <div className="md:mx-3 my-3 m-0   shadow-lg shadow-gray-300 gap-5  bg-[#F6F3FF] rounded-lg flex  items-center px-5 py-9">
-              <div className="w-[50px] h-[50px] rounded-full flex items-center justify-center bg-[#DDD6FE]">
-                <img className=" w-[25px] h-[25px] " src={img4} alt="" />
-              </div>
-              <div>
-                <h3 className="text-sm font-medium text-textColor ">
-                  Total Selling
-                </h3>
-                <span className="text-sm text-lightTextColor">20</span>
+                <span className="text-sm text-lightTextColor">
+                  {confirmed?.length ? confirmed?.length : 0}
+                </span>
               </div>
             </div>
           </div>
@@ -74,7 +97,9 @@ const AdminDashboardOverview = () => {
                 <h3 className="text-sm font-medium text-textColor ">
                   Total Appointment
                 </h3>
-                <span className="text-sm text-lightTextColor">20</span>
+                <span className="text-sm text-lightTextColor">
+                  {appointment?.length ? appointment?.length : 0}
+                </span>
               </div>
             </div>
           </div>
@@ -87,7 +112,9 @@ const AdminDashboardOverview = () => {
                 <h3 className="text-sm font-medium text-textColor ">
                   Pending Appointment
                 </h3>
-                <span className="text-sm text-lightTextColor">20</span>
+                <span className="text-sm text-lightTextColor">
+                  {pendingAppointment?.length ? pendingAppointment?.length : 0}
+                </span>
               </div>
             </div>
           </div>
@@ -98,9 +125,13 @@ const AdminDashboardOverview = () => {
               </div>
               <div>
                 <h3 className="text-sm font-medium text-textColor ">
-                  Completed Appointment
+                  Confirmed Appointment
                 </h3>
-                <span className="text-sm text-lightTextColor">20</span>
+                <span className="text-sm text-lightTextColor">
+                  {confirmedAppointment?.length
+                    ? confirmedAppointment?.length
+                    : 0}
+                </span>
               </div>
             </div>
           </div>

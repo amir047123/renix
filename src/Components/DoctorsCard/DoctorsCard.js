@@ -1,32 +1,34 @@
 import React from "react";
 import doctorImg from "../../Assets/images/doctor.jpg";
 import { Link } from "react-router-dom";
+import icon from "../../Assets/images/Dorctors/team-custom-icon-4.png";
 
 const DoctorsCard = ({ doctor }) => {
   return (
-    <div class="overflow-hidden text-center bg-primary/10 rounded shadow-md text-slate-500 shadow-slate-200 max-w-[250px]">
-      <figure class="p-6 pb-0">
-        <span class="relative inline-flex items-center justify-center w-20 h-20 text-white rounded-full">
-          <img
-            src={doctor?.img ? doctor.img : doctorImg}
-            alt="user name"
-            title="user name"
-            width="100"
-            height="100"
-            class="max-w-full border-primary border-2 rounded-full"
-          />
-        </span>
-      </figure>
-
-      <div class="p-6">
-        <header class="mb-4">
-          <h3 class="text-xl font-medium text-slate-700">{doctor?.fullName}</h3>
-          <p class="text-sm text-slate-400">{doctor?.department}</p>
-          <p class="text-sm text-slate-400">{doctor?.doctorDegree}</p>
-        </header>
+    <div className="w-56 mb-3 shadow-lg" relative>
+      <div className="">
+        <img
+          src={icon}
+          alt="icon"
+          className="bg-primary w-12  h-12  rounded-full text-xs  ml-[150px] mt-4 text-white absolute"
+        />
+        <img
+          src={doctor?.img ? doctor.img : doctorImg}
+          alt=""
+          className="w-36 h-36 rounded-full border-2 border-primary mx-auto mt-7"
+        />
+      </div>
+      <div className="w-fit mx-auto">
+        <h1 className="text-secondary text-sm font-semibold mt-5">
+          {doctor?.fullName}
+        </h1>
+        <p className="text-lightPrimary text-xs mt-1">{doctor?.department}</p>
+        <p className="text-xs text-textColor mt-3 leading-relaxed">
+          {doctor?.doctorDegree}
+        </p>
       </div>
 
-      <div class="flex justify-center p-6 pt-0">
+      <div class="flex justify-center p-6 pt-0 mt-2">
         <Link
           to={`/appointment/${doctor?._id}`}
           class="inline-flex items-center justify-center flex-1 h-10 gap-2 px-5 text-sm font-medium tracking-wide text-white transition duration-300 rounded focus-visible:outline-none whitespace-nowrap bg-primary/80 hover:bg-primary/90 focus:bg-primary disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none"

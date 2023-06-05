@@ -1,20 +1,31 @@
 import React from "react";
 import { useEffect } from "react";
-import { AiOutlineCheckCircle } from "react-icons/ai";
-import { MdPendingActions } from "react-icons/md";
-import AuthUser from "../../../../Hooks/authUser";
+import { SiGooglemeet } from "react-icons/si";
 import { useState } from "react";
-const MyOrders = () => {
-  const [order, setOrder] = useState([]);
+import Pagination from "../../../../shared/Pagination/Pagination";
+import AuthUser from "../../../../Hooks/authUser";
+
+const ConfirmedAppointment = () => {
   const { userInfo } = AuthUser();
+  const [refresh, setRefresh] = useState(false);
+  const [appointment, setAppointment] = useState([]);
+  const [quantity, setQuantity] = useState(0);
+  const [page, setPage] = useState(0);
+  const [size, setSize] = useState(6);
+
   useEffect(() => {
-    fetch(`http://localhost:5000/api/v1/order/getOrder/${userInfo?._id}`)
+    const url = `http://localhost:5000/api/v1/appointment/specific?page=${page}&&size=${size}&&doctorId=${
+      userInfo?._id
+    }&&appointmentStatus=${"confirmed"}`;
+    fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        setOrder(data?.data);
+        setAppointment(data?.data);
+        setQuantity(data?.total);
+        // console.log("data", data);
       });
-  }, []);
+  }, [page, size, refresh]);
+
   return (
     <section className="py-10 md:py-14">
       <div className="container px-6 md:max-w-6xl w-full ">
@@ -31,50 +42,33 @@ const MyOrders = () => {
                   scope="col"
                   className="px-6 py-3  text-[13px] font-medium capitalize"
                 >
-                  Seriol No
+                  Serial No
                 </th>
                 <th
                   scope="col"
                   className="px-6 py-3  text-[13px] font-medium capitalize"
                 >
-                  Medicine Name
-                </th>
-                <th
-                  scope="col"
-                  className="px-6 py-3  text-[13px] font-medium capitalize"
-                >
-                  Category
-                </th>
-                <th
-                  scope="col"
-                  className="px-6 py-3  text-[13px] font-medium capitalize"
-                >
-                  Price
-                </th>
-                <th
-                  scope="col"
-                  className="px-6 py-3  text-[13px] font-medium capitalize"
-                >
-                  Strength
-                </th>
-                <th
-                  scope="col"
-                  className="px-6 py-3  text-[13px] font-medium capitalize"
-                >
-                  Generic
-                </th>
-                <th
-                  scope="col"
-                  className="px-6 py-3  text-[13px] font-medium capitalize"
-                >
-                  Quantity
+                  Patient Name
                 </th>
                 <th
                   scope="col"
                   className="px-6 py-3  text-[13px] font-medium capitalize"
                 >
                   Phone
-                </th>{" "}
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3  text-[13px] font-medium capitalize"
+                >
+                  Time
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3  text-[13px] font-medium capitalize"
+                >
+                  Date
+                </th>
+
                 <th
                   scope="col"
                   className="px-6 py-3  text-[13px] font-medium capitalize"
@@ -90,7 +84,7 @@ const MyOrders = () => {
               </tr>
             </thead>
             <tbody>
-              {order?.map((item, i) => (
+              {appointment?.map((item, i) => (
                 <tr
                   key={item?._id}
                   item={item}
@@ -103,61 +97,31 @@ const MyOrders = () => {
                     {i + 1}
                   </th>
                   <td className="px-6 py-4">
-                    {item?.order?.map((or) => (
-                      <p>{or?.genericName}</p>
-                    ))}
+                    <p>{item?.name}</p>
                   </td>
                   <td className="px-6 py-4">
-                    {item?.order?.map((or) => (
-                      <p>{or?.medicineCategory}</p>
-                    ))}
+                    <p>{item?.phone}</p>
                   </td>
                   <td className="px-6 py-4">
-                    {item?.order?.map((or) => (
-                      <p>{or?.price}</p>
-                    ))}
+                    <p>{item?.time}</p>
                   </td>
                   <td className="px-6 py-4">
-                    {item?.order?.map((or) => (
-                      <p>{or?.strength}</p>
-                    ))}
+                    <p>{item?.date}</p>
                   </td>
                   <td className="px-6 py-4">
-                    {item?.order?.map((or) => (
-                      <p>{or?.medicineType}</p>
-                    ))}
-                  </td>
-                  <td className="px-6 py-4">
-                    {item?.order?.map((or) => (
-                      <p>{or?.quantity}</p>
-                    ))}
+                    <p>{item?.area}</p>
                   </td>
 
-                  <td className="px-6 py-4">01215485544</td>
-                  <td className="px-6 py-4">Dhaka,Bangladesh</td>
-
                   <td className="px-6 py-4">
-                    {item?.orderStatus === "accept" ? (
+                    <a target="_blank" rel="noreferrer" href={item.meetLink}>
                       <button
                         title="Confirm Order"
-                        className="text-lg text-green-600 bg-thirdLightPrimary rounded-lg flex items-center justify-center"
+                        className="text-lg text-green-600 bg-thirdLightPrimary/70 rounded-lg flex items-center justify-center px-1"
                       >
-                        <span className="text-sm px-2 py-1">
-                          {item?.orderStatus}
-                        </span>{" "}
-                        <AiOutlineCheckCircle />
+                        <span className="text-sm px-2 py-1">Meet Link</span>{" "}
+                        <SiGooglemeet />
                       </button>
-                    ) : (
-                      <button
-                        title="Reject Order"
-                        className="text-lg text-[#F87171] bg-[#FEE2E2] rounded-lg flex items-center justify-center"
-                      >
-                        <span className="text-sm px-2 py-1">
-                          {item?.orderStatus}
-                        </span>{" "}
-                        <MdPendingActions />
-                      </button>
-                    )}
+                    </a>
                   </td>
                 </tr>
               ))}
@@ -165,8 +129,15 @@ const MyOrders = () => {
           </table>
         </div>
       </div>
+      <Pagination
+        quantity={quantity}
+        page={page}
+        setPage={setPage}
+        size={size}
+        setSize={setSize}
+      />
     </section>
   );
 };
 
-export default MyOrders;
+export default ConfirmedAppointment;
