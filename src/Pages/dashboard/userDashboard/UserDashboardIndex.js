@@ -33,11 +33,11 @@ const AdminDashboardOverview = () => {
       });
   }, []);
 
-  const pendingAppointment = order.filter(
-    (item) => item.orderStatus === "pending"
+  const pendingAppointment = appointment.filter(
+    (item) => item.appointmentStatus === "pending"
   );
-  const confirmedAppointment = order.filter(
-    (item) => item.orderStatus === "confirmed"
+  const confirmedAppointment = appointment.filter(
+    (item) => item.appointmentStatus === "confirmed"
   );
   return (
     <section className="py-8">

@@ -21,7 +21,6 @@ const Checkout = () => {
     }, 0);
     setSubTotal(totalPrice);
   }, [refresh]);
-
   const handlePlaceOrder = async (e) => {
     e.preventDefault();
     const firstName = e.target.firstName.value;
@@ -47,9 +46,10 @@ const Checkout = () => {
       address,
       note,
     };
+
     await PostHooks(
       "http://localhost:5000/api/v1/order/postOrder",
-      { customerDetails, order, customerId },
+      { customerDetails, order, customerId, subTotal },
       "order successfully submitted"
     );
     localStorage.removeItem("order");
