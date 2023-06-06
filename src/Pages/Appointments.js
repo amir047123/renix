@@ -22,6 +22,14 @@ const Appointments = () => {
   }, [page, size]);
   return (
     <div className=" min-h-screen bg-gray-100 px-10">
+      <h2 className="text-center text-2xl font-semibold my-5 text-primary">
+        Our Popular Doctors
+      </h2>
+      <p className="max-w-md text-sm text-left mx-auto mb-5 ">
+        No matter your age, at Cook County Health your health and wellness are
+        our top priorities. Now accepting new primary care and pediatric
+        patients at Belmont Cragin Health Center.
+      </p>
       <div className="my-5 flex flex-wrap gap-5">
         {doctors?.map((doctor) => (
           <DoctorsCard key={doctor?._key} doctor={doctor} />

@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import MyContext from "../../Utils/Context/MyContext";
 import PostHooks from "../../Hooks/PostHooks";
 import AuthUser from "../../Hooks/authUser";
 
 const Checkout = () => {
   const { userInfo } = AuthUser();
+  let location = useLocation();
+
   const { refresh, setRefresh } = useContext(MyContext);
   const [order, setOrder] = useState(null);
   const [subTotal, setSubTotal] = useState(null);
   const navigate = useNavigate();
-  const customerId = userInfo._id;
+  const customerId = userInfo?._id;
 
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem("order"));
@@ -21,6 +23,11 @@ const Checkout = () => {
     }, 0);
     setSubTotal(totalPrice);
   }, [refresh]);
+  useEffect(() => {
+    if (!userInfo?.role) {
+      return <Navigate to="/login" state={{ from: location }} replace />;
+    }
+  }, []);
   const handlePlaceOrder = async (e) => {
     e.preventDefault();
     const firstName = e.target.firstName.value;
