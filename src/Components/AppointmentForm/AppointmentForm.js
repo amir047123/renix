@@ -2,11 +2,19 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import PostHooks from "../../Hooks/PostHooks";
 import AuthUser from "../../Hooks/authUser";
+import { useEffect } from "react";
 
 const AppointmentForm = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+
   const { userInfo } = AuthUser();
+  useEffect(() => {
+    if (!userInfo?.role) {
+      navigate("/login");
+    }
+  }, []);
+
   const [formData, setFormData] = useState({
     name: "",
     phone: "",

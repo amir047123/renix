@@ -22,6 +22,7 @@ import ResetPassword from "../Components/ResetPassword/ResetPassword";
 import InsertOtp from "../Components/ResetPassword/InsertOtp";
 import SetNewPassword from "../Components/ResetPassword/NewPassword";
 import AppointmentForm from "../Components/AppointmentForm/AppointmentForm";
+import RequireAuth from "../shared/RequireAuth/RequireAuth";
 
 const PublicRoutes = [
   { path: "/", Component: Home },
