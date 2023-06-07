@@ -13,7 +13,7 @@ const AllMedicines = () => {
   const [size, setSize] = useState(6);
   const [refresh, setRefresh] = useState(false);
   useEffect(() => {
-    const url = `http://localhost:5000/api/v1/medicine?size=${size}&page=${page}`;
+    const url = ` http://localhost:5000/api/v1/medicine?size=${size}&page=${page}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -34,7 +34,7 @@ const AllMedicines = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/api/v1/medicine/deleteMedicine/${id}`, {
+        fetch(` http://localhost:5000/api/v1/medicine/deleteMedicine/${id}`, {
           method: "DELETE",
         }).then((res) => {
           if (res.status === 200) {

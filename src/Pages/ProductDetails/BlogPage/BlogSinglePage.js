@@ -7,7 +7,7 @@ const BlogSinglePage = () => {
   const { id } = useParams();
   const [_id, setId] = useState(id);
   useEffect(() => {
-    fetch(`http://localhost:5000/api/v1/blogs/blogDetails/${_id}`)
+    fetch(` http://localhost:5000/api/v1/blogs/blogDetails/${_id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -16,7 +16,7 @@ const BlogSinglePage = () => {
   }, [_id]);
 
   useEffect(() => {
-    const url = `http://localhost:5000/api/v1/blogs`;
+    const url = ` http://localhost:5000/api/v1/blogs`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {

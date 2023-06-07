@@ -10,7 +10,7 @@ const ConfirmedOrders = () => {
   const [size, setSize] = useState(6);
 
   useEffect(() => {
-    const url = `http://localhost:5000/api/v1/order/specific?page=${page}&&size=${size}&&fieldName=${"orderStatus"}&&fieldValue=${"accept"}`;
+    const url = ` http://localhost:5000/api/v1/order/specific?page=${page}&&size=${size}&&fieldName=${"orderStatus"}&&fieldValue=${"accept"}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {

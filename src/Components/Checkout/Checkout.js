@@ -7,7 +7,6 @@ import AuthUser from "../../Hooks/authUser";
 
 const Checkout = () => {
   const { userInfo } = AuthUser();
-  let location = useLocation();
 
   const { refresh, setRefresh } = useContext(MyContext);
   const [order, setOrder] = useState(null);
@@ -25,7 +24,7 @@ const Checkout = () => {
   }, [refresh]);
   useEffect(() => {
     if (!userInfo?.role) {
-      return <Navigate to="/login" state={{ from: location }} replace />;
+      navigate("/login");
     }
   }, []);
   const handlePlaceOrder = async (e) => {
@@ -55,7 +54,7 @@ const Checkout = () => {
     };
 
     await PostHooks(
-      "http://localhost:5000/api/v1/order/postOrder",
+      " http://localhost:5000/api/v1/order/postOrder",
       { customerDetails, order, customerId, subTotal },
       "order successfully submitted"
     );

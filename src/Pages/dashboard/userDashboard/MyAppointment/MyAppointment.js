@@ -9,7 +9,7 @@ const MyAppointment = () => {
   const { userInfo } = AuthUser();
   useEffect(() => {
     fetch(
-      `http://localhost:5000/api/v1/appointment/getAppointment/${userInfo?._id}`
+      ` http://localhost:5000/api/v1/appointment/getAppointment/${userInfo?._id}`
     )
       .then((res) => res.json())
       .then((data) => {

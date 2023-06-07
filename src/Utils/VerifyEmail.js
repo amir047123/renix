@@ -7,7 +7,7 @@ const VerifyEmail = () => {
   const navigate = useNavigate();
   console.log("params id", params.id);
   const handleVerify = () => {
-    fetch(`http://localhost:5000/api/v1/user/verify?id=${params.id}`, {
+    fetch(` http://localhost:5000/api/v1/user/verify?id=${params.id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

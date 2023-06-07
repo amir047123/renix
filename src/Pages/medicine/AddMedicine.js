@@ -20,7 +20,7 @@ const AddMedicine = () => {
   const parsed = <Markup content={content} />;
   // get category
   useEffect(() => {
-    const url = `http://localhost:5000/api/v1/category`;
+    const url = ` http://localhost:5000/api/v1/category`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -58,7 +58,7 @@ const AddMedicine = () => {
     console.log(parsed);
     // post api call
     PostHooks(
-      "http://localhost:5000/api/v1/medicine/postMedicine",
+      " http://localhost:5000/api/v1/medicine/postMedicine",
       medicine,
       "Medicine successfully posted"
     );

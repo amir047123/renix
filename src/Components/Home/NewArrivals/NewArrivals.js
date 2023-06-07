@@ -9,7 +9,7 @@ import { useEffect } from "react";
 const NewArrivals = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    const url = `http://localhost:5000/api/v1/medicine?size=${6}&page=${0}`;
+    const url = ` http://localhost:5000/api/v1/medicine?size=${6}&page=${0}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {

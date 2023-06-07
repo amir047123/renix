@@ -12,7 +12,7 @@ const InsertOtp = () => {
     localStorage.getItem("eduFixup-login-email")
   );
   useEffect(() => {
-    fetch(`http://localhost:5000/api/v1/user?email=${userLoginEmail}`)
+    fetch(` http://localhost:5000/api/v1/user?email=${userLoginEmail}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
