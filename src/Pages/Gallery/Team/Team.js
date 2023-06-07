@@ -1,25 +1,28 @@
-import React from 'react';
+import React from "react";
 
 const TeamSection = () => {
   const teamMembers = [
     {
-      name: 'Abu Hanif',
-      position: 'Managing Director',
-      image: 'https://scontent.fjsr3-1.fna.fbcdn.net/v/t39.30808-6/315768610_194680943133125_5460759494141991203_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeHscNHdvcUcDq_ujABylDTb90MqEpHFK-n3QyoSkcUr6QOwjdh7f-Gwy6UMx9LEYTsgXAinDUivL5-9mzwGCCsY&_nc_ohc=HDd9im41cFIAX9hF6zD&_nc_ht=scontent.fjsr3-1.fna&oh=00_AfCM4U2XzMi08cKUBCty1nlKgFiD5NwTcLTsKCb1C4n38g&oe=6467DD8F',
+      name: "Abu Hanif",
+      position: "Managing Director",
+      image:
+        "https://scontent.fjsr3-1.fna.fbcdn.net/v/t39.30808-6/315768610_194680943133125_5460759494141991203_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeHscNHdvcUcDq_ujABylDTb90MqEpHFK-n3QyoSkcUr6QOwjdh7f-Gwy6UMx9LEYTsgXAinDUivL5-9mzwGCCsY&_nc_ohc=HDd9im41cFIAX9hF6zD&_nc_ht=scontent.fjsr3-1.fna&oh=00_AfCM4U2XzMi08cKUBCty1nlKgFiD5NwTcLTsKCb1C4n38g&oe=6467DD8F",
     },
     {
-      name: 'RENIX',
-      position: 'CEO',
-      image: 'https://scontent.fjsr3-1.fna.fbcdn.net/v/t39.30808-6/315768610_194680943133125_5460759494141991203_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeHscNHdvcUcDq_ujABylDTb90MqEpHFK-n3QyoSkcUr6QOwjdh7f-Gwy6UMx9LEYTsgXAinDUivL5-9mzwGCCsY&_nc_ohc=HDd9im41cFIAX9hF6zD&_nc_ht=scontent.fjsr3-1.fna&oh=00_AfCM4U2XzMi08cKUBCty1nlKgFiD5NwTcLTsKCb1C4n38g&oe=6467DD8F',
+      name: "RENIX",
+      position: "CEO",
+      image:
+        "https://scontent.fjsr3-1.fna.fbcdn.net/v/t39.30808-6/315768610_194680943133125_5460759494141991203_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeHscNHdvcUcDq_ujABylDTb90MqEpHFK-n3QyoSkcUr6QOwjdh7f-Gwy6UMx9LEYTsgXAinDUivL5-9mzwGCCsY&_nc_ohc=HDd9im41cFIAX9hF6zD&_nc_ht=scontent.fjsr3-1.fna&oh=00_AfCM4U2XzMi08cKUBCty1nlKgFiD5NwTcLTsKCb1C4n38g&oe=6467DD8F",
     },
-    
   ];
 
   return (
     <section className="bg-white py-12">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-8 text-primary">Our Team</h2>
-        <div className="flex flex-wrap -mx-4">
+      <div className="container mx-auto px-4 sm:grid sm:grid-cols-1">
+        <h2 className="text-3xl font-bold text-center mb-8 text-primary">
+          Our Team
+        </h2>
+        <div className="sm:grid sm:grid-cols-1 lg:flex mx-4">
           {teamMembers.map((member, index) => (
             <div
               key={index}

@@ -32,9 +32,6 @@ const AdminDashboard = () => {
 
   const [openOrder, setOpenOrder] = useState(false);
 
-  //show doctor
-  const [openDoctor, setOpenDoctor] = useState(false);
-
   //show news
   const [openNews, setOpenNews] = useState(false);
 
@@ -57,16 +54,6 @@ const AdminDashboard = () => {
   //open order drop down
   const handleOrderDropdown = (e) => {
     openOrder === true ? setOpenOrder(false) : setOpenOrder(true);
-    //console.log('clicked')
-  };
-  //open docor drop down
-  const handleDoctorDropdown = (e) => {
-    openDoctor === true ? setOpenDoctor(false) : setOpenDoctor(true);
-    //console.log('clicked')
-  };
-  //open news drop down
-  const handleNewsDropdown = (e) => {
-    openNews === true ? setOpenNews(false) : setOpenNews(true);
     //console.log('clicked')
   };
 
@@ -288,115 +275,7 @@ const AdminDashboard = () => {
                       </li>
                     </ul>
                   </li>
-                  <li>
-                    <span
-                      onClick={handleDoctorDropdown}
-                      className="flex items-center cursor-pointer justify-between gap-4 px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"
-                    >
-                      <div className="flex items-center gap-4">
-                        <span className="text-lg">
-                          <FiUsers />
-                        </span>
 
-                        <span className="">Doctors</span>
-                      </div>
-                      <span
-                        className={`text-2xl transition_move ${
-                          openDoctor === true ? "rotate-180" : ""
-                        }`}
-                      >
-                        <RxCaretDown />
-                      </span>
-                    </span>
-                    <ul
-                      className={`drop_down  ${
-                        openDoctor === true ? "block" : "hidden"
-                      }`}
-                    >
-                      <li>
-                        <NavLink
-                          to={"doctor/addDoctor"}
-                          className="flex items-center p-2 text-[14px]  hover:bg-textColor font-normal  py-2.5 rounded-md backdrop:dark:text-white dark:hover:bg-gray-700 text-white"
-                          style={({ isActive }) =>
-                            isActive ? activeStyle : undefined
-                          }
-                        >
-                          <span className="ml-3">Add doctor</span>
-                        </NavLink>
-                      </li>
-                      <li>
-                        <NavLink
-                          to={"doctor/allDoctors"}
-                          className="flex items-center p-2 text-[14px] hover:bg-textColor  font-normal py-2.5  rounded-md dark:text-white dark:hover:bg-gray-700 text-white"
-                          style={({ isActive }) =>
-                            isActive ? activeStyle : undefined
-                          }
-                        >
-                          <span className="ml-3">All Doctors</span>
-                        </NavLink>
-                      </li>
-                    </ul>
-                  </li>
-                  <li>
-                    <span
-                      onClick={handleNewsDropdown}
-                      className="flex items-center justify-between cursor-pointer gap-4 px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"
-                    >
-                      <div className="flex items-center gap-4">
-                        <span className="text-lg">
-                          <BiNews />
-                        </span>
-
-                        <span className="">News and Media</span>
-                      </div>
-                      <span
-                        className={`text-2xl transition_move ${
-                          openNews === true ? "rotate-180" : ""
-                        }`}
-                      >
-                        <RxCaretDown />
-                      </span>
-                    </span>
-                    <ul
-                      className={`drop_down  ${
-                        openNews === true ? "block" : "hidden"
-                      }`}
-                    >
-                      <li>
-                        <NavLink
-                          to={"news-media/addNewsCategory"}
-                          className="flex items-center p-2 text-[14px] hover:bg-textColor  font-normal py-2.5  rounded-md dark:text-white dark:hover:bg-gray-700 text-white"
-                          style={({ isActive }) =>
-                            isActive ? activeStyle : undefined
-                          }
-                        >
-                          <span className="ml-3">Add Category</span>
-                        </NavLink>
-                      </li>
-                      <li>
-                        <NavLink
-                          to={"news-media/addNewsandMedia"}
-                          className="flex items-center p-2 text-[14px] hover:bg-textColor  font-normal py-2.5  rounded-md dark:text-white dark:hover:bg-gray-700 text-white"
-                          style={({ isActive }) =>
-                            isActive ? activeStyle : undefined
-                          }
-                        >
-                          <span className="ml-3">Add News</span>
-                        </NavLink>
-                      </li>
-                      <li>
-                        <NavLink
-                          to={"news-media/allNewsandMedia"}
-                          className="flex items-center p-2 text-[14px] hover:bg-textColor  font-normal py-2.5  rounded-md dark:text-white dark:hover:bg-gray-700 text-white"
-                          style={({ isActive }) =>
-                            isActive ? activeStyle : undefined
-                          }
-                        >
-                          <span className="ml-3">All News</span>
-                        </NavLink>
-                      </li>
-                    </ul>
-                  </li>
                   <li>
                     <span
                       onClick={handleBlogDropdown}
@@ -585,7 +464,7 @@ const AdminDashboard = () => {
                                                 >
                                                     <ul>
                                                         <li className='mb-3'>
-                                                            <a href="">{user?.email}</a>
+                                                            <Link to="">{user?.email}</Link>
                                                         </li>
                                                         <li>
 
@@ -593,7 +472,7 @@ const AdminDashboard = () => {
                                                                 className='flex items-center justify-center text-base'
                                                                 onClick={handleLogOut}
                                                             >
-                                                                <span className="text-xl text-dark mr-3"> <AiOutlineLogout /></span>
+                                                                <span className="text-xl text-dark mr-3"> <LinkiOutlineLogout /></span>
                                                                 Sign Out
                                                             </button>
                                                         </li>
@@ -669,8 +548,8 @@ const AdminDashboard = () => {
 
                     <ul className="space-y-2 pt-8">
                       <li>
-                        <a
-                          href="/adminDashboard/overview"
+                        <Link
+                          to="/adminDashboard/overview"
                           // onClick={(e) => e.preventDefault()}
 
                           className="flex items-center gap-5 px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"
@@ -680,11 +559,11 @@ const AdminDashboard = () => {
                           </span>
 
                           <span className="">Dashboard</span>
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a
-                          href="/adminDashboard/allAccounts"
+                        <Link
+                          to="/adminDashboard/allAccounts"
                           // onClick={(e) => e.preventDefault()}
 
                           className="flex items-center gap-5 px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"
@@ -694,7 +573,7 @@ const AdminDashboard = () => {
                           </span>
 
                           <span className="">All Accounts</span>
-                        </a>
+                        </Link>
                       </li>
                       <li>
                         <span
@@ -724,8 +603,8 @@ const AdminDashboard = () => {
                           }`}
                         >
                           <li>
-                            <a
-                              href={
+                            <Link
+                              to={
                                 "/adminDashboard/medicine/addMedicineCategory"
                               }
                               className="flex items-center  hover:bg-textColor  p-2 text-[14px] font-normal  rounded-lg dark:text-white dark:hover:bg-gray-700 text-white"
@@ -735,11 +614,11 @@ const AdminDashboard = () => {
                                                     </span> */}
 
                               <span className="ml-2">Add Category</span>
-                            </a>
+                            </Link>
                           </li>
                           <li>
-                            <a
-                              href={
+                            <Link
+                              to={
                                 "/adminDashboard/medicine/allMedicineCategory"
                               }
                               className="flex items-center hover:bg-textColor  p-2 text-[14px] font-normal  rounded-lg dark:text-white dark:hover:bg-gray-700 text-white"
@@ -749,11 +628,11 @@ const AdminDashboard = () => {
                                                     </span> */}
 
                               <span className="ml-3">All Categories</span>
-                            </a>
+                            </Link>
                           </li>
                           <li>
-                            <a
-                              href={"/adminDashboard/medicine/addMedicine"}
+                            <Link
+                              to={"/adminDashboard/medicine/addMedicine"}
                               className="flex items-center  hover:bg-textColor p-2 text-[14px] font-normal  rounded-lg dark:text-white dark:hover:bg-gray-700 text-white"
                             >
                               {/* <span className='text-lg'>
@@ -761,11 +640,11 @@ const AdminDashboard = () => {
                                                     </span> */}
 
                               <span className="ml-3">Add Medicine</span>
-                            </a>
+                            </Link>
                           </li>
                           <li>
-                            <a
-                              href={"/adminDashboard/medicine/allMedicines"}
+                            <Link
+                              to={"/adminDashboard/medicine/allMedicines"}
                               className="flex items-center hover:bg-textColor  p-2 text-[14px] font-normal  rounded-lg dark:text-white dark:hover:bg-gray-700 text-white"
                             >
                               {/* <span className='text-lg'>
@@ -773,7 +652,7 @@ const AdminDashboard = () => {
                                                     </span> */}
 
                               <span className="ml-3">All Medicines</span>
-                            </a>
+                            </Link>
                           </li>
                         </ul>
                       </li>
@@ -804,8 +683,8 @@ const AdminDashboard = () => {
                           }`}
                         >
                           <li>
-                            <a
-                              href={"/adminDashboard/orders/pendingOrders"}
+                            <Link
+                              to={"/adminDashboard/orders/pendingOrders"}
                               className="flex items-center hover:bg-textColor  p-2 text-[14px] font-normal  rounded-lg dark:text-white dark:hover:bg-gray-700 text-white"
                             >
                               {/* <span className='text-lg'>
@@ -813,11 +692,11 @@ const AdminDashboard = () => {
                                                     </span> */}
 
                               <span className="ml-3">Pending Orders</span>
-                            </a>
+                            </Link>
                           </li>
                           <li>
-                            <a
-                              href={"/adminDashboard/orders/confirmedOrders"}
+                            <Link
+                              to={"/adminDashboard/orders/confirmedOrders"}
                               className="flex items-center hover:bg-textColor  p-2 text-[14px] font-normal  rounded-lg dark:text-white dark:hover:bg-gray-700 text-white"
                             >
                               {/* <span className='text-lg'>
@@ -825,11 +704,11 @@ const AdminDashboard = () => {
                                                     </span> */}
 
                               <span className="ml-3">Confirmed Orders</span>
-                            </a>
+                            </Link>
                           </li>
                           <li>
-                            <a
-                              href={"/adminDashboard/orders/rejectedOrders"}
+                            <Link
+                              to={"/adminDashboard/orders/rejectedOrders"}
                               className="flex items-center hover:bg-textColor  p-2 text-[14px] font-normal  rounded-lg dark:text-white dark:hover:bg-gray-700 text-white"
                             >
                               {/* <span className='text-lg'>
@@ -837,130 +716,11 @@ const AdminDashboard = () => {
                                                     </span> */}
 
                               <span className="ml-3">Rejected Orders</span>
-                            </a>
+                            </Link>
                           </li>
                         </ul>
                       </li>
-                      <li>
-                        <span
-                          onClick={handleDoctorDropdown}
-                          className="flex items-center cursor-pointer gap-4 justify-between px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"
-                        >
-                          <div className="flex items-center gap-4">
-                            <span className="text-lg">
-                              <FiUsers />
-                            </span>
 
-                            <span className="">Doctors</span>
-                          </div>
-
-                          <span
-                            className={`text-2xl transition_move ${
-                              openDoctor === true ? "rotate-180" : ""
-                            }`}
-                          >
-                            <RxCaretDown />
-                          </span>
-                        </span>
-                        <ul
-                          className={`pl-3  ${
-                            openDoctor === true ? "block" : "hidden"
-                          }`}
-                        >
-                          <li>
-                            <a
-                              href={"/adminDashboard/doctor/addDoctor"}
-                              className="flex items-center hover:bg-textColor  p-2 text-[14px] font-normal  rounded-lg dark:text-white dark:hover:bg-gray-700 text-white"
-                            >
-                              {/* <span className='text-lg'>
-                                                        <TbMedicineSyrup />
-                                                    </span> */}
-
-                              <span className="ml-3">Add doctor</span>
-                            </a>
-                          </li>
-                          <li>
-                            <a
-                              href={"/adminDashboard/doctor/allDoctors"}
-                              className="flex items-center hover:bg-textColor  p-2 text-[14px] font-normal  rounded-lg dark:text-white dark:hover:bg-gray-700 text-white"
-                            >
-                              {/* <span className='text-lg'>
-                                                        <TbMedicineSyrup />
-                                                    </span> */}
-
-                              <span className="ml-3">All Doctors</span>
-                            </a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        <span
-                          onClick={handleNewsDropdown}
-                          className="flex items-center cursor-pointer gap-4 justify-between px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"
-                        >
-                          <div className="flex items-center gap-4">
-                            <span className="text-lg">
-                              <BiNews />
-                            </span>
-
-                            <span className="">News and Media</span>
-                          </div>
-
-                          <span
-                            className={`text-2xl transition_move ${
-                              openNews === true ? "rotate-180" : ""
-                            }`}
-                          >
-                            <RxCaretDown />
-                          </span>
-                        </span>
-                        <ul
-                          className={`pl-3  ${
-                            openNews === true ? "block" : "hidden"
-                          }`}
-                        >
-                          <li>
-                            <a
-                              to={"/adminDashboard/news-media/addNewsCategory"}
-                              className="flex items-center hover:bg-textColor  p-2 text-[14px] font-normal  rounded-lg dark:text-white dark:hover:bg-gray-700 text-white"
-                            >
-                              {/* <span className='text-lg'>
-                                                        <TbMedicineSyrup />
-                                                    </span> */}
-
-                              <span className="ml-3">Add Category</span>
-                            </a>
-                          </li>
-                          <li>
-                            <a
-                              href={
-                                "/adminDashboard/news-media/addNewsandMedia"
-                              }
-                              className="flex items-center hover:bg-textColor  p-2 text-[14px] font-normal  rounded-lg dark:text-white dark:hover:bg-gray-700 text-white"
-                            >
-                              {/* <span className='text-lg'>
-                                                        <TbMedicineSyrup />
-                                                    </span> */}
-
-                              <span className="ml-3">Add News</span>
-                            </a>
-                          </li>
-                          <li>
-                            <NavLink
-                              href={
-                                "/adminDashboard/news-media/allNewsandMedia"
-                              }
-                              className="flex items-center hover:bg-textColor  p-2 text-[14px] font-normal  rounded-lg dark:text-white dark:hover:bg-gray-700 text-white"
-                            >
-                              {/* <span className='text-lg'>
-                                                        <TbMedicineSyrup />
-                                                    </span> */}
-
-                              <span className="ml-3">All News</span>
-                            </NavLink>
-                          </li>
-                        </ul>
-                      </li>
                       <li>
                         <span
                           onClick={handleBlogDropdown}
@@ -988,8 +748,8 @@ const AdminDashboard = () => {
                           }`}
                         >
                           <li>
-                            <a
-                              href={"/adminDashboard/blog/addBlogCategory"}
+                            <Link
+                              to={"/adminDashboard/blog/addBlogCategory"}
                               className="flex items-center  hover:bg-textColor p-2 text-[14px] font-normal  rounded-lg dark:text-white dark:hover:bg-gray-700 text-white"
                             >
                               {/* <span className='text-lg'>
@@ -997,11 +757,11 @@ const AdminDashboard = () => {
                                                     </span> */}
 
                               <span className="ml-3">Add Category</span>
-                            </a>
+                            </Link>
                           </li>
                           <li>
-                            <a
-                              href={"/adminDashboard/blog/addBlog"}
+                            <Link
+                              to={"/adminDashboard/blog/addBlog"}
                               className="flex items-center hover:bg-textColor  p-2 text-[14px] font-normal  rounded-lg dark:text-white dark:hover:bg-gray-700 text-white"
                             >
                               {/* <span className='text-lg'>
@@ -1009,11 +769,11 @@ const AdminDashboard = () => {
                                                     </span> */}
 
                               <span className="ml-3">Add Blog</span>
-                            </a>
+                            </Link>
                           </li>
                           <li>
-                            <a
-                              href={"/adminDashboard/blog/allBlogs"}
+                            <Link
+                              to={"/adminDashboard/blog/allBlogs"}
                               className="flex items-center  hover:bg-textColor p-2 text-[14px] font-normal  rounded-lg dark:text-white dark:hover:bg-gray-700 text-white"
                             >
                               {/* <span className='text-lg'>
@@ -1021,13 +781,13 @@ const AdminDashboard = () => {
                                                     </span> */}
 
                               <span className="ml-3">All Blogs</span>
-                            </a>
+                            </Link>
                           </li>
                         </ul>
                       </li>
                       <li>
-                        <a
-                          href={"/adminDashboard/email/allEmails"}
+                        <Link
+                          to={"/adminDashboard/email/allEmails"}
                           className="flex items-center px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"
                         >
                           <span className="text-lg">
@@ -1035,7 +795,7 @@ const AdminDashboard = () => {
                           </span>
 
                           <span className="ml-3">Subcribed Emails</span>
-                        </a>
+                        </Link>
                       </li>
                       <li
                         onClick={logout}

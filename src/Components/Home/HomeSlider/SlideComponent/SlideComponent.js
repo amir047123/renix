@@ -6,9 +6,8 @@ import product2 from "../../../../Assets/images/sliderImages/20. Capsule Valaria
 import product3 from "../../../../Assets/images/sliderImages/19. Capsule Renivit.webp";
 import product4 from "../../../../Assets/images/sliderImages/18. Capsul Hazmina Plus.webp";
 import "./SlideComponent.css";
+import { Link } from "react-router-dom";
 export const SlideComponentOne = () => {
-
-
   return (
     <div>
       <div className="relative bg-gradient-to-r  from-white  from-10% via-secondLightPrimary via-40% to-white to-80% ">
@@ -20,12 +19,19 @@ export const SlideComponentOne = () => {
             <p className=" tracking-normal text-sm lg:tracking-widest font-medium md:text-xl ">
               Healthy Living Natural Solutions
             </p>
-            <button className="bg-primary p-2 text-sm lg:text-xl mt-6 lg:px-4 lg:py-2  md:mt-6 md:px-4 md:py-2  lg:font-medium text-white">
+            <Link
+              to="/products"
+              className="bg-primary p-2 text-sm lg:text-xl mt-6 lg:px-4 lg:py-2  md:mt-6 md:px-4 md:py-2  lg:font-medium text-white"
+            >
               Shop Now
-            </button>
+            </Link>
           </div>
           <div className="flex justify-center items-center">
-            <img className="w-full  lg:w-[450px] lg:h-[350px]  mb-6  ml-12" src={product1} alt="" />
+            <img
+              className="w-full  lg:w-[450px] lg:h-[350px]  mb-6  ml-12"
+              src={product1}
+              alt=""
+            />
           </div>
         </div>
         <div className=" absolute bottom-3 left-2 md:left-0 md:bottom-0 lg:bottom-11 lg:left-10 w-1/3 md:w-1/6 ">
@@ -50,11 +56,7 @@ export const SlideComponentOne = () => {
   );
 };
 
-
-
 export const SlideComponentTwo = () => {
-
-
   return (
     <div>
       <div className="relative bg-gradient-to-r  from-white  from-10% via-secondLightPrimary via-40% to-white to-80% ">
@@ -66,14 +68,20 @@ export const SlideComponentTwo = () => {
             <p className=" tracking-normal text-sm lg:tracking-widest font-medium md:text-xl ">
               Healthy Living Natural Solutions
             </p>
-            <button className="bg-primary p-2 text-sm lg:text-xl mt-6 lg:px-4 lg:py-2  md:mt-6 md:px-4 md:py-2  lg:font-medium text-white">
+            <Link
+              to="/products"
+              className="bg-primary p-2 text-sm lg:text-xl mt-6 lg:px-4 lg:py-2  md:mt-6 md:px-4 md:py-2  lg:font-medium text-white"
+            >
               Shop Now
-            </button>
+            </Link>
           </div>
           <div className="flex justify-center items-center">
-            <img className="w-full  lg:w-[450px] lg:h-[350px]  mb-6  ml-12" src={product2} alt="" />
+            <img
+              className="w-full  lg:w-[450px] lg:h-[350px]  mb-6  ml-12"
+              src={product2}
+              alt=""
+            />
           </div>
-
         </div>
         <div className=" absolute bottom-3 left-2 md:left-0 md:bottom-0 lg:bottom-11 lg:left-10 w-1/3 md:w-1/6 ">
           <img src={tree} alt="" />
@@ -98,8 +106,6 @@ export const SlideComponentTwo = () => {
 };
 
 export const SlideComponentThree = () => {
-
-
   return (
     <div>
       <div className="relative bg-gradient-to-r  from-white  from-10% via-secondLightPrimary via-40% to-white to-80% ">
@@ -111,14 +117,20 @@ export const SlideComponentThree = () => {
             <p className=" tracking-normal text-sm lg:tracking-widest font-medium md:text-xl ">
               Healthy Living Natural Solutions
             </p>
-            <button className="bg-primary p-2 text-sm lg:text-xl mt-6 lg:px-4 lg:py-2  md:mt-6 md:px-4 md:py-2  lg:font-medium text-white">
+            <Link
+              to="/products"
+              className="bg-primary p-2 text-sm lg:text-xl mt-6 lg:px-4 lg:py-2  md:mt-6 md:px-4 md:py-2  lg:font-medium text-white"
+            >
               Shop Now
-            </button>
+            </Link>
           </div>
           <div className="flex justify-center items-center">
-            <img className="w-full  lg:w-[450px] lg:h-[350px]  mb-6  ml-12" src={product3} alt="" />
+            <img
+              className="w-full  lg:w-[450px] lg:h-[350px]  mb-6  ml-12"
+              src={product3}
+              alt=""
+            />
           </div>
-
         </div>
         <div className=" absolute bottom-3 left-2 md:left-0 md:bottom-0 lg:bottom-11 lg:left-10 w-1/3 md:w-1/6 ">
           <img src={tree} alt="" />
@@ -142,12 +154,7 @@ export const SlideComponentThree = () => {
   );
 };
 
-
-
-
 const SlideComponentFour = () => {
-
-
   return (
     <div>
       <div className="relative bg-gradient-to-r  from-white  from-10% via-secondLightPrimary via-40% to-white to-80% ">
@@ -159,14 +166,20 @@ const SlideComponentFour = () => {
             <p className=" tracking-normal text-sm lg:tracking-widest font-medium md:text-xl ">
               Healthy Living Natural Solutions
             </p>
-            <button className="bg-primary p-2 text-sm lg:text-xl mt-6 lg:px-4 lg:py-2  md:mt-6 md:px-4 md:py-2  lg:font-medium text-white">
+            <Link
+              to="/products"
+              className="bg-primary p-2 text-sm lg:text-xl mt-6 lg:px-4 lg:py-2  md:mt-6 md:px-4 md:py-2  lg:font-medium text-white"
+            >
               Shop Now
-            </button>
+            </Link>
           </div>
           <div className="flex justify-center items-center">
-            <img className="w-full  lg:w-[450px] lg:h-[350px]  mb-6  ml-12" src={product4} alt="" />
+            <img
+              className="w-full  lg:w-[450px] lg:h-[350px]  mb-6  ml-12"
+              src={product4}
+              alt=""
+            />
           </div>
-
         </div>
         <div className=" absolute bottom-3 left-2 md:left-0 md:bottom-0 lg:bottom-11 lg:left-10 w-1/3 md:w-1/6 ">
           <img src={tree} alt="" />
@@ -191,9 +204,3 @@ const SlideComponentFour = () => {
 };
 
 export default SlideComponentFour;
-
-
-
-
-
-

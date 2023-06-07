@@ -95,8 +95,8 @@ const ProductDetails = () => {
     setRefresh(!refresh);
   };
   return (
-    <div className="w-3/5 mx-auto">
-      <div className="grid grid-cols-2 gap-6">
+    <div className="lg:w-3/5 md:w-10/12 mx-auto w-11/12">
+      <div className="grid md:grid-cols-2 grid-cols-1 gap-6">
         <div className=" border flex justify-center items-center  border-gray-300">
           <img src={img} className=" w-72 h-50 p-4" alt={name} />
         </div>

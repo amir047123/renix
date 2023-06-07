@@ -16,7 +16,7 @@ const BestDoctors = () => {
         setUser(data?.data);
       });
   }, []);
-  const doctors = user.filter((item) => item.role === "doctor");
+  const doctors = user?.filter((item) => item?.role === "doctor");
   console.log(doctors);
   return (
     <div className="lg:w-[90%] w-full mx-auto my-10 text-center ">
@@ -27,7 +27,7 @@ const BestDoctors = () => {
         Comprehensive and Personalized Care for Your Well-being{" "}
       </p>
       <div className=" flex gap-6  flex-wrap mx-auto justify-center  mt-14">
-        {doctors.map((Data) => (
+        {doctors?.map((Data) => (
           <div className="w-56 mb-3" key={Data._id} relative>
             <div className="">
               <img
@@ -35,18 +35,18 @@ const BestDoctors = () => {
                 className="bg-primary w-12  h-12  rounded-full text-xs  ml-[150px] mt-4 text-white absolute"
               />
               <img
-                src={Data.img ? Data.img : demoDoctor}
+                src={Data?.img ? Data.img : demoDoctor}
                 alt=""
                 className="w-36 h-36 rounded-full border-2 border-primary mx-auto mt-7"
               />
             </div>
             <div className="w-56">
               <h1 className="text-secondary text-sm font-semibold mt-5">
-                {Data.fullName}
+                {Data?.fullName}
               </h1>
               <p className="text-lightPrimary text-xs mt-1">
                 {" "}
-                {Data.doctorDegree}
+                {Data?.doctorDegree}
               </p>
             </div>
           </div>

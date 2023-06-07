@@ -57,7 +57,7 @@ const WebNav = () => {
       {/* topbar nav */}
       <TopBar />
       <nav
-        className={` w-full  top-0 right-0 left-0 z-[10] py-5 md:py-2 text-[#FFF]  flex  items-center justify-between md:mx-auto px-10 md:px-[103px] bottom_border ${
+        className={` w-full  top-0 right-0 left-0 z-[10] py-5 md:py-2 text-[#FFF]  flex  items-center justify-between md:mx-auto px-10 md:px-[50px] bottom_border ${
           stickyNav ? "bg-white fixed shadow-md shadow-gray-200" : "bg-white"
         }`}
       >
@@ -81,72 +81,87 @@ const WebNav = () => {
             }`}
           >
             <button className="close_btn " onClick={handleToggle}>
-              <AiFillCloseCircle />
+              <aiFillCloseCircle />
             </button>
             <ul className="mobile_menu">
               <li>
-                <a
-                  href="/"
+                <Link
+                  to="/"
                   className="text-textColor p-2 uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition"
                 >
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/about"
+                <Link
+                  to="/about"
                   className="text-textColor p-2 uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition"
                 >
                   About Us
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/security-check"
+                <Link
+                  to="/security-check"
                   className="text-textColor p-2 uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition"
                 >
                   Security check
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/products"
+                <Link
+                  to="/products"
                   className="text-textColor p-2 uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition"
                 >
                   Our Products
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/news-media"
+                <Link
+                  to="/news-media"
                   className="text-textColor p-2 uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition"
                 >
                   News and Media
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/blogs"
+                <Link
+                  to="/blogs"
                   className="text-textColor p-2 uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition"
                 >
                   Blogs
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/contact"
+                <Link
+                  to="/contact"
                   className="text-textColor p-2 uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition"
                 >
                   Contact
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/appointment">
-                  {" "}
+                <Link to={"/appointment"}>
                   <button className=" px-2  py-2 rounded text-white border bg-primary border-primary text-base">
                     Appointment +
                   </button>
-                </a>
+                </Link>
+              </li>
+              <li>
+                {localStorage.getItem("access") ? (
+                  <Link
+                    to={`/${userInfo?.role}Dashboard`}
+                    className="px-2  py-2 rounded text-white border bg-red-500 border-red-500 text-base"
+                  >
+                    Dashboard
+                  </Link>
+                ) : (
+                  <Link to={"/login"}>
+                    <button className=" px-2  py-2 rounded text-white border bg-primary border-primary text-base">
+                      Login
+                    </button>
+                  </Link>
+                )}
               </li>
             </ul>
           </div>

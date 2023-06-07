@@ -290,8 +290,8 @@ const UserDashboard = () => {
 
                     <ul className="space-y-2 pt-8">
                       <li>
-                        <a
-                          href="/userDashboard/overview"
+                        <Link
+                          to="/userDashboard/overview"
                           // onClick={(e) => e.preventDefault()}
 
                           className="flex items-center gap-5 px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"
@@ -301,7 +301,7 @@ const UserDashboard = () => {
                           </span>
 
                           <span className="">Dashboard</span>
-                        </a>
+                        </Link>
                       </li>
                       <li>
                         <NavLink

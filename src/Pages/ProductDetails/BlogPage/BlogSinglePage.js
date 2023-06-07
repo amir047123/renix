@@ -28,7 +28,7 @@ const BlogSinglePage = () => {
 
   return (
     <div>
-      <div className="lgl:flex ">
+      <div className="lgl:flex lg:w-10/12 mx-auto">
         <div className="  lgl:p-4  sm:p-4 sm:w-full  ">
           <img
             src={blog?.img}
@@ -44,9 +44,9 @@ const BlogSinglePage = () => {
             className="text-gray-600 mb-4 sm:text-justify"
           ></p>
         </div>
-        <div className="sm:w-full lgl:p-4 lgl:w-80  sm:p-3  ">
+        <div className="sm:w-full lgl:p-4 lgl:w-[500px]  sm:p-3  ">
           <h2 className="text-lg font-bold mb-4">Recent Blogs Post</h2>
-          <ul>
+          <ol>
             {recent.map((recentBlog) => (
               <li
                 key={recentBlog?._id}
@@ -57,7 +57,7 @@ const BlogSinglePage = () => {
                 </p>
               </li>
             ))}
-          </ul>
+          </ol>
         </div>
       </div>
     </div>
