@@ -45,9 +45,9 @@ const CartCard = ({ order }) => {
   };
   const handleCountMinus = () => {};
   return (
-    <div className="border border-white rounded-lg grid grid-cols-12 justify-between items-center gap-2">
-      <img className="col-span-3 rounded-lg w-[70%]" src={order?.img} alt="" />
-      <div className="text-xl font-semibold text-white col-span-3">
+    <div className="border border-white rounded-lg grid grid-cols-12 justify-between items-center md:gap-2 gap-1">
+      <img className="col-span-3 rounded-lg w-full" src={order?.img} alt="" />
+      <div className="md:text-xl text-[10px] font-semibold text-white col-span-3">
         <h4>{order?.genericName}</h4>
         <h4>{order?.price}</h4>
       </div>

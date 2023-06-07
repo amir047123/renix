@@ -326,10 +326,8 @@ const DoctorDashboard = () => {
 
                     <ul className="space-y-2 pt-8">
                       <li>
-                        <a
-                          href="/userDashboard/overview"
-                          // onClick={(e) => e.preventDefault()}
-
+                        <Link
+                          to="/userDashboard/overview"
                           className="flex items-center gap-5 px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"
                         >
                           <span className="text-lg">
@@ -337,7 +335,7 @@ const DoctorDashboard = () => {
                           </span>
 
                           <span className="">Dashboard</span>
-                        </a>
+                        </Link>
                       </li>
                       <li>
                         <NavLink
@@ -390,8 +388,8 @@ const DoctorDashboard = () => {
                           }`}
                         >
                           <li>
-                            <a
-                              href={"/adminDashboard/orders/pendingOrders"}
+                            <Link
+                              to={"/adminDashboard/orders/pendingOrders"}
                               className="flex items-center hover:bg-textColor  p-2 text-[14px] font-normal  rounded-lg dark:text-white dark:hover:bg-gray-700 text-white"
                             >
                               {/* <span className='text-lg'>
@@ -399,11 +397,11 @@ const DoctorDashboard = () => {
                                                     </span> */}
 
                               <span className="ml-3">Pending Orders</span>
-                            </a>
+                            </Link>
                           </li>
                           <li>
-                            <a
-                              href={"/adminDashboard/orders/confirmedOrders"}
+                            <Link
+                              to={"/adminDashboard/orders/confirmedOrders"}
                               className="flex items-center hover:bg-textColor  p-2 text-[14px] font-normal  rounded-lg dark:text-white dark:hover:bg-gray-700 text-white"
                             >
                               {/* <span className='text-lg'>
@@ -411,11 +409,11 @@ const DoctorDashboard = () => {
                                                     </span> */}
 
                               <span className="ml-3">Confirmed Orders</span>
-                            </a>
+                            </Link>
                           </li>
                           <li>
-                            <a
-                              href={"/adminDashboard/orders/rejectedOrders"}
+                            <Link
+                              to={"/adminDashboard/orders/rejectedOrders"}
                               className="flex items-center hover:bg-textColor  p-2 text-[14px] font-normal  rounded-lg dark:text-white dark:hover:bg-gray-700 text-white"
                             >
                               {/* <span className='text-lg'>
@@ -423,7 +421,7 @@ const DoctorDashboard = () => {
                                                     </span> */}
 
                               <span className="ml-3">Rejected Orders</span>
-                            </a>
+                            </Link>
                           </li>
                         </ul>
                       </li>

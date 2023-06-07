@@ -24,7 +24,6 @@ const Home = () => {
       <Contact />
       <NewsAndMedia />
       <LocationMap />
-
     </div>
   );
 };

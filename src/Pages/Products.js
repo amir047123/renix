@@ -28,8 +28,8 @@ const Products = () => {
       <h1 className=" text-2xl text-center text-primary ">
         🇴​​🇺​​🇷​ ​🇵​​🇷​​🇴​​🇩​​🇺​​🇨​​🇹​
       </h1>
-      <div className="grid grid-cols-4 gap-4">
-        <div className="col-span-1">
+      <div className="grid lg:grid-cols-4 gap-4">
+        <div className="col-span-1 lg:block hidden">
           <div className="  border border-blue-gray-300 p-11">
             <h1 className="text-2xl font-semibold">Products Categories</h1>
             <div className="mt-8">
@@ -48,11 +48,11 @@ const Products = () => {
             </div>
           </div>
         </div>
-        <div class="col-span-3 pb-5">
-          <div className=" flex gap-6 flex-wrap mx-auto justify-center ">
+        <div class="lg:col-span-3 pb-5">
+          <div className=" grid md:grid-cols-2 grid-cols-1 px-10 justify-center ">
             {/* single medicine card */}
             {products?.map((product) => (
-              <Link to={`/products/${product?._id}`}>
+              <Link key={product?._id} to={`/products/${product?._id}`}>
                 <div
                   className="relative w-full"
                   onMouseEnter={() => setDisplayButton(product?._id)}
