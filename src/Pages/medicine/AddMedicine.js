@@ -1,4 +1,4 @@
-import React, { useRef, useState, useMemo } from "react";
+import React, { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import JoditEditor from "jodit-react";
 import { Markup } from "interweave";
@@ -13,6 +13,7 @@ const AddMedicine = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
   const editor = useRef(null);
   //description content
@@ -37,7 +38,7 @@ const AddMedicine = () => {
   };
 
   //handle add medicine
-  const handleAddMedicine = (data) => {
+  const handleAddMedicine = async (data) => {
     const medicine = {
       date: new Date().getDate(),
       month: new Date().getDate(),
@@ -57,11 +58,12 @@ const AddMedicine = () => {
     };
     console.log(parsed);
     // post api call
-    PostHooks(
+    await PostHooks(
       "http://localhost:5000/api/v1/medicine/postMedicine",
       medicine,
       "Medicine successfully posted"
     );
+    reset();
   };
   return (
     <section className="py-10 md:py-14">

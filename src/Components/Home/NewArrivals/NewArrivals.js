@@ -42,7 +42,6 @@ const NewArrivals = () => {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
-          initialSlide: 2,
         },
       },
       {
@@ -50,6 +49,7 @@ const NewArrivals = () => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          initialSlide: 1,
         },
       },
     ],
@@ -57,7 +57,7 @@ const NewArrivals = () => {
   };
 
   return (
-    <div className=" w-full py-14 bg-[#f7fbf3]">
+    <div className=" w-[80%]  mx-auto py-14 ">
       <div className="lg:w-[90%] w-full  mx-auto my-10 text-center">
         <h3 className="bg-thirdLightPrimary w-36 mx-auto font ">
           F e a t u r e
@@ -67,7 +67,7 @@ const NewArrivals = () => {
         </h1>
         <Slider {...settings}>
           {products?.map((product) => (
-            <div className="w-80 sm:w-6/12 md:w-4/12 " key={product._id}>
+            <div className="w-[90%] sm:w-6/12 md:w-4/12 " key={product._id}>
               <div className="m-4 w-50 rounded-xl border-2 border-whiteSmoke ">
                 <h2 className="bg-primary w-10 text-left text-xs pl-1 pt-1 pb-1  text-white mt-3">
                   Sale!
@@ -75,7 +75,7 @@ const NewArrivals = () => {
                 <img
                   src={product.img}
                   alt=""
-                  className="w-full mx-auto  h-auto mt-7"
+                  className="w-[200px] mx-auto  h-auto mt-7"
                 />
                 <div className="pl-4 pb-2">
                   <h1 className="text-secondary text-left  text-lg mt-2">

@@ -206,8 +206,8 @@ const Checkout = () => {
 
             <div>
               <h1 className="text-xl font-medium">Your Order</h1>
-              <div>
-                <table class="w-full mt-2  my-4 uppercase border-collapse border border-slate-500  text-sm text-left text-gray-500 dark:text-gray-400">
+              <div className="w-full overflow-x-scroll">
+                <table class="w-full mt-2  my-4 uppercase border-collapse border border-slate-500  text-sm text-left text-gray-500 dark:text-gray-400 ">
                   <tbody className="text-center">
                     <tr class="bg-white border-b text-sm font-medium dark:bg-gray-800 dark:border-gray-700">
                       <td class="px-6 py-4 border border-gray">Product</td>
