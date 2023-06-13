@@ -23,7 +23,7 @@ export default function AuthUser() {
     return role_name;
   };
   const getUserInfo = () => {
-    const userInfoString = localStorage.getItem("user_info");
+    const userInfoString = localStorage.getItem("renix_user_info");
     const user_info = JSON.parse(userInfoString);
     return user_info;
   };
@@ -38,7 +38,7 @@ export default function AuthUser() {
     localStorage.setItem("access", JSON.stringify(access));
     localStorage.setItem("email", JSON.stringify(email));
     localStorage.setItem("role", JSON.stringify(role));
-    localStorage.setItem("user_info", JSON.stringify(userInfo));
+    localStorage.setItem("renix_user_info", JSON.stringify(userInfo));
     localStorage.setItem("user_ip", JSON.stringify(userIp));
 
     setEmail(email);

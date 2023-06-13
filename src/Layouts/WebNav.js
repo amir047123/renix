@@ -6,15 +6,16 @@ import { AiFillCloseCircle } from "react-icons/ai";
 import "./WebNav.css";
 import TopBar from "./TopBar";
 import AuthUser from "../Hooks/authUser";
+import { server_url } from "../Config/API";
 
 const WebNav = () => {
+  const [user, setUser] = useState();
+  const { userInfo } = AuthUser();
   //sticky nav
   const [stickyNav, setStickyNav] = useState(false);
-  const [user, setUser] = useState({});
   const navWrapper = useRef();
   //state for hamburger menu
   const [isOpen, setIsopen] = useState(false);
-  const { userInfo } = AuthUser();
   const handleToggle = () => {
     isOpen === true ? setIsopen(false) : setIsopen(true);
   };
@@ -23,6 +24,12 @@ const WebNav = () => {
     borderBottom: "2px solid #90C347",
   };
 
+  useEffect(() => {
+    fetch(`${server_url}/user/${userInfo?._id}`)
+      .then((res) => res.json())
+      .then((data) => setUser(data?.data));
+  }, [userInfo?._id]);
+  console.log(user);
   //close sidenav when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -86,6 +93,7 @@ const WebNav = () => {
             <ul className="mobile_menu">
               <li>
                 <Link
+                  onClick={handleToggle}
                   to="/"
                   className="text-textColor p-2 uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition"
                 >
@@ -94,6 +102,7 @@ const WebNav = () => {
               </li>
               <li>
                 <Link
+                  onClick={handleToggle}
                   to="/about"
                   className="text-textColor p-2 uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition"
                 >
@@ -102,6 +111,7 @@ const WebNav = () => {
               </li>
               <li>
                 <Link
+                  onClick={handleToggle}
                   to="/security-check"
                   className="text-textColor p-2 uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition"
                 >
@@ -110,6 +120,7 @@ const WebNav = () => {
               </li>
               <li>
                 <Link
+                  onClick={handleToggle}
                   to="/products"
                   className="text-textColor p-2 uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition"
                 >
@@ -118,6 +129,7 @@ const WebNav = () => {
               </li>
               <li>
                 <Link
+                  onClick={handleToggle}
                   to="/news-media"
                   className="text-textColor p-2 uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition"
                 >
@@ -126,6 +138,7 @@ const WebNav = () => {
               </li>
               <li>
                 <Link
+                  onClick={handleToggle}
                   to="/blogs"
                   className="text-textColor p-2 uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition"
                 >
@@ -134,6 +147,7 @@ const WebNav = () => {
               </li>
               <li>
                 <Link
+                  onClick={handleToggle}
                   to="/contact"
                   className="text-textColor p-2 uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition"
                 >
@@ -141,7 +155,7 @@ const WebNav = () => {
                 </Link>
               </li>
               <li>
-                <Link to={"/appointment"}>
+                <Link onClick={handleToggle} to={"/appointment"}>
                   <button className=" px-2  py-2 rounded text-white border bg-primary border-primary text-base">
                     Appointment +
                   </button>
@@ -150,13 +164,14 @@ const WebNav = () => {
               <li>
                 {localStorage.getItem("access") ? (
                   <Link
-                    to={`/${userInfo?.role}Dashboard`}
+                    onClick={handleToggle}
+                    to={`/${user?.role}Dashboard`}
                     className="px-2  py-2 rounded text-white border bg-red-500 border-red-500 text-base"
                   >
                     Dashboard
                   </Link>
                 ) : (
-                  <Link to={"/login"}>
+                  <Link onClick={handleToggle} to={"/login"}>
                     <button className=" px-2  py-2 rounded text-white border bg-primary border-primary text-base">
                       Login
                     </button>
@@ -251,7 +266,7 @@ const WebNav = () => {
         <div className=" item-right">
           {localStorage.getItem("access") ? (
             <Link
-              to={`/${userInfo?.role}Dashboard`}
+              to={`/${user?.role}Dashboard`}
               className="hidden lg:flex items-center px-2  py-2 rounded text-white border bg-red-500 border-red-500 text-base"
             >
               Dashboard
