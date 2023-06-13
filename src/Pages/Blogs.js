@@ -11,7 +11,7 @@ const Blogs = () => {
   const [page, setPage] = useState(0);
   const [size, setSize] = useState(6);
   useEffect(() => {
-    const url = ` http://localhost:5000/api/v1/blogs?size=${size}&page=${page}`;
+    const url = ` http://renixserver.tripkori.com/api/v1/blogs?size=${size}&page=${page}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {

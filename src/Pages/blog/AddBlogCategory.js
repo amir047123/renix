@@ -8,7 +8,7 @@ const AddBlogCategory = () => {
     e.preventDefault();
     const name = e.target.category.value;
     PostHooks(
-      " http://localhost:5000/api/v1/blogsCategory",
+      " http://renixserver.tripkori.com/api/v1/blogsCategory",
       { name: name },
       "Category successfully posted"
     );

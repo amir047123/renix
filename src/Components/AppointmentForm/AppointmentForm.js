@@ -33,7 +33,7 @@ const AppointmentForm = () => {
     event.preventDefault();
     const appointmentInfo = formData;
     await PostHooks(
-      " http://localhost:5000/api/v1/appointment/postAppointment",
+      " http://renixserver.tripkori.com/api/v1/appointment/postAppointment",
       appointmentInfo,
       "Your appointment has been sent to the doctor for review"
     );

@@ -8,7 +8,7 @@ const AllMedicineCategories = () => {
   const [refresh, setRefresh] = useState(false);
   const [category, setCategory] = useState([]);
   useEffect(() => {
-    const url = ` http://localhost:5000/api/v1/category`;
+    const url = ` http://renixserver.tripkori.com/api/v1/category`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -28,9 +28,12 @@ const AllMedicineCategories = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(` http://localhost:5000/api/v1/category/deleteCategory/${id}`, {
-          method: "DELETE",
-        }).then((res) => {
+        fetch(
+          ` http://renixserver.tripkori.com/api/v1/category/deleteCategory/${id}`,
+          {
+            method: "DELETE",
+          }
+        ).then((res) => {
           if (res.status === 200) {
             setRefresh(!refresh);
             Swal.fire("Deleted!", "Your file has been deleted.", "success");

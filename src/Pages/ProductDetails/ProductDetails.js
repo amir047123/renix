@@ -15,7 +15,9 @@ const ProductDetails = () => {
   const { refresh, setRefresh } = useContext(MyContext);
   const { id } = useParams();
   useEffect(() => {
-    fetch(` http://localhost:5000/api/v1/medicine/medicineDetails/${id}`)
+    fetch(
+      ` http://renixserver.tripkori.com/api/v1/medicine/medicineDetails/${id}`
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

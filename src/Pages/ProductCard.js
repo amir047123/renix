@@ -6,7 +6,7 @@ const ProductCard = ({ product }) => {
 
   return (
     <div className="card">
-      <div className="card-image">
+      <div className="card-image ">
         <img src={image} alt={name} />
       </div>
       <div className="card-body">
@@ -25,7 +25,7 @@ const ProductCard = ({ product }) => {
             ) : (
               <p className="card-text in-stock">{`In Stock: ${stock}`}</p>
             )}
-            <button className="btn btn-primary">Add to Cart</button>
+            <button className="btn btn-primary ">Add to Cart</button>
           </>
         )}
       </div>

@@ -8,7 +8,7 @@ const AllBlogsCategory = () => {
   const [refresh, setRefresh] = useState(false);
   const [category, setCategory] = useState([]);
   useEffect(() => {
-    const url = ` http://localhost:5000/api/v1/blogsCategory`;
+    const url = ` http://renixserver.tripkori.com/api/v1/blogsCategory`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -29,7 +29,7 @@ const AllBlogsCategory = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(
-          ` http://localhost:5000/api/v1/blogsCategory/deleteBlogsCategory/${id}`,
+          ` http://renixserver.tripkori.com/api/v1/blogsCategory/deleteBlogsCategory/${id}`,
           {
             method: "DELETE",
           }

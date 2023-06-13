@@ -23,6 +23,9 @@ import InsertOtp from "../Components/ResetPassword/InsertOtp";
 import SetNewPassword from "../Components/ResetPassword/NewPassword";
 import AppointmentForm from "../Components/AppointmentForm/AppointmentForm";
 import RequireAuth from "../shared/RequireAuth/RequireAuth";
+import AllNews from "../Pages/News/AllNews";
+import Shasthokotha from "../Pages/News/Shasthokotha";
+import Shosthotarbarta from "../Pages/News/Shosthotarbarta";
 
 const PublicRoutes = [
   { path: "/", Component: Home },
@@ -49,6 +52,9 @@ const PublicRoutes = [
   { path: "/insert-token", Component: InsertOtp },
   { path: "/setNewPassword", Component: SetNewPassword },
   { path: "/appointment/:id", Component: AppointmentForm },
+  { path: "/allnews", Component: AllNews },
+  { path: "/shasthokotha", Component: Shasthokotha },
+  { path: "/shosthotarbarta", Component: Shosthotarbarta },
 ];
 
 export default PublicRoutes;

@@ -13,7 +13,7 @@ const RejectedAppointment = () => {
   const { userInfo } = AuthUser();
 
   useEffect(() => {
-    const url = ` http://localhost:5000/api/v1/appointment/specific?page=${page}&&size=${size}&&doctorId=${
+    const url = ` http://renixserver.tripkori.com/api/v1/appointment/specific?page=${page}&&size=${size}&&doctorId=${
       userInfo?._id
     }&&appointmentStatus=${"rejected"}`;
     fetch(url)

@@ -9,7 +9,7 @@ import { useEffect } from "react";
 const NewArrivals = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    const url = ` http://localhost:5000/api/v1/medicine?size=${6}&page=${0}`;
+    const url = ` http://renixserver.tripkori.com/api/v1/medicine?size=${6}&page=${0}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -67,7 +67,7 @@ const NewArrivals = () => {
         </h1>
         <Slider {...settings}>
           {products?.map((product) => (
-            <div className="w-[90%] sm:w-6/12 md:w-4/12 " key={product._id}>
+            <div className="w-[90%] sm:w-6/12 md:w-4/12  " key={product._id}>
               <div className="m-4 w-50 rounded-xl border-2 border-whiteSmoke ">
                 <h2 className="bg-primary w-10 text-left text-xs pl-1 pt-1 pb-1  text-white mt-3">
                   Sale!
