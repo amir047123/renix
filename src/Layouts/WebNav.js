@@ -7,10 +7,12 @@ import "./WebNav.css";
 import TopBar from "./TopBar";
 import AuthUser from "../Hooks/authUser";
 import { server_url } from "../Config/API";
+import { RxCaretDown } from "react-icons/rx";
 
 const WebNav = () => {
   const [user, setUser] = useState();
   const { userInfo } = AuthUser();
+  const [openBlog, setOpenBlog] = useState(false);
   //sticky nav
   const [stickyNav, setStickyNav] = useState(false);
   const navWrapper = useRef();
@@ -18,6 +20,14 @@ const WebNav = () => {
   const [isOpen, setIsopen] = useState(false);
   const handleToggle = () => {
     isOpen === true ? setIsopen(false) : setIsopen(true);
+  };
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const handleBlogDropdown = (e) => {
+    openBlog === true ? setOpenBlog(false) : setOpenBlog(true);
+    //console.log('clicked')
+  };
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
   };
   //nav menu active style
   let activeStyle = {
@@ -136,6 +146,49 @@ const WebNav = () => {
                   News and Media
                 </Link>
               </li>
+              <li className={openBlog ? "bg-primary/10" : ""}>
+                <span
+                  onClick={handleBlogDropdown}
+                  className="flex items-center cursor-pointer gap-4 justify-center text-[14px] font-normal"
+                >
+                  <div className="flex items-center gap-4 text-textColor">
+                    <span className="text-lg text-textColor">
+                      {/* <MdOutlineArticle /> */}
+                    </span>
+
+                    <span className="">Blog to</span>
+                  </div>
+                  <span
+                    className={`text-2xl text-textColor ${
+                      openBlog === true ? "rotate-180" : ""
+                    }`}
+                  >
+                    <RxCaretDown />
+                  </span>
+                </span>
+                <ul
+                  className={`!space-y-1 mt-2  ${
+                    openBlog === true ? "block" : "hidden"
+                  }`}
+                >
+                  <div>
+                    <Link
+                      to={"blog/allBlogCategory"}
+                      className=" text-sm font-normal rounded-md text-textColor"
+                    >
+                      <span className="ml-3">all Blogs Category</span>
+                    </Link>
+                  </div>
+                  <div>
+                    <Link
+                      to={"blog/allBlogCategory"}
+                      className=" text-sm font-normal  rounded-md text-textColor"
+                    >
+                      <span className="ml-3">all Blogs Category</span>
+                    </Link>
+                  </div>
+                </ul>
+              </li>
               <li>
                 <Link
                   onClick={handleToggle}
@@ -225,7 +278,7 @@ const WebNav = () => {
                 Our Products
               </NavLink>
             </li>
-            <li>
+            {/* <li>
               <NavLink
                 to={"/news-media"}
                 className="text-textColor p-2 uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition"
@@ -233,6 +286,63 @@ const WebNav = () => {
               >
                 News And Media
               </NavLink>
+            </li> */}
+            <li>
+              <div className="relative inline-block text-left">
+                <button
+                  type="button"
+                  onClick={toggleDropdown}
+                  className="text-textColor flex justify-center gap-2 items-center px-3 py-2 rounded-md text-sm font-medium focus:outline-none"
+                >
+                  News & Media
+                  <span
+                    className={`text-2xl text-textColor ${
+                      isDropdownOpen ? "rotate-180" : ""
+                    }`}
+                  >
+                    <RxCaretDown />
+                  </span>
+                </button>
+                {isDropdownOpen && (
+                  <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50">
+                    <div
+                      className="py-1"
+                      role="menu"
+                      aria-orientation="vertical"
+                      aria-labelledby="options-menu"
+                    >
+                      <Link
+                        to="/news"
+                        className="block px-4 py-2 text-sm text-textColor hover:bg-primary/10"
+                        role="menuitem"
+                      >
+                        News
+                      </Link>
+                      <Link
+                        to="/media"
+                        className="block px-4 py-2 text-sm text-textColor hover:bg-primary/10"
+                        role="menuitem"
+                      >
+                        Media
+                      </Link>
+                      <Link
+                        to="/renixSastoKotha"
+                        className="block px-4 py-2 text-sm text-textColor hover:bg-primary/10"
+                        role="menuitem"
+                      >
+                        Renix SasthoKotha
+                      </Link>
+                      <Link
+                        to="/renixSastoKothaBartarVarta"
+                        className="block px-4 py-2 text-sm text-textColor hover:bg-primary/10"
+                        role="menuitem"
+                      >
+                        Renix SasthoKothar Varta
+                      </Link>
+                    </div>
+                  </div>
+                )}
+              </div>
             </li>
             <li>
               <NavLink
