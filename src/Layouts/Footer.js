@@ -2,26 +2,36 @@ import React from "react";
 import logo from "../Assets/images/logo.svg";
 import { Link } from "react-router-dom";
 import SocialIcon from "../shared/socialIcon/SocialIcon";
-import { FaFacebook, FaTwitter, FaLinkedin,FaInstagram ,FaWhatsapp} from 'react-icons/fa';
-
+import {
+  FaFacebook,
+  FaTwitter,
+  FaLinkedin,
+  FaInstagram,
+  FaWhatsapp,
+} from "react-icons/fa";
 
 const Footer = () => {
-
   const handleWhatsAppClick = () => {
-    const phoneNumber = encodeURIComponent('01884442022');
+    const phoneNumber = encodeURIComponent("01884442022");
     const whatsappURL = `https://api.whatsapp.com/send?phone=${phoneNumber}`;
-    window.open(whatsappURL, '_blank');
+    window.open(whatsappURL, "_blank");
   };
 
   return (
     <div>
       <footer className="bg-secondary dark:bg-gray-900">
-      <div className="fixed bottom-5 sm:right-8 right-4 z-[999] cursor-pointer text-white text-4xl bg-primary w-16 h-16 flex items-center justify-center rounded-full animate-bounce">
-  <a href="https://api.whatsapp.com/send?phone=8801884442022" target="_blank" rel="noopener noreferrer">
-    <FaWhatsapp className="text-white" name="chatbubble-ellipses"></FaWhatsapp>
-  </a>
-</div>
-
+        <div className="fixed bottom-5 sm:right-8 right-4 z-[999] cursor-pointer text-white text-4xl bg-primary w-16 h-16 flex items-center justify-center rounded-full animate-bounce">
+          <a
+            href="https://api.whatsapp.com/send?phone=8801884442022"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaWhatsapp
+              className="text-white"
+              name="chatbubble-ellipses"
+            ></FaWhatsapp>
+          </a>
+        </div>
 
         <div className="px-8 sm:px-10 lg:px-[103px] pt-10 pb-10">
           <div className="flex gap-6 justify-center lg:justify-around  flex-wrap   md1:flex-wrap lg:flex-nowrap">
@@ -86,8 +96,6 @@ const Footer = () => {
                     Team
                   </Link>
                 </li>
-                
-             
               </ul>
             </div>
             <div className="w-full  lg:w-4/12 mt-2 ">
@@ -109,15 +117,12 @@ const Footer = () => {
               <Link to={"/"} className="hover:underline">
                 Renix
               </Link>
-              . All Rights Reserved. <a href="https://thinkystorm.com">Develop by ThinkyStorm</a>
-
+              . All Rights Reserved.
             </span>
             {/* footer icon */}
             <SocialIcon />
           </div>
         </div>
-       
-
       </footer>
     </div>
   );

@@ -137,15 +137,7 @@ const WebNav = () => {
                   Our Products
                 </Link>
               </li>
-              <li>
-                <Link
-                  onClick={handleToggle}
-                  to="/news-media"
-                  className="text-textColor p-2 uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition"
-                >
-                  News and Media
-                </Link>
-              </li>
+
               <li className={openBlog ? "bg-primary/10" : ""}>
                 <span
                   onClick={handleBlogDropdown}
@@ -156,7 +148,7 @@ const WebNav = () => {
                       {/* <MdOutlineArticle /> */}
                     </span>
 
-                    <span className="">Blog to</span>
+                    <span className="">News and Media</span>
                   </div>
                   <span
                     className={`text-2xl text-textColor ${
@@ -166,6 +158,7 @@ const WebNav = () => {
                     <RxCaretDown />
                   </span>
                 </span>
+
                 <ul
                   className={`!space-y-1 mt-2  ${
                     openBlog === true ? "block" : "hidden"
@@ -173,18 +166,38 @@ const WebNav = () => {
                 >
                   <div>
                     <Link
-                      to={"blog/allBlogCategory"}
-                      className=" text-sm font-normal rounded-md text-textColor"
+                      to="/news"
+                      onClick={handleToggle}
+                      className=" text-sm font-normal  text-textColor hover:border-b border-primary"
                     >
-                      <span className="ml-3">all Blogs Category</span>
+                      <span className="ml-3">News</span>
                     </Link>
                   </div>
                   <div>
                     <Link
-                      to={"blog/allBlogCategory"}
-                      className=" text-sm font-normal  rounded-md text-textColor"
+                      to="/media"
+                      onClick={handleToggle}
+                      className=" text-sm font-normal  text-textColor hover:border-b border-primary"
                     >
-                      <span className="ml-3">all Blogs Category</span>
+                      <span className="ml-3">Media</span>
+                    </Link>
+                  </div>
+                  <div>
+                    <Link
+                      to="/shasthokotha"
+                      onClick={handleToggle}
+                      className=" text-sm font-normal  text-textColor hover:border-b border-primary"
+                    >
+                      <span className="ml-3">Renix Shasthokotha</span>
+                    </Link>
+                  </div>
+                  <div>
+                    <Link
+                      to="/shosthotarbarta"
+                      onClick={handleToggle}
+                      className=" text-sm font-normal  text-textColor hover:border-b border-primary"
+                    >
+                      <span className="ml-3">Renix Shosthotar Barta</span>
                     </Link>
                   </div>
                 </ul>
@@ -313,6 +326,7 @@ const WebNav = () => {
                     >
                       <Link
                         to="/news"
+                        onClick={toggleDropdown}
                         className="block px-4 py-2 text-sm text-textColor hover:bg-primary/10"
                         role="menuitem"
                       >
@@ -320,24 +334,27 @@ const WebNav = () => {
                       </Link>
                       <Link
                         to="/media"
+                        onClick={toggleDropdown}
                         className="block px-4 py-2 text-sm text-textColor hover:bg-primary/10"
                         role="menuitem"
                       >
                         Media
                       </Link>
                       <Link
-                        to="/renixSastoKotha"
+                        to="/shasthokotha"
+                        onClick={toggleDropdown}
                         className="block px-4 py-2 text-sm text-textColor hover:bg-primary/10"
                         role="menuitem"
                       >
                         Renix SasthoKotha
                       </Link>
                       <Link
-                        to="/renixSastoKothaBartarVarta"
+                        to="/shosthotarbarta"
+                        onClick={toggleDropdown}
                         className="block px-4 py-2 text-sm text-textColor hover:bg-primary/10"
                         role="menuitem"
                       >
-                        Renix SasthoKothar Varta
+                        Renix Shosthotar Barta
                       </Link>
                     </div>
                   </div>

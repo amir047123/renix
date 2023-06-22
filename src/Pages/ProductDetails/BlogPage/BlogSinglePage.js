@@ -24,7 +24,7 @@ const BlogSinglePage = () => {
         setRecent(data?.data.slice(0, 4));
       });
   }, []);
-  const des = blog?.description?.replace(/<\/?p>/g, "").slice(0, 250);
+  const des = blog?.description?.replace(/<\/?p>/g, "");
 
   return (
     <div>
@@ -41,7 +41,7 @@ const BlogSinglePage = () => {
           </p>
           <p
             dangerouslySetInnerHTML={{ __html: des }}
-            className="text-gray-600 mb-4 sm:text-justify"
+            className="text-gray-600 mb-4 text-justify"
           ></p>
         </div>
         <div className="sm:w-full lgl:p-4 lgl:w-[500px]  sm:p-3  ">

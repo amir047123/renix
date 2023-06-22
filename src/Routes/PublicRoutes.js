@@ -26,6 +26,8 @@ import RequireAuth from "../shared/RequireAuth/RequireAuth";
 import AllNews from "../Pages/News/AllNews";
 import Shasthokotha from "../Pages/News/Shasthokotha";
 import Shosthotarbarta from "../Pages/News/Shosthotarbarta";
+import News from "../Pages/News/News";
+import Media from "../Pages/News/Media";
 
 const PublicRoutes = [
   { path: "/", Component: Home },
@@ -55,6 +57,8 @@ const PublicRoutes = [
   { path: "/allnews", Component: AllNews },
   { path: "/shasthokotha", Component: Shasthokotha },
   { path: "/shosthotarbarta", Component: Shosthotarbarta },
+  { path: "/news", Component: News },
+  { path: "/media", Component: Media },
 ];
 
 export default PublicRoutes;

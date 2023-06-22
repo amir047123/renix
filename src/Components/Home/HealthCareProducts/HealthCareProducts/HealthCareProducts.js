@@ -1,6 +1,6 @@
 import React from "react";
-import healthProduct1 from "../../../../Assets/images/health-Product-Images/healthProduct-1.png";
-import healthProduct2 from "../../../../Assets/images/health-Product-Images/healthProduct-2.png";
+import healthProduct1 from "../../../../../src/Assets/images/Products/09. Syrup Hazmina Plus.webp";
+import healthProduct2 from "../../../../Assets/images/Products/Capsule Valaria.webp";
 import medicine from "../../../../Assets/images/health-Product-Images/medicine.png";
 const HealthCareProducts = () => {
   return (
@@ -24,7 +24,7 @@ const HealthCareProducts = () => {
           </div>
         </div>
         <div className="bg-primary rounded-3xl flex justify-center items-center md:p-4 md:w-1/2 lg:w-1/3">
-          <img className="w-1/2" src={healthProduct1} alt="" />
+          <img className=" lg:w-full sm:w-2/3" src={healthProduct1} alt="" />
         </div>
       </div>
 
@@ -44,7 +44,7 @@ const HealthCareProducts = () => {
           </div>
           <div className=" lg:w-1/4">
             <img
-              className="w-1/2 mx-auto md:w-2/4"
+              className="w-full mx-auto "
               src={healthProduct2}
               alt=""
               srcset=""
@@ -54,7 +54,9 @@ const HealthCareProducts = () => {
         <div className="bg-secondary text-primary rounded-3xl p-8  w-full md:w-1/2 lg:w-1/3">
           <h1 className=" text-3xl ">Trusted Brands</h1>
           <p className="md:my-2">
-          Renix Unani Laboratories Limited is a trusted brand dedicated to producing high-quality, natural medicine that is effective in treating illnesses without harmful side effects. 
+            Renix Unani Laboratories Limited is a trusted brand dedicated to
+            producing high-quality, natural medicine that is effective in
+            treating illnesses without harmful side effects.
           </p>
           <div className=" ml-9 mt-4 ">
             <ul className="list-disc ">
