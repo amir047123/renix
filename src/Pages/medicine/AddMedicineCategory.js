@@ -7,7 +7,7 @@ const AddMedicineCategory = () => {
     e.preventDefault();
     const name = e.target.category.value;
     PostHooks(
-      " http://renixserver.tripkori.com/api/v1/category",
+      " http://localhost:5000/api/v1/category",
       { name: name },
       "Category successfully posted"
     );

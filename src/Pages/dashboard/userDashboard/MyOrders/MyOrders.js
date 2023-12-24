@@ -9,7 +9,7 @@ const MyOrders = () => {
   const { userInfo } = AuthUser();
   useEffect(() => {
     fetch(
-      ` http://renixserver.tripkori.com/api/v1/order/getOrder/${userInfo?._id}`
+      ` http://localhost:5000/api/v1/order/getOrder/${userInfo?._id}`
     )
       .then((res) => res.json())
       .then((data) => {

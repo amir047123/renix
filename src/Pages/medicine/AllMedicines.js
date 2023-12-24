@@ -4,16 +4,18 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { CiSearch } from "react-icons/ci";
 import Pagination from "../../shared/Pagination/Pagination";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
+import DeleteHook from "../../Hooks/DeleteHook";
 
 const AllMedicines = () => {
   const [products, setProducts] = useState([]);
   // for pagination
   const [quantity, setQuantity] = useState(0);
   const [page, setPage] = useState(0);
-  const [size, setSize] = useState(6);
+  const [size, setSize] = useState(50);
   const [refresh, setRefresh] = useState(false);
   useEffect(() => {
-    const url = ` http://renixserver.tripkori.com/api/v1/medicine?size=${size}&page=${page}`;
+    const url = ` http://localhost:5000/api/v1/medicine?size=${size}&page=${page}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -34,12 +36,9 @@ const AllMedicines = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(
-          ` http://renixserver.tripkori.com/api/v1/medicine/deleteMedicine/${id}`,
-          {
-            method: "DELETE",
-          }
-        ).then((res) => {
+        fetch(` http://localhost:5000/api/v1/medicine/deleteMedicine/${id}`, {
+          method: "DELETE",
+        }).then((res) => {
           if (res.status === 200) {
             setRefresh(!refresh);
             Swal.fire("Deleted!", "Your file has been deleted.", "success");
@@ -154,9 +153,12 @@ const AllMedicines = () => {
                   <td className="px-6 py-4">{product?.strength}</td>
                   <td className="px-6 py-4">
                     <span className="flex items-center gap-3">
-                      {/* <button className="text-lg text-[#0077FF] bg-[#BBDDFF] w-7  h-7 rounded-lg flex items-center justify-center">
-                        <TbEdit />
-                      </button> */}
+                      {/* <Link to={`edit-medicine/${product?._id}`}>
+                        {" "}
+                        <button className="text-lg text-[#0077FF] bg-[#BBDDFF] w-7  h-7 rounded-lg flex items-center justify-center">
+                          <TbEdit />
+                        </button>
+                      </Link> */}
                       <button
                         onClick={() => handelDelete(product?._id)}
                         className="text-lg text-[#F87171] bg-[#FEE2E2] w-7  h-7 rounded-lg flex items-center justify-center"

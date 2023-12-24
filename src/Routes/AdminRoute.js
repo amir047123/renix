@@ -1,3 +1,4 @@
+import ContactRenix from "../Components/AdminDashbord/ContactRenix";
 import AllAccounts from "../Pages/AllAccounts/AllAccounts";
 import AddNewsAndMedia from "../Pages/News and Media/AddNewsAndMedia";
 import AddNewsCategory from "../Pages/News and Media/AddNewsCategory";
@@ -14,6 +15,7 @@ import AddMedicine from "../Pages/medicine/AddMedicine";
 import AddMedicineCategory from "../Pages/medicine/AddMedicineCategory";
 import AllMedicineCategories from "../Pages/medicine/AllMedicineCategories";
 import AllMedicines from "../Pages/medicine/AllMedicines";
+import EditMedicine from "../Pages/medicine/EditMedicine";
 import ConfirmedOrders from "../Pages/orders/ConfirmedOrders";
 import OrderOverview from "../Pages/orders/OrderOverview";
 import PendingOrders from "../Pages/orders/PendingOrders";
@@ -40,6 +42,10 @@ const AdminRoutes = [
   { path: "doctor/allDoctors", Component: AllDoctors },
   { path: "email/allEmails", Component: AllEmails },
   { path: "allAccounts", Component: AllAccounts },
+  { path: "admin-contact", Component: ContactRenix },
+  { path: "medicine/allMedicines/edit-medicine/:id", Component: EditMedicine },
+
+
 ];
 
 export default AdminRoutes;

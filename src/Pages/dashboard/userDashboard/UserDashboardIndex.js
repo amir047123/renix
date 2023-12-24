@@ -16,7 +16,7 @@ const AdminDashboardOverview = () => {
   const { userInfo } = AuthUser();
   useEffect(() => {
     fetch(
-      ` http://renixserver.tripkori.com/api/v1/order/getOrder/${userInfo?._id}`
+      ` http://localhost:5000/api/v1/order/getOrder/${userInfo?._id}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -27,7 +27,7 @@ const AdminDashboardOverview = () => {
   const confirmed = order.filter((item) => item.orderStatus === "accept");
   useEffect(() => {
     fetch(
-      ` http://renixserver.tripkori.com/api/v1/appointment/getAppointment/${userInfo?._id}`
+      ` http://localhost:5000/api/v1/appointment/getAppointment/${userInfo?._id}`
     )
       .then((res) => res.json())
       .then((data) => {

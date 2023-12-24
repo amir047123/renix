@@ -1,4 +1,5 @@
 import React from "react";
+import img1 from "../../Assets/team/founder.png";
 
 const Message = () => {
   return (
@@ -8,6 +9,14 @@ const Message = () => {
           <h2 className="font-bold p-3 text-center text-2xl uppercase bg-secondary text-white">
             Message from Founder and Managing Director
           </h2>
+          <div className=" lg:flex  gap-5  shadow-md  p-5">
+            <img class="h-auto lg:max-w-xs rounded-lg" src={img1} alt=""></img>
+            <div>
+              {" "}
+              <h1>Abu Hanif</h1>
+          <p className=" text-xs"> Founder And Managing Director</p>
+            </div>
+          </div>
           <p className="text-textColor text-[14px] pt-6">
             Dear valued customers and stakeholders,
           </p>

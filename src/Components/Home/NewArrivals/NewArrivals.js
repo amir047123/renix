@@ -9,7 +9,7 @@ import { useEffect } from "react";
 const NewArrivals = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    const url = ` http://renixserver.tripkori.com/api/v1/medicine?size=${6}&page=${0}`;
+    const url = ` http://localhost:5000/api/v1/medicine?size=${6}&page=${0}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -79,7 +79,7 @@ const NewArrivals = () => {
                 />
                 <div className="pl-4 pb-2">
                   <h1 className="text-secondary text-left  text-lg mt-2">
-                    {product.productName}
+                    {product.name}
                   </h1>
                   <div className="flex  pb-2  items-center text-left  ">
                     <span className="text-lg mt-2 mr-2">

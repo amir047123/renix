@@ -10,7 +10,7 @@ import { useEffect } from "react";
 const AdminDashboardOverview = () => {
   const [order, setOrder] = useState([]);
   useEffect(() => {
-    fetch(` http://renixserver.tripkori.com/api/v1/order/`)
+    fetch(` http://localhost:5000/api/v1/order/`)
       .then((res) => res.json())
       .then((data) => {
         setOrder(data?.data);

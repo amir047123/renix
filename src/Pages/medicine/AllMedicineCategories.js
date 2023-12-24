@@ -8,7 +8,7 @@ const AllMedicineCategories = () => {
   const [refresh, setRefresh] = useState(false);
   const [category, setCategory] = useState([]);
   useEffect(() => {
-    const url = ` http://renixserver.tripkori.com/api/v1/category`;
+    const url = ` http://localhost:5000/api/v1/category`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -29,7 +29,7 @@ const AllMedicineCategories = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(
-          ` http://renixserver.tripkori.com/api/v1/category/deleteCategory/${id}`,
+          ` http://localhost:5000/api/v1/category/deleteCategory/${id}`,
           {
             method: "DELETE",
           }
@@ -88,9 +88,9 @@ const AllMedicineCategories = () => {
 
                   <td className="px-6 py-4">
                     <span className="flex items-center gap-3">
-                      <button className="text-lg text-[#0077FF] bg-[#BBDDFF] w-7  h-7 rounded-lg flex items-center justify-center">
+                      {/* <button className="text-lg text-[#0077FF] bg-[#BBDDFF] w-7  h-7 rounded-lg flex items-center justify-center">
                         <TbEdit />
-                      </button>
+                      </button> */}
                       <button
                         onClick={() => handelDelete(cat?._id)}
                         className="text-lg text-[#F87171] bg-[#FEE2E2] w-7  h-7 rounded-lg flex items-center justify-center"

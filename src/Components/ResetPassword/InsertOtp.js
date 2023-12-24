@@ -13,7 +13,7 @@ const InsertOtp = () => {
   );
   useEffect(() => {
     fetch(
-      `http://renixserver.tripkori.com/api/v1/user/by-email?email=${userLoginEmail}`
+      `http://localhost:5000/api/v1/user/by-email?email=${userLoginEmail}`
     )
       .then((res) => res.json())
       .then((data) => {

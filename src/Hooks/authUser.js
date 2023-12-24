@@ -54,7 +54,7 @@ export default function AuthUser() {
     console.log(userInfo);
     localStorage.clear();
     fetch(
-      ` http://renixserver.tripkori.com/api/v1/user/delete-ip/${userInfo?._id}`,
+      ` http://localhost:5000/api/v1/user/delete-ip/${userInfo?._id}`,
       {
         method: "POST",
         headers: {
@@ -72,7 +72,7 @@ export default function AuthUser() {
   };
 
   const http = axios.create({
-    baseURL: " http://renixserver.tripkori.com/api/v1",
+    baseURL: " http://localhost:5000/api/v1",
     headers: {
       "Content-type": "application/json",
       Authorization: `Bearer ${token}`,

@@ -8,7 +8,7 @@ import { useState } from "react";
 const BestDoctors = () => {
   const [user, setUser] = useState([]);
   useEffect(() => {
-    const url = ` http://renixserver.tripkori.com/api/v1/user`;
+    const url = ` http://localhost:5000/api/v1/user`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {

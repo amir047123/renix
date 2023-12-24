@@ -13,7 +13,7 @@ const DoctorDashboardIndex = () => {
   const [confirmed, setConfirmed] = useState(0);
   const { userInfo } = AuthUser();
   useEffect(() => {
-    const url = ` http://renixserver.tripkori.com/api/v1/appointment/specific?doctorId=${
+    const url = ` http://localhost:5000/api/v1/appointment/specific?doctorId=${
       userInfo?._id
     }&&appointmentStatus=${"pending"}`;
     fetch(url)
@@ -23,7 +23,7 @@ const DoctorDashboardIndex = () => {
       });
   }, []);
   useEffect(() => {
-    const url = ` http://renixserver.tripkori.com/api/v1/appointment/specific?doctorId=${
+    const url = ` http://localhost:5000/api/v1/appointment/specific?doctorId=${
       userInfo?._id
     }&&appointmentStatus=${"confirmed"}`;
     fetch(url)
@@ -33,7 +33,7 @@ const DoctorDashboardIndex = () => {
       });
   }, []);
   useEffect(() => {
-    const url = ` http://renixserver.tripkori.com/api/v1/appointment/specific?doctorId=${
+    const url = ` http://localhost:5000/api/v1/appointment/specific?doctorId=${
       userInfo?._id
     }&&appointmentStatus=${"rejected"}`;
     fetch(url)

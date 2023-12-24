@@ -5,7 +5,7 @@ import { TbCurrencyTaka } from "react-icons/tb";
 const FeatureProducts = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    const url = ` http://renixserver.tripkori.com/api/v1/medicine?size=${6}&page=${0}`;
+    const url = ` http://localhost:5000/api/v1/medicine?size=${6}&page=${0}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {

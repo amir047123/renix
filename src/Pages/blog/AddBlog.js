@@ -29,7 +29,7 @@ const AddBlog = () => {
   }, [userInfo?._id]);
   // get category
   useEffect(() => {
-    const url = ` http://renixserver.tripkori.com/api/v1/blogsCategory`;
+    const url = ` http://localhost:5000/api/v1/blogsCategory`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -60,7 +60,7 @@ const AddBlog = () => {
 
     // post api call
     PostHooks(
-      " http://renixserver.tripkori.com/api/v1/blogs/postBlog",
+      " http://localhost:5000/api/v1/blogs/postBlog",
       blog,
       "Medicine successfully posted"
     );

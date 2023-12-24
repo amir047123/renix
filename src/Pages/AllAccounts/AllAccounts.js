@@ -4,6 +4,7 @@ import { CiSearch } from "react-icons/ci";
 import Pagination from "../../shared/Pagination/Pagination";
 import { server_url } from "../../Config/API";
 import UpdateHooks from "../../Hooks/UpdateHooks";
+import { RiDeleteBin2Fill } from "react-icons/ri";
 
 const AllAccounts = () => {
   const [input, setInput] = useState("");
@@ -11,11 +12,11 @@ const AllAccounts = () => {
   // for pagination
   const [quantity, setQuantity] = useState(0);
   const [page, setPage] = useState(0);
-  const [size, setSize] = useState(6);
+  const [size, setSize] = useState(1000);
   const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
-    const url = ` http://renixserver.tripkori.com/api/v1/user?size=${size}&page=${page}&filter=${input}`;
+    const url = ` http://localhost:5000/api/v1/user?size=${size}&page=${page}&filter=${input}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -48,6 +49,14 @@ const AllAccounts = () => {
     );
     setRefresh(!refresh);
   };
+  const deleteUser = async (id) => {
+    const BASE_URL = `${server_url}/user/${id}`;
+    await fetch(BASE_URL, { method: "DELETE" });
+    setRefresh(!refresh);
+  };
+
+
+
   return (
     <section className="py-10 md:py-14">
       <div className="container px-6 md:max-w-6xl w-full ">
@@ -171,6 +180,13 @@ const AllAccounts = () => {
                             <TbEdit className="text-lg" /> Make_User
                           </button>
                         )}
+
+                        <button
+                          onClick={() => deleteUser(user?._id)}
+                          className="text-[#F87171] bg-[#FEE2E2] p-1 rounded-lg flex items-center justify-center gap-1"
+                        >
+                          <RiDeleteBin2Fill className="text-lg" /> Delete
+                        </button>
                       </span>
                     )}
                   </td>

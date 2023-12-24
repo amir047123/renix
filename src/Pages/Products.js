@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
 import Pagination from "../shared/Pagination/Pagination";
+import Loading from "../shared/Loading";
+import { faL } from "@fortawesome/free-solid-svg-icons";
 
 const Products = () => {
   const [displayButton, setDisplayButton] = useState("");
@@ -9,16 +11,23 @@ const Products = () => {
   // for pagination
   const [quantity, setQuantity] = useState(0);
   const [page, setPage] = useState(0);
-  const [size, setSize] = useState(6);
+  const [size, setSize] = useState(50);
+
+  const [loading ,setLoading] = useState();
 
   useEffect(() => {
-    const url = `http://renixserver.tripkori.com/api/v1/medicine?size=${size}&page=${page}`;
+    
+    const url = `http://localhost:5000/api/v1/medicine?size=${size}&page=${page}`;
+
+    setLoading(true); 
+
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         setProducts(data?.data);
         setQuantity(data?.total);
+        setLoading(false); 
       });
   }, [size, page]);
 
@@ -28,7 +37,12 @@ const Products = () => {
       <h1 className=" text-2xl text-center text-primary p-5 font-bold ">
         Our Product
       </h1>
-      <div>
+
+      {loading ? (
+        <Loading />
+      ):(
+        <>
+          <div>
         {/* <div className="col-span-1 lg:block hidden">
           <div className="  border border-blue-gray-300 p-11">
             <h1 className="text-2xl font-semibold">Products Categories</h1>
@@ -49,7 +63,7 @@ const Products = () => {
           </div>
         </div> */}
 
-        <div class="lg:col-span-3 pb-5">
+        <div class="lg:col-span-4 pb-5">
           <div className=" md:grid md:grid-cols-2 md:gap-5 sm:grid sm:grid-cols-1 sm:gap-5 lg:flex lg:flex-wrap  lg:gap-5 px-10 justify-center ">
             {/* single medicine card */}
             {products?.map((product) => (
@@ -121,6 +135,10 @@ const Products = () => {
           />
         </div>
       </div>
+        
+        </>
+      )}
+    
     </div>
   );
 };

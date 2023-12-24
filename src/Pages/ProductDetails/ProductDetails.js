@@ -16,7 +16,7 @@ const ProductDetails = () => {
   const { id } = useParams();
   useEffect(() => {
     fetch(
-      ` http://renixserver.tripkori.com/api/v1/medicine/medicineDetails/${id}`
+      ` http://localhost:5000/api/v1/medicine/medicineDetails/${id}`
     )
       .then((res) => res.json())
       .then((data) => {

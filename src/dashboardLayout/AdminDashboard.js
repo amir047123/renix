@@ -4,7 +4,7 @@ import { NavLink, useNavigate, Outlet, Link } from "react-router-dom";
 import logo from "../Assets/images/logo.svg";
 import { TbMedicineSyrup } from "react-icons/tb";
 import { FiLogIn, FiUsers } from "react-icons/fi";
-import { BiBorderAll, BiNews } from "react-icons/bi";
+import { BiBorderAll, BiNews,  } from "react-icons/bi";
 
 import {
   MdOutlineDashboardCustomize,
@@ -362,6 +362,19 @@ const AdminDashboard = () => {
                       <span>Subcribed Emails</span>
                     </NavLink>
                   </li>
+                  
+                  <li>
+                        <Link
+                          to={"admin-contact"}
+                          className="flex items-center px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"
+                        >
+                          <span className="text-lg">
+                          <IoMdNotificationsOutline></IoMdNotificationsOutline>
+                          </span>
+
+                          <span className="ml-3"> Contact</span>
+                        </Link>
+                      </li>
                   <li
                     onClick={logout}
                     className="flex cursor-pointer items-center gap-4 px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"
@@ -795,6 +808,19 @@ const AdminDashboard = () => {
                           </span>
 
                           <span className="ml-3">Subcribed Emails</span>
+                        </Link>
+                      </li>
+
+                      <li>
+                        <Link
+                          to=""
+                          className="flex items-center px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"
+                        >
+                          <span className="text-lg">
+                            <MdOutlineMailOutline />
+                          </span>
+
+                          <span className="ml-3"> Contact</span>
                         </Link>
                       </li>
                       <li
