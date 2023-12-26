@@ -15,7 +15,7 @@ import AddMedicine from "../Pages/medicine/AddMedicine";
 import AddMedicineCategory from "../Pages/medicine/AddMedicineCategory";
 import AllMedicineCategories from "../Pages/medicine/AllMedicineCategories";
 import AllMedicines from "../Pages/medicine/AllMedicines";
-import EditMedicine from "../Pages/medicine/EditMedicine";
+import UpdateMedicine from "../Pages/medicine/UpdateMedicine";
 import ConfirmedOrders from "../Pages/orders/ConfirmedOrders";
 import OrderOverview from "../Pages/orders/OrderOverview";
 import PendingOrders from "../Pages/orders/PendingOrders";
@@ -43,7 +43,7 @@ const AdminRoutes = [
   { path: "email/allEmails", Component: AllEmails },
   { path: "allAccounts", Component: AllAccounts },
   { path: "admin-contact", Component: ContactRenix },
-  { path: "medicine/allMedicines/edit-medicine/:id", Component: EditMedicine },
+  { path: "medicine/allMedicines/edit-medicine/:id", Component: UpdateMedicine },
 
 
 ];

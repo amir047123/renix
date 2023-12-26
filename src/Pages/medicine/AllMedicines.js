@@ -77,55 +77,55 @@ const AllMedicines = () => {
               <tr className="py-4 rounded-lg">
                 <th
                   scope="col"
-                  className="px-6 py-3  text-[13px] font-medium capitalize"
+                  className="px-6 py-3 text-xs font-medium capitalize"
                 >
                   Seriol No
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3  text-[13px] font-medium capitalize"
+                  className="px-6 py-3 text-xs font-medium capitalize"
                 >
                   Medicine Name
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3  text-[13px] font-medium capitalize"
+                  className="px-6 py-3 text-xs font-medium capitalize"
                 >
                   Category
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3  text-[13px] font-medium capitalize"
+                  className="px-6 py-3 text-xs font-medium capitalize"
                 >
                   Price
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3  text-[13px] font-medium capitalize"
+                  className="px-6 py-3 text-xs font-medium capitalize"
                 >
                   Generic
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3  text-[13px] font-medium capitalize"
+                  className="px-6 py-3 text-xs font-medium capitalize"
                 >
                   Stock
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3  text-[13px] font-medium capitalize"
+                  className="px-6 py-3 text-xs font-medium capitalize"
                 >
                   Status
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3  text-[13px] font-medium capitalize"
+                  className="px-6 py-3 text-xs font-medium capitalize"
                 >
                   Strength
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3  text-[13px] font-medium capitalize"
+                  className="px-6 py-3 text-xs font-medium capitalize"
                 >
                   Action
                 </th>
@@ -140,25 +140,25 @@ const AllMedicines = () => {
                 >
                   <th
                     scope="row"
-                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                    className="px-6 py-4 text-xs font-medium text-gray-900 whitespace-nowrap dark:text-white"
                   >
                     {i + 1}
                   </th>
-                  <td className="px-6 py-4">{product?.name}</td>
-                  <td className="px-6 py-4">{product?.medicineCategory}</td>
-                  <td className="px-6 py-4">{product?.price}</td>
-                  <td className="px-6 py-4">{product?.genericName}</td>
-                  <td className="px-6 py-4">{product?.stock}</td>
-                  <td className="px-6 py-4">{product?.medicineStatus}</td>
-                  <td className="px-6 py-4">{product?.strength}</td>
-                  <td className="px-6 py-4">
+                  <td className="px-6 text-xs py-4">{product?.name}</td>
+                  <td className="px-6 text-xs py-4">{product?.medicineCategory}</td>
+                  <td className="px-6 text-xs py-4">{product?.price}</td>
+                  <td className="px-6 text-xs py-4">{product?.genericName}</td>
+                  <td className="px-6 text-xs py-4">{product?.stock}</td>
+                  <td className="px-6 text-xs py-4">{product?.medicineStatus}</td>
+                  <td className="px-6 text-xs py-4">{product?.strength}</td>
+                  <td className="px-6 text-xs py-4">
                     <span className="flex items-center gap-3">
-                      {/* <Link to={`edit-medicine/${product?._id}`}>
+                      <Link to={`edit-medicine/${product?._id}`}>
                         {" "}
                         <button className="text-lg text-[#0077FF] bg-[#BBDDFF] w-7  h-7 rounded-lg flex items-center justify-center">
                           <TbEdit />
                         </button>
-                      </Link> */}
+                      </Link>
                       <button
                         onClick={() => handelDelete(product?._id)}
                         className="text-lg text-[#F87171] bg-[#FEE2E2] w-7  h-7 rounded-lg flex items-center justify-center"
