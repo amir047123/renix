@@ -1,18 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { AiOutlineCheckCircle } from "react-icons/ai";
+import {
+  AiOutlineCheckCircle,
+  AiOutlineFolderView,
+  AiOutlineFundView,
+} from "react-icons/ai";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { CiSearch } from "react-icons/ci";
 import Pagination from "../../shared/Pagination/Pagination";
 import UpdateHooks from "../../Hooks/UpdateHooks";
 import { server_url } from "../../Config/API";
+import Loading from "../../shared/Loading";
+import { Icon } from "@iconify/react";
+import { Link } from "react-router-dom";
 const PendingOrders = () => {
   const [refresh, setRefresh] = useState(false);
   const [order, setOrder] = useState([]);
   const [quantity, setQuantity] = useState(0);
   const [page, setPage] = useState(0);
   const [size, setSize] = useState(6);
-
+  const [loading, setLoading] = useState();
   useEffect(() => {
+    setLoading(true);
     const url = ` http://localhost:5000/api/v1/order/specific?page=${page}&&size=${size}&&fieldName=${"orderStatus"}&&fieldValue=${"pending"}`;
     fetch(url)
       .then((res) => res.json())
@@ -20,6 +28,7 @@ const PendingOrders = () => {
         setOrder(data?.data);
         setQuantity(data?.total);
         // console.log("data", data);
+        setLoading(false);
       });
   }, [page, size, refresh]);
   const handelAccept = async (id) => {
@@ -33,7 +42,7 @@ const PendingOrders = () => {
     setRefresh(!refresh);
   };
   const handelRejected = async (id) => {
-    const BASE_URL = `${server_url}/order/orderStatus/${id}`;
+    const BASE_URL = `${server_url}/order/updateOrderById/${id}`;
     await UpdateHooks(
       BASE_URL,
       { orderStatus: "rejected" },
@@ -42,6 +51,11 @@ const PendingOrders = () => {
     );
     setRefresh(!refresh);
   };
+
+  console.log(order);
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <section className="py-10 md:py-14">
       <div className="container px-6 md:max-w-6xl w-full mb-5">
@@ -75,38 +89,38 @@ const PendingOrders = () => {
                   scope="col"
                   className="px-6 py-3  text-[13px] font-medium capitalize"
                 >
-                  Seriol No
+                  #
                 </th>
                 <th
                   scope="col"
                   className="px-6 py-3  text-[13px] font-medium capitalize"
                 >
-                  Medicine Name
+                  Medicine
                 </th>
-                <th
+                {/* <th
                   scope="col"
                   className="px-6 py-3  text-[13px] font-medium capitalize"
                 >
                   Category
-                </th>
+                </th> */}
                 <th
                   scope="col"
                   className="px-6 py-3  text-[13px] font-medium capitalize"
                 >
                   Price
                 </th>
-                <th
+                {/* <th
                   scope="col"
                   className="px-6 py-3  text-[13px] font-medium capitalize"
                 >
                   Strength
-                </th>
-                <th
+                </th> */}
+                {/* <th
                   scope="col"
                   className="px-6 py-3  text-[13px] font-medium capitalize"
                 >
                   Generic
-                </th>
+                </th> */}
                 <th
                   scope="col"
                   className="px-6 py-3  text-[13px] font-medium capitalize"
@@ -117,7 +131,7 @@ const PendingOrders = () => {
                   scope="col"
                   className="px-6 py-3  text-[13px] font-medium capitalize"
                 >
-                  Customer Name
+                  Customer
                 </th>{" "}
                 <th
                   scope="col"
@@ -157,26 +171,26 @@ const PendingOrders = () => {
                       <p>{or?.genericName}</p>
                     ))}
                   </td>
-                  <td className="px-6 py-4">
+                  {/* <td className="px-6 py-4">
                     {item?.order?.map((or) => (
                       <p>{or?.medicineCategory}</p>
                     ))}
-                  </td>
+                  </td> */}
                   <td className="px-6 py-4">
                     {item?.order?.map((or) => (
-                      <p>{or?.price}</p>
+                      <p>{or?.price} BDT</p>
                     ))}
                   </td>
-                  <td className="px-6 py-4">
+                  {/* <td className="px-6 py-4">
                     {item?.order?.map((or) => (
                       <p>{or?.strength}</p>
                     ))}
-                  </td>
-                  <td className="px-6 py-4">
+                  </td> */}
+                  {/* <td className="px-6 py-4">
                     {item?.order?.map((or) => (
                       <p>{or?.medicineType}</p>
                     ))}
-                  </td>
+                  </td> */}
                   <td className="px-6 py-4">
                     {item?.order?.map((or) => (
                       <p>{or?.quantity}</p>
@@ -202,6 +216,18 @@ const PendingOrders = () => {
                         >
                           <AiOutlineCheckCircle />
                         </button>
+
+                        <Link
+                      to={`/adminDashboard/view-order/${item?._id}`}
+
+                        >
+                          <button
+                            title="Reject Order"
+                            className="text-lg text-green-500 bg-[#FEE2E2] w-7  h-7 rounded-lg flex items-center justify-center"
+                          >
+                            <Icon icon="carbon:view"></Icon>
+                          </button>
+                        </Link>
 
                         <button
                           onClick={() => handelRejected(item?._id)}

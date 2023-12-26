@@ -98,9 +98,9 @@ const ProductDetails = () => {
   };
   return (
     <div className="lg:w-3/5 md:w-10/12 mx-auto w-11/12">
-      <div className="grid md:grid-cols-2 grid-cols-1 gap-6">
-        <div className=" border flex justify-center items-center  border-gray-300">
-          <img src={img} className=" w-72 h-50 p-4" alt={name} />
+      <div className="grid md:grid-cols-2 grid-cols-1 gap-6 mt-5 shadow-md p-5">
+        <div className="  flex justify-center items-center shadow-md p-5 ">
+          <img src={img} className=" w-72 h-50" alt={name} />
         </div>
         <div className="m-3">
           <div className="shadow-lg p-7 ">
@@ -108,16 +108,16 @@ const ProductDetails = () => {
               {name}
             </h1>{" "}
             <p>
-              <span className="font-medium text-lg">Generic Name : </span>
+              <span className="font-medium text-lg"></span>
               {genericName}
             </p>
             <p>
-              <span className="font-medium text-lg">Supplier Name : </span>
+              <span className="font-medium text-lg"> </span>
               {supplierName}
             </p>
             <div className="flex items-center self-start gap-4 mt-3 ">
               {" "}
-              <span className="py-4 text-3xl font-medium">BDT - {price}</span>
+              <span className="py-4 text-xl font-medium">৳ {price} /=</span>
             </div>
             {addToCart ? (
               <div>
@@ -133,7 +133,7 @@ const ProductDetails = () => {
                   </span>
                   <aside>
                     <input
-                      className="lg:px-8 py-2 text-center lg:text-xl font-semibold border-none outline-primary bg-primary text-white"
+                      className="lg:px-8 py-2    w-52 text-center lg:text-xl font-semibold border-none outline-primary bg-primary text-white"
                       type="text"
                       value={order?.quantity}
                     />

@@ -54,7 +54,7 @@ const Checkout = () => {
     };
 
     await PostHooks(
-      " http://localhost:5000/api/v1/order/postOrder",
+      " http://localhost:5000/api/v1/order/addOrder",
       { customerDetails, order, customerId, subTotal },
       "order successfully submitted"
     );
