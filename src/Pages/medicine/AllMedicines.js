@@ -6,6 +6,7 @@ import Pagination from "../../shared/Pagination/Pagination";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import DeleteHook from "../../Hooks/DeleteHook";
+import Loading from "../../shared/Loading";
 
 const AllMedicines = () => {
   const [products, setProducts] = useState([]);
@@ -14,7 +15,11 @@ const AllMedicines = () => {
   const [page, setPage] = useState(0);
   const [size, setSize] = useState(50);
   const [refresh, setRefresh] = useState(false);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
+    setLoading(true);
+
     const url = ` http://localhost:5000/api/v1/medicine?size=${size}&page=${page}`;
     fetch(url)
       .then((res) => res.json())
@@ -22,7 +27,9 @@ const AllMedicines = () => {
         console.log(data);
         setProducts(data?.data);
         setQuantity(data?.total);
-      });
+      })
+      .finally(() => setLoading(false));
+
   }, [size, page, refresh]);
 
   const handelDelete = (id) => {
@@ -47,11 +54,14 @@ const AllMedicines = () => {
       }
     });
   };
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <section className="py-10 md:py-14">
       <div className="container px-6 md:max-w-6xl w-full ">
         {/* search bar */}
-        <form className="flex items-center justify-end text-right gap-3 mb-6">
+        <form className="flex items-center text-right gap-3 mb-6 w-full">
           <label for="simple-search" className="text-sm text-textColor">
             Search
           </label>
@@ -63,7 +73,7 @@ const AllMedicines = () => {
             </div>
             <input
               type="text"
-              className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 px-2.5 py-3 border-none"
+              className="bg-[#F0FDF4] w-full text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  pl-10 px-2.5 py-3 border-none"
               placeholder="Search"
               required
             />
