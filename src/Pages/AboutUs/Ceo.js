@@ -13,8 +13,8 @@ const Ceo = () => {
             <img class="h-auto lg:max-w-xs rounded-lg" src={img1} alt=""></img>
             <div>
               {" "}
-              <h1>Abu Hanif</h1>
-              <p className=" text-xs"> Founder And Managing Director</p>
+              <h1>Mahadi Hasan</h1>
+              <p className=" text-xs">  Chairman & CEO</p>
             </div>
           </div>
           <p className="text-textColor text-[14px] pt-6">

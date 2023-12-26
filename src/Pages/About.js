@@ -59,7 +59,7 @@ const About = () => {
                     <span className="text-white text-xl">
                       <RxCaretRight />
                     </span>
-                    <span>CEO</span>
+                    <span> Chairman & CEO </span>
                   </NavLink>
                 </li>
 
