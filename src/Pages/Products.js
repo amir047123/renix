@@ -41,7 +41,7 @@ const Products = () => {
     - @tailwindcss/forms
 */}
 
-<header className="bg-gray-50 mb-5 shadow-md p-5">
+<header className="bg-gray-50 mb-5 ">
   
     <div className="sm:flex sm:items-center sm:justify-between ">
       <div className="text-center sm:text-left">

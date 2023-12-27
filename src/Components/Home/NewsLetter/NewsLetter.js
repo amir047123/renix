@@ -27,8 +27,8 @@ const NewsLetter = () => {
   };
 
   return (
-    <div className='bg-secondary mx-auto w-full text-center pb-24 mb-24 '>
-      <div className='pt-24'>
+    <div className='bg-secondary mx-auto w-full text-center pb-10 pt-10 '>
+      <div className=''>
         <h1 className='text-white text-3xl'>Subscribe To our NewsLetter</h1>
         <div className='w-full mx-auto  '>
           <form

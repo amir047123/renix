@@ -24,19 +24,22 @@ const NewsAndMedia = () => {
 
   return (
     <div className=" w-full lg:w-[90%] mx-auto py-10 text-center">
-      {/* <h3 className='bg-thirdLightPrimary w-36 mx-auto font '>F e a t u r e</h3> */}
-      <h1 className="text-secondary font-semibold text-3xl mt-3">
-        News And Media
+    <h1 className="text-secondary font-semibold text-3xl mt-3">
+      News and Media
       </h1>
+      <p className="mt-3 text-textColor">
+        Comprehensive and Personalized Care for Your Well-being{" "}
+      </p>
       <div className=" flex  flex-wrap  items-center pt-14">
         {newsandMediaInfo.map((info) => (
           <div className="w-full md:w-6/12 lg:w-4/12" key={info.id}>
-            <div className=" m-2">
+            <div className="aspect-w-16 aspect-h-9  px-3 py-3">
               <iframe
+                        
+
                 src={info.videoUrl}
-                width="350"
-                height="300"
-                className="border-none overflow-hidden "
+           
+                className="border-none overflow-hidden  w-full h-full  lg:h-[225px] lg:w-[400px]"
                 scrolling="no"
                 frameborder="0"
                 allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
