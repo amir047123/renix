@@ -14,7 +14,6 @@ const FeatureProducts = () => {
         setProducts(data?.data);
       });
   }, []);
-  console.log(products);
   return (
     <div className="lg:w-[90%] w-full mx-auto my-10 ">
       <h3 className="bg-thirdLightPrimary w-36 mx-auto font ">F e a t u r e</h3>
@@ -65,7 +64,7 @@ const FeatureProducts = () => {
       </div> */}
 
 
-      <div className=" shadow-md p-5  grid lg:grid-cols-4 md:grid-cols-2  w-full  ">
+      <div className="   grid lg:grid-cols-4 md:grid-cols-2  w-full  ">
         {products?.map((item) => (
          
           <Card key={item?._id} item={item}></Card>
@@ -74,7 +73,7 @@ const FeatureProducts = () => {
         
        </div>
 
-       <div className="mt-5 flex justify-center shadow-md p-5">
+       <div className="mt-5 flex justify-center ">
         <Link
           to="/products"
           className="border-2   border-primary p-3 rounded-md text-primary text-md hover:text-white hover:bg-primary"

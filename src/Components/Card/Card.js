@@ -24,7 +24,7 @@ const Card = ({ item }) => {
                     {item?.strength}
                   </p>
 
-                  <p className="text-left text-blue-gray-500">
+                  <p className="text-left text-xs text-blue-gray-500 mb-2">
                     {item?.supplierName}
                   </p>
 

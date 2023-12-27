@@ -9,6 +9,7 @@ import BestDoctors from "../Components/Home/BestDoctors/BestDoctors";
 import Contact from "../Components/Home/Contact/Contact";
 import HomeSlider from "../Components/Home/HomeSlider/HomeSlider/HomeSlider";
 import NewsAndMedia from "../Components/Home/newAndMedia/NewsAndMedia";
+import ShowCase from "../Components/Home/ProductShowcase/ShowCase";
 
 const Home = () => {
   return (
@@ -21,8 +22,9 @@ const Home = () => {
       <NewsLetter />
       <NewArrivals />
       <BestDoctors />
-      <Contact />
-      <NewsAndMedia />
+      {/* <Contact /> */}
+      <ShowCase/>
+      <NewsAndMedia/>
       <LocationMap />
     </div>
   );

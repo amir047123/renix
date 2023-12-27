@@ -36,7 +36,7 @@ const TopBar = () => {
             <div className='flex items-center gap-2 '>
                 <div className="w-7 h-7 rounded-full bg-primary hover:bg-lightOrange text-white  hover:bg-lightPrimary flex items-center justify-center">
 
-                    <Link to={'https://www.facebook.com/Renixlaboratoriesltd1/'} className='text-[12px] '><FaFacebookF /></Link>
+                    <Link to={'http://www.facebook.com/renixlaboratoriesltd'} className='text-[12px] '><FaFacebookF /></Link>
                 </div>
                 {/* <div className="w-7 h-7 rounded-full bg-primary hover:bg-lightOrange text-white  hover:bg-lightPrimary flex items-center justify-center">
 
@@ -44,7 +44,7 @@ const TopBar = () => {
                 </div> */}
                 <div className="w-7 h-7 rounded-full bg-primary hover:bg-lightOrange text-white  hover:bg-lightPrimary flex items-center justify-center">
 
-                    <Link to={'https://www.facebook.com/Renixlaboratoriesltd1/'} className='text-[12px] '><FaTwitter /></Link>
+                    <Link to={'http://www.linkedin.com/company/renix-unani-laboratories-limited/'} className='text-[12px] '><FaLinkedinIn /></Link>
                 </div>
 
                 <div className="w-7 h-7 rounded-full bg-primary hover:bg-lightOrange text-white  hover:bg-lightPrimary flex items-center justify-center">
