@@ -9,7 +9,7 @@ import { useEffect } from "react";
 const NewArrivals = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    const url = `http://localhost:5000/api/v1/medicine?size=${6}&page=${0}`;
+    const url = ` http://localhost:5000/api/v1/medicine?size=${6}&page=${0}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -21,7 +21,7 @@ const NewArrivals = () => {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 4,
 
     slidesToScroll: 1,
     autoplay: true,
@@ -57,7 +57,7 @@ const NewArrivals = () => {
   };
 
   return (
-    <div className=" w-[80%]  mx-auto py-14 ">
+    <div className=" mx-auto py-14 ">
       <div className="lg:w-[90%] w-full  mx-auto my-10 text-center">
         <h3 className="bg-thirdLightPrimary w-36 mx-auto font ">
           F e a t u r e
@@ -67,7 +67,7 @@ const NewArrivals = () => {
         </h1>
         <Slider {...settings}>
           {products?.map((product) => (
-            <div className="w-[90%] sm:w-6/12 md:w-4/12 " key={product._id}>
+            <div className="w-[90%] sm:w-6/12 md:w-4/12  " key={product._id}>
               <div className="m-4 w-50 rounded-xl border-2 border-whiteSmoke ">
                 <h2 className="bg-primary w-10 text-left text-xs pl-1 pt-1 pb-1  text-white mt-3">
                   Sale!
@@ -78,22 +78,24 @@ const NewArrivals = () => {
                   className="w-[200px] mx-auto  h-auto mt-7"
                 />
                 <div className="pl-4 pb-2">
-                  <h1 className="text-secondary text-left  text-lg mt-2">
-                    {product.productName}
+                  <h1 className="text-secondary text-left   text-lg mt-2">
+                    {product.name}
                   </h1>
-                  <div className="flex  pb-2  items-center text-left  ">
-                    <span className="text-lg mt-2 mr-2">
-                      <TbCurrencyTaka></TbCurrencyTaka>
-                    </span>
-                    <p className=" text-primary text-lg mt-2">
-                      {" "}
-                      {product.price}
-                    </p>
-                  </div>
+                  <p className="text-left text-blue-gray-500">
+                    {product?.strength}
+                  </p>
+
+                  <p className="text-left text-blue-gray-500">
+                    {product?.supplierName}
+                  </p>
+
                   <Link to={`/products/${product?._id}`}>
-                    <button className=" bg-primary px-2 pt-1 pb-1 rounded-lg text-left flex bottom-0 left-0">
-                      Order Now
-                    </button>
+                    <div class="flex items-center justify-between pr-5">
+                      <span class="font-bold text-lg">৳ {product.price}</span>
+                      <button class="bg-primary  text-white font-bold py-2 px-4 rounded">
+                        Buy Now
+                      </button>
+                    </div>
                   </Link>
                 </div>
               </div>

@@ -4,10 +4,9 @@ import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import MyContext from "../../Utils/Context/MyContext";
 import PostHooks from "../../Hooks/PostHooks";
 import AuthUser from "../../Hooks/authUser";
-
+import Location from "../../Components/Bangladesh Location/location.json";
 const Checkout = () => {
   const { userInfo } = AuthUser();
-  let location = useLocation();
 
   const { refresh, setRefresh } = useContext(MyContext);
   const [order, setOrder] = useState(null);
@@ -23,39 +22,39 @@ const Checkout = () => {
     }, 0);
     setSubTotal(totalPrice);
   }, [refresh]);
-  useEffect(() => {
-    if (!userInfo?.role) {
-      return <Navigate to="/login" state={{ from: location }} replace />;
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!userInfo?.role) {
+  //     navigate("/login");
+  //   }
+  // }, []);
   const handlePlaceOrder = async (e) => {
     e.preventDefault();
     const firstName = e.target.firstName.value;
     const lastName = e.target.lastName.value;
     const district = e.target.district.value;
-    const city = e.target.city.value;
-    const state = e.target.state.value;
-    const zipCode = e.target.zipCode.value;
+    const division = e.target.division.value;
+    const upazila = e.target.upazila.value;
+
+ 
     const phone = e.target.phone.value;
-    const email = e.target.email.value;
     const note = e.target.note.value;
     const address = e.target.address.value;
 
     const customerDetails = {
       firstName,
       lastName,
+      division,
       district,
-      city,
-      state,
-      zipCode,
+      upazila,
+
       phone,
-      email,
+
       address,
       note,
     };
 
     await PostHooks(
-      "http://localhost:5000/api/v1/order/postOrder",
+      " http://localhost:5000/api/v1/order/addOrder",
       { customerDetails, order, customerId, subTotal },
       "order successfully submitted"
     );
@@ -73,7 +72,7 @@ const Checkout = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             <div>
               <h1 className="text-xl font-medium">Billing Details</h1>
-              <div className="lg:flex  lg:justify-between lg:items-center my-4">
+              <div className="lg:flex gap-2  lg:justify-between lg:items-center my-4">
                 <div>
                   <label className="text-sm  font-medium">
                     First name <span className="text-primary">*</span>
@@ -100,48 +99,49 @@ const Checkout = () => {
               <div>
                 <div className="my-4">
                   <label className="text-sm  font-medium">
+                    Division<span className="text-primary"> *</span>
+                  </label>
+                  <select
+                    name="division"
+                    required
+                    className="border text-xs border-gray bg-white box-border px-4 leading-6 py-2 outline-0 w-full"
+                  >
+                    {Location.divisions.map((division, index) => (
+                      <option key={index}>{division.bn_name}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="my-4">
+                  <label className="text-sm  font-medium">
                     District<span className="text-primary"> *</span>
                   </label>
                   <select
                     name="district"
                     required
-                    className="border text-xs border-gray box-border px-4 leading-6 py-2 outline-0 w-full"
+                    className="border text-xs border-gray bg-white box-border px-4 leading-6 py-2 outline-0 w-full"
                   >
-                    <option>Rajshai</option>
-                    <option>Dinajpur</option>
-                    <option>Rangpur</option>
-                    <option>Khulna</option>
-                    <option>Sylet</option>
-                    <option>Chittagong</option>
-                    <option>Brishal</option>
-                    <option>dhaka</option>
+                    {Location.districts.map((district, index) => (
+                      <option key={index}>{district.bn_name}</option>
+                    ))}
                   </select>
                 </div>
 
                 <div className="my-4">
-                  <label className="text-sm font-medium">
-                    Town / City <span className="text-primary"> *</span>
+                  <label className="text-sm  font-medium">
+                    Upazila<span className="text-primary"> *</span>
                   </label>
-                  <input
-                    type="text"
-                    name="city"
+                  <select
+                    name="upazila"
                     required
-                    className="border border-gray box-border px-4 leading-6 py-2 outline-0 w-full"
-                  />
+                    className="border text-xs border-gray bg-white box-border px-4 leading-6 py-2 outline-0 w-full"
+                  >
+                    {Location.upazilas.map((upazilas, index) => (
+                      <option key={index}>{upazilas.bn_name}</option>
+                    ))}
+                  </select>
                 </div>
 
-                <div className="my-4">
-                  <label className="text-sm font-medium">
-                    State<span> *</span>
-                  </label>
-                  <input
-                    type="text"
-                    name="state"
-                    required
-                    id=""
-                    className="border border-gray box-border px-4 leading-6 py-2 outline-0 w-full"
-                  />
-                </div>
                 <div className="my-4">
                   <label className="text-sm font-medium">
                     Address<span> *</span>
@@ -154,17 +154,7 @@ const Checkout = () => {
                     className="border border-gray box-border px-4 leading-6 py-2 outline-0 w-full"
                   />
                 </div>
-                <div className="my-4">
-                  <label className="text-sm font-medium">
-                    ZIP Code<span className="text-primary"> *</span>
-                  </label>
-                  <input
-                    type="text"
-                    name="zipCode"
-                    required
-                    className="border border-gray box-border px-4 leading-6 py-2 outline-0 w-full"
-                  />
-                </div>
+
                 <div className="my-4">
                   <label className="text-sm font-medium">
                     Phone <span className="text-primary">*</span>
@@ -176,17 +166,7 @@ const Checkout = () => {
                     className="border border-gray box-border px-4 leading-6 py-2 outline-0 w-full"
                   />
                 </div>
-                <div className="my-4">
-                  <label className="text-sm font-medium">
-                    Email address <span className="text-primary">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    name="email"
-                    required
-                    className="border border-gray box-border px-4 leading-6 py-2 outline-0 w-full"
-                  />
-                </div>
+
                 <h1 className="text-2xl font-semibold">
                   Additional information
                 </h1>
@@ -233,7 +213,7 @@ const Checkout = () => {
                           {item?.quantity}
                         </td>
                         <td class="px-6 py-4 border border-gray">
-                          {item?.price * item?.quantity}
+                          {item?.price * item?.quantity} BDT
                         </td>
                       </tr>
                     ))}
@@ -241,7 +221,9 @@ const Checkout = () => {
                       <td class="px-6 py-4 border border-gray"></td>
                       <td class="px-6 py-4 border border-gray"></td>
                       <td class="px-6 py-4 border border-gray">Subtotal</td>
-                      <td class="px-6 py-4 border border-gray">{subTotal}</td>
+                      <td class="px-6 py-4 border border-gray">
+                        {subTotal} BDT
+                      </td>
                     </tr>
                   </tbody>
                 </table>

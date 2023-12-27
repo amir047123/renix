@@ -33,7 +33,7 @@ const HomeSlider = () => {
         <SwiperSlide>
           <SlideComponentOne></SlideComponentOne>
         </SwiperSlide>
-        <SwiperSlide>
+        {/* <SwiperSlide>
           <SlideComponentTwo></SlideComponentTwo>
         </SwiperSlide>
         <SwiperSlide>
@@ -41,7 +41,7 @@ const HomeSlider = () => {
         </SwiperSlide>
         <SwiperSlide>
           <SlideComponentFour></SlideComponentFour>
-        </SwiperSlide>
+        </SwiperSlide> */}
       </Swiper>
     </div>
   );

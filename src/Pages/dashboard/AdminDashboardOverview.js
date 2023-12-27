@@ -6,14 +6,18 @@ import img3 from "../../Assets/dasboard-icon/complete-order.png";
 import img4 from "../../Assets/dasboard-icon/total-selling.png";
 import { useState } from "react";
 import { useEffect } from "react";
+import Loading from "../../shared/Loading";
 
 const AdminDashboardOverview = () => {
   const [order, setOrder] = useState([]);
+  const [loading ,setLoading] = useState()
   useEffect(() => {
-    fetch(`http://localhost:5000/api/v1/order/`)
+    setLoading(true)
+    fetch(` http://localhost:5000/api/v1/order/`)
       .then((res) => res.json())
       .then((data) => {
         setOrder(data?.data);
+        setLoading(false)
       });
   }, []);
   const pending = order.filter((item) => item.orderStatus === "pending");
@@ -22,6 +26,10 @@ const AdminDashboardOverview = () => {
     return acc + confirm.subTotal;
   }, 0);
   console.log(order);
+
+  if(loading){
+   return <Loading/>
+  }
   return (
     <section className="py-8">
       <div className="container w-full md:max-w-6xl px-8">

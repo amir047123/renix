@@ -8,7 +8,9 @@ const MyOrders = () => {
   const [order, setOrder] = useState([]);
   const { userInfo } = AuthUser();
   useEffect(() => {
-    fetch(`http://localhost:5000/api/v1/order/getOrder/${userInfo?._id}`)
+    fetch(
+      ` http://localhost:5000/api/v1/order/getOrder/${userInfo?._id}`
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

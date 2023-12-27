@@ -1,12 +1,13 @@
-import React from 'react';
-import News from '../Pages/News/News';
+import React from "react";
+import News from "../Pages/News/News";
+import AllNews from "./News/AllNews";
 
 const NewsMedia = () => {
-    return (
-        <div>
-        <News></News>
-        </div>
-    );
+  return (
+    <div>
+      <AllNews></AllNews>
+    </div>
+  );
 };
 
 export default NewsMedia;

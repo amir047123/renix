@@ -2,10 +2,11 @@ import "./FeatureProducts.css";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { TbCurrencyTaka } from "react-icons/tb";
+import Card from "../../Card/Card";
 const FeatureProducts = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    const url = `http://localhost:5000/api/v1/medicine?size=${6}&page=${0}`;
+    const url = ` http://localhost:5000/api/v1/medicine?size=${8}&page=${0}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -15,12 +16,12 @@ const FeatureProducts = () => {
   }, []);
   console.log(products);
   return (
-    <div className="lg:w-[90%] w-full mx-auto my-10 text-center ">
+    <div className="lg:w-[90%] w-full mx-auto my-10 ">
       <h3 className="bg-thirdLightPrimary w-36 mx-auto font ">F e a t u r e</h3>
-      <h1 className="text-secondary font-semibold text-3xl mt-3">
+      <h1 className="text-secondary text-center font-semibold text-3xl mt-3">
         Feature Products
       </h1>
-      <div className=" flex gap-6 flex-wrap mx-auto justify-center  mt-24">
+      {/* <div className=" flex gap-6  mx-auto justify-center  mt-24">
         {products?.map((product) => (
           <Link
             to={`/products/${product?._id}`}
@@ -61,15 +62,27 @@ const FeatureProducts = () => {
             </div>
           </Link>
         ))}
-      </div>
-      <div className="mt-10">
+      </div> */}
+
+
+      <div className=" shadow-md p-5  grid lg:grid-cols-4 md:grid-cols-2  w-full  ">
+        {products?.map((item) => (
+         
+          <Card key={item?._id} item={item}></Card>
+        ))}
+
+        
+       </div>
+
+       <div className="mt-5 flex justify-center shadow-md p-5">
         <Link
           to="/products"
-          className="border-2  border-primary p-3 rounded-md text-primary text-md hover:text-white hover:bg-primary"
+          className="border-2   border-primary p-3 rounded-md text-primary text-md hover:text-white hover:bg-primary"
         >
           View all
         </Link>
       </div>
+    
     </div>
   );
 };

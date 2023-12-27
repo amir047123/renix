@@ -14,7 +14,7 @@ const AllBlogs = () => {
   const [size, setSize] = useState(6);
   const [refresh, setRefresh] = useState(false);
   useEffect(() => {
-    const url = `http://localhost:5000/api/v1/blogs?size=${size}&page=${page}`;
+    const url = ` http://localhost:5000/api/v1/blogs?size=${size}&page=${page}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -35,9 +35,12 @@ const AllBlogs = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/api/v1/blogs/deleteBlog/${id}`, {
-          method: "DELETE",
-        }).then((res) => {
+        fetch(
+          ` http://localhost:5000/api/v1/blogs/deleteBlog/${id}`,
+          {
+            method: "DELETE",
+          }
+        ).then((res) => {
           if (res.status === 200) {
             setRefresh(!refresh);
             Swal.fire("Deleted!", "Your file has been deleted.", "success");
@@ -121,9 +124,7 @@ const AllBlogs = () => {
 
                   <td className="px-6 py-4">
                     <span className="flex items-center gap-3">
-                      <button className="text-lg text-[#0077FF] bg-[#BBDDFF] w-7  h-7 rounded-lg flex items-center justify-center">
-                        <TbEdit />
-                      </button>
+                     
                       <button
                         onClick={() => handelDelete(blog?._id)}
                         className="text-lg text-[#F87171] bg-[#FEE2E2] w-7  h-7 rounded-lg flex items-center justify-center"

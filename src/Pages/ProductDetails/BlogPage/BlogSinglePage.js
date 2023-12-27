@@ -7,7 +7,7 @@ const BlogSinglePage = () => {
   const { id } = useParams();
   const [_id, setId] = useState(id);
   useEffect(() => {
-    fetch(`http://localhost:5000/api/v1/blogs/blogDetails/${_id}`)
+    fetch(` http://localhost:5000/api/v1/blogs/blogDetails/${_id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -16,7 +16,7 @@ const BlogSinglePage = () => {
   }, [_id]);
 
   useEffect(() => {
-    const url = `http://localhost:5000/api/v1/blogs`;
+    const url = ` http://localhost:5000/api/v1/blogs`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -24,7 +24,7 @@ const BlogSinglePage = () => {
         setRecent(data?.data.slice(0, 4));
       });
   }, []);
-  const des = blog?.description?.replace(/<\/?p>/g, "").slice(0, 250);
+  const des = blog?.description?.replace(/<\/?p>/g, "");
 
   return (
     <div>
@@ -41,7 +41,7 @@ const BlogSinglePage = () => {
           </p>
           <p
             dangerouslySetInnerHTML={{ __html: des }}
-            className="text-gray-600 mb-4 sm:text-justify"
+            className="text-gray-600 mb-4 text-justify"
           ></p>
         </div>
         <div className="sm:w-full lgl:p-4 lgl:w-[500px]  sm:p-3  ">

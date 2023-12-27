@@ -82,12 +82,12 @@ const AdminDashboard = () => {
     };
     //return wrapper.current;
   }, [issideNavOpen]);
-  if (userInfo?.role === "admin") {
-  } else {
-    navigate("/");
-    logout();
-    return <Home />;
-  }
+  // if (userInfo?.role === "admin") {
+  // } else {
+  //   navigate("/");
+  //   logout();
+  //   return <Home />;
+  // }
 
   //active style for sidenav
 
@@ -360,6 +360,19 @@ const AdminDashboard = () => {
 
                       <span>Subcribed Emails</span>
                     </NavLink>
+                  </li>
+
+                  <li>
+                    <Link
+                      to={"admin-contact"}
+                      className="flex items-center px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"
+                    >
+                      <span className="text-lg">
+                        <IoMdNotificationsOutline></IoMdNotificationsOutline>
+                      </span>
+
+                      <span className="ml-3"> Contact</span>
+                    </Link>
                   </li>
                   <li
                     onClick={logout}
@@ -794,6 +807,19 @@ const AdminDashboard = () => {
                           </span>
 
                           <span className="ml-3">Subcribed Emails</span>
+                        </Link>
+                      </li>
+
+                      <li>
+                        <Link
+                          to=""
+                          className="flex items-center px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"
+                        >
+                          <span className="text-lg">
+                            <MdOutlineMailOutline />
+                          </span>
+
+                          <span className="ml-3"> Contact</span>
                         </Link>
                       </li>
                       <li

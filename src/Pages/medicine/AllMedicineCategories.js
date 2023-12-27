@@ -4,16 +4,21 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import Swal from "sweetalert2";
 import { useEffect } from "react";
 import { useState } from "react";
+import Loading from "../../shared/Loading";
 const AllMedicineCategories = () => {
+  const [loading,setLoading]=useState()
+
   const [refresh, setRefresh] = useState(false);
   const [category, setCategory] = useState([]);
   useEffect(() => {
-    const url = `http://localhost:5000/api/v1/category`;
+    setLoading(true)
+    const url = ` http://localhost:5000/api/v1/category`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         setCategory(data?.data);
+        setLoading(false)
       });
   }, [refresh]);
 
@@ -28,9 +33,12 @@ const AllMedicineCategories = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/api/v1/category/deleteCategory/${id}`, {
-          method: "DELETE",
-        }).then((res) => {
+        fetch(
+          ` http://localhost:5000/api/v1/category/deleteCategory/${id}`,
+          {
+            method: "DELETE",
+          }
+        ).then((res) => {
           if (res.status === 200) {
             setRefresh(!refresh);
             Swal.fire("Deleted!", "Your file has been deleted.", "success");
@@ -39,6 +47,10 @@ const AllMedicineCategories = () => {
       }
     });
   };
+
+  if (loading){
+    return <Loading/>
+  }
   return (
     <section className="py-10 md:py-14">
       <div className="container px-6 md:max-w-6xl w-full ">
@@ -85,9 +97,9 @@ const AllMedicineCategories = () => {
 
                   <td className="px-6 py-4">
                     <span className="flex items-center gap-3">
-                      <button className="text-lg text-[#0077FF] bg-[#BBDDFF] w-7  h-7 rounded-lg flex items-center justify-center">
+                      {/* <button className="text-lg text-[#0077FF] bg-[#BBDDFF] w-7  h-7 rounded-lg flex items-center justify-center">
                         <TbEdit />
-                      </button>
+                      </button> */}
                       <button
                         onClick={() => handelDelete(cat?._id)}
                         className="text-lg text-[#F87171] bg-[#FEE2E2] w-7  h-7 rounded-lg flex items-center justify-center"

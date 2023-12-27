@@ -1,130 +1,160 @@
-import React from 'react'
-import { RiDeleteBin6Line } from 'react-icons/ri'
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { Icon } from "@iconify/react";
+import { Link } from "react-router-dom";
+import DeleteHook from "../../Hooks/DeleteHook";
+import Loading from "../../shared/Loading";
 
-const AllEmails = () => {
-    return (
-        <section className="py-10 md:py-14">
-            <div className="container px-6 md:max-w-6xl w-full ">
-                {/* search bar */}
-                {/* 
-                <form className="flex items-center justify-end text-right gap-3 mb-6">
-                    <label for="simple-search" className="text-sm text-textColor">Search</label>
-                    <div className="relative ">
-                        <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                            <span className="text-xl text-textColor">
-                                <CiSearch />
-                            </span>
-                        </div>
-                        <input type="text" className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 px-2.5 py-3 border-none" placeholder="Search" required />
-                    </div>
+function AllEmails() {
+  const [collectEmails, setcollectEmails] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [refetch, setRefetch] = useState(false);
+  const [searchTerm, setSearchTerm] = useState(""); // State for search term
+  const [filtecollectEmails, setFiltecollectEmails] = useState([]); // State for filtered collectEmails
 
-                </form> */}
+  useEffect(() => {
+    async function fetchcollectEmails() {
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/api/v1/collectEmail/getCollectEmails"
+        );
+        setcollectEmails(response?.data?.data);
+        setFiltecollectEmails(response?.data?.data);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    }
 
+    fetchcollectEmails();
+  }, [refetch]);
 
-                {/* medicine list table */}
-                <div className="relative overflow-x-auto">
-                    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border border-[#D0D2DA]  table_head rounded-lg">
+  useEffect(() => {
+    // Handle initial load and clear input case
+    if (!searchTerm) {
+      setFiltecollectEmails(collectEmails);
+    } else {
+      handleSearch();
+    }
+  }, [searchTerm, collectEmails]);
 
-                            <tr className='py-4 rounded-lg'>
-                                <th scope="col" className="px-6 py-3  text-[13px] font-medium capitalize">
-                                    Seriol No
-                                </th>
+  const handleSearch = () => {
+    setFiltecollectEmails(
+      collectEmails?.filter(
+        (collectEmails) =>
+          
+          collectEmails?.email
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase())
+      )
+    );
+  };
 
-                                <th scope="col" className="px-6 py-3  text-[13px] font-medium capitalize">
-                                    Email
-                                </th>
+  if (loading) {
+    return <Loading />;
+  }
 
-                                <th scope="col" className="px-6 py-3  text-[13px] font-medium capitalize">
-                                    Action
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr className="bg-white border-b border-[#D0D2DA]">
-                                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    01
-                                </th>
-                                <td className="px-6 py-4">
-                                    Jakia254@gmail.com
-                                </td>
+  if (error) return <div>Error: {error}</div>;
 
-                                <td className="px-6 py-4">
-                                    <span className="flex items-center gap-3">
+  return (
+    <div className=" m-5">
+      <div class=" ">
+        <h1 class="text-4xl font-bold text-gray-900 leading-tight mb-2 border-b-2 border-gray-500 pb-2">
+          All Email Collection
+        </h1>
+        <p class="text-lg text-gray-800 mb-8">
+          Explore essential Email for health . Act now to secure the latest
+          items
+        </p>
+      </div>
 
+      <div className="flex relative rounded-md w-full mt-3 mb-3">
+        <input
+          type="text"
+          placeholder="Enter Name , Email"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="w-full p-3 rounded-md border border-r-white rounded-r-none border-gray-300 focus:outline-none"
+        />
+        <button
+          onClick={handleSearch}
+          className="inline-flex items-center gap-2 bg-secondary text-white text-lg font-semibold py-3 px-6 rounded-r-md hover:bg-secondary/90"
+        >
+          <span>Search</span>
+          <span className="hidden md:block">
+            <Icon icon="material-symbols:search" />
+          </span>
+        </button>
+      </div>
 
-                                        <button className="text-lg text-[#F87171] bg-[#FEE2E2] w-7  h-7 rounded-lg flex items-center justify-center">
-                                            <RiDeleteBin6Line />
-                                        </button>
+      <div className=" mb-3">
+        <span className=" text-gray-700">
+          {" "}
+          Showing {filtecollectEmails.length} Results
+        </span>
+      </div>
 
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr className="bg-white border-b border-[#D0D2DA]">
-                                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    02
-                                </th>
-                                <td className="px-6 py-4">
-                                    Jakia254@gmail.com
-                                </td>
+      <table
+        className="w-full text-left rounded w-overflow-x-auto "
+        cellspacing="0"
+      >
+        <tbody>
+          <tr className="  bg-secondLightPrimary">
+            <th
+              scope="col"
+              className="h-16 px-6 text-sm font-medium stroke-slate-700 text-slate-700 bg-slate-100"
+            >
+              #
+            </th>
 
-                                <td className="px-6 py-4">
-                                    <span className="flex items-center gap-3">
+            <th
+              scope="col"
+              className="h-16 px-6 text-sm font-medium stroke-slate-700 text-slate-700 bg-slate-100"
+            >
+              Email{" "}
+            </th>
 
-
-                                        <button className="text-lg text-[#F87171] bg-[#FEE2E2] w-7  h-7 rounded-lg flex items-center justify-center">
-                                            <RiDeleteBin6Line />
-                                        </button>
-
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr className="bg-white border-b border-[#D0D2DA]">
-                                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    03
-                                </th>
-                                <td className="px-6 py-4">
-                                    Jakia254@gmail.com
-                                </td>
-
-                                <td className="px-6 py-4">
-                                    <span className="flex items-center gap-3">
-
-
-                                        <button className="text-lg text-[#F87171] bg-[#FEE2E2] w-7  h-7 rounded-lg flex items-center justify-center">
-                                            <RiDeleteBin6Line />
-                                        </button>
-
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr className="bg-white border-b border-[#D0D2DA]">
-                                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    04
-                                </th>
-                                <td className="px-6 py-4">
-                                    Jakia254@gmail.com
-                                </td>
-
-                                <td className="px-6 py-4">
-                                    <span className="flex items-center gap-3">
-
-
-                                        <button className="text-lg text-[#F87171] bg-[#FEE2E2] w-7  h-7 rounded-lg flex items-center justify-center">
-                                            <RiDeleteBin6Line />
-                                        </button>
-
-                                    </span>
-                                </td>
-                            </tr>
-
-                        </tbody>
-                    </table>
+            <th
+              scope="col"
+              className="h-16 px-6 text-sm font-medium stroke-slate-700 text-slate-700 bg-slate-100"
+            >
+              Action
+            </th>
+          </tr>
+          {/* Map through the filtered collectEmails instead of all collectEmails */}
+          {filtecollectEmails.map((collectEmails, index) => (
+            <tr key={collectEmails._id} className="shadow">
+              <td className="h-16 px-6 text-sm transition duration-300 border-slate-200 stroke-slate-500 text-slate-500">
+                {index + 1}
+              </td>
+            
+              <td className="h-16 px-6 text-sm transition duration-300 border-slate-200 stroke-slate-500 text-slate-500">
+                {collectEmails?.email}
+              </td>
+           
+         
+              <td className="h-16 px-6  transition duration-300 border-slate-200  text-secondary text-lg flex gap-2 items-center cursor-pointer">
+                <div
+                  onClick={() => {
+                    DeleteHook({
+                      refetch,
+                      setRefetch,
+                      url: `http://localhost:5000/api/v1/collectEmail/deleteCollectEmail/${collectEmails?._id}`,
+                    });
+                  }}
+                  className="border border-secondary py-2 px-3 rounded-md hover:bg-secondary/10 duration-300"
+                >
+                  <Icon icon="material-symbols:delete-outline" />
                 </div>
-            </div>
-
-        </section>
-    )
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 }
 
-export default AllEmails
+export default AllEmails;

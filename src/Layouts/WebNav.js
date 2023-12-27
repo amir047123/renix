@@ -147,7 +147,7 @@ const WebNav = () => {
                       {/* <MdOutlineArticle /> */}
                     </span>
 
-                    <span className="">News & Media</span>
+                    <span className="">News and Media</span>
                   </div>
                   <span
                     className={`text-2xl text-textColor ${
@@ -157,6 +157,7 @@ const WebNav = () => {
                     <RxCaretDown />
                   </span>
                 </span>
+
                 <ul
                   className={`!space-y-1 mt-2  ${
                     openBlog === true ? "block" : "hidden"
@@ -164,7 +165,8 @@ const WebNav = () => {
                 >
                   <div>
                     <Link
-                      to={"blog/allBlogCategory"}
+                      to="/news"
+                      onClick={handleToggle}
                       className=" text-sm font-normal  text-textColor hover:border-b border-primary"
                     >
                       <span className="ml-3">News</span>
@@ -172,7 +174,8 @@ const WebNav = () => {
                   </div>
                   <div>
                     <Link
-                      to={"blog/allBlogCategory"}
+                      to="/media"
+                      onClick={handleToggle}
                       className=" text-sm font-normal  text-textColor hover:border-b border-primary"
                     >
                       <span className="ml-3">Media</span>
@@ -180,7 +183,8 @@ const WebNav = () => {
                   </div>
                   <div>
                     <Link
-                      to={"blog/allBlogCategory"}
+                      to="/shasthokotha"
+                      onClick={handleToggle}
                       className=" text-sm font-normal  text-textColor hover:border-b border-primary"
                     >
                       <span className="ml-3">Renix Shasthokotha</span>
@@ -188,7 +192,8 @@ const WebNav = () => {
                   </div>
                   <div>
                     <Link
-                      to={"blog/allBlogCategory"}
+                      to="/shosthotarbarta"
+                      onClick={handleToggle}
                       className=" text-sm font-normal  text-textColor hover:border-b border-primary"
                     >
                       <span className="ml-3">Renix Shosthotar Barta</span>
@@ -320,6 +325,7 @@ const WebNav = () => {
                     >
                       <Link
                         to="/news"
+                        onClick={toggleDropdown}
                         className="block px-4 py-2 text-sm text-textColor hover:bg-primary/10"
                         role="menuitem"
                       >
@@ -327,20 +333,23 @@ const WebNav = () => {
                       </Link>
                       <Link
                         to="/media"
+                        onClick={toggleDropdown}
                         className="block px-4 py-2 text-sm text-textColor hover:bg-primary/10"
                         role="menuitem"
                       >
                         Media
                       </Link>
                       <Link
-                        to="/renixShasthokotha"
+                        to="/shasthokotha"
+                        onClick={toggleDropdown}
                         className="block px-4 py-2 text-sm text-textColor hover:bg-primary/10"
                         role="menuitem"
                       >
                         Renix Shasthokotha
                       </Link>
                       <Link
-                        to="/renixShosthotarBarta"
+                        to="/shosthotarbarta"
+                        onClick={toggleDropdown}
                         className="block px-4 py-2 text-sm text-textColor hover:bg-primary/10"
                         role="menuitem"
                       >
