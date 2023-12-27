@@ -5,6 +5,7 @@ import { Markup } from "interweave";
 import { singleImageUpload } from "../../Hooks/ImageUpload";
 import PostHooks from "../../Hooks/PostHooks";
 import { useEffect } from "react";
+import { faL } from "@fortawesome/free-solid-svg-icons";
 
 const AddMedicine = () => {
   const [image, setImage] = useState(null);
@@ -53,10 +54,11 @@ const AddMedicine = () => {
       strength: data.strength,
       securityCode: data.securityCode,
       stock: data.stock,
+      discount:data?.discount,
       medicineType: data.medicineType,
       medicineStatus: data.medicineStatus,
     };
-    console.log(parsed);
+
     // post api call
     await PostHooks(
       "http://localhost:5000/api/v1/medicine/postMedicine",
@@ -182,7 +184,7 @@ const AddMedicine = () => {
               Price
             </label>
             <input
-              type="text"
+              type="number"
               className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-500"
               placeholder="Medicine Price"
               {...register("price", {
@@ -315,6 +317,24 @@ const AddMedicine = () => {
             {errors.stock && (
               <p className="text-red-500 mt-1">{errors.stock.message}</p>
             )}
+          </div>
+          <div className="mb-1">
+            <label
+            
+              class="block mb-2 text-[13px] font-normal text-gray-900 dark:text-white"
+            >
+              {" "}
+              Discount (%)
+            </label>
+            <input
+              type="number"
+              className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-500"
+              placeholder="medicine discount"
+              {...register("discount", {
+                required: false,
+              })}
+            />
+            
           </div>
 
           <div className="md:flex items-center">

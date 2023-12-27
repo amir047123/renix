@@ -1,9 +1,7 @@
 import React, { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import JoditEditor from "jodit-react";
-import { Markup } from "interweave";
 import { singleImageUpload } from "../../Hooks/ImageUpload";
-import PostHooks from "../../Hooks/PostHooks";
 import { useEffect } from "react";
 import UpdateHooks from "../../Hooks/UpdateHooks";
 import { useParams } from "react-router-dom";
@@ -22,7 +20,7 @@ const UpdateMedicine = () => {
     } = useForm();
     const editor = useRef(null);
     const [content, setContent] = useState("");
-  
+  console.log(register)
     useEffect(() => {
       const url = `http://localhost:5000/api/v1/category`;
       fetch(url)
@@ -50,8 +48,10 @@ const UpdateMedicine = () => {
           setValue("medicineType", data?.data?.medicineType || "");
           setValue("medicineStatus", data?.data?.medicineStatus || "");
           setValue("img", data?.data?.img || "");
+          setValue("discount", data?.data?.discount || "");
           setImage(data?.data?.img);
           setContent(data?.data?.description || "");
+          console.log(data?.data)
           
         });
     }, [id, setValue]);
@@ -78,6 +78,7 @@ const UpdateMedicine = () => {
           strength: data.strength,
           securityCode: data.securityCode,
           stock: data.stock,
+          discount:data?.discount,
           medicineType: data.medicineType,
           medicineStatus: data.medicineStatus,
         };
@@ -322,6 +323,24 @@ const UpdateMedicine = () => {
             )}
           </div>
 
+          <div className="mb-1">
+            <label
+              class="block mb-2 text-[13px] font-normal text-gray-900 dark:text-white"
+            >
+              {" "}
+              Discount (%)
+            </label>
+            <input
+              type="number"
+              className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-500"
+              placeholder="medicine discount"
+              {...register("discount", {
+                required: false,
+              })}
+            />
+            
+          </div>
+
           <div className="md:flex items-center">
             {/* medicine type */}
             <div className="mb-1  w-full md:w-[50%] mr-0 md:mr-2">
@@ -384,7 +403,7 @@ const UpdateMedicine = () => {
               className="bg-primary hover:bg-lightPrimary text-white  py-2 rounded-lg text-lg w-fit px-8"
               type="submit"
             >
-              Add Product
+              Update Product
             </button>
           </div>
         </form>
