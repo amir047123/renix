@@ -45,10 +45,10 @@ const CartCard = ({ order }) => {
   };
   const handleCountMinus = () => {};
   return (
-    <div className="border border-white rounded-lg grid grid-cols-12 justify-between items-center md:gap-2 gap-1">
-      <img className="col-span-3 rounded-lg w-full" src={order?.img} alt="" />
-      <div className="md:text-xl text-[10px] font-semibold text-white col-span-3">
-        <h4>{order?.genericName}</h4>
+    <div className="border border-white rounded-lg grid grid-cols-12 justify-between items-center md:gap-2 gap-2 py-1 shadow">
+      <img className="col-span-2 rounded-lg w-16 border border-white m-1 p-1" src={order?.img} alt="" />
+      <div className="md:text-base text-[10px] font-semibold text-white col-span-4">
+        <h4 className="whitespace-nowrap">{order?.genericName}</h4>
         <h4>{order?.price}</h4>
       </div>
       <div className="col-span-3 border border-white p-2 rounded-lg">
@@ -58,18 +58,18 @@ const CartCard = ({ order }) => {
               handleQuantity("odd");
               handleCountMinus();
             }}
-            className="text-4xl font-medium cursor-pointer"
+            className="text-2xl font-medium cursor-pointer"
           >
             -
           </span>
-          <div className="p-2 text-center lg:text-xl font-semibold border-none outline-primary bg-primary text-white">
+          <div className="p-2 text-center lg:text-base font-semibold border-none outline-primary bg-primary text-white">
             {order?.quantity}
           </div>
           <span
             onClick={() => {
               handleQuantity("even");
             }}
-            className="text-4xl font-medium cursor-pointer"
+            className="text-2xl font-medium cursor-pointer"
           >
             +
           </span>

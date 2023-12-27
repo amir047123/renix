@@ -24,7 +24,8 @@ const OrderFLoatingCart = ({ setOpenCart }) => {
     setRefresh(!refresh);
   };
   return (
-    <div className="md:w-1/2 w-10/12 h-full fixed z-50 top-[15vh] shadow-2xl  max-w-[550px] max-h-[400px] overflow-x-hidden tr right-0 bg-secondLightPrimary">
+    <div className="md:w-1/2 w-10/12 h-full fixed z-50 top-[13vh] shadow-2xl  max-w-[550px] max-h-[450px] overflow-x-hidden tr right-0 bg-secondLightPrimary">
+      <div className="h-[300px] overflow-y-scroll">
       <div className="flex text-white justify-between items-center bg-primary p-2 ">
         <div className="flex justify-center items-center gap-2">
           <div className="rounded-full border border-white p-2">
@@ -44,7 +45,10 @@ const OrderFLoatingCart = ({ setOpenCart }) => {
           <CartCard order={item} />
         ))}
       </div>
-      <div className=" w-full mt-10">
+      </div>
+
+
+      <div className=" w-full absolute bottom-0 left-0">
         <hr className="max-w-full " />
         <div className="py-3 px-2">
           <div className="mb-3">
@@ -63,7 +67,7 @@ const OrderFLoatingCart = ({ setOpenCart }) => {
           </div>
           <div className="flex justify-center items-center  ">
             {" "}
-            <Link
+            <Link onClick={()=>setOpenCart(false)}
               to={"/checkout"}
               className="shadow-md w-1/2 py-2 px-4 bg-thirdLightPrimary text-white flex justify-center"
             >

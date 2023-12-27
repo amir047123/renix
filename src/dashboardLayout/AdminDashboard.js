@@ -215,6 +215,21 @@ const AdminDashboard = () => {
                     </ul>
                   </li>
                   <li>
+                    <NavLink
+                      to={"shipping"}
+                      className="flex items-center gap-4 px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"
+                      style={({ isActive }) =>
+                        isActive ? activeStyle : undefined
+                      }
+                    >
+                      <span className="text-lg">
+                        <FiUsers />
+                      </span>
+
+                      <span className="">Shipping</span>
+                    </NavLink>
+                  </li>
+                  <li>
                     <span
                       onClick={handleOrderDropdown}
                       className="flex items-center justify-between cursor-pointer gap-5 px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"

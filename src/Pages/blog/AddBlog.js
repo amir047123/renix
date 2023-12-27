@@ -37,7 +37,6 @@ const AddBlog = () => {
       });
   }, []);
   const handleChangeUploadImage = async (event) => {
-    console.log("anyThing");
     const image = event.target.files[0];
     const formData = new FormData();
     formData.append("image", image);
