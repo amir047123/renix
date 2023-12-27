@@ -1,3 +1,4 @@
+import AdminShipping from "../Components/AdminDashbord/AdminShipping/AdminShipping";
 import ContactRenix from "../Components/AdminDashbord/ContactRenix";
 import AllAccounts from "../Pages/AllAccounts/AllAccounts";
 import AddNewsAndMedia from "../Pages/News and Media/AddNewsAndMedia";
@@ -46,6 +47,8 @@ const AdminRoutes = [
   { path: "admin-contact", Component: ContactRenix },
   { path: "medicine/allMedicines/edit-medicine/:id", Component: UpdateMedicine },
   { path: "view-order/:id", Component: ViewOrder },
+
+  { path: "shipping", Component: AdminShipping },
 
 
 ];

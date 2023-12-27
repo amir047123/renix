@@ -8,8 +8,8 @@ const Card = ({ item }) => {
     <Link  to={`/products/${item?._id}`}>
     <div className="  " >
               <div className="m-4 w-50 rounded-xl border-2 border-whiteSmoke ">
-                <h2 className="bg-primary w-10 text-left text-xs pl-1 pt-1 pb-1  text-white mt-3">
-                  Sale!
+                <h2 className="bg-primary w-14 text-left text-xs pl-1 pt-1 pb-1  text-white mt-3 whitespace-nowrap">
+                  {item?.discount?item?.discount:0}% Off
                 </h2>
                 <img
                   src={item.img}

@@ -18,7 +18,7 @@ const Products = () => {
 
   useEffect(() => {
     
-    const url = `http://renixserver.tripkori.com/api/v1/medicine?size=${size}&page=${page}`;
+    const url = `http://localhost:5000/api/v1/medicine?size=${size}&page=${page}`;
 
     setLoading(true); 
 
