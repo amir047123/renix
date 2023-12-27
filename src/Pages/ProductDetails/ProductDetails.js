@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import img1 from "../../Assets/images/Products/Bottle (1).png";
 import ProductTable from "./ProductTable";
 import ProductInfo from "./ProductInfo";
 import { useParams } from "react-router-dom";

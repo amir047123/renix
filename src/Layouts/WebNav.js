@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../Assets/images/logo.svg";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { AiFillCloseCircle } from "react-icons/ai";
 import "./WebNav.css";
 import TopBar from "./TopBar";
 import AuthUser from "../Hooks/authUser";
@@ -137,15 +136,7 @@ const WebNav = () => {
                   Our Products
                 </Link>
               </li>
-              <li>
-                <Link
-                  onClick={handleToggle}
-                  to="/news-media"
-                  className="text-textColor p-2 uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition"
-                >
-                  News and Media
-                </Link>
-              </li>
+
               <li className={openBlog ? "bg-primary/10" : ""}>
                 <span
                   onClick={handleBlogDropdown}
@@ -156,7 +147,7 @@ const WebNav = () => {
                       {/* <MdOutlineArticle /> */}
                     </span>
 
-                    <span className="">Blog to</span>
+                    <span className="">News & Media</span>
                   </div>
                   <span
                     className={`text-2xl text-textColor ${
@@ -174,17 +165,33 @@ const WebNav = () => {
                   <div>
                     <Link
                       to={"blog/allBlogCategory"}
-                      className=" text-sm font-normal rounded-md text-textColor"
+                      className=" text-sm font-normal  text-textColor hover:border-b border-primary"
                     >
-                      <span className="ml-3">all Blogs Category</span>
+                      <span className="ml-3">News</span>
                     </Link>
                   </div>
                   <div>
                     <Link
                       to={"blog/allBlogCategory"}
-                      className=" text-sm font-normal  rounded-md text-textColor"
+                      className=" text-sm font-normal  text-textColor hover:border-b border-primary"
                     >
-                      <span className="ml-3">all Blogs Category</span>
+                      <span className="ml-3">Media</span>
+                    </Link>
+                  </div>
+                  <div>
+                    <Link
+                      to={"blog/allBlogCategory"}
+                      className=" text-sm font-normal  text-textColor hover:border-b border-primary"
+                    >
+                      <span className="ml-3">Renix Shasthokotha</span>
+                    </Link>
+                  </div>
+                  <div>
+                    <Link
+                      to={"blog/allBlogCategory"}
+                      className=" text-sm font-normal  text-textColor hover:border-b border-primary"
+                    >
+                      <span className="ml-3">Renix Shosthotar Barta</span>
                     </Link>
                   </div>
                 </ul>
@@ -326,18 +333,18 @@ const WebNav = () => {
                         Media
                       </Link>
                       <Link
-                        to="/renixSastoKotha"
+                        to="/renixShasthokotha"
                         className="block px-4 py-2 text-sm text-textColor hover:bg-primary/10"
                         role="menuitem"
                       >
-                        Renix SasthoKotha
+                        Renix Shasthokotha
                       </Link>
                       <Link
-                        to="/renixSastoKothaBartarVarta"
+                        to="/renixShosthotarBarta"
                         className="block px-4 py-2 text-sm text-textColor hover:bg-primary/10"
                         role="menuitem"
                       >
-                        Renix SasthoKothar Varta
+                        Renix Shosthotar Barta
                       </Link>
                     </div>
                   </div>
