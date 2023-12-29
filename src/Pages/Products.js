@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Pagination from "../shared/Pagination/Pagination";
 import Loading from "../shared/Loading";
 import { faL } from "@fortawesome/free-solid-svg-icons";
+import Card from "../Components/Card/Card";
 
 const Products = () => {
   const [displayButton, setDisplayButton] = useState("");
@@ -31,111 +32,43 @@ const Products = () => {
       });
   }, [size, page]);
 
-  // const { description, genericName, img, name, price, supplierName } = products;
   return (
-    <div className="md:px-[103px]">
-      <h1 className=" text-2xl text-center text-primary p-5 font-bold ">
-        Our Product
-      </h1>
+    <div className=" m-5 ">
+    {/*
+  Heads up! 👋
+
+  Plugins:
+    - @tailwindcss/forms
+*/}
+
+<header className="bg-gray-50 mb-5 ">
+  
+    <div className="sm:flex sm:items-center sm:justify-between ">
+      <div className="text-center sm:text-left">
+        <h1 className="text-2xl font-bold text-gray-900 sm:text-2xl uppercase"> Our Unani Product</h1>
+
+        <p className="mt-1.5 text-sm text-gray-500">Let's Explore our Latest product! 🎉</p>
+      </div>
+
+     
+    </div>
+ 
+</header>
 
       {loading ? (
         <Loading />
       ):(
         <>
-          <div>
-        {/* <div className="col-span-1 lg:block hidden">
-          <div className="  border border-blue-gray-300 p-11">
-            <h1 className="text-2xl font-semibold">Products Categories</h1>
-            <div className="mt-8">
-              <div className="flex items-center mt-4 mb-8">
-                <input type="checkbox" className="w-5 h-5 mr-5" />
-                <label>All Medicine</label>
-              </div>
-              <div className="flex items-center mt-4 mb-8">
-                <input type="checkbox" className="w-5 h-5 mr-5" />
-                <label>Organic Medicine</label>
-              </div>
-              <div className="flex items-center mt-4 mb-8">
-                <input type="checkbox" className="w-5 h-5 mr-5" />
-                <label>Inorganic Medicine</label>
-              </div>
-            </div>
-          </div>
-        </div> */}
 
-        <div class="lg:col-span-4 pb-5">
-          <div className=" md:grid md:grid-cols-2 md:gap-5 sm:grid sm:grid-cols-1 sm:gap-5 lg:flex lg:flex-wrap  lg:gap-5 px-10 justify-center ">
-            {/* single medicine card */}
-            {products?.map((product) => (
-              <Link key={product?._id} to={`/products/${product?._id}`}>
-                <div
-                  className="relative w-full"
-                  onMouseEnter={() => setDisplayButton(product?._id)}
-                  onMouseLeave={() => setDisplayButton("")}
-                >
-                  <div
-                    className="w-80  px-8 py-4 shadow-md rounded-lg"
-                    key={product?._id}
-                  >
-                    <div className="w-full  h-64 rounded-xl ">
-                      <div className="flex justify-between items-center ">
-                        {/* <span class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">
-                          Sold out
-                        </span> */}
-                        <span class="bg-green-100 self-end  text-green-800 text-xs font-medium  px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
-                          sale !
-                        </span>
-                      </div>
-                      <img
-                        src={product?.img}
-                        alt=""
-                        className="w-full mx-auto h-52 "
-                      />
-                      <p className="text-lightPrimary my-2 font-medium text-xs float-right">
-                        Stock: {product?.stock}
-                      </p>
-                    </div>
-                    <div>
-                      <h1 className="text-secondary text-sm mt-2">
-                        {product?.name}
-                      </h1>
-                      <h1 className="text-secondary text-sm mt-2">
-                        Generic Name: {product?.genericName}
-                      </h1>
-                      <h1 className="text-secondary text-sm mt-2">
-                        Strength: {product?.strength}
-                      </h1>
-                      <p className="text-lightPrimary text-sm mt-2">
-                        BDT {product?.price}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="w-full">
-                    {displayButton === product?._id && (
-                      <button
-                        className="bg-primary 
-                       opacity-100 w-full
-                        py-2  text-center top-1/2 text-white absolute"
-                      >
-                        Add to cart
-                      </button>
-                    )}
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-          {/* pagination */}
-          <Pagination
-            quantity={quantity}
-            page={page}
-            setPage={setPage}
-            size={size}
-            setSize={setSize}
-          />
+
+          <div className=" shadow-md p-5  grid lg:grid-cols-4 md:grid-cols-2 gap-5 w-full">
+        {products?.map((item) => (
+         
+          <Card key={item?._id} item={item}></Card>
+         
+        ))}
         </div>
-      </div>
-        
+       
         </>
       )}
     

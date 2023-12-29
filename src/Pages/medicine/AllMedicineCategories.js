@@ -4,16 +4,21 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import Swal from "sweetalert2";
 import { useEffect } from "react";
 import { useState } from "react";
+import Loading from "../../shared/Loading";
 const AllMedicineCategories = () => {
+  const [loading,setLoading]=useState()
+
   const [refresh, setRefresh] = useState(false);
   const [category, setCategory] = useState([]);
   useEffect(() => {
+    setLoading(true)
     const url = ` http://localhost:5000/api/v1/category`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         setCategory(data?.data);
+        setLoading(false)
       });
   }, [refresh]);
 
@@ -42,6 +47,10 @@ const AllMedicineCategories = () => {
       }
     });
   };
+
+  if (loading){
+    return <Loading/>
+  }
   return (
     <section className="py-10 md:py-14">
       <div className="container px-6 md:max-w-6xl w-full ">

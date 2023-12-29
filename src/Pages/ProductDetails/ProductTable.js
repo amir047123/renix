@@ -23,7 +23,7 @@ const ProductTable = ({ product }) => {
         </tr>
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
           <td class="px-6 py-4 border border-gray">Price</td>
-          <td class="px-6 py-4 border border-gray">{price} Bdt</td>
+          <td class="px-6 py-4 border border-gray">৳ {price} </td>
         </tr>
       </tbody>
     </table>

@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../Assets/images/logo.svg";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { AiFillCloseCircle } from "react-icons/ai";
 import "./WebNav.css";
 import TopBar from "./TopBar";
 import AuthUser from "../Hooks/authUser";
@@ -346,7 +345,7 @@ const WebNav = () => {
                         className="block px-4 py-2 text-sm text-textColor hover:bg-primary/10"
                         role="menuitem"
                       >
-                        Renix SasthoKotha
+                        Renix Shasthokotha
                       </Link>
                       <Link
                         to="/shosthotarbarta"

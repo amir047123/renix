@@ -1,27 +1,45 @@
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
-import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import MyContext from "../../Utils/Context/MyContext";
 import PostHooks from "../../Hooks/PostHooks";
 import AuthUser from "../../Hooks/authUser";
 import Location from "../../Components/Bangladesh Location/location.json";
 const Checkout = () => {
   const { userInfo } = AuthUser();
-
+  const [division, setDivision] = useState("");
   const { refresh, setRefresh } = useContext(MyContext);
   const [order, setOrder] = useState(null);
   const [subTotal, setSubTotal] = useState(null);
   const navigate = useNavigate();
   const customerId = userInfo?._id;
+  const [shipping, setShipping] = useState([]);
 
+  useEffect(() => {
+    fetch(`http://localhost:5000/api/v1/shipping/getShippings`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data?.data.length) {
+          setShipping(data?.data[0]);
+        }
+      });
+  }, []);
+  const deliveryCharge =
+    division === "ঢাকা" ? shipping?.insideDhaka : shipping?.outsideDhaka;
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem("order"));
     setOrder(items);
     const totalPrice = items?.reduce((acc, cartItem) => {
-      return acc + cartItem.price * cartItem.quantity;
+      return (
+        acc +
+        (cartItem?.price -
+          (cartItem.price * (cartItem?.discount ? cartItem.discount : 0)) /
+            100) *
+          cartItem.quantity
+      );
     }, 0);
-    setSubTotal(totalPrice);
-  }, [refresh]);
+    setSubTotal(totalPrice + deliveryCharge);
+  }, [refresh, deliveryCharge]);
   // useEffect(() => {
   //   if (!userInfo?.role) {
   //     navigate("/login");
@@ -35,7 +53,6 @@ const Checkout = () => {
     const division = e.target.division.value;
     const upazila = e.target.upazila.value;
 
- 
     const phone = e.target.phone.value;
     const note = e.target.note.value;
     const address = e.target.address.value;
@@ -46,23 +63,19 @@ const Checkout = () => {
       division,
       district,
       upazila,
-
       phone,
-
       address,
       note,
     };
 
     await PostHooks(
-      " http://localhost:5000/api/v1/order/postOrder",
+      " http://localhost:5000/api/v1/order/addOrder",
       { customerDetails, order, customerId, subTotal },
       "order successfully submitted"
     );
     localStorage.removeItem("order");
     setRefresh(!refresh);
     navigate("/products");
-
-    console.log(customerDetails, order);
   };
 
   return (
@@ -103,9 +116,13 @@ const Checkout = () => {
                   </label>
                   <select
                     name="division"
+                    onChange={(e) => setDivision(e.target.value)}
                     required
                     className="border text-xs border-gray bg-white box-border px-4 leading-6 py-2 outline-0 w-full"
                   >
+                    <option value="" disabled selected>
+                      Select
+                    </option>
                     {Location.divisions.map((division, index) => (
                       <option key={index}>{division.bn_name}</option>
                     ))}
@@ -121,6 +138,9 @@ const Checkout = () => {
                     required
                     className="border text-xs border-gray bg-white box-border px-4 leading-6 py-2 outline-0 w-full"
                   >
+                    <option value="" disabled selected>
+                      Select
+                    </option>
                     {Location.districts.map((district, index) => (
                       <option key={index}>{district.bn_name}</option>
                     ))}
@@ -136,6 +156,9 @@ const Checkout = () => {
                     required
                     className="border text-xs border-gray bg-white box-border px-4 leading-6 py-2 outline-0 w-full"
                   >
+                    <option value="" disabled selected>
+                      Select
+                    </option>
                     {Location.upazilas.map((upazilas, index) => (
                       <option key={index}>{upazilas.bn_name}</option>
                     ))}
@@ -193,6 +216,7 @@ const Checkout = () => {
                       <td class="px-6 py-4 border border-gray">Product</td>
                       <td class="px-6 py-4 border border-gray">price</td>
                       <td class="px-6 py-4 border border-gray">Quantity</td>
+                      <td class="px-6 py-4 border border-gray">discount</td>
                       <td class="px-6 py-4 border border-gray">Total</td>
                     </tr>
                     {order?.map((item) => (
@@ -213,11 +237,32 @@ const Checkout = () => {
                           {item?.quantity}
                         </td>
                         <td class="px-6 py-4 border border-gray">
-                          {item?.price * item?.quantity} BDT
+                          {" "}
+                          {item?.discount ? item?.discount : 0}%
+                        </td>
+                        <td class="px-6 py-4 border border-gray">
+                          {(item?.price -
+                            (item?.price *
+                              (item?.discount ? item?.discount : 0)) /
+                              100) *
+                            item?.quantity}{" "}
+                          BDT
                         </td>
                       </tr>
                     ))}
                     <tr class="bg-white border-b text-sm font-medium dark:bg-gray-800 dark:border-gray-700">
+                      <td class="px-6 py-4 border border-gray"></td>
+                      <td class="px-6 py-4 border border-gray"></td>
+                      <td class="px-6 py-4 border border-gray"></td>
+                      <td class="px-6 py-4 border border-gray">
+                        delivery Charge
+                      </td>
+                      <td class="px-6 py-4 border border-gray">
+                        {deliveryCharge} BDT
+                      </td>
+                    </tr>
+                    <tr class="bg-white border-b text-sm font-medium dark:bg-gray-800 dark:border-gray-700">
+                      <td class="px-6 py-4 border border-gray"></td>
                       <td class="px-6 py-4 border border-gray"></td>
                       <td class="px-6 py-4 border border-gray"></td>
                       <td class="px-6 py-4 border border-gray">Subtotal</td>
