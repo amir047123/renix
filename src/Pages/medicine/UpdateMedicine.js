@@ -22,7 +22,7 @@ const UpdateMedicine = () => {
     const [content, setContent] = useState("");
   console.log(register)
     useEffect(() => {
-      const url = `http://localhost:5000/api/v1/category`;
+      const url = `https://renixserver.niroghealthplus.com/api/v1/category`;
       fetch(url)
         .then((res) => res.json())
         .then((data) => {
@@ -31,7 +31,7 @@ const UpdateMedicine = () => {
     }, []);
   
     useEffect(() => {
-      const url = `http://localhost:5000/api/v1/medicine/medicineDetails/${id}`;
+      const url = `https://renixserver.niroghealthplus.com/api/v1/medicine/medicineDetails/${id}`;
       fetch(url)
         .then((res) => res.json())
         .then((data) => {
@@ -83,7 +83,7 @@ const UpdateMedicine = () => {
           medicineStatus: data.medicineStatus,
         };
     
-        const updateUrl = `http://localhost:5000/api/v1/medicine/updateMedicine/${id}`;
+        const updateUrl = `https://renixserver.niroghealthplus.com/api/v1/medicine/updateMedicine/${id}`;
     
         await UpdateHooks(updateUrl, medicineData, "Medicine successfully updated");
       };

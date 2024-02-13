@@ -28,6 +28,7 @@ import Shasthokotha from "../Pages/News/Shasthokotha";
 import Shosthotarbarta from "../Pages/News/Shosthotarbarta";
 import News from "../Pages/News/News";
 import Media from "../Pages/News/Media";
+import UnderConstruction from "../Components/Upcoming/UnderConstruction";
 
 const PublicRoutes = [
   { path: "/", Component: Home },
@@ -59,6 +60,7 @@ const PublicRoutes = [
   { path: "/shosthotarbarta", Component: Shosthotarbarta },
   { path: "/news", Component: News },
   { path: "/media", Component: Media },
+  {path:"/upcoming",Component:UnderConstruction}
 ];
 
 export default PublicRoutes;

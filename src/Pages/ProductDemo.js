@@ -255,7 +255,7 @@ const FeatureProducts = () => {
   //     const size = 10; // Provide the desired size value
   //     const page = 1; // Provide the desired page value
 
-  //     const url = ` http://localhost:5000/api/v1/medicine?size=${size}&page=${page}`;
+  //     const url = ` https://renixserver.niroghealthplus.com/api/v1/medicine?size=${size}&page=${page}`;
   //     fetch(url)
   //       .then((res) => res.json())
   //       .then((data) => {
