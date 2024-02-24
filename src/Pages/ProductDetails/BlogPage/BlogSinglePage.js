@@ -10,7 +10,7 @@ const BlogSinglePage = () => {
   const [loading,setLoading]=useState()
   useEffect(() => {
     setLoading(true)
-    fetch(` https://renixserver.niroghealthplus.com/api/v1/blogs/blogDetails/${_id}`)
+    fetch(` http://localhost:5000/api/v1/blogs/blogDetails/${_id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -21,7 +21,7 @@ const BlogSinglePage = () => {
 
   useEffect(() => {
     setLoading(true)
-    const url = ` https://renixserver.niroghealthplus.com/api/v1/blogs`;
+    const url = ` http://localhost:5000/api/v1/blogs`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {

@@ -21,10 +21,10 @@ const ProductTable = ({ product }) => {
           <td class="px-6 py-4 border border-gray">Category</td>
           <td class="px-6 py-4 border border-gray">{medicineCategory}</td>
         </tr>
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+        {/* <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
           <td class="px-6 py-4 border border-gray">Price</td>
           <td class="px-6 py-4 border border-gray">৳ {price} </td>
-        </tr>
+        </tr> */}
       </tbody>
     </table>
   );

@@ -11,7 +11,7 @@ const Appointments = () => {
   const [size, setSize] = useState(6);
 
   useEffect(() => {
-    const url = ` https://renixserver.niroghealthplus.com/api/v1/user/specific?page=${page}&&size=${size}&&fieldName=${"role"}&&fieldValue=${"doctor"}`;
+    const url = ` http://localhost:5000/api/v1/user/specific?page=${page}&&size=${size}&&fieldName=${"role"}&&fieldValue=${"doctor"}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {

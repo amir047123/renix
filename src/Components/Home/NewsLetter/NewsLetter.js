@@ -6,7 +6,7 @@ const NewsLetter = () => {
     const email = event.target.email.value;
     
     try {
-      const response = await fetch('https://renixserver.niroghealthplus.com/api/v1/collectEmail/addCollectEmail', {
+      const response = await fetch('http://localhost:5000/api/v1/collectEmail/addCollectEmail', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -8,7 +8,7 @@ const VerifyEmail = () => {
   console.log("params id", params.id);
   const handleVerify = () => {
     fetch(
-      ` https://renixserver.niroghealthplus.com/api/v1/user/verify?id=${params.id}`,
+      ` http://localhost:5000/api/v1/user/verify?id=${params.id}`,
       {
         method: "PATCH",
         headers: {

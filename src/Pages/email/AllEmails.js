@@ -17,7 +17,7 @@ function AllEmails() {
     async function fetchcollectEmails() {
       try {
         const response = await axios.get(
-          "https://renixserver.niroghealthplus.com/api/v1/collectEmail/getCollectEmails"
+          "http://localhost:5000/api/v1/collectEmail/getCollectEmails"
         );
         setcollectEmails(response?.data?.data);
         setFiltecollectEmails(response?.data?.data);
@@ -141,7 +141,7 @@ function AllEmails() {
                     DeleteHook({
                       refetch,
                       setRefetch,
-                      url: `https://renixserver.niroghealthplus.com/api/v1/collectEmail/deleteCollectEmail/${collectEmails?._id}`,
+                      url: `http://localhost:5000/api/v1/collectEmail/deleteCollectEmail/${collectEmails?._id}`,
                     });
                   }}
                   className="border border-secondary py-2 px-3 rounded-md hover:bg-secondary/10 duration-300"

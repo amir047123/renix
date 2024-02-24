@@ -9,7 +9,7 @@ const ViewOrder = () => {
 
   useEffect(() => {
     setLoading(true);
-    const url = `https://renixserver.niroghealthplus.com/api/v1/order/getOrderById/${id}`;
+    const url = `http://localhost:5000/api/v1/order/getOrderById/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {

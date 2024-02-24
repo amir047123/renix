@@ -20,8 +20,8 @@ const TopBar = () => {
                 <div className="flex gap-3 justify-center">
                     <span className="text-lg text-primary">< BsClockFill /></span>
                     <div className="">
-                        <span className="text-[12px] text-textColor mb-2 block">Sat-Thu 10.00am-5.00pm</span>
-                        <span className="text-[12px] text-textColor block">Fri Closed</span>
+                        <span className="text-[12px] text-textColor mb-2 block">Sat-Fri 10.00am-5.00pm</span>
+                        {/* <span className="text-[12px] text-textColor block">Fri Closed</span> */}
                     </div>
                 </div>
                 <div className="flex gap-3 justify-center">

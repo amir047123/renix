@@ -6,7 +6,7 @@ import Card from "../../Card/Card";
 const FeatureProducts = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    const url = ` https://renixserver.niroghealthplus.com/api/v1/medicine?size=${8}&page=${0}`;
+    const url = ` http://localhost:5000/api/v1/medicine?size=${8}&page=${0}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {

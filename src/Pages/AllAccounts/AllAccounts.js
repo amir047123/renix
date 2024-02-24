@@ -19,7 +19,7 @@ const AllAccounts = () => {
 
   useEffect(() => {
     setLoading(true)
-    const url = ` https://renixserver.niroghealthplus.com/api/v1/user?size=${size}&page=${page}&filter=${input}`;
+    const url = ` http://localhost:5000/api/v1/user?size=${size}&page=${page}&filter=${input}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {

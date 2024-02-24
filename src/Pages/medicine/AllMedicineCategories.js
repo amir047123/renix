@@ -12,7 +12,7 @@ const AllMedicineCategories = () => {
   const [category, setCategory] = useState([]);
   useEffect(() => {
     setLoading(true)
-    const url = ` https://renixserver.niroghealthplus.com/api/v1/category`;
+    const url = ` http://localhost:5000/api/v1/category`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -34,7 +34,7 @@ const AllMedicineCategories = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(
-          ` https://renixserver.niroghealthplus.com/api/v1/category/deleteCategory/${id}`,
+          ` http://localhost:5000/api/v1/category/deleteCategory/${id}`,
           {
             method: "DELETE",
           }

@@ -16,7 +16,7 @@ const Checkout = () => {
   const [shipping, setShipping] = useState([]);
 
   useEffect(() => {
-    fetch(`https://renixserver.niroghealthplus.com/api/v1/shipping/getShippings`)
+    fetch(`http://localhost:5000/api/v1/shipping/getShippings`)
       .then((res) => res.json())
       .then((data) => {
         if (data?.data.length) {
@@ -69,7 +69,7 @@ const Checkout = () => {
     };
 
     await PostHooks(
-      " https://renixserver.niroghealthplus.com/api/v1/order/addOrder",
+      " http://localhost:5000/api/v1/order/addOrder",
       { customerDetails, order, customerId, subTotal },
       "order successfully submitted"
     );

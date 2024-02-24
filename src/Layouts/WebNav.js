@@ -390,7 +390,7 @@ const WebNav = () => {
             <li>
                 <Link
                 
-                  to="upcoming"
+                  to="https://store.renixlaboratories.com.bd"
                   className="text-textColor p-2 uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition"
                 >
                   Renix Store

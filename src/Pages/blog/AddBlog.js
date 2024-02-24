@@ -29,7 +29,7 @@ const AddBlog = () => {
   }, [userInfo?._id]);
   // get category
   useEffect(() => {
-    const url = ` https://renixserver.niroghealthplus.com/api/v1/blogsCategory`;
+    const url = ` http://localhost:5000/api/v1/blogsCategory`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -59,7 +59,7 @@ const AddBlog = () => {
 
     // post api call
     PostHooks(
-      " https://renixserver.niroghealthplus.com/api/v1/blogs/postBlog",
+      " http://localhost:5000/api/v1/blogs/postBlog",
       blog,
       "Medicine successfully posted"
     );
@@ -130,7 +130,7 @@ const AddBlog = () => {
               className="block mb-2 text-[13px] font-normal text-gray-900 dark:text-white"
             >
               {" "}
-              Doctor Photo
+              Blog Cover Photo
             </label>
             <input
               onChange={handleChangeUploadImage}

@@ -21,7 +21,7 @@ const PendingOrders = () => {
   const [loading, setLoading] = useState();
   useEffect(() => {
     setLoading(true);
-    const url = ` https://renixserver.niroghealthplus.com/api/v1/order/specific?page=${page}&&size=${size}&&fieldName=${"orderStatus"}&&fieldValue=${"pending"}`;
+    const url = ` http://localhost:5000/api/v1/order/specific?page=${page}&&size=${size}&&fieldName=${"orderStatus"}&&fieldValue=${"pending"}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {

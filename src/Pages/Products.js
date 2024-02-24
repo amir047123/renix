@@ -14,7 +14,7 @@ const Products = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
-      const url = `https://renixserver.niroghealthplus.com/api/v1/medicine?size=${pageSize}&page=${page}`;
+      const url = `http://localhost:5000/api/v1/medicine?size=${pageSize}&page=${page}`;
       try {
         const response = await fetch(url);
         const data = await response.json();
