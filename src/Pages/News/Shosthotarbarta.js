@@ -1,67 +1,72 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import Loading from "../../shared/Loading";
 
 const Shosthotarbarta = () => {
+  const [newsAndMedia, setNewsAndMedia] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    fetchNewsAndMedia();
+  }, []);
+
+  const fetchNewsAndMedia = () => {
+    setLoading(true);
+    fetch("http://localhost:5000/api/v1/newsAndMedia/specific?fieldName=newsCategory&fieldValue=Shosthotarbarta")
+      .then((response) => response.json())
+      .then((data) => {
+        setNewsAndMedia(data.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        toast.error("Error fetching data.");
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
   return (
     <div>
-      <h1 className=" text-center pt-5 text-3xl font-bold">
-        রেনিক্স সুস্থতার বার্তা{" "}
-      </h1>
-
-      <div className="lg:grid lg:grid-cols-4 sm:grid sm:grid-cols-1 gap-5 p-10">
-        <div className="rounded-lg shadow-lg bg-white max-w-sm">
-          <a href="#!">
-            <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/PO0tQF98mqU"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-              className="w-full rounded-t-lg"
-            ></iframe>
+      <section className="flex flex-col justify-center max-w-6xl min-h-screen px-4 py-10 mx-auto sm:px-6">
+        <div className="flex flex-wrap items-center justify-between mb-8">
+          <h2 className="mr-10 text-3xl font-bold leading-none md:text-5xl">
+            Renix Unani Laboratories Ltd Shosthotar Barta
+          </h2>
+          <a
+            href="https://www.youtube.com/@renixlaboratoriesltd"
+            target="_blank"
+            className="block pb-1 mt-2 text-base font-black text-blue-600 uppercase border-b border-transparent hover:border-blue-600"
+          >
+            Go To YouTube Channel
           </a>
-          <div className="p-6">
-            <h5 className="text-gray-900 text-xl font-medium mb-2">
-              নাদিয়া আনজুম মিমি - অভিনয় শিল্পী
-            </h5>
-            <p className="text-gray-700 text-base mb-4">
-              রেনিক্স সুস্থতার বার্তা
-            </p>
-            <p className=" text-xs">
-              <span className=" font-bold"> Powered </span> Renix Unani
-              Laboratories Ltd.{" "}
-            </p>
-          </div>
         </div>
+        {loading ? (
+          <Loading />
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 px-2">
+            {newsAndMedia.map((news, index) => (
+              <a href={news?.youtubeLink} target="_blank" className="px-2 py-2 shadow-md" key={index}>
+                <img
+                  alt=""
+                  src={news?.newsImage}
+                  className="h-64 md:h-80 lg:h-96 w-full object-cover object-center"
+                  style={{ maxHeight: "400px", width: "100%" }}
+                />
 
-        <div className="rounded-lg shadow-lg bg-white max-w-sm">
-          <a href="#!">
-            <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/tR44NSnAEtU"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-              className="w-full rounded-t-lg"
-            ></iframe>
-          </a>
-          <div className="p-6">
-            <h5 className="text-gray-900 text-xl font-medium mb-2">
-              অশোক বসাক - অভিনেতা ও কন্ঠ শিল্পী
-            </h5>
-            <p className="text-gray-700 text-base mb-4">
-              রেনিক্স সুস্থতার বার্তা
-            </p>
-            <p className=" text-xs">
-              <span className=" font-bold"> Powered </span> Renix Unani
-              Laboratories Ltd.{" "}
-            </p>
+                <h3 className="mt-4 text-lg font-bold text-gray-900 sm:text-xl">{news?.newsTitle}</h3>
+
+                <p
+                  className="mt-2 text-gray-700"
+                  dangerouslySetInnerHTML={{
+                    __html: news?.newsDescription.slice(0, 250),
+                  }}
+                ></p>
+              </a>
+            ))}
           </div>
-        </div>
-      </div>
+        )}
+      </section>
     </div>
   );
 };
