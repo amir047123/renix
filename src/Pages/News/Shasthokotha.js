@@ -1,256 +1,72 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import Loading from "../../shared/Loading";
 
 const Shasthokotha = () => {
+  const [newsAndMedia, setNewsAndMedia] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    fetchNewsAndMedia();
+  }, []);
+
+  const fetchNewsAndMedia = () => {
+    setLoading(true);
+    fetch("http://localhost:5000/api/v1/newsAndMedia/specific?fieldName=newsCategory&fieldValue=Shasthokotha")
+      .then((response) => response.json())
+      .then((data) => {
+        setNewsAndMedia(data.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        toast.error("Error fetching data.");
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
   return (
     <div>
-      <h1 className=" text-center pt-5 text-3xl font-bold">
-        রেনিক্স স্বাস্থ্য কথা{" "}
-      </h1>
-
-      <div className="lg:grid lg:grid-cols-4 sm:grid sm:grid-cols-1 gap-5 p-10">
-        <div className="rounded-lg shadow-lg bg-white max-w-sm">
-          <a href="#!">
-            <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/8m4wzSCTGks"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-              className="w-full rounded-t-lg"
-            ></iframe>
+      <section className="flex flex-col justify-center max-w-6xl min-h-screen px-4 py-10 mx-auto sm:px-6">
+        <div className="flex flex-wrap items-center justify-between mb-8">
+          <h2 className="mr-10 text-3xl font-bold leading-none md:text-5xl">
+            Renix Unani Laboratories Ltd Shasthokotha
+          </h2>
+          <a
+            href="https://www.youtube.com/@renixlaboratoriesltd"
+            target="_blank"
+            className="block pb-1 mt-2 text-base font-black text-blue-600 uppercase border-b border-transparent hover:border-blue-600"
+          >
+            Go To YouTube Channel
           </a>
-          <div className="p-6">
-            <h5 className="text-gray-900 text-xl font-medium mb-2">
-              পুষ্টিবিদ আয়শা সিদ্দিকা
-            </h5>
-            <p className="text-gray-700 text-base mb-4">
-              ডায়াবেটিস নিয়ন্ত্রণের ডাইম্যান এর ভূমিকা।
-            </p>
-            <p className=" text-xs">
-              <span className=" font-bold"> Powered </span> Renix Unani
-              Laboratories Ltd.{" "}
-            </p>
-          </div>
         </div>
+        {loading ? (
+          <Loading />
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 px-2">
+            {newsAndMedia.map((news, index) => (
+              <a href={news?.youtubeLink} target="_blank" className="px-2 py-2 shadow-md" key={index}>
+                <img
+                  alt=""
+                  src={news?.newsImage}
+                  className="h-64 md:h-80 lg:h-96 w-full object-cover object-center"
+                  style={{ maxHeight: "400px", width: "100%" }}
+                />
 
-        <div className="rounded-lg shadow-lg bg-white max-w-sm">
-          <a href="#!">
-            <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/KiuZyU9rq1U"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-              className="w-full rounded-t-lg"
-            ></iframe>
-          </a>
-          <div className="p-6">
-            <h5 className="text-gray-900 text-xl font-medium mb-2">
-              পুষ্টিবিদ নাহিদা আহমেদ
-            </h5>
-            <p className="text-gray-700 text-base mb-4">
-              রেনিক্স জিনসেং এর উপকারিতা।
-            </p>
-            <p className=" text-xs">
-              <span className=" font-bold"> Powered </span> Renix Unani
-              Laboratories Ltd.{" "}
-            </p>
-          </div>
-        </div>
+                <h3 className="mt-4 text-lg font-bold text-gray-900 sm:text-xl">{news?.newsTitle}</h3>
 
-        <div className="rounded-lg shadow-lg bg-white max-w-sm">
-          <a href="#!">
-            <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/6zkmOr-I8qc"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-              className="w-full rounded-t-lg"
-            ></iframe>
-          </a>
-          <div className="p-6">
-            <h5 className="text-gray-900 text-xl font-medium mb-2">
-              পুষ্টিবিদ নাহিদা আহমেদ
-            </h5>
-            <p className="text-gray-700 text-base mb-4">
-              ডায়াবেটিক‌ রোগী‌ কি‌ কি ঝুঁকিতে থাকেন?
-            </p>
-            <p className=" text-xs">
-              <span className=" font-bold"> Powered </span> Renix Unani
-              Laboratories Ltd.{" "}
-            </p>
+                <p
+                  className="mt-2 text-gray-700"
+                  dangerouslySetInnerHTML={{
+                    __html: news?.newsDescription.slice(0, 250),
+                  }}
+                ></p>
+              </a>
+            ))}
           </div>
-        </div>
-
-        <div className="rounded-lg shadow-lg bg-white max-w-sm">
-          <a href="#!">
-            <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/cwCPSw5p4nc"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-              className="w-full rounded-t-lg"
-            ></iframe>
-          </a>
-          <div className="p-6">
-            <h5 className="text-gray-900 text-xl font-medium mb-2">
-              পুষ্টিবিদ উম্মে‌ সালমা‌ তামান্না‌
-            </h5>
-            <p className="text-gray-700 text-base mb-4">
-              অনিয়মিত পিরিয়ডের‌ সমস্যা ও প্রতিকার।
-            </p>
-            <p className=" text-xs">
-              <span className=" font-bold"> Powered </span> Renix Unani
-              Laboratories Ltd.{" "}
-            </p>
-          </div>
-        </div>
-
-        <div className="rounded-lg shadow-lg bg-white max-w-sm">
-          <a href="#!">
-            <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/rtHbv11mZm8"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-              className="w-full rounded-t-lg"
-            ></iframe>
-          </a>
-          <div className="p-6">
-            <h5 className="text-gray-900 text-xl font-medium mb-2">
-              পুষ্টিবিদ উম্মে‌ সালমা‌ তামান্না‌
-            </h5>
-            <p className="text-gray-700 text-base mb-4">
-              গ্যাস্টিকের‌ সমস্যা দূর করার সহজ পাঁচটি উপায়।
-            </p>
-            <p className=" text-xs">
-              <span className=" font-bold"> Powered </span> Renix Unani
-              Laboratories Ltd.{" "}
-            </p>
-          </div>
-        </div>
-
-        <div className="rounded-lg shadow-lg bg-white max-w-sm">
-          <a href="#!">
-            <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/nuh_A_k-4FY"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-              className="w-full rounded-t-lg"
-            ></iframe>
-          </a>
-          <div className="p-6">
-            <h5 className="text-gray-900 text-xl font-medium mb-2">
-              পুষ্টিবিদ উম্মে‌ সালমা‌ তামান্না‌
-            </h5>
-            <p className="text-gray-700 text-base mb-4">
-              ন্যাচারালি‌ গ্যাস্ট্রিক‌ দূর‌ করার‌ উপায়।
-            </p>
-            <p className=" text-xs">
-              <span className=" font-bold"> Powered </span> Renix Unani
-              Laboratories Ltd.{" "}
-            </p>
-          </div>
-        </div>
-
-        <div className="rounded-lg shadow-lg bg-white max-w-sm">
-          <a href="#!">
-            <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/nuh_A_k-4FY"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-              className="w-full rounded-t-lg"
-            ></iframe>
-          </a>
-          <div className="p-6">
-            <h5 className="text-gray-900 text-xl font-medium mb-2">
-              পুষ্টিবিদ উম্মে‌ সালমা‌ তামান্না‌
-            </h5>
-            <p className="text-gray-700 text-base mb-4">
-              বাত‌ ব্যাথা‌ থেকে দূরে থাকার‌ উপায়।
-            </p>
-            <p className=" text-xs">
-              <span className=" font-bold"> Powered </span> Renix Unani
-              Laboratories Ltd.{" "}
-            </p>
-          </div>
-        </div>
-
-        <div className="rounded-lg shadow-lg bg-white max-w-sm">
-          <a href="#!">
-            <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/9j2wC3TvblU"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-              className="w-full rounded-t-lg"
-            ></iframe>
-          </a>
-          <div className="p-6">
-            <h5 className="text-gray-900 text-xl font-medium mb-2">
-              পুষ্টিবিদ উম্মে‌ সালমা‌ তামান্না‌
-            </h5>
-            <p className="text-gray-700 text-base mb-4">
-              সহজে মেদভুঁড়ি কমানোর উপায়।
-            </p>
-            <p className=" text-xs">
-              <span className=" font-bold"> Powered </span> Renix Unani
-              Laboratories Ltd.{" "}
-            </p>
-          </div>
-        </div>
-
-        <div className="rounded-lg shadow-lg bg-white max-w-sm">
-          <a href="#!">
-            <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/3rDCzyRoL0k"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-              className="w-full rounded-t-lg"
-            ></iframe>
-          </a>
-          <div className="p-6">
-            <h5 className="text-gray-900 text-xl font-medium mb-2">
-              ডাঃ শায়লা হক
-            </h5>
-            <p className="text-gray-700 text-base mb-4">
-              গ্যাস্ট্রিকের‌ ওষুধের ঝুঁকি।
-            </p>
-            <p className=" text-xs">
-              <span className=" font-bold"> Powered </span> Renix Unani
-              Laboratories Ltd.{" "}
-            </p>
-          </div>
-        </div>
-      </div>
+        )}
+      </section>
     </div>
   );
 };

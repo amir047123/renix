@@ -220,6 +220,15 @@ const WebNav = () => {
                 </Link>
               </li>
               <li>
+                <Link
+                  onClick={handleToggle}
+                  to="https://store.renixlaboratories.com.bd"
+                  className="text-textColor p-2 uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition"
+                >
+                  Renix Store
+                </Link>
+              </li>
+              <li>
                 <Link onClick={handleToggle} to={"/appointment"}>
                   <button className=" px-2  py-2 rounded text-white border bg-primary border-primary text-base">
                     Appointment +
@@ -378,17 +387,26 @@ const WebNav = () => {
                 Contact Us
               </NavLink>
             </li>
+            <li>
+                <Link
+                
+                  to="https://store.renixlaboratories.com.bd"
+                  className="text-textColor p-2 uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition"
+                >
+                  Renix Store
+                </Link>
+              </li>
 
             <div className="flex gap-5"></div>
           </ul>
         </div>
 
         {/* call to action button */}
-        <Link to={"/appointment"}>
+        {/* <Link to={"/appointment"}>
           <button className="hidden lg:flex items-center px-2  py-2 rounded text-white border bg-primary border-primary text-base">
             Appointment +
           </button>
-        </Link>
+        </Link> */}
         <div className=" item-right">
           {localStorage.getItem("access") ? (
             <Link

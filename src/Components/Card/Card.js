@@ -8,9 +8,9 @@ const Card = ({ item }) => {
     <Link  to={`/products/${item?._id}`}>
     <div className="  " >
               <div className="m-4 w-50 rounded-xl border-2 border-whiteSmoke ">
-                <h2 className="bg-primary w-14 text-left text-xs pl-1 pt-1 pb-1  text-white mt-3 whitespace-nowrap">
+                {/* <h2 className="bg-primary w-14 text-left text-xs pl-1 pt-1 pb-1  text-white mt-3 whitespace-nowrap">
                   {item?.discount?item?.discount:0}% Off
-                </h2>
+                </h2> */}
                 <img
                   src={item.img}
                   alt=""
@@ -24,17 +24,17 @@ const Card = ({ item }) => {
                     {item?.strength}
                   </p>
 
-                  <p className="text-left text-blue-gray-500">
+                  <p className="text-left text-xs text-blue-gray-500 mb-2">
                     {item?.supplierName}
                   </p>
 
                   <Link to={`/products/${item?._id}`}>
-                    <div class="flex items-center justify-between pr-5">
+                    {/* <div class="flex items-center justify-between pr-5">
                       <span class="font-bold text-lg">৳ {item.price}</span>
                       <button class="bg-primary  text-white font-bold py-2 px-4 rounded">
                         Buy Now
                       </button>
-                    </div>
+                    </div> */}
                   </Link>
                 </div>
               </div>

@@ -43,31 +43,7 @@ function App() {
   return (
     <MyContext.Provider value={{ refresh, setRefresh, user }}>
       <div className="relative">
-        {openCart ? (
-          <OrderFLoatingCart setOpenCart={setOpenCart}></OrderFLoatingCart>
-        ) : (
-          <div className="fixed z-20 top-[45vh] right-0 cursor-pointer">
-            {" "}
-            <div
-              onClick={() => setOpenCart(true)}
-              className="bg-primary rounded-l-lg"
-            >
-              <div className="flex flex-col justify-center items-center text-white">
-                <div className="flex flex-col justify-center items-center p-2 ">
-                  {" "}
-                  <BsFillBagFill className="text-2xl "></BsFillBagFill>
-                  <p className="pt-2 text-xs">
-                    {order?.length ? order.length : 0} item
-                  </p>
-                </div>
-                {/* <p className="bg-secondary rounded-bl-lg p-2 text-xs">
-                  {subTotal} BDT
-                </p> */}
-              </div>
-            </div>
-          </div>
-        )}
-
+       {/* this is order floting */}
         <Routes>
           {/* main Routes */}
 
@@ -121,3 +97,31 @@ function App() {
 }
 
 export default App;
+
+
+
+
+// {openCart ? (
+//   <OrderFLoatingCart setOpenCart={setOpenCart}></OrderFLoatingCart>
+// ) : (
+//   <div className="fixed z-20 top-[45vh] right-0 cursor-pointer">
+//     {" "}
+//     <div
+//       onClick={() => setOpenCart(true)}
+//       className="bg-primary rounded-l-lg"
+//     >
+//       <div className="flex flex-col justify-center items-center text-white">
+//         <div className="flex flex-col justify-center items-center p-2 ">
+//           {" "}
+//           <BsFillBagFill className="text-2xl "></BsFillBagFill>
+//           <p className="pt-2 text-xs">
+//             {order?.length ? order.length : 0} item
+//           </p>
+//         </div>
+//         {/* <p className="bg-secondary rounded-bl-lg p-2 text-xs">
+//           {subTotal} BDT
+//         </p> */}
+//       </div>
+//     </div>
+//   </div>
+// )}

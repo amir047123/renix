@@ -69,9 +69,9 @@ const NewArrivals = () => {
           {products?.map((product) => (
             <div className="w-[90%] sm:w-6/12 md:w-4/12  " key={product._id}>
               <div className="m-4 w-50 rounded-xl border-2 border-whiteSmoke ">
-                <h2 className="bg-primary w-10 text-left text-xs pl-1 pt-1 pb-1  text-white mt-3">
+                {/* <h2 className="bg-primary w-10 text-left text-xs pl-1 pt-1 pb-1  text-white mt-3">
                   Sale!
-                </h2>
+                </h2> */}
                 <img
                   src={product.img}
                   alt=""
@@ -89,14 +89,14 @@ const NewArrivals = () => {
                     {product?.supplierName}
                   </p>
 
-                  <Link to={`/products/${product?._id}`}>
+                  {/* <Link to={`/products/${product?._id}`}>
                     <div class="flex items-center justify-between pr-5">
                       <span class="font-bold text-lg">৳ {product.price}</span>
                       <button class="bg-primary  text-white font-bold py-2 px-4 rounded">
                         Buy Now
                       </button>
                     </div>
-                  </Link>
+                  </Link> */}
                 </div>
               </div>
             </div>

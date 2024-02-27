@@ -1,34 +1,44 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import SecondLoading from "../../../shared/SecondLoading";
 
 const BlogSinglePage = () => {
   const [blog, setBlog] = useState({});
   const [recent, setRecent] = useState([]);
   const { id } = useParams();
   const [_id, setId] = useState(id);
+  const [loading,setLoading]=useState()
   useEffect(() => {
+    setLoading(true)
     fetch(` http://localhost:5000/api/v1/blogs/blogDetails/${_id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         setBlog(data?.data);
+        setLoading(false)
       });
   }, [_id]);
 
   useEffect(() => {
+    setLoading(true)
     const url = ` http://localhost:5000/api/v1/blogs`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         setRecent(data?.data.slice(0, 4));
+        setLoading(false)
       });
   }, []);
   const des = blog?.description?.replace(/<\/?p>/g, "");
 
+
+  if(loading){
+    return <SecondLoading/>
+  }
   return (
     <div>
-      <div className="lgl:flex lg:w-10/12 mx-auto">
+      <div className="lgl:flex m-5 mx-auto">
         <div className="  lgl:p-4  sm:p-4 sm:w-full  ">
           <img
             src={blog?.img}
@@ -44,19 +54,25 @@ const BlogSinglePage = () => {
             className="text-gray-600 mb-4 text-justify"
           ></p>
         </div>
-        <div className="sm:w-full lgl:p-4 lgl:w-[500px]  sm:p-3  ">
+        <div className="sm:w-full lgl:p-4 lgl:w-[500px]  sm:p-3  shadow-md ">
           <h2 className="text-lg font-bold mb-4">Recent Blogs Post</h2>
+          <div className="border-t border-gray-300 w-full mb-3"></div>
+
           <ol>
             {recent.map((recentBlog) => (
+              
               <li
                 key={recentBlog?._id}
-                className="mb-2 flex hover:text-primary cursor-pointer"
+                className="mb-2 flex hover:text-primary cursor-pointer uppercase"
               >
                 <p onClick={() => setId(recentBlog?._id)}>
                   {recentBlog?.title}
                 </p>
+
               </li>
+              
             ))}
+
           </ol>
         </div>
       </div>

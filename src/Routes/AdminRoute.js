@@ -1,9 +1,11 @@
 import AdminShipping from "../Components/AdminDashbord/AdminShipping/AdminShipping";
 import ContactRenix from "../Components/AdminDashbord/ContactRenix";
+import NewsAndMedia from "../Components/Home/newAndMedia/NewsAndMedia";
 import AllAccounts from "../Pages/AllAccounts/AllAccounts";
 import AddNewsAndMedia from "../Pages/News and Media/AddNewsAndMedia";
 import AddNewsCategory from "../Pages/News and Media/AddNewsCategory";
 import AllNewsAndMedias from "../Pages/News and Media/AllNewsAndMedias";
+import UpdateNewsAndMedias from "../Pages/News and Media/UpdateNewsAndMedias";
 import AddBlog from "../Pages/blog/AddBlog";
 import AddBlogCategory from "../Pages/blog/AddBlogCategory";
 import AllBlogs from "../Pages/blog/AllBlogs";
@@ -49,6 +51,10 @@ const AdminRoutes = [
   { path: "view-order/:id", Component: ViewOrder },
 
   { path: "shipping", Component: AdminShipping },
+  { path: "add-news-media", Component: AddNewsAndMedia },
+  { path: "all-news-media", Component: AllNewsAndMedias },
+  { path: "all-news-media/update-news-media/:id", Component: UpdateNewsAndMedias },
+
 
 
 ];

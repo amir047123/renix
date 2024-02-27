@@ -38,6 +38,7 @@ const AdminDashboard = () => {
   //show blog
   const [openBlog, setOpenBlog] = useState(false);
 
+
   const navigate = useNavigate();
 
   //show sidenav on toggle
@@ -62,7 +63,10 @@ const AdminDashboard = () => {
     openBlog === true ? setOpenBlog(false) : setOpenBlog(true);
     //console.log('clicked')
   };
+  const handleNewsDropdown = () => {
+    openNews === true ? setOpenNews(false) : setOpenNews(true);
 
+  };
   //close sidebar on click
 
   useEffect(() => {
@@ -287,6 +291,57 @@ const AdminDashboard = () => {
                           <span className="ml-3">Rejected Orders</span>
                         </NavLink>
                       </li>
+                    </ul>
+                  </li>
+
+                  <li>
+                    <span
+                      onClick={handleNewsDropdown}
+                      className="flex items-center justify-between cursor-pointer gap-5 px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"
+                    >
+                      <div className="flex items-center gap-4">
+                        <span className="text-lg">
+                          <BiBorderAll />
+                        </span>
+
+                        <span className="">News And Media</span>
+                      </div>
+                      <span
+                        className={`text-2xl transition_move ${
+                          openNews === true ? "rotate-180" : ""
+                        }`}
+                      >
+                        <RxCaretDown />
+                      </span>
+                    </span>
+                    <ul
+                      className={`drop_down  ${
+                        openNews === true ? "block" : "hidden"
+                      }`}
+                    >
+                      <li>
+                        <NavLink
+                          to={"add-news-media"}
+                          className="flex items-center p-2 text-[14px]  hover:bg-textColor font-normal  py-2.5 rounded-md dark:text-white dark:hover:bg-gray-700 text-white"
+                          style={({ isActive }) =>
+                            isActive ? activeStyle : undefined
+                          }
+                        >
+                          <span className="ml-3"> Add  News And Media</span>
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink
+                          to={"all-news-media"}
+                          className="flex items-center p-2 text-[14px] hover:bg-textColor  font-normal py-2.5  rounded-md dark:text-white dark:hover:bg-gray-700 text-white"
+                          style={({ isActive }) =>
+                            isActive ? activeStyle : undefined
+                          }
+                        >
+                          <span className="ml-3">All News And Media</span>
+                        </NavLink>
+                      </li>
+                  
                     </ul>
                   </li>
 

@@ -7,7 +7,7 @@ const BlogCard = ({ blog }) => {
   const { category, img, author, authorImg, description, title, _id } = blog;
   const des = description?.replace(/<\/?p>/g, "").slice(0, 250);
   return (
-    <article class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+    <article class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 mb-5 ">
       <div class="flex justify-between items-center mb-5 text-gray-500">
         <span class="bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800">
           <svg
@@ -26,7 +26,9 @@ const BlogCard = ({ blog }) => {
           Article
         </span>
       </div>
-      <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+
+   
+      <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900  dark:text-white">
         {title}
       </h2>
       <p
@@ -36,7 +38,7 @@ const BlogCard = ({ blog }) => {
       <div class="flex justify-between items-center">
         <Link
           to={`/blogDetails/${_id}`}
-          class="inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline"
+          class="inline-flex items-center font-medium   dark:text-primary-500 hover:underline"
         >
           Read more
           <svg

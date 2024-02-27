@@ -130,7 +130,7 @@ const AddBlog = () => {
               className="block mb-2 text-[13px] font-normal text-gray-900 dark:text-white"
             >
               {" "}
-              Doctor Photo
+              Blog Cover Photo
             </label>
             <input
               onChange={handleChangeUploadImage}

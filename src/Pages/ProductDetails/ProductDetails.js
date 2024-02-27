@@ -116,9 +116,9 @@ const ProductDetails = () => {
             </p>
             <div className="flex items-center self-start gap-4 mt-3 ">
               {" "}
-              <span className="py-4 text-xl font-medium">৳ {price} /=</span>
+              {/* <span className="py-4 text-xl font-medium">৳ {price} /=</span> */}
             </div>
-            {addToCart ? (
+            {/* {addToCart ? (
               <div>
                 <div className="  border-primary p-1  flex justify-evenly items-center">
                   <span
@@ -158,7 +158,7 @@ const ProductDetails = () => {
               >
                 Add to Cart
               </button>
-            )}
+            )} */}
           </div>
         </div>
       </div>
