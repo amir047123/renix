@@ -16,6 +16,7 @@ import AllDoctors from "../Pages/doctors/AllDoctors";
 import AllEmails from "../Pages/email/AllEmails";
 import AddMedicine from "../Pages/medicine/AddMedicine";
 import AddMedicineCategory from "../Pages/medicine/AddMedicineCategory";
+import UpdateMedicineCategory from "../Pages/medicine/UpdateMedicineCategory";
 import AllMedicineCategories from "../Pages/medicine/AllMedicineCategories";
 import AllMedicines from "../Pages/medicine/AllMedicines";
 import UpdateMedicine from "../Pages/medicine/UpdateMedicine";
@@ -47,16 +48,23 @@ const AdminRoutes = [
   { path: "email/allEmails", Component: AllEmails },
   { path: "allAccounts", Component: AllAccounts },
   { path: "admin-contact", Component: ContactRenix },
-  { path: "medicine/allMedicines/edit-medicine/:id", Component: UpdateMedicine },
+  {
+    path: "medicine/allMedicines/edit-medicine/:id",
+    Component: UpdateMedicine,
+  },
+  {
+    path: "medicine/updateCategory/:id",
+    Component: UpdateMedicineCategory,
+  },
   { path: "view-order/:id", Component: ViewOrder },
 
   { path: "shipping", Component: AdminShipping },
   { path: "add-news-media", Component: AddNewsAndMedia },
   { path: "all-news-media", Component: AllNewsAndMedias },
-  { path: "all-news-media/update-news-media/:id", Component: UpdateNewsAndMedias },
-
-
-
+  {
+    path: "all-news-media/update-news-media/:id",
+    Component: UpdateNewsAndMedias,
+  },
 ];
 
 export default AdminRoutes;
