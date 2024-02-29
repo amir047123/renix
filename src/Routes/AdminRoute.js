@@ -25,6 +25,8 @@ import OrderOverview from "../Pages/orders/OrderOverview";
 import PendingOrders from "../Pages/orders/PendingOrders";
 import RejectedOrders from "../Pages/orders/RejectedOrders";
 import ViewOrder from "../Pages/orders/ViewOrder";
+import UpdateBlogCategory from "../Pages/blog/UpdateBlogCategory";
+import UpdateBlog from "../Pages/blog/UpdateBlog";
 
 const AdminRoutes = [
   { path: "overview", Component: Dashboard },
@@ -41,8 +43,13 @@ const AdminRoutes = [
   { path: "news-media/allNewsandMedia", Component: AllNewsAndMedias },
   { path: "blog/addBlog", Component: AddBlog },
   { path: "blog/addBlogCategory", Component: AddBlogCategory },
+  { path: "blog/updateCategory/:id", Component: UpdateBlogCategory },
   { path: "blog/allBlogCategory", Component: AllBlogsCategory },
   { path: "blog/allBlogs", Component: AllBlogs },
+  {
+    path: "blog/allBlogs/edit-blog/:id",
+    Component: UpdateBlog,
+  },
   { path: "doctor/addDoctor", Component: AddDoctor },
   { path: "doctor/allDoctors", Component: AllDoctors },
   { path: "email/allEmails", Component: AllEmails },

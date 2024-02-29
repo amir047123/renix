@@ -1,9 +1,14 @@
-import React from "react";
-import PostHooks from "../../Hooks/PostHooks";
-import { useState } from "react";
-import { singleImageUpload } from "../../Hooks/ImageUpload";
+import React, { useEffect, useState } from "react";
 
-const AddBlogCategory = () => {
+import { singleImageUpload } from "../../Hooks/ImageUpload";
+import { useParams } from "react-router-dom";
+import UpdateHooks from "../../Hooks/UpdateHooks";
+
+const UpdateBlogCategory = () => {
+  const { id } = useParams();
+  const [loading, setLoading] = useState();
+
+  const [refresh, setRefresh] = useState(false);
   const [metaImage, setMetaImage] = useState("");
   const [formData, setFormData] = useState({
     name: "",
@@ -18,6 +23,23 @@ const AddBlogCategory = () => {
       [e.target.name]: e.target.value,
     });
   };
+  useEffect(() => {
+    setLoading(true);
+    const url = ` http://localhost:5000/api/v1/blogsCategory/getBlogCategoryById/${id}`;
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        setLoading(false);
+        console.log(data, 33);
+        setFormData({
+          name: data?.data?.name || "",
+          canonicalUrl: data?.data?.canonicalUrl || "",
+          metaTitle: data?.data?.metaTitle || "",
+          metaDescription: data?.data?.metaDescription || "",
+          slug: data?.data?.slug || "",
+        });
+      });
+  }, [refresh, id]);
   const handleChangeMetaImage = async (event) => {
     const image = event.target.files[0];
     const formData = new FormData();
@@ -29,13 +51,16 @@ const AddBlogCategory = () => {
 
     metaImage,
   };
-  const handelSubmit = (e) => {
+
+  const handelSubmit = async (e) => {
     e.preventDefault();
-    PostHooks(
-      " http://localhost:5000/api/v1/blogsCategory",
+    const updateUrl = `http://localhost:5000/api/v1/blogsCategory/updateBlogsCategory/${id}`;
+    await UpdateHooks(
+      updateUrl,
       data,
-      "Category successfully posted"
+      "Medicine category successfully updated"
     );
+
     // clear input
 
     setFormData({
@@ -51,27 +76,28 @@ const AddBlogCategory = () => {
       <div className="container px-6 md:max-w-6xl w-full ">
         <div className="md:max-w-xl mx-auto">
           <h2 className="text-xl font-medium py-6 text-center">
-            Add Blog Category
+            Update Your Blog category
           </h2>
+
           <form
             onSubmit={handelSubmit}
             className="shadow-lg shadow-gray-300 p-8 rounded"
           >
             <div className="mb-6">
               <label
-                for="repeat-password"
+                for="name"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
-                Blog Category
+                Blog category
               </label>
               <input
                 value={formData?.name}
                 onChange={handleChange}
                 type="text"
                 name="name"
-                id="repeat-password"
-                className="bg-[#F0FDF4] shadow-md shadow-gray-100  border border-gray-100 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                placeholder="Blog Category"
+                id="name"
+                className="bg-[#F0FDF4] shadow-md shadow-gray-100  border border-gray-100 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 "
+                placeholder="Medicine Category"
                 required
               />
             </div>
@@ -164,14 +190,12 @@ const AddBlogCategory = () => {
             </div>
 
             {/* Seo meta tags ended */}
-            <div className="text-center">
-              <button
-                type="submit"
-                className="text-white bg-primary hover:bg-lightPrimary focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
-              >
-                Add Blog
-              </button>
-            </div>
+            <button
+              type="submit"
+              className="text-white bg-primary hover:bg-lightPrimary focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+            >
+              Update Category
+            </button>
           </form>
         </div>
       </div>
@@ -179,4 +203,4 @@ const AddBlogCategory = () => {
   );
 };
 
-export default AddBlogCategory;
+export default UpdateBlogCategory;

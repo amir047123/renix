@@ -4,6 +4,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import Swal from "sweetalert2";
 import { useEffect } from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 const AllBlogsCategory = () => {
   const [refresh, setRefresh] = useState(false);
   const [category, setCategory] = useState([]);
@@ -88,9 +89,13 @@ const AllBlogsCategory = () => {
 
                   <td className="px-6 py-4">
                     <span className="flex items-center gap-3">
-                      {/* <button className="text-lg text-[#0077FF] bg-[#BBDDFF] w-7  h-7 rounded-lg flex items-center justify-center">
+                      <Link
+                        to={`/adminDashboard/blog/updateCategory/${cat?._id}`}
+                        className="text-lg text-[#0077FF] bg-[#BBDDFF] w-7 h-7
+                        rounded-lg flex items-center justify-center"
+                      >
                         <TbEdit />
-                      </button> */}
+                      </Link>
                       <button
                         onClick={() => handelDelete(cat?._id)}
                         className="text-lg text-[#F87171] bg-[#FEE2E2] w-7  h-7 rounded-lg flex items-center justify-center"

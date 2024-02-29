@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import PostHooks from "../../Hooks/PostHooks";
 
 import { singleImageUpload } from "../../Hooks/ImageUpload";
 import { useParams } from "react-router-dom";
@@ -10,10 +9,9 @@ const UpdateMedicineCategory = () => {
   const [loading, setLoading] = useState();
 
   const [refresh, setRefresh] = useState(false);
-  const [category, setCategory] = useState({});
   const [metaImage, setMetaImage] = useState("");
   const [formData, setFormData] = useState({
-    name: category?.name,
+    name: "",
     canonicalUrl: "",
     metaTitle: "",
     metaDescription: "",
@@ -31,8 +29,6 @@ const UpdateMedicineCategory = () => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.data);
-        setCategory(data.data);
         setLoading(false);
 
         setFormData({

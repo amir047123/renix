@@ -10,83 +10,98 @@ const UpdateMedicine = () => {
     const { id } = useParams();
     const [image, setImage] = useState(null);
     const [category, setCategory] = useState([]);
-    const [medicine, setMedicine] = useState([]);
-    const {
-      register,
-      handleSubmit,
-      formState: { errors },
-      reset,
-      setValue,
-    } = useForm();
-    const editor = useRef(null);
-    const [content, setContent] = useState("");
-  console.log(register)
-    useEffect(() => {
-      const url = `http://localhost:5000/api/v1/category`;
-      fetch(url)
-        .then((res) => res.json())
-        .then((data) => {
-          setCategory(data?.data);
-        });
-    }, []);
-  
-    useEffect(() => {
-      const url = `http://localhost:5000/api/v1/medicine/medicineDetails/${id}`;
-      fetch(url)
-        .then((res) => res.json())
-        .then((data) => {
-          setMedicine(data?.data);
-  
-          setValue("name", data?.data?.name || "");
-          setValue("genericName", data?.data?.genericName || "");
-          setValue("medicineCategory", data?.data?.medicineCategory || "");
-          setValue("price", data?.data?.price || "");
-          setValue("strength", data?.data?.strength || "");
-          setValue("supplierName", data?.data?.supplierName || "");
-          setValue("securityCode", data?.data?.securityCode || "");
-          setValue("stock", data?.data?.stock || "");
-          setValue("medicineType", data?.data?.medicineType || "");
-          setValue("medicineStatus", data?.data?.medicineStatus || "");
-          setValue("img", data?.data?.img || "");
-          setValue("discount", data?.data?.discount || "");
-          setImage(data?.data?.img);
-          setContent(data?.data?.description || "");
-          console.log(data?.data)
-          
-        });
-    }, [id, setValue]);
-  
-    const handleChangeUploadImage = async (event) => {
-        const image = event.target.files[0];
-        const formData = new FormData();
-        formData.append("image", image);
-    
-        singleImageUpload(formData, setImage);
-      };
-    const handleUpdateMedicine = async (data) => {
-        const medicineData = {
-          date: new Date().getDate(),
-          month: new Date().getDate(),
-          year: new Date().getFullYear(),
-          name: data.name,
-          genericName: data.genericName,
-          medicineCategory: data.medicineCategory,
-          img: image,
-          supplierName: data.supplierName,
-          price: data.price,
-          description: content,
-          strength: data.strength,
-          securityCode: data.securityCode,
-          stock: data.stock,
-          discount:data?.discount,
-          medicineType: data.medicineType,
-          medicineStatus: data.medicineStatus,
-        };
-    
-        const updateUrl = `http://localhost:5000/api/v1/medicine/updateMedicine/${id}`;
-    
-        await UpdateHooks(updateUrl, medicineData, "Medicine successfully updated");
-      };
+  const [medicine, setMedicine] = useState([]);
+  const [metaImage, setMetaImage] = useState("");
+  const handleChangeMetaImage = async (event) => {
+    const image = event.target.files[0];
+    const formData = new FormData();
+    formData.append("image", image);
+    singleImageUpload(formData, setMetaImage);
+  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+
+    setValue,
+  } = useForm();
+  const editor = useRef(null);
+  const [content, setContent] = useState("");
+
+  useEffect(() => {
+    const url = `http://localhost:5000/api/v1/category`;
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        setCategory(data?.data);
+      });
+  }, []);
+
+  useEffect(() => {
+    const url = `http://localhost:5000/api/v1/medicine/medicineDetails/${id}`;
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        setMedicine(data?.data);
+
+        setValue("name", data?.data?.name || "");
+        setValue("genericName", data?.data?.genericName || "");
+        setValue("medicineCategory", data?.data?.medicineCategory || "");
+        setValue("price", data?.data?.price || "");
+        setValue("strength", data?.data?.strength || "");
+        setValue("supplierName", data?.data?.supplierName || "");
+        setValue("securityCode", data?.data?.securityCode || "");
+        setValue("stock", data?.data?.stock || "");
+        setValue("medicineType", data?.data?.medicineType || "");
+        setValue("medicineStatus", data?.data?.medicineStatus || "");
+        setValue("img", data?.data?.img || "");
+        setValue("discount", data?.data?.discount || "");
+        setImage(data?.data?.img);
+        setContent(data?.data?.description || "");
+        setValue("canonicalUrl", data?.data?.canonicalUrl || "");
+        setValue("metaTitle", data?.data?.metaTitle || "");
+        setValue("metaDescription", data?.data?.metaDescription || "");
+        setValue("slug", data?.data?.slug || "");
+      });
+  }, [id, setValue]);
+
+  const handleChangeUploadImage = async (event) => {
+    const image = event.target.files[0];
+    const formData = new FormData();
+    formData.append("image", image);
+
+    singleImageUpload(formData, setImage);
+  };
+  const handleUpdateMedicine = async (data) => {
+    const medicineData = {
+      date: new Date().getDate(),
+      month: new Date().getDate(),
+      year: new Date().getFullYear(),
+      name: data.name,
+      genericName: data.genericName,
+      medicineCategory: data.medicineCategory,
+      img: image,
+      supplierName: data.supplierName,
+      price: data.price,
+      description: content,
+      strength: data.strength,
+      securityCode: data.securityCode,
+      stock: data.stock,
+      discount: data?.discount,
+      medicineType: data.medicineType,
+      medicineStatus: data.medicineStatus,
+      // seo meta tag
+      canonicalUrl: data.canonicalUrl,
+      metaTitle: data.metaTitle,
+      metaDescription: data.metaDescription,
+      slug: data.slug,
+      metaImage,
+    };
+
+    const updateUrl = `http://localhost:5000/api/v1/medicine/updateMedicine/${id}`;
+
+    await UpdateHooks(updateUrl, medicineData, "Medicine successfully updated");
+  };
 
   return (
     <section className="py-10 md:py-14">
@@ -176,7 +191,7 @@ const UpdateMedicine = () => {
             )}
           </div>
           {/* medicine image */}
-         
+
           <div className="mb-1">
             <label
               for="repeat-password"
@@ -186,13 +201,13 @@ const UpdateMedicine = () => {
               Image
             </label>
             <div className="flex items-center gap-3">
-            <input
-              onChange={handleChangeUploadImage}
-              className="block w-full text-sm text-gray-900  rounded-lg cursor-pointer bg-[#F0FDF4] dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 p-2"
-              id="file_input"
-              type="file"
-            />
-            <img className="w-12 rounded-md" src={image} alt="img"></img>
+              <input
+                onChange={handleChangeUploadImage}
+                className="block w-full text-sm text-gray-900  rounded-lg cursor-pointer bg-[#F0FDF4] dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 p-2"
+                id="file_input"
+                type="file"
+              />
+              <img className="w-12 rounded-md" src={image} alt="img"></img>
             </div>
             {errors.img && (
               <p className="text-red-500 mt-1">{errors.img.message}</p>
@@ -227,16 +242,13 @@ const UpdateMedicine = () => {
             >
               Medicine description
             </label>
-           
+
             <JoditEditor
               ref={editor}
               value={content}
-            
-              onBlur={(newContent) => setContent(newContent)} 
-              onChange={(newContent) => setContent(newContent)} 
-             
+              onBlur={(newContent) => setContent(newContent)}
+              onChange={(newContent) => setContent(newContent)}
             />
-         
           </div>
           {/* medicine strength */}
           <div className="mb-1">
@@ -324,9 +336,7 @@ const UpdateMedicine = () => {
           </div>
 
           <div className="mb-1">
-            <label
-              class="block mb-2 text-[13px] font-normal text-gray-900 dark:text-white"
-            >
+            <label class="block mb-2 text-[13px] font-normal text-gray-900 dark:text-white">
               {" "}
               Discount (%)
             </label>
@@ -338,7 +348,6 @@ const UpdateMedicine = () => {
                 required: false,
               })}
             />
-            
           </div>
 
           <div className="md:flex items-center">
@@ -397,7 +406,115 @@ const UpdateMedicine = () => {
               )}
             </div>
           </div>
+          {/* Seo meta tags started */}
+          <div>
+            <h2 className="border-b border-solid border-gray-300 mb-5 pb-3">
+              Search Engine Optimization
+            </h2>
+            <div className="mb-5">
+              <label
+                className="block mb-2 text-[13px] font-normal text-gray-900 "
+                htmlFor=""
+              >
+                Meta Title
+              </label>
+              <input
+                {...register("metaTitle", {
+                  required: "Meta Title is required",
+                })}
+                name="metaTitle"
+                className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5    focus:border-blue-500"
+                type="text"
+                placeholder="Meta title"
+              />
+              {errors.metaTitle && (
+                <p className="text-red-500 mt-1">{errors.metaTitle.message}</p>
+              )}
+            </div>
+            <div className="mb-5 w-full mr-0 md:mr-2">
+              <label className="block mb-2 text-[13px] font-normal text-gray-900">
+                Slug (unique)
+              </label>
+              <input
+                type="text"
+                name="slug"
+                {...register("slug", {
+                  required: "Slug is required",
+                })}
+                className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:outline-none block w-full p-2.5 focus:border-none"
+                placeholder="Enter a slug"
+                required
+              />
+              {errors.slug && (
+                <p className="text-red-500 mt-1">{errors.slug.message}</p>
+              )}
+            </div>
+            <div className="mb-5">
+              <label
+                className="block mb-2 text-[13px] font-normal text-gray-900 "
+                htmlFor=""
+              >
+                Meta Description
+              </label>
+              <textarea
+                name="metaDescription"
+                {...register("metaDescription", {
+                  required: "Meta Description is required",
+                })}
+                rows={7}
+                className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 focus:border-blue-500"
+                type="text"
+                placeholder="Meta description"
+              />
+              {errors.metaDescription && (
+                <p className="text-red-500 mt-1">
+                  {errors.metaDescription.message}
+                </p>
+              )}
+            </div>
+            <div className="mb-5">
+              <label
+                className="block mb-2 text-[13px] font-normal text-gray-900 "
+                htmlFor=""
+              >
+                Meta Image
+              </label>
+              <input
+                onChange={handleChangeMetaImage}
+                className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 focus:border-blue-500"
+                type="file"
+                placeholder="Meta description"
+              />
+            </div>
 
+            <div className="mb-5">
+              {/* Canonical  */}
+
+              <label
+                htmlFor="canonical-url"
+                className="block mb-2 text-[13px] font-normal text-gray-900"
+              >
+                Canonical URL
+              </label>
+              <input
+                type="text"
+                id="canonical-url"
+                name="canonicalUrl"
+                {...register("canonicalUrl", {
+                  required: "Canonical Url is required",
+                })}
+                className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 focus:border-blue-500"
+                placeholder="Enter Canonical URL"
+              />
+              {errors.canonicalUrl && (
+                <p className="text-red-500 mt-1">
+                  {errors.canonicalUrl.message}
+                </p>
+              )}
+            </div>
+          </div>
+
+          {/* Seo meta tags ended */}
           <div className="text-center pt-3">
             <button
               className="bg-primary hover:bg-lightPrimary text-white  py-2 rounded-lg text-lg w-fit px-8"

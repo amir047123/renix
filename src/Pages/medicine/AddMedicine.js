@@ -5,7 +5,6 @@ import { Markup } from "interweave";
 import { singleImageUpload } from "../../Hooks/ImageUpload";
 import PostHooks from "../../Hooks/PostHooks";
 import { useEffect } from "react";
-import { faL } from "@fortawesome/free-solid-svg-icons";
 
 const AddMedicine = () => {
   const [image, setImage] = useState(null);
@@ -20,13 +19,20 @@ const AddMedicine = () => {
   //description content
   const [content, setContent] = useState("");
   const parsed = <Markup content={content} />;
+  const [metaImage, setMetaImage] = useState("");
+  const handleChangeMetaImage = async (event) => {
+    const image = event.target.files[0];
+    const formData = new FormData();
+    formData.append("image", image);
+    singleImageUpload(formData, setMetaImage);
+  };
   // get category
   useEffect(() => {
     const url = ` http://localhost:5000/api/v1/category`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setCategory(data?.data);
       });
   }, []);
@@ -54,9 +60,15 @@ const AddMedicine = () => {
       strength: data.strength,
       securityCode: data.securityCode,
       stock: data.stock,
-      discount:data?.discount,
+      discount: data?.discount,
       medicineType: data.medicineType,
       medicineStatus: data.medicineStatus,
+      // seo meta tag
+      canonicalUrl: data.canonicalUrl,
+      metaTitle: data.metaTitle,
+      metaDescription: data.metaDescription,
+      slug: data.slug,
+      metaImage,
     };
 
     // post api call
@@ -319,10 +331,7 @@ const AddMedicine = () => {
             )}
           </div>
           <div className="mb-1">
-            <label
-            
-              class="block mb-2 text-[13px] font-normal text-gray-900 dark:text-white"
-            >
+            <label class="block mb-2 text-[13px] font-normal text-gray-900 dark:text-white">
               {" "}
               Discount (%)
             </label>
@@ -334,7 +343,6 @@ const AddMedicine = () => {
                 required: false,
               })}
             />
-            
           </div>
 
           <div className="md:flex items-center">
@@ -393,7 +401,115 @@ const AddMedicine = () => {
               )}
             </div>
           </div>
+          {/* Seo meta tags started */}
+          <div>
+            <h2 className="border-b border-solid border-gray-300 mb-5 pb-3">
+              Search Engine Optimization
+            </h2>
+            <div className="mb-5">
+              <label
+                className="block mb-2 text-[13px] font-normal text-gray-900 "
+                htmlFor=""
+              >
+                Meta Title
+              </label>
+              <input
+                {...register("metaTitle", {
+                  required: "Meta Title is required",
+                })}
+                name="metaTitle"
+                className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5    focus:border-blue-500"
+                type="text"
+                placeholder="Meta title"
+              />
+              {errors.metaTitle && (
+                <p className="text-red-500 mt-1">{errors.metaTitle.message}</p>
+              )}
+            </div>
+            <div className="mb-5 w-full mr-0 md:mr-2">
+              <label className="block mb-2 text-[13px] font-normal text-gray-900">
+                Slug (unique)
+              </label>
+              <input
+                type="text"
+                name="slug"
+                {...register("slug", {
+                  required: "Slug is required",
+                })}
+                className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:outline-none block w-full p-2.5 focus:border-none"
+                placeholder="Enter a slug"
+                required
+              />
+              {errors.slug && (
+                <p className="text-red-500 mt-1">{errors.slug.message}</p>
+              )}
+            </div>
+            <div className="mb-5">
+              <label
+                className="block mb-2 text-[13px] font-normal text-gray-900 "
+                htmlFor=""
+              >
+                Meta Description
+              </label>
+              <textarea
+                name="metaDescription"
+                {...register("metaDescription", {
+                  required: "Meta Description is required",
+                })}
+                rows={7}
+                className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 focus:border-blue-500"
+                type="text"
+                placeholder="Meta description"
+              />
+              {errors.metaDescription && (
+                <p className="text-red-500 mt-1">
+                  {errors.metaDescription.message}
+                </p>
+              )}
+            </div>
+            <div className="mb-5">
+              <label
+                className="block mb-2 text-[13px] font-normal text-gray-900 "
+                htmlFor=""
+              >
+                Meta Image
+              </label>
+              <input
+                onChange={handleChangeMetaImage}
+                className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 focus:border-blue-500"
+                type="file"
+                placeholder="Meta description"
+              />
+            </div>
 
+            <div className="mb-5">
+              {/* Canonical  */}
+
+              <label
+                htmlFor="canonical-url"
+                className="block mb-2 text-[13px] font-normal text-gray-900"
+              >
+                Canonical URL
+              </label>
+              <input
+                type="text"
+                id="canonical-url"
+                name="canonicalUrl"
+                {...register("canonicalUrl", {
+                  required: "Canonical Url is required",
+                })}
+                className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 focus:border-blue-500"
+                placeholder="Enter Canonical URL"
+              />
+              {errors.canonicalUrl && (
+                <p className="text-red-500 mt-1">
+                  {errors.canonicalUrl.message}
+                </p>
+              )}
+            </div>
+          </div>
+
+          {/* Seo meta tags ended */}
           <div className="text-center pt-3">
             <button
               className="bg-primary hover:bg-lightPrimary text-white  py-2 rounded-lg text-lg w-fit px-8"
