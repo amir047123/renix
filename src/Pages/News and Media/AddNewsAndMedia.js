@@ -13,7 +13,13 @@ const AddNewsAndMedia = () => {
   const editor = useRef(null);
   const [newsDescription, setNewsDescription] = useState("");
   const [image, setImage] = useState(null);
-
+  const [metaImage, setMetaImage] = useState("");
+  const handleChangeMetaImage = async (event) => {
+    const image = event.target.files[0];
+    const formData = new FormData();
+    formData.append("image", image);
+    singleImageUpload(formData, setMetaImage);
+  };
   const handleChangeUploadImage = async (event) => {
     const image = event.target.files[0];
     const formData = new FormData();
@@ -29,6 +35,12 @@ const AddNewsAndMedia = () => {
       newsImage: image,
       newsDescription: newsDescription,
       youtubeLink: formData.youtubeLink, // New field for YouTube link
+      // seo meta tag
+      canonicalUrl: formData.canonicalUrl,
+      metaTitle: formData.metaTitle,
+      metaDescription: formData.metaDescription,
+      slug: formData.slug,
+      metaImage,
     };
 
     // post api call
@@ -89,8 +101,6 @@ const AddNewsAndMedia = () => {
               <option value="Media">Media</option>
               <option value="Shasthokotha">Shasthokotha</option>
               <option value="Shosthotarbarta">Shosthotar barta</option>
-
-
             </select>
             {errors.newsCategory && (
               <p className="text-red-500 mt-1">{errors.newsCategory.message}</p>
@@ -144,6 +154,115 @@ const AddNewsAndMedia = () => {
               onChange={(newContent) => setNewsDescription(newContent)}
             />
           </div>
+          {/* Seo meta tags started */}
+          <div>
+            <h2 className="border-b border-solid border-gray-300 mb-5 pb-3">
+              Search Engine Optimization
+            </h2>
+            <div className="mb-5">
+              <label
+                className="block mb-2 text-[13px] font-normal text-gray-900 "
+                htmlFor=""
+              >
+                Meta Title
+              </label>
+              <input
+                {...register("metaTitle", {
+                  required: "Meta Title is required",
+                })}
+                name="metaTitle"
+                className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5    focus:border-blue-500"
+                type="text"
+                placeholder="Meta title"
+              />
+              {errors.metaTitle && (
+                <p className="text-red-500 mt-1">{errors.metaTitle.message}</p>
+              )}
+            </div>
+            <div className="mb-5 w-full mr-0 md:mr-2">
+              <label className="block mb-2 text-[13px] font-normal text-gray-900">
+                Slug (unique)
+              </label>
+              <input
+                type="text"
+                name="slug"
+                {...register("slug", {
+                  required: "Slug is required",
+                })}
+                className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:outline-none block w-full p-2.5 focus:border-none"
+                placeholder="Enter a slug"
+                required
+              />
+              {errors.slug && (
+                <p className="text-red-500 mt-1">{errors.slug.message}</p>
+              )}
+            </div>
+            <div className="mb-5">
+              <label
+                className="block mb-2 text-[13px] font-normal text-gray-900 "
+                htmlFor=""
+              >
+                Meta Description
+              </label>
+              <textarea
+                name="metaDescription"
+                {...register("metaDescription", {
+                  required: "Meta Description is required",
+                })}
+                rows={7}
+                className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 focus:border-blue-500"
+                type="text"
+                placeholder="Meta description"
+              />
+              {errors.metaDescription && (
+                <p className="text-red-500 mt-1">
+                  {errors.metaDescription.message}
+                </p>
+              )}
+            </div>
+            <div className="mb-5">
+              <label
+                className="block mb-2 text-[13px] font-normal text-gray-900 "
+                htmlFor=""
+              >
+                Meta Image
+              </label>
+              <input
+                onChange={handleChangeMetaImage}
+                className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 focus:border-blue-500"
+                type="file"
+                placeholder="Meta description"
+              />
+            </div>
+
+            <div className="mb-5">
+              {/* Canonical  */}
+
+              <label
+                htmlFor="canonical-url"
+                className="block mb-2 text-[13px] font-normal text-gray-900"
+              >
+                Canonical URL
+              </label>
+              <input
+                type="text"
+                id="canonical-url"
+                name="canonicalUrl"
+                {...register("canonicalUrl", {
+                  required: "Canonical Url is required",
+                })}
+                className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 focus:border-blue-500"
+                placeholder="Enter Canonical URL"
+              />
+              {errors.canonicalUrl && (
+                <p className="text-red-500 mt-1">
+                  {errors.canonicalUrl.message}
+                </p>
+              )}
+            </div>
+          </div>
+
+          {/* Seo meta tags ended */}
           <div className="text-center pt-3">
             <button
               className="bg-primary hover:bg-lightPrimary text-white py-2 rounded-lg text-lg w-fit px-8"

@@ -5,26 +5,26 @@ import { singleImageUpload } from "../../Hooks/ImageUpload";
 import UpdateHooks from "../../Hooks/UpdateHooks";
 import { useParams } from "react-router-dom";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 const UpdateNewsAndMedias = () => {
-    const {id} = useParams()
+  const { id } = useParams();
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm();
   const editor = useRef(null);
   const [newsDescription, setNewsDescription] = useState("");
   const [image, setImage] = useState(null);
-
-
-
-
-
-
-
-
-
+  const [metaImage, setMetaImage] = useState("");
+  const handleChangeMetaImage = async (event) => {
+    const image = event.target.files[0];
+    const formData = new FormData();
+    formData.append("image", image);
+    singleImageUpload(formData, setMetaImage);
+  };
   const handleChangeUploadImage = async (event) => {
     const image = event.target.files[0];
     if (image) {
@@ -33,9 +33,22 @@ const UpdateNewsAndMedias = () => {
       singleImageUpload(formData, setImage);
     }
   };
-
-
-
+  useEffect(() => {
+    const getNewsDetails = async () => {
+      let { data } = await axios.get(
+        `http://localhost:5000/api/v1/newsAndMedia/getNewsAndMediaById/${id}`
+      );
+      console.log(data.data);
+      setValue("newsTitle", data?.data?.newsTitle);
+      setValue("newsCategory", data?.data?.newsCategory);
+      setValue("youtubeLink", data?.data?.youtubeLink);
+      setValue("canonicalUrl", data?.data?.canonicalUrl);
+      setValue("metaTitle", data?.data?.metaTitle);
+      setValue("metaDescription", data?.data?.metaDescription);
+      setValue("slug", data?.data?.slug);
+    };
+    getNewsDetails();
+  }, [id, setValue]);
 
   const handleUpdateNews = async (formData) => {
     const news = {
@@ -44,6 +57,12 @@ const UpdateNewsAndMedias = () => {
       newsImage: image,
       newsDescription: newsDescription,
       youtubeLink: formData.youtubeLink, // New field for YouTube link
+      // seo meta tag
+      canonicalUrl: formData.canonicalUrl,
+      metaTitle: formData.metaTitle,
+      metaDescription: formData.metaDescription,
+      slug: formData.slug,
+      metaImage,
     };
 
     // Assuming _id is defined somewhere in the component
@@ -53,11 +72,6 @@ const UpdateNewsAndMedias = () => {
       "successfully Update"
     );
   };
-
-
-
-
-
 
   return (
     <section className="py-10 md:py-14">
@@ -81,8 +95,7 @@ const UpdateNewsAndMedias = () => {
               id="name"
               className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-500"
               placeholder="News Title"
-              {...register("newsTitle", {
-              })}
+              {...register("newsTitle", {})}
             />
             {errors.newsTitle && (
               <p className="text-red-500 mt-1">{errors.newsTitle.message}</p>
@@ -98,8 +111,7 @@ const UpdateNewsAndMedias = () => {
             <select
               id="condition"
               className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-500"
-              {...register("newsCategory", {
-              })}
+              {...register("newsCategory", {})}
             >
               <option value="" disabled defaultValue>
                 Choose a Category
@@ -161,12 +173,121 @@ const UpdateNewsAndMedias = () => {
               onChange={(newContent) => setNewsDescription(newContent)}
             />
           </div>
+          {/* Seo meta tags started */}
+          <div>
+            <h2 className="border-b border-solid border-gray-300 mb-5 pb-3">
+              Search Engine Optimization
+            </h2>
+            <div className="mb-5">
+              <label
+                className="block mb-2 text-[13px] font-normal text-gray-900 "
+                htmlFor=""
+              >
+                Meta Title
+              </label>
+              <input
+                {...register("metaTitle", {
+                  required: "Meta Title is required",
+                })}
+                name="metaTitle"
+                className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5    focus:border-blue-500"
+                type="text"
+                placeholder="Meta title"
+              />
+              {errors.metaTitle && (
+                <p className="text-red-500 mt-1">{errors.metaTitle.message}</p>
+              )}
+            </div>
+            <div className="mb-5 w-full mr-0 md:mr-2">
+              <label className="block mb-2 text-[13px] font-normal text-gray-900">
+                Slug (unique)
+              </label>
+              <input
+                type="text"
+                name="slug"
+                {...register("slug", {
+                  required: "Slug is required",
+                })}
+                className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:outline-none block w-full p-2.5 focus:border-none"
+                placeholder="Enter a slug"
+                required
+              />
+              {errors.slug && (
+                <p className="text-red-500 mt-1">{errors.slug.message}</p>
+              )}
+            </div>
+            <div className="mb-5">
+              <label
+                className="block mb-2 text-[13px] font-normal text-gray-900 "
+                htmlFor=""
+              >
+                Meta Description
+              </label>
+              <textarea
+                name="metaDescription"
+                {...register("metaDescription", {
+                  required: "Meta Description is required",
+                })}
+                rows={7}
+                className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 focus:border-blue-500"
+                type="text"
+                placeholder="Meta description"
+              />
+              {errors.metaDescription && (
+                <p className="text-red-500 mt-1">
+                  {errors.metaDescription.message}
+                </p>
+              )}
+            </div>
+            <div className="mb-5">
+              <label
+                className="block mb-2 text-[13px] font-normal text-gray-900 "
+                htmlFor=""
+              >
+                Meta Image
+              </label>
+              <input
+                onChange={handleChangeMetaImage}
+                className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 focus:border-blue-500"
+                type="file"
+                placeholder="Meta description"
+              />
+            </div>
+
+            <div className="mb-5">
+              {/* Canonical  */}
+
+              <label
+                htmlFor="canonical-url"
+                className="block mb-2 text-[13px] font-normal text-gray-900"
+              >
+                Canonical URL
+              </label>
+              <input
+                type="text"
+                id="canonical-url"
+                name="canonicalUrl"
+                {...register("canonicalUrl", {
+                  required: "Canonical Url is required",
+                })}
+                className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 focus:border-blue-500"
+                placeholder="Enter Canonical URL"
+              />
+              {errors.canonicalUrl && (
+                <p className="text-red-500 mt-1">
+                  {errors.canonicalUrl.message}
+                </p>
+              )}
+            </div>
+          </div>
+
+          {/* Seo meta tags ended */}
           <div className="text-center pt-3">
             <button
               className="bg-primary hover:bg-lightPrimary text-white py-2 rounded-lg text-lg w-fit px-8"
               type="submit"
             >
-              Add News
+              Update News
             </button>
           </div>
         </form>
