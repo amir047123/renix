@@ -5,9 +5,12 @@ import AuthUser from "../../../../Hooks/authUser";
 import { singleImageUpload } from "../../../../Hooks/ImageUpload";
 import UpdateHooks from "../../../../Hooks/UpdateHooks";
 import { disctricData } from "../../../../Utils/DistricData";
+import useGetSeo from "../../../../Hooks/useGetSeo";
+import DynamicMetaTitle from "../../../../Components/DynamicMetaTitle";
 
 const MyAccount = () => {
   const [imageUrl, setMyImageUrl] = useState(null);
+  const metaData = useGetSeo("my_account");
   const { userInfo } = AuthUser();
   const [user, setUser] = useState({});
 
@@ -55,6 +58,11 @@ const MyAccount = () => {
 
   return (
     <div className="bg-[#f5f8ff] w-full">
+      <DynamicMetaTitle
+        title={metaData?.metaTitle}
+        metaImage={metaData?.metaImage}
+        description={metaData?.metaDescription}
+      />
       <div className="pt-10 w-[80%] mx-auto">
         {/* img here */}
         <div className="w-lg h-48 bg-gradient-to-r from-primary to-thirdLightPrimary rounded-2xl"></div>

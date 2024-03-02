@@ -3,14 +3,22 @@ import { NavLink, Outlet } from "react-router-dom";
 import { RxCaretRight } from "react-icons/rx";
 import WebNav from "../Layouts/WebNav";
 import Footer from "../Layouts/Footer";
+import DynamicMetaTitle from "../Components/DynamicMetaTitle";
+import useGetSeo from "../Hooks/useGetSeo";
 
 const About = () => {
+  const metaData = useGetSeo("about_us");
   //about menu active style
   let activeStyle = {
     backgroundColor: "#0A2004",
   };
   return (
     <>
+      <DynamicMetaTitle
+        title={metaData?.metaTitle}
+        metaImage={metaData?.metaImage}
+        description={metaData?.metaDescription}
+      />
       <WebNav />
       <section className=""></section>
 

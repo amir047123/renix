@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Loading from "../../shared/Loading";
+import DynamicMetaTitle from "../../Components/DynamicMetaTitle";
+import useGetSeo from "../../Hooks/useGetSeo";
+import { Link } from "react-router-dom";
 
 const Shosthotarbarta = () => {
   const [newsAndMedia, setNewsAndMedia] = useState([]);
+  const metaData = useGetSeo("shasthokothar_barta_page");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -12,7 +16,9 @@ const Shosthotarbarta = () => {
 
   const fetchNewsAndMedia = () => {
     setLoading(true);
-    fetch("http://localhost:5000/api/v1/newsAndMedia/specific?fieldName=newsCategory&fieldValue=Shosthotarbarta")
+    fetch(
+      "http://localhost:5000/api/v1/newsAndMedia/specific?fieldName=newsCategory&fieldValue=Shosthotarbarta"
+    )
       .then((response) => response.json())
       .then((data) => {
         setNewsAndMedia(data.data);
@@ -28,25 +34,35 @@ const Shosthotarbarta = () => {
 
   return (
     <div>
+      <DynamicMetaTitle
+        title={metaData?.metaTitle}
+        metaImage={metaData?.metaImage}
+        description={metaData?.metaDescription}
+      />
       <section className="flex flex-col justify-center max-w-6xl min-h-screen px-4 py-10 mx-auto sm:px-6">
         <div className="flex flex-wrap items-center justify-between mb-8">
           <h2 className="mr-10 text-3xl font-bold leading-none md:text-5xl">
             Renix Unani Laboratories Ltd Shosthotar Barta
           </h2>
-          <a
-            href="https://www.youtube.com/@renixlaboratoriesltd"
+          <Link
+            to="https://www.youtube.com/@renixlaboratoriesltd"
             target="_blank"
             className="block pb-1 mt-2 text-base font-black text-blue-600 uppercase border-b border-transparent hover:border-blue-600"
           >
             Go To YouTube Channel
-          </a>
+          </Link>
         </div>
         {loading ? (
           <Loading />
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 px-2">
             {newsAndMedia.map((news, index) => (
-              <a href={news?.youtubeLink} target="_blank" className="px-2 py-2 shadow-md" key={index}>
+              <a
+                href={news?.youtubeLink}
+                target="_blank"
+                className="px-2 py-2 shadow-md"
+                key={index}
+              >
                 <img
                   alt=""
                   src={news?.newsImage}
@@ -54,7 +70,9 @@ const Shosthotarbarta = () => {
                   style={{ maxHeight: "400px", width: "100%" }}
                 />
 
-                <h3 className="mt-4 text-lg font-bold text-gray-900 sm:text-xl">{news?.newsTitle}</h3>
+                <h3 className="mt-4 text-lg font-bold text-gray-900 sm:text-xl">
+                  {news?.newsTitle}
+                </h3>
 
                 <p
                   className="mt-2 text-gray-700"

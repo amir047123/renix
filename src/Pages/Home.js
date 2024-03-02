@@ -10,10 +10,18 @@ import Contact from "../Components/Home/Contact/Contact";
 import HomeSlider from "../Components/Home/HomeSlider/HomeSlider/HomeSlider";
 import NewsAndMedia from "../Components/Home/newAndMedia/NewsAndMedia";
 import ShowCase from "../Components/Home/ProductShowcase/ShowCase";
+import DynamicMetaTitle from "../Components/DynamicMetaTitle";
+import useGetSeo from "../Hooks/useGetSeo";
 
 const Home = () => {
+  const metaData = useGetSeo("home_page");
   return (
     <div>
+      <DynamicMetaTitle
+        title={metaData?.metaTitle}
+        metaImage={metaData?.metaImage}
+        description={metaData?.metaDescription}
+      />
       <HomeSlider />
       <HealthCareProducts />
       <NaturalSolution />
@@ -23,8 +31,8 @@ const Home = () => {
       <NewArrivals />
       <BestDoctors />
       {/* <Contact /> */}
-      <ShowCase/>
-      <NewsAndMedia/>
+      <ShowCase />
+      <NewsAndMedia />
       <LocationMap />
     </div>
   );

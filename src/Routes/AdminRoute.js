@@ -27,6 +27,9 @@ import RejectedOrders from "../Pages/orders/RejectedOrders";
 import ViewOrder from "../Pages/orders/ViewOrder";
 import UpdateBlogCategory from "../Pages/blog/UpdateBlogCategory";
 import UpdateBlog from "../Pages/blog/UpdateBlog";
+import AdminAllSeoList from "../Components/AdminDashbord/AdminSeo/AdminAllSeoList";
+import AdminSeo from "../Components/AdminDashbord/AdminSeo/AdminSeo";
+import AdminUpdateSeoList from "../Components/AdminDashbord/AdminSeo/AdminUpdateSeoList";
 
 const AdminRoutes = [
   { path: "overview", Component: Dashboard },
@@ -68,6 +71,9 @@ const AdminRoutes = [
   { path: "shipping", Component: AdminShipping },
   { path: "add-news-media", Component: AddNewsAndMedia },
   { path: "all-news-media", Component: AllNewsAndMedias },
+  { path: "add-seo", Component: AdminSeo },
+  { path: "all-seo", Component: AdminAllSeoList },
+  { path: "update-seo/:id", Component: AdminUpdateSeoList },
   {
     path: "all-news-media/update-news-media/:id",
     Component: UpdateNewsAndMedias,

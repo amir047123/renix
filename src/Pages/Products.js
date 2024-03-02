@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 import Loading from "../shared/Loading";
 import Card from "../Components/Card/Card";
 import Pagination from "../shared/Pagination";
+import useGetSeo from "../Hooks/useGetSeo";
+import DynamicMetaTitle from "../Components/DynamicMetaTitle";
 
 const Products = () => {
+  const metaData = useGetSeo("our_product_page");
   const [products, setProducts] = useState([]);
   const [quantity, setQuantity] = useState(0);
   const [page, setPage] = useState(0);
@@ -38,6 +41,11 @@ const Products = () => {
 
   return (
     <div className="m-5">
+      <DynamicMetaTitle
+        title={metaData?.metaTitle}
+        metaImage={metaData?.metaImage}
+        description={metaData?.metaDescription}
+      />
       <header className="bg-gray-50 mb-5">
         <div className="sm:flex sm:items-center sm:justify-between">
           <div className="text-center sm:text-left">
@@ -61,7 +69,6 @@ const Products = () => {
             ))}
           </div>
           <Pagination
-        
             currentPage={page + 1} // Pagination component starts from page 1
             totalPages={totalPages}
             onPageChange={handlePageChange}

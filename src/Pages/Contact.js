@@ -2,10 +2,12 @@ import { FiSend } from "react-icons/fi";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Contact.css";
+import DynamicMetaTitle from "../Components/DynamicMetaTitle";
+import useGetSeo from "../Hooks/useGetSeo";
 
 const Contact = () => {
   const [option, setOption] = useState();
-
+  const metaData = useGetSeo("contact_page");
   // OnSubmit Form handler
   const handleForm = async (event) => {
     event.preventDefault();
@@ -17,13 +19,16 @@ const Contact = () => {
 
     try {
       // Make the API call to addContactRenixes using fetch
-      const response = await fetch("http://localhost:5000/api/v1/contactRenix/addContactRenix", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name, email, subject, message }),
-      });
+      const response = await fetch(
+        "http://localhost:5000/api/v1/contactRenix/addContactRenix",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ name, email, subject, message }),
+        }
+      );
 
       // Check if the request was successful (status code 2xx)
       if (response.ok) {
@@ -39,6 +44,11 @@ const Contact = () => {
   };
   return (
     <div className="lg:w-[90%] mx-auto">
+      <DynamicMetaTitle
+        title={metaData?.metaTitle}
+        metaImage={metaData?.metaImage}
+        description={metaData?.metaDescription}
+      />
       <div className="w-full md:p-14 p-5 grid grid-cols-1 lg:grid-cols-2 gap-5 ">
         <div className="py-10 px-7 rounded-md">
           <div className="px-5 lg:px-1 ">
@@ -73,8 +83,6 @@ const Contact = () => {
         </div>
 
         <div className="md:py-10 px-7 rounded-md">
-       
-
           <div className="p-8 form-border">
             <form onSubmit={handleForm}>
               {/* {/ name  /} */}
@@ -143,12 +151,9 @@ const Contact = () => {
               </button>
             </form>
           </div>
-
-        
         </div>
       </div>
     </div>
-   
   );
 };
 
