@@ -5,17 +5,18 @@ import DynamicMetaTitle from "../DynamicMetaTitle";
 
 const CategoryItems = ({ category }) => {
   const [openSubCategory, setOpenSubCategory] = useState(false);
-
+  console.log(category);
   return (
     <div>
       <ul className="flex flex-col gap-3 relative">
         <li className="relative border-b border-solid border-gray px-5">
           <Link
             className="uppercase flex justify-between items-center text-blackColor font-medium text-sm py-3"
-            to={`/products/${category}`}
+            to={`/products/${category}`} // Update this line
           >
             {category}
           </Link>
+
           <ul
             className={`top-full text-xs pb-4 `}
             style={{

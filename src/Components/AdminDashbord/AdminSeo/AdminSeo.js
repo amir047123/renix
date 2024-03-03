@@ -78,6 +78,7 @@ const AdminSeo = () => {
             name="page"
             id=""
           >
+            <option value="">Select Page</option>
             <option value="home_page">Home Page</option>
             <option value="about_us">About Us Page</option>
             <option value="security_page">Security check Page</option>

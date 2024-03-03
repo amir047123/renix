@@ -72,11 +72,13 @@ const NewArrivals = () => {
                 {/* <h2 className="bg-primary w-10 text-left text-xs pl-1 pt-1 pb-1  text-white mt-3">
                   Sale!
                 </h2> */}
+                <Link to={`/product/${product?.slug}`}>
                 <img
                   src={product.img}
                   alt=""
                   className="w-[200px] mx-auto  h-auto mt-7"
                 />
+                </Link>
                 <div className="pl-4 pb-2">
                   <h1 className="text-secondary text-left   text-lg mt-2">
                     {product.name}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Loading from "../shared/Loading";
 import Card from "../Components/Card/Card";
 import Pagination from "../shared/Pagination";
@@ -9,6 +9,7 @@ import CategoryItems from "../Components/Products/CategoryItems";
 import axios from "axios";
 
 const Products = () => {
+  const { id } = useParams();
   const metaData = useGetSeo("our_product_page");
   const [products, setProducts] = useState([]);
   const [quantity, setQuantity] = useState(0);
@@ -20,7 +21,13 @@ const Products = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
-      const url = `http://localhost:5000/api/v1/medicine?size=${pageSize}&page=${page}`;
+      let url = `http://localhost:5000/api/v1/medicine?size=${pageSize}&page=${page}`;
+
+      // If a category ID is provided, fetch products for that category
+      if (id) {
+        url = `http://localhost:5000/api/v1/medicine/specific?fieldName=medicineCategory&fieldValue=${id}&size=${pageSize}&page=${page}`;
+      }
+
       try {
         const response = await fetch(url);
         const data = await response.json();
@@ -34,21 +41,21 @@ const Products = () => {
     };
 
     fetchProducts();
-  }, [page]);
+  }, [id, page, pageSize]);
+
+  useEffect(() => {
+    const fetchCategory = async () => {
+      const { data } = await axios.get("http://localhost:5000/api/v1/category");
+      setCategorys(data?.data);
+    };
+    fetchCategory();
+  }, []);
 
   const totalPages = Math.ceil(quantity / pageSize);
 
   const handlePageChange = (pageNumber) => {
     setPage(pageNumber - 1); // Pagination component starts from page 1
   };
-  useEffect(() => {
-    const fetchCategory = async () => {
-      const { data } = await axios.get("http://localhost:5000/api/v1/category");
-      console.log(data?.data);
-      setCategorys(data?.data);
-    };
-    fetchCategory();
-  }, []);
 
   return (
     <div className="m-5">
@@ -84,7 +91,7 @@ const Products = () => {
                 {categorys?.length && (
                   <>
                     {categorys?.map((category) => (
-                      <CategoryItems className="" category={category?.name} />
+                      <CategoryItems key={category._id} category={category?.name} />
                     ))}
                   </>
                 )}

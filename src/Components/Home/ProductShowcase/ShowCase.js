@@ -38,7 +38,7 @@ const ShowCase = () => {
           </header>
 
           <Link
-            to="https://store.renixlaboratories.com.bd/shop"
+            to="https://store.renixlaboratories.com.bd"
             className="mt-8 inline-block  rounded border border-gray-900 bg-gray-900 px-12 py-3 text-sm font-medium text-black transition hover:shadow focus:outline-none focus:ring"
           >
             Shop All
@@ -51,7 +51,7 @@ const ShowCase = () => {
 
         {randomProducts.map((product) => (
         <li key={product._id}>
-          <Link to={`/products/${product?._id}`} className="group block">
+          <Link to={`/product/${product?.slug}`} className="group block">
             <img
               src={product.img}
               alt=""
