@@ -102,6 +102,8 @@ const ProductDetails = () => {
         title={product?.metaTitle}
         description={product?.metaDescription}
         metaImage={product?.metaImage}
+        canonicalUrl={product?.canonicalUrl}
+
       />
       <div className="lg:w-3/5 md:w-10/12 mx-auto w-11/12">
         <div className="grid md:grid-cols-2 grid-cols-1 gap-6 mt-5 shadow-md p-5">

@@ -48,6 +48,8 @@ const Contact = () => {
         title={metaData?.metaTitle}
         metaImage={metaData?.metaImage}
         description={metaData?.metaDescription}
+        canonicalUrl={metaData?.canonicalUrl}
+
       />
       <div className="w-full md:p-14 p-5 grid grid-cols-1 lg:grid-cols-2 gap-5 ">
         <div className="py-10 px-7 rounded-md">

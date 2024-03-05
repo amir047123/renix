@@ -39,6 +39,8 @@ const Blogs = () => {
         title={metaData?.metaTitle}
         metaImage={metaData?.metaImage}
         description={metaData?.metaDescription}
+        canonicalUrl={metaData?.canonicalUrl}
+
       />
       <div class="mx-auto  text-center lg:mb-16 mb-8">
         <h2 class="mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">

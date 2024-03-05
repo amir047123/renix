@@ -38,6 +38,8 @@ const Shosthotarbarta = () => {
         title={metaData?.metaTitle}
         metaImage={metaData?.metaImage}
         description={metaData?.metaDescription}
+        canonicalUrl={metaData?.canonicalUrl}
+
       />
       <section className="flex flex-col justify-center max-w-6xl min-h-screen px-4 py-10 mx-auto sm:px-6">
         <div className="flex flex-wrap items-center justify-between mb-8">

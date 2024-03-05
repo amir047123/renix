@@ -63,6 +63,8 @@ const Products = () => {
         title={metaData?.metaTitle}
         metaImage={metaData?.metaImage}
         description={metaData?.metaDescription}
+        canonicalUrl={metaData?.canonicalUrl}
+
       />
       <header className="bg-gray-50 mb-5">
         <div className="sm:flex sm:items-center sm:justify-between">

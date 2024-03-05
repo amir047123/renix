@@ -18,6 +18,8 @@ const About = () => {
         title={metaData?.metaTitle}
         metaImage={metaData?.metaImage}
         description={metaData?.metaDescription}
+        canonicalUrl={metaData?.canonicalUrl}
+
       />
       <WebNav />
       <section className=""></section>
