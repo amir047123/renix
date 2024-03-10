@@ -496,6 +496,7 @@ const AdminDashboard = () => {
                     </ul>
                   </li>
                   {/* Handle SEO */}
+
                   <li
                     onClick={logout}
                     className="flex cursor-pointer items-center gap-4 px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"

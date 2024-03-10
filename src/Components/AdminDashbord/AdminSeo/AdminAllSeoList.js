@@ -7,7 +7,7 @@ import useGetSeo from "../../../Hooks/useGetSeo";
 
 const AdminAllSeoList = () => {
   const [refetch, setRefetch] = useState(false);
-  const data = useGetSeo("product_details_page");
+ 
 
   const [allSeo, setAllSeo] = useState([]);
   useEffect(() => {
@@ -27,7 +27,10 @@ const AdminAllSeoList = () => {
         All SEO List
       </h1>
       <div className=" mb-3">
-        <span className=" text-gray-700"> Showing 24 Results</span>
+        <span className=" text-gray-700">
+          {" "}
+          Showing {allSeo?.length} Results
+        </span>
       </div>
       <div className="w-full overflow-x-auto">
         <table className="w-full text-left rounded  " cellspacing="0">

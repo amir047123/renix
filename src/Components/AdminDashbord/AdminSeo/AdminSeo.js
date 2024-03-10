@@ -91,6 +91,7 @@ const AdminSeo = () => {
             <option value="blog_page">Blogs</option>
             <option value="contact_page">Contact Us</option>
             <option value="my_account">My account</option>
+            <option value="appointment_page">Appointment Page</option>
           </select>
         </div>
 

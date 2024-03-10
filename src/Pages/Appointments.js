@@ -3,8 +3,11 @@ import DoctorsCard from "../Components/DoctorsCard/DoctorsCard";
 import { useState } from "react";
 import { useEffect } from "react";
 import Pagination from "../shared/Pagination/Pagination";
+import useGetSeo from "../Hooks/useGetSeo";
+import DynamicMetaTitle from "../Components/DynamicMetaTitle";
 
 const Appointments = () => {
+  const metaData = useGetSeo("appointment_page");
   const [doctors, setDoctors] = useState([]);
   const [quantity, setQuantity] = useState(0);
   const [page, setPage] = useState(0);
@@ -22,6 +25,11 @@ const Appointments = () => {
   }, [page, size]);
   return (
     <div className=" min-h-screen bg-gray-100 px-10">
+      <DynamicMetaTitle
+        title={metaData?.metaTitle}
+        metaImage={metaData?.metaImage}
+        description={metaData?.metaDescription}
+      />
       <h2 className="text-center text-2xl font-semibold my-5 text-primary">
         Our Popular Doctors
       </h2>

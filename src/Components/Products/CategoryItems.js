@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaPlus } from "react-icons/fa";
-import DynamicMetaTitle from "../DynamicMetaTitle";
 
 const CategoryItems = ({ category }) => {
   const [openSubCategory, setOpenSubCategory] = useState(false);
