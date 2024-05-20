@@ -32,7 +32,7 @@ const AddBlogCategory = () => {
   const handelSubmit = (e) => {
     e.preventDefault();
     PostHooks(
-      " http://localhost:5000/api/v1/blogsCategory",
+      " https://renixserver.niroghealthplus.com/api/v1/blogsCategory",
       data,
       "Category successfully posted"
     );

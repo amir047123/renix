@@ -45,7 +45,7 @@ const AddNewsAndMedia = () => {
 
     // post api call
     await PostHooks(
-      "http://localhost:5000/api/v1/newsAndMedia/addNewsAndMedia",
+      "https://renixserver.niroghealthplus.com/api/v1/newsAndMedia/addNewsAndMedia",
       news,
       "Medicine successfully posted"
     );

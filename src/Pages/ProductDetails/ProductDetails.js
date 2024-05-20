@@ -16,7 +16,7 @@ const ProductDetails = () => {
   const { id } = useParams();
   useEffect(() => {
     fetch(
-      ` http://localhost:5000/api/v1/medicine/specific?fieldName=slug&&fieldValue=${id}`
+      ` https://renixserver.niroghealthplus.com/api/v1/medicine/specific?fieldName=slug&&fieldValue=${id}`
     )
       .then((res) => res.json())
       .then((data) => {

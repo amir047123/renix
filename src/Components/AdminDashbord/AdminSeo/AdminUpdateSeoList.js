@@ -31,7 +31,7 @@ const AdminUpdateSeoList = () => {
   useEffect(() => {
     const fetchSingleSeo = async () => {
       const { data } = await axios.get(
-        `http://localhost:5000/api/v1/seo/getSeoById/${id}`
+        `https://renixserver.niroghealthplus.com/api/v1/seo/getSeoById/${id}`
       );
       setSeo(data?.data);
       setFormData({
@@ -59,7 +59,7 @@ const AdminUpdateSeoList = () => {
 
     try {
       const { data: seoData } = await axios.patch(
-        `http://localhost:5000/api/v1/seo/updateSeo/${id}`,
+        `https://renixserver.niroghealthplus.com/api/v1/seo/updateSeo/${id}`,
         data
       );
       // console.log(seoData);

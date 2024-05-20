@@ -15,7 +15,7 @@ const AllBlogs = () => {
   const [size, setSize] = useState(6);
   const [refresh, setRefresh] = useState(false);
   useEffect(() => {
-    const url = ` http://localhost:5000/api/v1/blogs?size=${size}&page=${page}`;
+    const url = ` https://renixserver.niroghealthplus.com/api/v1/blogs?size=${size}&page=${page}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -36,7 +36,7 @@ const AllBlogs = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(` http://localhost:5000/api/v1/blogs/deleteBlog/${id}`, {
+        fetch(` https://renixserver.niroghealthplus.com/api/v1/blogs/deleteBlog/${id}`, {
           method: "DELETE",
         }).then((res) => {
           if (res.status === 200) {

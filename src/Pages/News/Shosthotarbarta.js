@@ -17,7 +17,7 @@ const Shosthotarbarta = () => {
   const fetchNewsAndMedia = () => {
     setLoading(true);
     fetch(
-      "http://localhost:5000/api/v1/newsAndMedia/specific?fieldName=newsCategory&fieldValue=Shosthotarbarta"
+      "https://renixserver.niroghealthplus.com/api/v1/newsAndMedia/specific?fieldName=newsCategory&fieldValue=Shosthotarbarta"
     )
       .then((response) => response.json())
       .then((data) => {

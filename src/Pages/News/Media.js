@@ -16,7 +16,7 @@ const Media = () => {
 
   const fetchNewsAndMedia = () => {
     setLoading(true);
-    fetch("http://localhost:5000/api/v1/newsAndMedia/specific?fieldName=newsCategory&fieldValue=Media")
+    fetch("https://renixserver.niroghealthplus.com/api/v1/newsAndMedia/specific?fieldName=newsCategory&fieldValue=Media")
       .then((response) => response.json())
       .then((data) => {
         setNewsAndMedia(data.data);

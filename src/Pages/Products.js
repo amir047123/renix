@@ -21,11 +21,11 @@ const Products = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
-      let url = `http://localhost:5000/api/v1/medicine?size=${pageSize}&page=${page}`;
+      let url = `https://renixserver.niroghealthplus.com/api/v1/medicine?size=${pageSize}&page=${page}`;
 
       // If a category ID is provided, fetch products for that category
       if (id) {
-        url = `http://localhost:5000/api/v1/medicine/specific?fieldName=medicineCategory&fieldValue=${id}&size=${pageSize}&page=${page}`;
+        url = `https://renixserver.niroghealthplus.com/api/v1/medicine/specific?fieldName=medicineCategory&fieldValue=${id}&size=${pageSize}&page=${page}`;
       }
 
       try {
@@ -45,7 +45,7 @@ const Products = () => {
 
   useEffect(() => {
     const fetchCategory = async () => {
-      const { data } = await axios.get("http://localhost:5000/api/v1/category");
+      const { data } = await axios.get("https://renixserver.niroghealthplus.com/api/v1/category");
       setCategorys(data?.data);
     };
     fetchCategory();

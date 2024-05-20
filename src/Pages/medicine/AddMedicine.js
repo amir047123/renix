@@ -28,7 +28,7 @@ const AddMedicine = () => {
   };
   // get category
   useEffect(() => {
-    const url = ` http://localhost:5000/api/v1/category`;
+    const url = ` https://renixserver.niroghealthplus.com/api/v1/category`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -73,7 +73,7 @@ const AddMedicine = () => {
 
     // post api call
     await PostHooks(
-      "http://localhost:5000/api/v1/medicine/postMedicine",
+      "https://renixserver.niroghealthplus.com/api/v1/medicine/postMedicine",
       medicine,
       "Medicine successfully posted"
     );

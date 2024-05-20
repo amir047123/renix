@@ -15,7 +15,7 @@ const ShowCase = () => {
   const randomProducts = shuffledProducts.slice(4,6);
 
   useEffect(() => {
-    const url = ` http://localhost:5000/api/v1/medicine?size=${8}&page=${0}`;
+    const url = ` https://renixserver.niroghealthplus.com/api/v1/medicine?size=${8}&page=${0}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {

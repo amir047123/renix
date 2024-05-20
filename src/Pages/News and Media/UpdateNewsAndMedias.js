@@ -36,7 +36,7 @@ const UpdateNewsAndMedias = () => {
   useEffect(() => {
     const getNewsDetails = async () => {
       let { data } = await axios.get(
-        `http://localhost:5000/api/v1/newsAndMedia/getNewsAndMediaById/${id}`
+        `https://renixserver.niroghealthplus.com/api/v1/newsAndMedia/getNewsAndMediaById/${id}`
       );
       console.log(data.data);
       setValue("newsTitle", data?.data?.newsTitle);
@@ -67,7 +67,7 @@ const UpdateNewsAndMedias = () => {
 
     // Assuming _id is defined somewhere in the component
     await UpdateHooks(
-      `http://localhost:5000/api/v1/newsAndMedia/updateNewsAndMedia/${id}`,
+      `https://renixserver.niroghealthplus.com/api/v1/newsAndMedia/updateNewsAndMedia/${id}`,
       news,
       "successfully Update"
     );

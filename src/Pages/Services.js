@@ -15,7 +15,7 @@ const Services = () => {
   };
 
   useEffect(() => {
-    const url = ` http://localhost:5000/api/v1/medicine`;
+    const url = ` https://renixserver.niroghealthplus.com/api/v1/medicine`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
