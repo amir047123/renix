@@ -37,7 +37,7 @@ const AdminDashboard = () => {
 
   //show blog
   const [openBlog, setOpenBlog] = useState(false);
-
+  const [openSeo, setOpenSeo] = useState(false);
 
   const navigate = useNavigate();
 
@@ -65,7 +65,9 @@ const AdminDashboard = () => {
   };
   const handleNewsDropdown = () => {
     openNews === true ? setOpenNews(false) : setOpenNews(true);
-
+  };
+  const handleSeoDropdown = () => {
+    openSeo === true ? setOpenSeo(false) : setOpenSeo(true);
   };
   //close sidebar on click
 
@@ -327,7 +329,7 @@ const AdminDashboard = () => {
                             isActive ? activeStyle : undefined
                           }
                         >
-                          <span className="ml-3"> Add  News And Media</span>
+                          <span className="ml-3"> Add News And Media</span>
                         </NavLink>
                       </li>
                       <li>
@@ -341,7 +343,6 @@ const AdminDashboard = () => {
                           <span className="ml-3">All News And Media</span>
                         </NavLink>
                       </li>
-                  
                     </ul>
                   </li>
 
@@ -444,6 +445,57 @@ const AdminDashboard = () => {
                       <span className="ml-3"> Contact</span>
                     </Link>
                   </li>
+                  {/* Handle SEO */}
+                  <li>
+                    <span
+                      onClick={handleSeoDropdown}
+                      className="flex items-center justify-between cursor-pointer gap-5 px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"
+                    >
+                      <div className="flex items-center gap-4">
+                        <span className="text-lg">
+                          <BiBorderAll />
+                        </span>
+
+                        <span className="">SEO</span>
+                      </div>
+                      <span
+                        className={`text-2xl transition_move ${
+                          openSeo === true ? "rotate-180" : ""
+                        }`}
+                      >
+                        <RxCaretDown />
+                      </span>
+                    </span>
+                    <ul
+                      className={`drop_down  ${
+                        openSeo === true ? "block" : "hidden"
+                      }`}
+                    >
+                      <li>
+                        <NavLink
+                          to={"add-seo"}
+                          className="flex items-center p-2 text-[14px]  hover:bg-textColor font-normal  py-2.5 rounded-md dark:text-white dark:hover:bg-gray-700 text-white"
+                          style={({ isActive }) =>
+                            isActive ? activeStyle : undefined
+                          }
+                        >
+                          <span className="ml-3"> Add Seo</span>
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink
+                          to={"all-seo"}
+                          className="flex items-center p-2 text-[14px] hover:bg-textColor  font-normal py-2.5  rounded-md dark:text-white dark:hover:bg-gray-700 text-white"
+                          style={({ isActive }) =>
+                            isActive ? activeStyle : undefined
+                          }
+                        >
+                          <span className="ml-3">All Seo</span>
+                        </NavLink>
+                      </li>
+                    </ul>
+                  </li>
+                  {/* Handle SEO */}
                   <li
                     onClick={logout}
                     className="flex cursor-pointer items-center gap-4 px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"
@@ -889,9 +941,61 @@ const AdminDashboard = () => {
                             <MdOutlineMailOutline />
                           </span>
 
-                          <span className="ml-3"> Contact</span>
+                          <span className="ml-3"> Contact </span>
                         </Link>
                       </li>
+                      {/* Handle SEO */}
+                      <li>
+                        <span
+                          onClick={handleSeoDropdown}
+                          className="flex items-center justify-between cursor-pointer gap-5 px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"
+                        >
+                          <div className="flex items-center gap-4">
+                            <span className="text-lg">
+                              <BiBorderAll />
+                            </span>
+
+                            <span className="">SEO</span>
+                          </div>
+                          <span
+                            className={`text-2xl transition_move ${
+                              openSeo === true ? "rotate-180" : ""
+                            }`}
+                          >
+                            <RxCaretDown />
+                          </span>
+                        </span>
+                        <ul
+                          className={`drop_down  ${
+                            openSeo === true ? "block" : "hidden"
+                          }`}
+                        >
+                          <li>
+                            <NavLink
+                              to={"adminDashboard/add-seo"}
+                              className="flex items-center p-2 text-[14px]  hover:bg-textColor font-normal  py-2.5 rounded-md dark:text-white dark:hover:bg-gray-700 text-white"
+                              style={({ isActive }) =>
+                                isActive ? activeStyle : undefined
+                              }
+                            >
+                              <span className="ml-3"> Add Seo</span>
+                            </NavLink>
+                          </li>
+                          <li>
+                            <NavLink
+                              to={"all-seo"}
+                              className="flex items-center p-2 text-[14px] hover:bg-textColor  font-normal py-2.5  rounded-md dark:text-white dark:hover:bg-gray-700 text-white"
+                              style={({ isActive }) =>
+                                isActive ? activeStyle : undefined
+                              }
+                            >
+                              <span className="ml-3">All Seo</span>
+                            </NavLink>
+                          </li>
+                        </ul>
+                      </li>
+                      {/* Handle SEO */}
+
                       <li
                         onClick={logout}
                         className="flex cursor-pointer items-center gap-5 px-2 py-2.5 text-[14px] font-normal rounded dark:text-white dark:hover:bg-gray-700 text-white hover:bg-textColor"

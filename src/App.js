@@ -7,7 +7,7 @@ import AdminRoutes from "./Routes/AdminRoute";
 import { aboutRoutes } from "./Routes/AboutRoutes";
 import About from "./Pages/About";
 import OrderFLoatingCart from "./Layouts/OrderFLoatingCart";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BsFillBagFill } from "react-icons/bs";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -15,7 +15,6 @@ import AdminDashboardOverview from "./Pages/dashboard/AdminDashboardOverview";
 import UserDashboard from "./dashboardLayout/UserDashboard";
 import UserDashboardIndex from "./Pages/dashboard/userDashboard/UserDashboardIndex";
 import UserRoutes from "./Routes/UserRoutes";
-import { useEffect } from "react";
 import MyContext from "./Utils/Context/MyContext";
 import AuthUser from "./Hooks/authUser";
 import { server_url } from "./Config/API";
@@ -29,6 +28,7 @@ function App() {
   const [openCart, setOpenCart] = useState(false);
   const [order, setOrder] = useState([]);
   const [refresh, setRefresh] = useState(false);
+
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem("order"));
     setOrder(items);
@@ -40,49 +40,66 @@ function App() {
       .then((data) => setUser(data?.data));
   }, [userInfo?._id]);
 
+  // Track page view when the component mounts
+  
   return (
     <MyContext.Provider value={{ refresh, setRefresh, user }}>
       <div className="relative">
-       {/* this is order floting */}
-        <Routes>
-          {/* main Routes */}
+        {/* Order floating cart */}
+        {/* Render OrderFLoatingCart conditionally */}
+        {openCart ? (
+          <OrderFLoatingCart setOpenCart={setOpenCart} />
+        ) : (
+          <div className="fixed z-20 top-[45vh] right-0 cursor-pointer">
+            <div
+              onClick={() => setOpenCart(true)}
+              className="bg-primary rounded-l-lg"
+            >
+              <div className="flex flex-col justify-center items-center text-white">
+                <div className="flex flex-col justify-center items-center p-2 ">
+                  <BsFillBagFill className="text-2xl "></BsFillBagFill>
+                  <p className="pt-2 text-xs">
+                    {order?.length ? order.length : 0} item
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
-          <Route
-            path="/"
-            element={
-              <>
-                <Main />
-              </>
-            }
-          >
+        <Routes>
+          {/* Main Routes */}
+          <Route path="/" element={<Main />}>
             {PublicRoutes.map(({ path, Component }, index) => (
               <Route key={index + 45} path={path} element={<Component />} />
             ))}
           </Route>
 
-          {/*Admin dashboard routes */}
+          {/* Admin dashboard routes */}
           <Route path="/adminDashboard" element={<AdminDashboard />}>
-            <Route index element={<AdminDashboardOverview />}></Route>
+            <Route index element={<AdminDashboardOverview />} />
             {AdminRoutes.map(({ path, Component }, index) => (
               <Route key={index} path={path} element={<Component />} />
             ))}
           </Route>
-          {/*user dashboard routes */}
+
+          {/* User dashboard routes */}
           <Route path="/userDashboard" element={<UserDashboard />}>
-            <Route index element={<UserDashboardIndex />}></Route>
+            <Route index element={<UserDashboardIndex />} />
             {UserRoutes.map(({ path, Component }, index) => (
               <Route key={index} path={path} element={<Component />} />
             ))}
           </Route>
-          {/*Admin dashboard routes */}
+
+          {/* Doctor dashboard routes */}
           <Route path="/doctorDashboard" element={<DoctorDashboard />}>
-            <Route index element={<DoctorDashboardIndex />}></Route>
+            <Route index element={<DoctorDashboardIndex />} />
             {DoctorRoutes.map(({ path, Component }, index) => (
               <Route key={index} path={path} element={<Component />} />
             ))}
           </Route>
 
-          {/* about routes */}
+          {/* About routes */}
           <Route path="/about" element={<About />}>
             {aboutRoutes.map(({ path, Component }, index) => (
               <Route key={index} path={path} element={<Component />} />

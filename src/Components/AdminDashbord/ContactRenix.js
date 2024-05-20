@@ -17,7 +17,7 @@ function ContactRenix() {
     async function fetchcontactRenixes() {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/v1/contactRenix/getContactRenixes"
+          "https://renixserver.niroghealthplus.com/api/v1/contactRenix/getContactRenixes"
         );
         setcontactRenixes(response?.data?.data);
         setFiltecontactRenixs(response?.data?.data);
@@ -166,7 +166,7 @@ function ContactRenix() {
                     DeleteHook({
                       refetch,
                       setRefetch,
-                      url: `http://localhost:5000/api/v1/contactRenix/deleteContactRenix/${requestMedicine?._id}`,
+                      url: `https://renixserver.niroghealthplus.com/api/v1/contactRenix/deleteContactRenix/${requestMedicine?._id}`,
                     });
                   }}
                   className="border border-secondary py-2 px-3 rounded-md hover:bg-secondary/10 duration-300"

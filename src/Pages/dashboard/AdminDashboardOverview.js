@@ -13,7 +13,7 @@ const AdminDashboardOverview = () => {
   const [loading ,setLoading] = useState()
   useEffect(() => {
     setLoading(true)
-    fetch(` http://localhost:5000/api/v1/order/`)
+    fetch(` https://renixserver.niroghealthplus.com/api/v1/order/getOrders`)
       .then((res) => res.json())
       .then((data) => {
         setOrder(data?.data);

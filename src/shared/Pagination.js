@@ -1,5 +1,3 @@
-import React from "react";
-
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const pageNumbers = [];
   for (let i = 1; i <= totalPages; i++) {
@@ -8,7 +6,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
 
   return (
     <nav className="pagination mt-5">
-      <ul className="pagination-list flex space-x-2">
+      <ul className="pagination-list flex justify-center items-center space-x-2">
         {pageNumbers.map((number) => (
           <li key={number}>
             <button

@@ -1,20 +1,33 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Loading from "../shared/Loading";
 import Card from "../Components/Card/Card";
 import Pagination from "../shared/Pagination";
+import useGetSeo from "../Hooks/useGetSeo";
+import DynamicMetaTitle from "../Components/DynamicMetaTitle";
+import CategoryItems from "../Components/Products/CategoryItems";
+import axios from "axios";
 
 const Products = () => {
+  const { id } = useParams();
+  const metaData = useGetSeo("our_product_page");
   const [products, setProducts] = useState([]);
   const [quantity, setQuantity] = useState(0);
   const [page, setPage] = useState(0);
   const pageSize = 6; // Number of products per page
   const [loading, setLoading] = useState(false);
+  const [categorys, setCategorys] = useState([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
-      const url = `http://localhost:5000/api/v1/medicine?size=${pageSize}&page=${page}`;
+      let url = `https://renixserver.niroghealthplus.com/api/v1/medicine?size=${pageSize}&page=${page}`;
+
+      // If a category ID is provided, fetch products for that category
+      if (id) {
+        url = `https://renixserver.niroghealthplus.com/api/v1/medicine/specific?fieldName=medicineCategory&fieldValue=${id}&size=${pageSize}&page=${page}`;
+      }
+
       try {
         const response = await fetch(url);
         const data = await response.json();
@@ -28,7 +41,15 @@ const Products = () => {
     };
 
     fetchProducts();
-  }, [page]);
+  }, [id, page, pageSize]);
+
+  useEffect(() => {
+    const fetchCategory = async () => {
+      const { data } = await axios.get("https://renixserver.niroghealthplus.com/api/v1/category");
+      setCategorys(data?.data);
+    };
+    fetchCategory();
+  }, []);
 
   const totalPages = Math.ceil(quantity / pageSize);
 
@@ -38,6 +59,13 @@ const Products = () => {
 
   return (
     <div className="m-5">
+      <DynamicMetaTitle
+        title={metaData?.metaTitle}
+        metaImage={metaData?.metaImage}
+        description={metaData?.metaDescription}
+        canonicalUrl={metaData?.canonicalUrl}
+
+      />
       <header className="bg-gray-50 mb-5">
         <div className="sm:flex sm:items-center sm:justify-between">
           <div className="text-center sm:text-left">
@@ -55,17 +83,35 @@ const Products = () => {
         <Loading />
       ) : (
         <>
-          <div className="shadow-md p-5 grid lg:grid-cols-4 md:grid-cols-2 gap-5 w-full">
-            {products.map((item) => (
-              <Card key={item?._id} item={item} />
-            ))}
+          <div className="grid grid-cols-12 gap-6">
+            <div className="col-span-full md:col-span-4 lg:col-span-3  order-2 md:order-1">
+              {/* Product Category */}
+              <div className="bg-white shadow-md max-h-[600px] h-auto md:h-[70%] xl:h-full overflow-y-auto">
+                <h2 className="border-l-2  text-[#292929] border-solid border-l-primary py-[15px] px-5 font-medium uppercase font-oswald text-xl border-b border-b-[#eaeaea] ">
+                  PRODUCT CATEGORIES
+                </h2>
+                {categorys?.length && (
+                  <>
+                    {categorys?.map((category) => (
+                      <CategoryItems key={category._id} category={category?.name} />
+                    ))}
+                  </>
+                )}
+              </div>
+            </div>
+            <div className="col-span-full md:col-span-8 lg:col-span-9 order-1 md:order-2">
+              <div className="shadow-md p-5 grid lg:grid-cols-3 md:grid-cols-2 lg:gap-5 w-full ">
+                {products.map((item) => (
+                  <Card key={item?._id} item={item} />
+                ))}
+              </div>
+              <Pagination
+                currentPage={page + 1} // Pagination component starts from page 1
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+              />
+            </div>
           </div>
-          <Pagination
-        
-            currentPage={page + 1} // Pagination component starts from page 1
-            totalPages={totalPages}
-            onPageChange={handlePageChange}
-          />
         </>
       )}
     </div>

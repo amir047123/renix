@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
+import useGetSeo from "../Hooks/useGetSeo";
+import DynamicMetaTitle from "../Components/DynamicMetaTitle";
 
 const Services = () => {
+  const metaData = useGetSeo("security_page");
   const [code, setCode] = useState("");
   const [product, setProduct] = useState([]);
   const [verifyMedicine, setVerifyMedicine] = useState(null);
@@ -12,7 +15,7 @@ const Services = () => {
   };
 
   useEffect(() => {
-    const url = ` http://localhost:5000/api/v1/medicine`;
+    const url = ` https://renixserver.niroghealthplus.com/api/v1/medicine`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -31,6 +34,11 @@ const Services = () => {
     ?.slice(0, 150);
   return (
     <section className="lg:w-[90%] mx-auto">
+      <DynamicMetaTitle
+        title={metaData?.metaTitle}
+        metaImage={metaData?.metaImage}
+        description={metaData?.metaDescription}
+      />
       <div className="w-full md:p-14 p-5 grid grid-cols-1 lg:grid-cols-2 gap-5">
         <div className="">
           <h3 className="uppercase py-8 font-semibold underline underline-offset-8 decoration-2">

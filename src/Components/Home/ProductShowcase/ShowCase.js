@@ -15,7 +15,7 @@ const ShowCase = () => {
   const randomProducts = shuffledProducts.slice(4,6);
 
   useEffect(() => {
-    const url = ` http://localhost:5000/api/v1/medicine?size=${8}&page=${0}`;
+    const url = ` https://renixserver.niroghealthplus.com/api/v1/medicine?size=${8}&page=${0}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -38,7 +38,7 @@ const ShowCase = () => {
           </header>
 
           <Link
-            to="https://store.renixlaboratories.com.bd/shop"
+            to="https://store.renixlaboratories.com.bd"
             className="mt-8 inline-block  rounded border border-gray-900 bg-gray-900 px-12 py-3 text-sm font-medium text-black transition hover:shadow focus:outline-none focus:ring"
           >
             Shop All
@@ -51,7 +51,7 @@ const ShowCase = () => {
 
         {randomProducts.map((product) => (
         <li key={product._id}>
-          <Link to={`/products/${product?._id}`} className="group block">
+          <Link to={`/product/${product?.slug}`} className="group block">
             <img
               src={product.img}
               alt=""

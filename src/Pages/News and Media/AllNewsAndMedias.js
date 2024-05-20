@@ -15,7 +15,7 @@ const AllNewsAndMedias = () => {
 
   const fetchNewsAndMedia = () => {
     setLoading(true); // Set loading to true when fetching data
-    fetch("http://localhost:5000/api/v1/newsAndMedia/getNewsAndMedia")
+    fetch("https://renixserver.niroghealthplus.com/api/v1/newsAndMedia/getNewsAndMedia")
       .then((response) => response.json())
       .then((data) => {
         setNewsAndMedia(data.data);
@@ -31,7 +31,7 @@ const AllNewsAndMedias = () => {
   const handleDelete = (_id) => {
     console.log("Deleting item with ID:", _id);
     fetch(
-      `http://localhost:5000/api/v1/newsAndMedia/deleteNewsAndMedia/${_id}`,
+      `https://renixserver.niroghealthplus.com/api/v1/newsAndMedia/deleteNewsAndMedia/${_id}`,
       {
         method: "DELETE",
       }

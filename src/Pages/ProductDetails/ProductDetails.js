@@ -4,6 +4,7 @@ import ProductInfo from "./ProductInfo";
 import { useParams } from "react-router-dom";
 import MyContext from "../../Utils/Context/MyContext";
 import { useContext } from "react";
+import DynamicMetaTitle from "../../Components/DynamicMetaTitle";
 
 const ProductDetails = () => {
   const [order, setOrder] = useState([]);
@@ -15,12 +16,12 @@ const ProductDetails = () => {
   const { id } = useParams();
   useEffect(() => {
     fetch(
-      ` http://localhost:5000/api/v1/medicine/medicineDetails/${id}`
+      ` https://renixserver.niroghealthplus.com/api/v1/medicine/specific?fieldName=slug&&fieldValue=${id}`
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        setProduct(data?.data);
+        console.log(data.data[0]);
+        setProduct(data?.data[0]);
       });
   }, [id]);
   useEffect(() => {
@@ -96,29 +97,37 @@ const ProductDetails = () => {
     setRefresh(!refresh);
   };
   return (
-    <div className="lg:w-3/5 md:w-10/12 mx-auto w-11/12">
-      <div className="grid md:grid-cols-2 grid-cols-1 gap-6 mt-5 shadow-md p-5">
-        <div className="  flex justify-center items-center shadow-md p-5 ">
-          <img src={img} className=" w-72 h-50" alt={name} />
-        </div>
-        <div className="m-3">
-          <div className="shadow-lg p-7 ">
-            <h1 className="text-3xl font-semibold uppercase tracking-widest">
-              {name}
-            </h1>{" "}
-            <p>
-              <span className="font-medium text-lg"></span>
-              {genericName}
-            </p>
-            <p>
-              <span className="font-medium text-lg"> </span>
-              {supplierName}
-            </p>
-            <div className="flex items-center self-start gap-4 mt-3 ">
-              {" "}
-              {/* <span className="py-4 text-xl font-medium">৳ {price} /=</span> */}
-            </div>
-            {/* {addToCart ? (
+    <>
+      <DynamicMetaTitle
+        title={product?.metaTitle}
+        description={product?.metaDescription}
+        metaImage={product?.metaImage}
+        canonicalUrl={product?.canonicalUrl}
+
+      />
+      <div className="lg:w-3/5 md:w-10/12 mx-auto w-11/12">
+        <div className="grid md:grid-cols-2 grid-cols-1 gap-6 mt-5 shadow-md p-5">
+          <div className="  flex justify-center items-center shadow-md p-5 ">
+            <img src={img} className=" w-72 h-50" alt={name} />
+          </div>
+          <div className="m-3">
+            <div className="shadow-lg p-7 ">
+              <h1 className="text-3xl font-semibold uppercase tracking-widest">
+                {name}
+              </h1>{" "}
+              <p>
+                <span className="font-medium text-lg"></span>
+                {genericName}
+              </p>
+              <p>
+                <span className="font-medium text-lg"> </span>
+                {supplierName}
+              </p>
+              <div className="flex items-center self-start gap-4 mt-3 ">
+                {" "}
+                {/* <span className="py-4 text-xl font-medium">৳ {price} /=</span> */}
+              </div>
+              {/* {addToCart ? (
               <div>
                 <div className="  border-primary p-1  flex justify-evenly items-center">
                   <span
@@ -159,47 +168,48 @@ const ProductDetails = () => {
                 Add to Cart
               </button>
             )} */}
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="relative overflow-x-auto m-3 mt-8 mb-6">
-        <div>
-          <ul className="flex">
-            <li
-              onClick={() => setActiveTab("tab1")}
-              className={
-                activeTab === "tab1"
-                  ? " md:float-left text-sm bg-primary py-2 text-white border-0 md:leading-10 text-center font-bold uppercase box-border mr-3  px-6"
-                  : "md:float-left px-6 border border-lightTextColor py-2  mr-3 text-sm  md:leading-10 text-center uppercase box-border "
-              }
-            >
-              Product Details
-            </li>
+        <div class="relative overflow-x-auto m-3 mt-8 mb-6">
+          <div>
+            <ul className="flex">
+              <li
+                onClick={() => setActiveTab("tab1")}
+                className={
+                  activeTab === "tab1"
+                    ? " md:float-left text-sm bg-primary py-2 text-white border-0 md:leading-10 text-center font-bold uppercase box-border mr-3  px-6"
+                    : "md:float-left px-6 border border-lightTextColor py-2  mr-3 text-sm  md:leading-10 text-center uppercase box-border "
+                }
+              >
+                Product Details
+              </li>
 
-            <li
-              onClick={() => setActiveTab("tab2")}
-              className={
-                activeTab === "tab2"
-                  ? "md:float-left text-sm bg-primary text-white border-0 md:leading-10 text-center font-bold uppercase box-border py-2 px-6"
-                  : "md:float-left px-6 border border-lightTextColor text   mr-3 text-sm py-2 md:leading-10 text-center uppercase box-border "
-              }
-            >
-              Product Information
-            </li>
-          </ul>
+              <li
+                onClick={() => setActiveTab("tab2")}
+                className={
+                  activeTab === "tab2"
+                    ? "md:float-left text-sm bg-primary text-white border-0 md:leading-10 text-center font-bold uppercase box-border py-2 px-6"
+                    : "md:float-left px-6 border border-lightTextColor text   mr-3 text-sm py-2 md:leading-10 text-center uppercase box-border "
+                }
+              >
+                Product Information
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div className="border lg:mb-12 m-3 border-gray px-4 mt-8 ">
+          {activeTab === "tab1" ? (
+            <ProductTable product={product}></ProductTable>
+          ) : (
+            <ProductInfo
+              description={description.replace(/<\/?p>/g, "")}
+            ></ProductInfo>
+          )}
         </div>
       </div>
-      <div className="border lg:mb-12 m-3 border-gray px-4 mt-8 ">
-        {activeTab === "tab1" ? (
-          <ProductTable product={product}></ProductTable>
-        ) : (
-          <ProductInfo
-            description={description.replace(/<\/?p>/g, "")}
-          ></ProductInfo>
-        )}
-      </div>
-    </div>
+    </>
   );
 };
 

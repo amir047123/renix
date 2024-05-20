@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import NewsAndMedia from "../../Components/Home/newAndMedia/NewsAndMedia";
 import Loading from "../../shared/Loading";
+import useGetSeo from "../../Hooks/useGetSeo";
+import DynamicMetaTitle from "../../Components/DynamicMetaTitle";
 
 const Media = () => {
   const [newsAndMedia, setNewsAndMedia] = useState([]);
   const [loading, setLoading] = useState(false);
+  const metaData = useGetSeo("media_page");
 
   useEffect(() => {
     fetchNewsAndMedia();
@@ -13,7 +16,7 @@ const Media = () => {
 
   const fetchNewsAndMedia = () => {
     setLoading(true);
-    fetch("http://localhost:5000/api/v1/newsAndMedia/specific?fieldName=newsCategory&fieldValue=Media")
+    fetch("https://renixserver.niroghealthplus.com/api/v1/newsAndMedia/specific?fieldName=newsCategory&fieldValue=Media")
       .then((response) => response.json())
       .then((data) => {
         setNewsAndMedia(data.data);
@@ -29,6 +32,14 @@ const Media = () => {
 
   return (
     <div>
+        <DynamicMetaTitle
+        title={metaData?.metaTitle}
+        metaImage={metaData?.metaImage}
+        description={metaData?.metaDescription}
+        canonicalUrl={metaData?.canonicalUrl}
+
+
+      />
       <section className="flex flex-col justify-center max-w-6xl min-h-screen px-4 py-10 mx-auto sm:px-6">
         <div className="flex flex-wrap items-center justify-between mb-8">
           <h2 className="mr-10 text-4xl font-bold leading-none md:text-5xl">

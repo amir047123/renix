@@ -14,7 +14,7 @@ const SetNewPassword = () => {
   const email = JSON.parse(loginEmail);
   useEffect(() => {
     fetch(
-      ` http://localhost:5000/api/v1/user/by-email?email=${email}`
+      ` https://renixserver.niroghealthplus.com/api/v1/user/by-email?email=${email}`
     )
       .then((res) => res.json())
       .then((data) => {

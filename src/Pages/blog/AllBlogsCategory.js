@@ -4,11 +4,12 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import Swal from "sweetalert2";
 import { useEffect } from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 const AllBlogsCategory = () => {
   const [refresh, setRefresh] = useState(false);
   const [category, setCategory] = useState([]);
   useEffect(() => {
-    const url = ` http://localhost:5000/api/v1/blogsCategory`;
+    const url = ` https://renixserver.niroghealthplus.com/api/v1/blogsCategory`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -29,7 +30,7 @@ const AllBlogsCategory = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(
-          ` http://localhost:5000/api/v1/blogsCategory/deleteBlogsCategory/${id}`,
+          ` https://renixserver.niroghealthplus.com/api/v1/blogsCategory/deleteBlogsCategory/${id}`,
           {
             method: "DELETE",
           }
@@ -88,9 +89,13 @@ const AllBlogsCategory = () => {
 
                   <td className="px-6 py-4">
                     <span className="flex items-center gap-3">
-                      {/* <button className="text-lg text-[#0077FF] bg-[#BBDDFF] w-7  h-7 rounded-lg flex items-center justify-center">
+                      <Link
+                        to={`/adminDashboard/blog/updateCategory/${cat?._id}`}
+                        className="text-lg text-[#0077FF] bg-[#BBDDFF] w-7 h-7
+                        rounded-lg flex items-center justify-center"
+                      >
                         <TbEdit />
-                      </button> */}
+                      </Link>
                       <button
                         onClick={() => handelDelete(cat?._id)}
                         className="text-lg text-[#F87171] bg-[#FEE2E2] w-7  h-7 rounded-lg flex items-center justify-center"
