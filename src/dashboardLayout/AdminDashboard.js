@@ -1,19 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./AdminDashboard.css";
-import { NavLink, useNavigate, Outlet, Link } from "react-router-dom";
-import logo from "../Assets/images/logo.svg";
-import { TbMedicineSyrup } from "react-icons/tb";
+import { BiBorderAll } from "react-icons/bi";
 import { FiLogIn, FiUsers } from "react-icons/fi";
-import { BiBorderAll, BiNews } from "react-icons/bi";
+import { TbMedicineSyrup } from "react-icons/tb";
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
+import logo from "../Assets/images/logo.svg";
+import "./AdminDashboard.css";
 
+import { FiSettings } from "react-icons/fi";
+import { IoMdNotificationsOutline } from "react-icons/io";
 import {
+  MdOutlineArticle,
   MdOutlineDashboardCustomize,
   MdOutlineMailOutline,
-  MdOutlineArticle,
 } from "react-icons/md";
-import { IoMdNotificationsOutline } from "react-icons/io";
 import { RxCaretDown } from "react-icons/rx";
-import { FiSettings } from "react-icons/fi";
 
 import profilePic from "../Assets/images/users/us1.jpg";
 import SearchBar from "../Components/searchBar/SearchBar";
@@ -88,12 +88,12 @@ const AdminDashboard = () => {
     };
     //return wrapper.current;
   }, [issideNavOpen]);
-  // if (userInfo?.role === "admin") {
-  // } else {
-  //   navigate("/");
-  //   logout();
-  //   return <Home />;
-  // }
+  if (userInfo?.role === "admin") {
+  } else {
+    navigate("/");
+    logout();
+    return <Home />;
+  }
 
   //active style for sidenav
 

@@ -42,7 +42,7 @@ const ShowCase = () => {
                 </header>
 
                 <Link
-                  to="https://store.renixlaboratories.com.bd"
+                  to="https://renixcare.com"
                   className="mt-8 inline-block  rounded border border-gray-900 bg-gray-900 px-12 py-3 text-sm font-medium text-black transition hover:shadow focus:outline-none focus:ring"
                 >
                   Shop All

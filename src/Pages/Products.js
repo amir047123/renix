@@ -59,6 +59,7 @@ const Products = () => {
     setPage(pageNumber - 1); // Pagination component starts from page 1
   };
 
+  console.log("products", products);
   return (
     <div className="m-5">
       <DynamicMetaTitle

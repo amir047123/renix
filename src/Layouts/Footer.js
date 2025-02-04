@@ -1,14 +1,8 @@
 import React from "react";
-import logo from "../Assets/images/logo.svg";
+import { FaWhatsapp } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import logo from "../Assets/images/logo.svg";
 import SocialIcon from "../shared/socialIcon/SocialIcon";
-import {
-  FaFacebook,
-  FaTwitter,
-  FaLinkedin,
-  FaInstagram,
-  FaWhatsapp,
-} from "react-icons/fa";
 
 const Footer = () => {
   const handleWhatsAppClick = () => {
@@ -16,6 +10,8 @@ const Footer = () => {
     const whatsappURL = `https://api.whatsapp.com/send?phone=${phoneNumber}`;
     window.open(whatsappURL, "_blank");
   };
+
+  const currentYear = new Date().getFullYear();
 
   return (
     <div>
@@ -113,7 +109,7 @@ const Footer = () => {
           <hr className="my-6 border-lightTextColor border-1.5 sm:mx-auto  lg:my-6" />
           <div className="lg:flex lg:items-center lg:justify-between">
             <span className="text-sm text-lightTextColor sm:text-center dark:text-gray-400">
-              © 2023{" "}
+              © {currentYear}{" "}
               <Link to={"/"} className="hover:underline">
                 Renix
               </Link>

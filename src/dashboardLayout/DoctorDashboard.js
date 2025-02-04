@@ -1,17 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
-import { NavLink, Outlet, Link, useNavigate } from "react-router-dom";
-import logo from "../Assets/images/logo.svg";
-import { MdOutlineDashboardCustomize } from "react-icons/md";
-import { IoMdNotificationsOutline } from "react-icons/io";
+import { BiBorderAll } from "react-icons/bi";
 import { CgProfile } from "react-icons/cg";
+import { FaEye } from "react-icons/fa";
 import { FiLogIn, FiSettings } from "react-icons/fi";
+import { IoMdNotificationsOutline } from "react-icons/io";
+import { MdOutlineDashboardCustomize } from "react-icons/md";
+import { RxCaretDown } from "react-icons/rx";
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
+import logo from "../Assets/images/logo.svg";
 import profilePic from "../Assets/images/users/us1.jpg";
 import SearchBar from "../Components/searchBar/SearchBar";
-import Home from "../Pages/Home";
-import { FaEye, FaSitemap } from "react-icons/fa";
 import AuthUser from "../Hooks/authUser";
-import { BiBorderAll } from "react-icons/bi";
-import { RxCaretDown } from "react-icons/rx";
+import Home from "../Pages/Home";
 
 const DoctorDashboard = () => {
   const { logout, userInfo } = AuthUser();
