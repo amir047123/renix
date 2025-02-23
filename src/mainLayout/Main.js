@@ -2,12 +2,13 @@ import React from "react";
 import WebNav from "../Layouts/WebNav";
 import Footer from "../Layouts/Footer";
 import { Outlet } from "react-router-dom";
-import OrderFLoatingCart from "../Layouts/OrderFLoatingCart";
+import Navbar from "../Layouts/Navbar";
 
 const Main = () => {
   return (
     <>
-      <WebNav />
+      {/* <WebNav /> */}
+      <Navbar/>
       <Outlet />
       <Footer />
     </>

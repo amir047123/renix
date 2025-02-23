@@ -73,13 +73,13 @@ const WebNav = () => {
       {/* topbar nav */}
       <TopBar />
       <nav
-        className={` w-full  top-0 right-0 left-0 z-[10] py-5 md:py-2 text-[#FFF]  flex  items-center justify-between md:mx-auto px-10 md:px-[50px] bottom_border ${
+        className={` w-full items-center top-0 right-0 left-0 z-[10] py-5 lg:py-0 text-[#FFF]  flex   justify-between md:mx-auto px-10 md:px-[50px] bottom_border ${
           stickyNav ? "bg-white fixed shadow-md shadow-gray-200" : "bg-white"
         }`}
       >
         {/* brand logo */}
         <Link to={"/"}>
-          <img className="w-[120px] h-[25px] " src={logo}></img>
+          <img className="w-[70px] " alt="logo" src={logo}></img>
         </Link>
 
         {/* mobile nav */}
@@ -104,7 +104,7 @@ const WebNav = () => {
                 <Link
                   onClick={handleToggle}
                   to="/"
-                  className="text-textColor p-2 uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition"
+                  className="text-textColor p-2 uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition whitespace-nowrap"
                 >
                   Home
                 </Link>
@@ -113,7 +113,7 @@ const WebNav = () => {
                 <Link
                   onClick={handleToggle}
                   to="/about"
-                  className="text-textColor p-2 uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition"
+                  className="text-textColor p-2 uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition whitespace-nowrap"
                 >
                   About Us
                 </Link>
@@ -122,7 +122,7 @@ const WebNav = () => {
                 <Link
                   onClick={handleToggle}
                   to="/security-check"
-                  className="text-textColor p-2 uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition"
+                  className="text-textColor p-2 uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition whitespace-nowrap"
                 >
                   Security check
                 </Link>
@@ -131,7 +131,7 @@ const WebNav = () => {
                 <Link
                   onClick={handleToggle}
                   to="/products"
-                  className="text-textColor p-2 uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition"
+                  className="text-textColor p-2 uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition whitespace-nowrap"
                 >
                   Our Products
                 </Link>
@@ -274,7 +274,7 @@ const WebNav = () => {
             <li>
               <NavLink
                 to={"/about"}
-                className="p-2 text-textColor uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition"
+                className="p-2 text-textColor uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition whitespace-nowrap"
                 style={({ isActive }) => (isActive ? activeStyle : undefined)}
               >
                 About us
@@ -283,7 +283,7 @@ const WebNav = () => {
             <li>
               <NavLink
                 to={"/security-check"}
-                className="text-textColor p-2 uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition"
+                className="text-textColor p-2 uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition whitespace-nowrap"
                 style={({ isActive }) => (isActive ? activeStyle : undefined)}
               >
                 {" "}
@@ -293,7 +293,7 @@ const WebNav = () => {
             <li>
               <NavLink
                 to={"/products"}
-                className="text-textColor p-2 uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition"
+                className="text-textColor p-2 uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition whitespace-nowrap"
                 style={({ isActive }) => (isActive ? activeStyle : undefined)}
               >
                 Our Products
@@ -313,7 +313,7 @@ const WebNav = () => {
                 <button
                   type="button"
                   onClick={toggleDropdown}
-                  className="text-textColor flex justify-center gap-2 items-center px-3 py-2 rounded-md text-sm font-medium focus:outline-none"
+                  className="text-textColor flex justify-center gap-2 items-center px-3 py-2 rounded-md text-sm font-medium focus:outline-none whitespace-nowrap"
                 >
                   News & Media
                   <span
@@ -372,7 +372,7 @@ const WebNav = () => {
             <li>
               <NavLink
                 to={"/blogs"}
-                className="text-textColor p-2 uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition"
+                className="text-textColor p-2 uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition whitespace-nowrap"
                 style={({ isActive }) => (isActive ? activeStyle : undefined)}
               >
                 Blogs
@@ -381,21 +381,20 @@ const WebNav = () => {
             <li>
               <NavLink
                 to={"/contact"}
-                className="text-textColor p-2 uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition"
+                className="text-textColor p-2 uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition whitespace-nowrap"
                 style={({ isActive }) => (isActive ? activeStyle : undefined)}
               >
                 Contact Us
               </NavLink>
             </li>
             <li>
-                <Link
-                
-                  to="https://store.renixlaboratories.com.bd"
-                  className="text-textColor p-2 uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition"
-                >
-                  Renix Store
-                </Link>
-              </li>
+              <Link
+                to="https://store.renixlaboratories.com.bd"
+                className="text-textColor p-2 uppercase text-[13px] hover:border-b-2 hover:border-[#90C347] transition whitespace-nowrap"
+              >
+                Renix Store
+              </Link>
+            </li>
 
             <div className="flex gap-5"></div>
           </ul>
