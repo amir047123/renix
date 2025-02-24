@@ -5,7 +5,7 @@ import { RxCross2 } from "react-icons/rx";
 import TopBar from "./TopBar";
 import { BsChevronDown } from "react-icons/bs";
 import { FaChevronDown } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from '../../src/Assets/images/logo.svg'
 
 
@@ -39,27 +39,29 @@ const Navbar = () => {
 
       <nav className="bg-white shadow-sm ">
         <div className=" mx-auto px-4 sm:px-6 lg:px-8 xl:px-16">
-          <div className="flex items-center justify-between h-20">
+          <div className="flex items-center justify-between md:h-20 h-[70px]">
             {/* Logo */}
             <div className="flex-shrink-0">
-              <img className="w-20 " src={logo} alt="logo" />
+              <img className="md:w-[75px] w-16" src={logo} alt="logo" />
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-8">
+            <div className="hidden lg:flex items-center ">
               {navLinks.map((link) => (
                 <div key={link.name} className="relative group">
-                  <Link
+                  <NavLink
                     to={link.to}
-                    className={`text-sm inline-flex items-center ${
-                      link.name === "Home"
-                        ? "text-indigo-900 font-medium"
-                        : "text-gray-600 hover:text-indigo-900"
-                    }`}
+                    className={({ isActive }) =>
+                      `text-sm inline-flex items-center whitespace-nowrap border-r xl:px-5 px-3 border-gray text-blue-gray-700 ${
+                        isActive
+                          ? "text-accent font-medium"
+                          : "text-gray-600 hover:text-accent"
+                      }`
+                    }
                   >
                     {link.name}
-                    {link.dropdown && <BsChevronDown className="" />}
-                   </Link>
+                    {link.dropdown && <BsChevronDown className="ml-2" />}
+                  </NavLink>
 
                   {/* Desktop Dropdown */}
                   {link.dropdown && (
@@ -70,10 +72,10 @@ const Navbar = () => {
                             <Link
                               key={item.name}
                               to={item.to}
-                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-indigo-900"
+                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-accent hover:bg-thirdLightPrimary"
                             >
                               {item.name}
-                             </Link>
+                            </Link>
                           ))}
                         </div>
                       </div>
@@ -84,22 +86,22 @@ const Navbar = () => {
             </div>
 
             {/* Login Button */}
-            <div className="hidden lg:flex items-center">
-              <Button className="bg-indigo-900 text-white hover:bg-indigo-800">
+            <Link to="/login" className="hidden lg:flex items-center">
+              <Button className="bg-accent rounded-full text-white hover:bg-accent/90">
                 Login
               </Button>
-            </div>
+            </Link>
 
             {/* Mobile menu button */}
             <div className="lg:hidden">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-indigo-900 focus:outline-none"
+                className="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-accent focus:outline-none"
               >
                 {isMenuOpen ? (
                   <RxCross2 className="h-6 w-6" />
                 ) : (
-                  <IoMenu className="h-6 w-6" />
+                  <IoMenu className="text-3xl" />
                 )}
               </button>
             </div>
@@ -113,7 +115,7 @@ const Navbar = () => {
               {navLinks.map((link) => (
                 <div key={link.name}>
                   <div
-                    className="flex items-center justify-between px-3 py-2 rounded-md text-base text-gray-600 hover:text-indigo-900"
+                    className="flex items-center justify-between px-3 py-2 rounded-md text-base text-gray-600 hover:text-accent"
                     onClick={() => {
                       if (link.dropdown) {
                         setIsMobileDropdownOpen(!isMobileDropdownOpen);
@@ -137,20 +139,20 @@ const Navbar = () => {
                         <Link
                           key={item.name}
                           to={item.to}
-                          className="block px-3 py-2 rounded-md text-sm text-gray-500 hover:text-indigo-900"
+                          className="block  px-3 py-2 rounded-md text-sm text-gray-500 hover:text-accent"
                         >
                           {item.name}
-                         </Link>
+                        </Link>
                       ))}
                     </div>
                   )}
                 </div>
               ))}
-              <div className="mt-4 px-3">
-                <Button className="w-full bg-indigo-900 text-white hover:bg-indigo-800">
+              <Link to="/login" className="mt-4 px-3">
+                <Button className="w-full bg-accent text-white hover:bg-accent/90">
                   Login
                 </Button>
-              </div>
+              </Link>
             </div>
           </div>
         )}

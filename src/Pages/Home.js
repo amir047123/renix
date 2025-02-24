@@ -12,6 +12,7 @@ import NewsAndMedia from "../Components/Home/newAndMedia/NewsAndMedia";
 import ShowCase from "../Components/Home/ProductShowcase/ShowCase";
 import DynamicMetaTitle from "../Components/DynamicMetaTitle";
 import useGetSeo from "../Hooks/useGetSeo";
+import Hero from "../Components/Home/Hero/Hero";
 
 const Home = () => {
   const metaData = useGetSeo("home_page");
@@ -24,7 +25,9 @@ const Home = () => {
         canonicalUrl={metaData?.canonicalUrl}
 
       />
-      <HomeSlider />
+      <Hero/>
+      {/* <HomeSlider /> */}
+
       <HealthCareProducts />
       <NaturalSolution />
       <WhoWeAre />

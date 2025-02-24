@@ -1,9 +1,9 @@
 import React from 'react';
 import { BsTelephoneFill, BsClockFill } from 'react-icons/bs';
 import { IoMdMail } from 'react-icons/io';
-import { FaFacebookF, FaLinkedinIn, FaTwitter, FaPinterest } from 'react-icons/fa';
+import { FaFacebookF, FaLinkedinIn } from 'react-icons/fa';
 
-import { AiFillInstagram, AiFillYoutube } from 'react-icons/ai';
+import {  AiFillYoutube } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 const TopBar = () => {
     return (
