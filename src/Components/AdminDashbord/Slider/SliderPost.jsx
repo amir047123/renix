@@ -1,0 +1,96 @@
+import JoditEditor from "jodit-react";
+import React, { useRef, useState } from "react";
+import { useForm } from "react-hook-form";
+
+import { singleImageUpload } from "../../../Hooks/ImageUpload";
+
+const SliderPost = ({ addSlide }) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const editor = useRef(null);
+  const [slideDescription, setSlideDescription] = useState("");
+  const [image, setImage] = useState("");
+
+  const handleChangeUploadImage = async (event) => {
+    const file = event.target.files[0];
+    const formData = new FormData();
+    formData.append("image", file);
+    singleImageUpload(formData, setImage);
+  };
+
+  const onSubmit = (formData) => {
+    const slide = {
+      title: formData.title,
+      subtitle: formData.subtitle,
+      description: slideDescription,
+      buttonText: formData.buttonText,
+      img: image,
+      youtubeLink: formData.youtubeLink,
+    };
+    addSlide(slide);
+  };
+
+  return (
+    <div className="p-6 bg-white rounded-lg shadow-md w-full max-w-4xl mx-auto">
+      <h2 className="text-3xl font-semibold mb-6 text-center">Add New Slide</h2>
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <input
+          type="text"
+          placeholder="Slide Title"
+          {...register("title", { required: "Title is required" })}
+          className="w-full p-2 border rounded"
+        />
+        {errors.title && <p className="text-red-500">{errors.title.message}</p>}
+
+        <input
+          type="text"
+          placeholder="Slide Subtitle"
+          {...register("subtitle", { required: "Subtitle is required" })}
+          className="w-full p-2 border rounded"
+        />
+        {errors.subtitle && (
+          <p className="text-red-500">{errors.subtitle.message}</p>
+        )}
+
+        <JoditEditor
+          ref={editor}
+          value={slideDescription}
+          onChange={setSlideDescription}
+        />
+
+        <input
+          type="text"
+          placeholder="Button Text"
+          {...register("buttonText")}
+          className="w-full p-2 border rounded"
+        />
+
+        <input
+          type="file"
+          onChange={handleChangeUploadImage}
+          className="w-full p-2 border rounded"
+        />
+        {errors.img && <p className="text-red-500">{errors.img.message}</p>}
+
+        <input
+          type="text"
+          placeholder="YouTube Link"
+          {...register("youtubeLink")}
+          className="w-full p-2 border rounded"
+        />
+
+        <button
+          type="submit"
+          className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500 w-full"
+        >
+          Add Slide
+        </button>
+      </form>
+    </div>
+  );
+};
+
+export default SliderPost;

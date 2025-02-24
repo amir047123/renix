@@ -1,35 +1,36 @@
-import React, { useEffect, useState } from "react";
+import { CircularProgress } from "@mui/material";
+import { useQuery } from "@tanstack/react-query";
+import React from "react";
 import toast from "react-hot-toast";
 import DynamicMetaTitle from "../../Components/DynamicMetaTitle";
 import useGetSeo from "../../Hooks/useGetSeo";
-import Loading from "../../shared/Loading";
+
+const fetchMedia = async () => {
+  const response = await fetch(
+    "https://server.renixlaboratories.com.bd/api/v1/newsAndMedia/specific?fieldName=newsCategory&fieldValue=Media"
+  );
+  if (!response.ok) {
+    throw new Error("Failed to fetch media data.");
+  }
+  const data = await response.json();
+  return data.data;
+};
 
 const Media = () => {
-  const [newsAndMedia, setNewsAndMedia] = useState([]);
-  const [loading, setLoading] = useState(false);
   const metaData = useGetSeo("media_page");
 
-  useEffect(() => {
-    fetchNewsAndMedia();
-  }, []);
+  const {
+    data: mediaData,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["mediaData"],
+    queryFn: fetchMedia,
+  });
 
-  const fetchNewsAndMedia = () => {
-    setLoading(true);
-    fetch(
-      "https://server.renixlaboratories.com.bd/api/v1/newsAndMedia/specific?fieldName=newsCategory&fieldValue=Media"
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setNewsAndMedia(data.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-        toast.error("Error fetching data.");
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  };
+  if (isError) {
+    toast.error("Error fetching media data.");
+  }
 
   return (
     <div>
@@ -39,49 +40,57 @@ const Media = () => {
         description={metaData?.metaDescription}
         canonicalUrl={metaData?.canonicalUrl}
       />
+
       <section className="flex flex-col justify-center max-w-6xl min-h-screen px-4 py-10 mx-auto sm:px-6">
         <div className="flex flex-wrap items-center justify-between mb-8">
-          <h2 className="mr-10 text-4xl font-bold leading-none md:text-5xl">
+          <h2 className="mr-10 text-4xl font-bold leading-none md:text-5xl text-gray-800">
             Renix Unani Laboratories Ltd Media
           </h2>
           <a
             href="https://www.youtube.com/@renixlaboratoriesltd"
             target="_blank"
-            className="block pb-1 mt-2 text-base font-black text-blue-600 uppercase border-b border-transparent hover:border-blue-600"
+            className="block pb-1 mt-2 text-lg font-bold text-blue-600 uppercase border-b border-transparent hover:border-blue-600 transition"
             rel="noreferrer"
           >
-            Go To YouTube Channel
+            Go To YouTube Channel →
           </a>
         </div>
-        {loading ? (
-          <Loading />
+
+        {/* Loading State with MUI Circular Progress */}
+        {isLoading ? (
+          <div className="flex justify-center items-center h-64">
+            <CircularProgress size={80} thickness={4} color="primary" />
+          </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 px-2">
-            {newsAndMedia.map((news, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-2">
+            {mediaData?.map((news, index) => (
               <a
                 href={news?.youtubeLink}
                 target="_blank"
-                className="px-2 py-2 shadow-md"
+                className="bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105"
                 key={index}
                 rel="noreferrer"
               >
                 <img
-                  alt=""
+                  alt={news?.newsTitle}
                   src={news?.newsImage}
-                  className="h-64 md:h-80 lg:h-96 w-full object-cover object-center"
+                  className="h-64 md:h-80 w-full object-cover"
                   style={{ maxHeight: "400px", width: "100%" }}
                 />
-
-                <h3 className="mt-4 text-lg font-bold text-gray-900 sm:text-xl">
-                  {news?.newsTitle}
-                </h3>
-
-                <p
-                  className="mt-2 text-gray-700"
-                  dangerouslySetInnerHTML={{
-                    __html: news?.newsDescription.slice(0, 250),
-                  }}
-                ></p>
+                <div className="p-4">
+                  <h3 className="text-xl font-bold text-gray-900 sm:text-2xl">
+                    {news?.newsTitle}
+                  </h3>
+                  <p
+                    className="mt-2 text-gray-700"
+                    dangerouslySetInnerHTML={{
+                      __html: news?.newsDescription.slice(0, 100) + "...",
+                    }}
+                  ></p>
+                  <p className="mt-3 text-sm font-semibold text-blue-500">
+                    Watch on YouTube →
+                  </p>
+                </div>
               </a>
             ))}
           </div>

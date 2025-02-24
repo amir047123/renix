@@ -9,7 +9,7 @@ import CategoryItems from "../Components/Products/CategoryItems";
 import useGetSeo from "../Hooks/useGetSeo";
 import Pagination from "../shared/Pagination";
 
-const pageSize = 6; // Number of products per page
+const pageSize = 10; // Number of products per page
 
 const fetchProducts = async ({ queryKey }) => {
   const [_, categoryId, page] = queryKey;
@@ -120,7 +120,7 @@ const Products = () => {
 
           {/* ✅ Product Grid Section (Appears Below in Mobile, Right in Desktop) */}
           <div className="col-span-full md:col-span-8 lg:col-span-9 order-2">
-            <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-6">
+            <div className="grid lg:grid-cols-5 md:grid-cols-2 sm:grid-flow-col-1 gap-6">
               {productData?.data?.map((item) => (
                 <div
                   key={item?._id}
