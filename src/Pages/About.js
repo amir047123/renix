@@ -5,6 +5,7 @@ import WebNav from "../Layouts/WebNav";
 import Footer from "../Layouts/Footer";
 import DynamicMetaTitle from "../Components/DynamicMetaTitle";
 import useGetSeo from "../Hooks/useGetSeo";
+import Navbar from "../Layouts/Navbar";
 
 const About = () => {
   const metaData = useGetSeo("about_us");
@@ -21,7 +22,7 @@ const About = () => {
         canonicalUrl={metaData?.canonicalUrl}
 
       />
-      <WebNav />
+     <Navbar/>
       <section className=""></section>
 
       <section className="py-14 bg-[#f7f7f7]">
