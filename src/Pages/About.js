@@ -1,10 +1,10 @@
 import React from "react";
-import { NavLink, Outlet } from "react-router-dom";
 import { RxCaretRight } from "react-icons/rx";
-import WebNav from "../Layouts/WebNav";
-import Footer from "../Layouts/Footer";
+import { NavLink, Outlet } from "react-router-dom";
 import DynamicMetaTitle from "../Components/DynamicMetaTitle";
 import useGetSeo from "../Hooks/useGetSeo";
+import Footer from "../Layouts/Footer";
+import Navbar from "../Layouts/Navbar";
 
 const About = () => {
   const metaData = useGetSeo("about_us");
@@ -19,9 +19,9 @@ const About = () => {
         metaImage={metaData?.metaImage}
         description={metaData?.metaDescription}
         canonicalUrl={metaData?.canonicalUrl}
-
       />
-      <WebNav />
+      {/* <WebNav /> */}
+      <Navbar />
       <section className=""></section>
 
       <section className="py-14 bg-[#f7f7f7]">

@@ -54,7 +54,7 @@ export default function AuthUser() {
     console.log(userInfo);
     localStorage.clear();
     fetch(
-      ` https://renixserver.niroghealthplus.com/api/v1/user/delete-ip/${userInfo?._id}`,
+      `https://server.renixlaboratories.com.bd/api/v1/user/delete-ip/${userInfo?._id}`,
       {
         method: "POST",
         headers: {
@@ -72,7 +72,7 @@ export default function AuthUser() {
   };
 
   const http = axios.create({
-    baseURL: " https://renixserver.niroghealthplus.com/api/v1",
+    baseURL: "https://server.renixlaboratories.com.bd/api/v1",
     headers: {
       "Content-type": "application/json",
       Authorization: `Bearer ${token}`,

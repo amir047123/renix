@@ -1,17 +1,12 @@
-import React, { useEffect, useState } from "react";
-import {
-  AiOutlineCheckCircle,
-  AiOutlineFolderView,
-  AiOutlineFundView,
-} from "react-icons/ai";
-import { AiOutlineCloseCircle } from "react-icons/ai";
-import { CiSearch } from "react-icons/ci";
-import Pagination from "../../shared/Pagination/Pagination";
-import UpdateHooks from "../../Hooks/UpdateHooks";
-import { server_url } from "../../Config/API";
-import Loading from "../../shared/Loading";
 import { Icon } from "@iconify/react";
+import React, { useEffect, useState } from "react";
+import { AiOutlineCheckCircle, AiOutlineCloseCircle } from "react-icons/ai";
+import { CiSearch } from "react-icons/ci";
 import { Link } from "react-router-dom";
+import { server_url } from "../../Config/API";
+import UpdateHooks from "../../Hooks/UpdateHooks";
+import Loading from "../../shared/Loading";
+import Pagination from "../../shared/Pagination/Pagination";
 const PendingOrders = () => {
   const [refresh, setRefresh] = useState(false);
   const [order, setOrder] = useState([]);
@@ -21,7 +16,7 @@ const PendingOrders = () => {
   const [loading, setLoading] = useState();
   useEffect(() => {
     setLoading(true);
-    const url = ` https://renixserver.niroghealthplus.com/api/v1/order/specific?page=${page}&&size=${size}&&fieldName=${"orderStatus"}&&fieldValue=${"pending"}`;
+    const url = `https://server.renixlaboratories.com.bd/api/v1/order/specific?page=${page}&&size=${size}&&fieldName=${"orderStatus"}&&fieldValue=${"pending"}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -217,10 +212,7 @@ const PendingOrders = () => {
                           <AiOutlineCheckCircle />
                         </button>
 
-                        <Link
-                      to={`/adminDashboard/view-order/${item?._id}`}
-
-                        >
+                        <Link to={`/adminDashboard/view-order/${item?._id}`}>
                           <button
                             title="Reject Order"
                             className="text-lg text-green-500 bg-[#FEE2E2] w-7  h-7 rounded-lg flex items-center justify-center"

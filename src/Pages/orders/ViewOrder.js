@@ -9,7 +9,7 @@ const ViewOrder = () => {
 
   useEffect(() => {
     setLoading(true);
-    const url = `https://renixserver.niroghealthplus.com/api/v1/order/getOrderById/${id}`;
+    const url = `https://server.renixlaboratories.com.bd/api/v1/order/getOrderById/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -30,7 +30,9 @@ const ViewOrder = () => {
             <div className="container mx-auto px-4">
               <div className="card mb-3">
                 <div className="card-header">
-                  <h1 className="card-title text-xl font-bold">Order Details</h1>
+                  <h1 className="card-title text-xl font-bold">
+                    Order Details
+                  </h1>
                 </div>
                 <div className="border-t border-gray-300 my-4"></div>
                 <div className="card-body">
@@ -58,40 +60,44 @@ const ViewOrder = () => {
                       </div>
 
                       <div className="card-header mt-5">
-                        <h1 className="card-title text-xl font-bold">Customer Details</h1>
+                        <h1 className="card-title text-xl font-bold">
+                          Customer Details
+                        </h1>
                       </div>
                       <div className="border-t border-gray-300 my-4"></div>
                       <div className="col-md-4">
                         <h5 className="text-primary">Name</h5>
-                        <p>{order?.customerDetails?.firstName}  {order?.customerDetails.lastName}</p>
+                        <p>
+                          {order?.customerDetails?.firstName}{" "}
+                          {order?.customerDetails.lastName}
+                        </p>
                       </div>
                       <div className="col-md-4">
                         <h5 className="text-primary">Phone</h5>
-                        <p>{order?.customerDetails?.phone}  </p>
+                        <p>{order?.customerDetails?.phone} </p>
                       </div>
                       <div className="col-md-4">
                         <h5 className="text-primary">Division</h5>
-                        <p>{order?.customerDetails?.division}  </p>
+                        <p>{order?.customerDetails?.division} </p>
                       </div>
 
-                      
                       <div className="col-md-4">
                         <h5 className="text-primary">District</h5>
-                        <p>{order?.customerDetails?.district}  </p>
+                        <p>{order?.customerDetails?.district} </p>
                       </div>
-                      
+
                       <div className="col-md-4">
                         <h5 className="text-primary">Upazila</h5>
-                        <p>{order?.customerDetails?.upazila}  </p>
+                        <p>{order?.customerDetails?.upazila} </p>
                       </div>
 
                       <div className="col-md-4">
                         <h5 className="text-primary">Address</h5>
-                        <p>{order?.customerDetails?.address}  </p>
+                        <p>{order?.customerDetails?.address} </p>
                       </div>
                       <div className="col-md-4">
                         <h5 className="text-primary">Additional Note</h5>
-                        <p>{order?.customerDetails?.note}  </p>
+                        <p>{order?.customerDetails?.note} </p>
                       </div>
                     </div>
                   </div>

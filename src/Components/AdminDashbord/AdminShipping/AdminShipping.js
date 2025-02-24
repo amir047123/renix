@@ -1,9 +1,8 @@
-import axios from "axios";
-import React, { useState } from "react";
-import { useEffect } from "react";
-import UpdateHooks from "../../../Hooks/UpdateHooks";
 import { Icon } from "@iconify/react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import UpdateHooks from "../../../Hooks/UpdateHooks";
 
 const AdminShipping = () => {
   const [formData, setFormData] = useState({
@@ -14,7 +13,9 @@ const AdminShipping = () => {
 
   //   load data
   useEffect(() => {
-    fetch(`https://renixserver.niroghealthplus.com/api/v1/shipping/getShippings`)
+    fetch(
+      `https://server.renixlaboratories.com.bd/api/v1/shipping/getShippings`
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data?.data.length) {
@@ -35,14 +36,14 @@ const AdminShipping = () => {
 
     if (formData?._id) {
       await UpdateHooks(
-        `https://renixserver.niroghealthplus.com/api/v1/shipping/updateShippings/${formData?._id}`,
+        `https://server.renixlaboratories.com.bd/api/v1/shipping/updateShippings/${formData?._id}`,
         formData
       );
       toast?.success(`Shipping data Updated !`);
     } else {
       try {
         const response = await axios.post(
-          "https://renixserver.niroghealthplus.com/api/v1/shipping/addShippings",
+          "https://server.renixlaboratories.com.bd/api/v1/shipping/addShippings",
           formData
         );
         toast.success("Shipping posted!");
@@ -78,32 +79,40 @@ const AdminShipping = () => {
       <div class="grid grid-cols-1 gap-4 px-4  sm:grid-cols-4 sm:px-8">
         <div class="flex items-center bg-white border rounded-sm overflow-hidden shadow">
           <div class="p-4 bg-green-400">
-           <Icon className=" h-12 w-12 text-white" icon="fa-solid:shipping-fast"></Icon> 
+            <Icon
+              className=" h-12 w-12 text-white"
+              icon="fa-solid:shipping-fast"
+            ></Icon>
           </div>
           <div class="px-4 text-gray-700">
-            <h3 class="text-sm tracking-wider">Inside Dhaka  </h3>
-            <p class="text-3xl">  {formData?.insideDhaka} BDT</p>
+            <h3 class="text-sm tracking-wider">Inside Dhaka </h3>
+            <p class="text-3xl"> {formData?.insideDhaka} BDT</p>
           </div>
         </div>
         <div class="flex items-center bg-white border rounded-sm overflow-hidden shadow">
           <div class="p-4 bg-green-400">
-           <Icon className=" h-12 w-12 text-white" icon="fa-solid:shipping-fast"></Icon> 
+            <Icon
+              className=" h-12 w-12 text-white"
+              icon="fa-solid:shipping-fast"
+            ></Icon>
           </div>
           <div class="px-4 text-gray-700">
-            <h3 class="text-sm tracking-wider"> Outside Dhaka  </h3>
+            <h3 class="text-sm tracking-wider"> Outside Dhaka </h3>
             <p class="text-3xl">{formData?.outsideDhaka} BDT</p>
           </div>
         </div>
         <div class="flex items-center bg-white border rounded-sm overflow-hidden shadow">
           <div class="p-4 bg-green-400">
-           <Icon className=" h-12 w-12 text-white" icon="tabler:receipt-tax"></Icon> 
+            <Icon
+              className=" h-12 w-12 text-white"
+              icon="tabler:receipt-tax"
+            ></Icon>
           </div>
           <div class="px-4 text-gray-700">
             <h3 class="text-sm tracking-wider"> Tax % </h3>
             <p class="text-3xl">{formData?.tax} %</p>
           </div>
         </div>
-       
       </div>
       <form
         onSubmit={handleSubmit}

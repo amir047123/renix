@@ -1,118 +1,145 @@
-import React, { useEffect, useState } from "react";
+import { Box, CircularProgress } from "@mui/material"; // ✅ Import MUI Loader
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import Loading from "../shared/Loading";
 import Card from "../Components/Card/Card";
-import Pagination from "../shared/Pagination";
-import useGetSeo from "../Hooks/useGetSeo";
 import DynamicMetaTitle from "../Components/DynamicMetaTitle";
 import CategoryItems from "../Components/Products/CategoryItems";
-import axios from "axios";
+import useGetSeo from "../Hooks/useGetSeo";
+import Pagination from "../shared/Pagination";
+
+const pageSize = 6; // Number of products per page
+
+const fetchProducts = async ({ queryKey }) => {
+  const [_, categoryId, page] = queryKey;
+  let url = `https://server.renixlaboratories.com.bd/api/v1/medicine?size=${pageSize}&page=${page}`;
+
+  if (categoryId) {
+    url = `https://server.renixlaboratories.com.bd/api/v1/medicine/specific?fieldName=medicineCategory&fieldValue=${categoryId}&size=${pageSize}&page=${page}`;
+  }
+
+  const { data } = await axios.get(url);
+  return data;
+};
+
+const fetchCategories = async () => {
+  const { data } = await axios.get(
+    "https://server.renixlaboratories.com.bd/api/v1/category"
+  );
+  return data?.data;
+};
 
 const Products = () => {
   const { id } = useParams();
   const metaData = useGetSeo("our_product_page");
-  const [products, setProducts] = useState([]);
-  const [quantity, setQuantity] = useState(0);
   const [page, setPage] = useState(0);
-  const pageSize = 6; // Number of products per page
-  const [loading, setLoading] = useState(false);
-  const [categorys, setCategorys] = useState([]);
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      setLoading(true);
-      let url = `https://renixserver.niroghealthplus.com/api/v1/medicine?size=${pageSize}&page=${page}`;
+  // Fetch Products using TanStack Query
+  const {
+    data: productData,
+    isLoading: productLoading,
+    error: productError,
+  } = useQuery({
+    queryKey: ["products", id, page],
+    queryFn: fetchProducts,
+    keepPreviousData: true, // Keeps previous data while fetching new data
+  });
 
-      // If a category ID is provided, fetch products for that category
-      if (id) {
-        url = `https://renixserver.niroghealthplus.com/api/v1/medicine/specific?fieldName=medicineCategory&fieldValue=${id}&size=${pageSize}&page=${page}`;
-      }
+  // Fetch Categories using TanStack Query
+  const {
+    data: categories,
+    isLoading: categoryLoading,
+    error: categoryError,
+  } = useQuery({
+    queryKey: ["categories"],
+    queryFn: fetchCategories,
+  });
 
-      try {
-        const response = await fetch(url);
-        const data = await response.json();
-        setProducts(data?.data);
-        setQuantity(data?.total);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-        setLoading(false);
-      }
-    };
-
-    fetchProducts();
-  }, [id, page, pageSize]);
-
-  useEffect(() => {
-    const fetchCategory = async () => {
-      const { data } = await axios.get("https://renixserver.niroghealthplus.com/api/v1/category");
-      setCategorys(data?.data);
-    };
-    fetchCategory();
-  }, []);
-
-  const totalPages = Math.ceil(quantity / pageSize);
-
-  const handlePageChange = (pageNumber) => {
-    setPage(pageNumber - 1); // Pagination component starts from page 1
-  };
+  const totalPages = Math.ceil(productData?.total / pageSize);
 
   return (
     <div className="m-5">
+      {/* Dynamic Meta Tags */}
       <DynamicMetaTitle
         title={metaData?.metaTitle}
         metaImage={metaData?.metaImage}
         description={metaData?.metaDescription}
         canonicalUrl={metaData?.canonicalUrl}
-
       />
-      <header className="bg-gray-50 mb-5">
-        <div className="sm:flex sm:items-center sm:justify-between">
-          <div className="text-center sm:text-left">
-            <h1 className="text-2xl font-bold text-gray-900 sm:text-2xl uppercase">
-              Our Unani Product
-            </h1>
-            <p className="mt-1.5 text-sm text-gray-500">
-              Let's Explore our Latest product! 🎉
-            </p>
+
+      {/* Handle Loading & Errors */}
+      {(productLoading || categoryLoading) && (
+        <Box className="flex justify-center items-center h-40">
+          <CircularProgress size={50} color="primary" />
+        </Box>
+      )}
+
+      {(productError || categoryError) && (
+        <p className="text-red-500">Error fetching data!</p>
+      )}
+
+      {!productLoading && !categoryLoading && (
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+          {/* ✅ Mobile-Friendly Category Bar (Appears on Top in Mobile) */}
+          <div className="md:hidden bg-white shadow-md rounded-lg overflow-x-auto whitespace-nowrap p-2">
+            <h2 className="text-xl font-bold text-white bg-primary p-4 uppercase tracking-wide">
+              Product Categories
+            </h2>
+            <ul className="flex space-x-4">
+              {categories?.map((category) => (
+                <li
+                  key={category._id}
+                  className="px-4 py-2 bg-gray-100 rounded-lg cursor-pointer"
+                >
+                  <CategoryItems category={category?.name} />
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* ✅ Sidebar Category Section (Appears as Sidebar in Desktop) */}
+          <div className="hidden md:block md:col-span-4 lg:col-span-3 order-1">
+            <div className="bg-white shadow-lg rounded-xl overflow-hidden">
+              <h2 className="text-lg font-bold text-white bg-primary p-4 uppercase tracking-wide">
+                Product Categories
+              </h2>
+              <ul className="divide-y divide-gray-200">
+                {categories?.length > 0 &&
+                  categories.map((category) => (
+                    <li
+                      key={category._id}
+                      className="p-4 hover:bg-gray-100 transition duration-300 cursor-pointer"
+                    >
+                      <CategoryItems category={category?.name} />
+                    </li>
+                  ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* ✅ Product Grid Section (Appears Below in Mobile, Right in Desktop) */}
+          <div className="col-span-full md:col-span-8 lg:col-span-9 order-2">
+            <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-6">
+              {productData?.data?.map((item) => (
+                <div
+                  key={item?._id}
+                  className="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300"
+                >
+                  <Card item={item} />
+                </div>
+              ))}
+            </div>
+
+            {/* ✅ Pagination Below Products */}
+            <Pagination
+              currentPage={page + 1}
+              totalPages={totalPages}
+              onPageChange={(pageNumber) => setPage(pageNumber - 1)}
+              className="flex justify-center mt-6"
+            />
           </div>
         </div>
-      </header>
-
-      {loading ? (
-        <Loading />
-      ) : (
-        <>
-          <div className="grid grid-cols-12 gap-6">
-            <div className="col-span-full md:col-span-4 lg:col-span-3  order-2 md:order-1">
-              {/* Product Category */}
-              <div className="bg-white shadow-md max-h-[600px] h-auto md:h-[70%] xl:h-full overflow-y-auto">
-                <h2 className="border-l-2  text-[#292929] border-solid border-l-primary py-[15px] px-5 font-medium uppercase font-oswald text-xl border-b border-b-[#eaeaea] ">
-                  PRODUCT CATEGORIES
-                </h2>
-                {categorys?.length && (
-                  <>
-                    {categorys?.map((category) => (
-                      <CategoryItems key={category._id} category={category?.name} />
-                    ))}
-                  </>
-                )}
-              </div>
-            </div>
-            <div className="col-span-full md:col-span-8 lg:col-span-9 order-1 md:order-2">
-              <div className="shadow-md p-5 grid lg:grid-cols-3 md:grid-cols-2 lg:gap-5 w-full ">
-                {products.map((item) => (
-                  <Card key={item?._id} item={item} />
-                ))}
-              </div>
-              <Pagination
-                currentPage={page + 1} // Pagination component starts from page 1
-                totalPages={totalPages}
-                onPageChange={handlePageChange}
-              />
-            </div>
-          </div>
-        </>
       )}
     </div>
   );

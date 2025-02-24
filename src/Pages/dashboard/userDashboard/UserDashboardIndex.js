@@ -1,14 +1,13 @@
 import React from "react";
 // import "./Dashboard.css";
-import img1 from "../../../Assets/dasboard-icon/total-order.png";
-import img2 from "../../../Assets/dasboard-icon/pending-order.png";
+import { useEffect, useState } from "react";
 import img3 from "../../../Assets/dasboard-icon/complete-order.png";
-import img5 from "../../../Assets/dasboard-icon/total-appointment.png";
-import img6 from "../../../Assets/dasboard-icon/pending-appointment.png";
 import img7 from "../../../Assets/dasboard-icon/completed-appointment.png";
-import { useEffect } from "react";
+import img6 from "../../../Assets/dasboard-icon/pending-appointment.png";
+import img2 from "../../../Assets/dasboard-icon/pending-order.png";
+import img5 from "../../../Assets/dasboard-icon/total-appointment.png";
+import img1 from "../../../Assets/dasboard-icon/total-order.png";
 import AuthUser from "../../../Hooks/authUser";
-import { useState } from "react";
 
 const AdminDashboardOverview = () => {
   const [order, setOrder] = useState([]);
@@ -16,7 +15,7 @@ const AdminDashboardOverview = () => {
   const { userInfo } = AuthUser();
   useEffect(() => {
     fetch(
-      ` https://renixserver.niroghealthplus.com/api/v1/order/getOrder/${userInfo?._id}`
+      `https://server.renixlaboratories.com.bd/api/v1/order/getOrder/${userInfo?._id}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -27,7 +26,7 @@ const AdminDashboardOverview = () => {
   const confirmed = order.filter((item) => item.orderStatus === "accept");
   useEffect(() => {
     fetch(
-      ` https://renixserver.niroghealthplus.com/api/v1/appointment/getAppointment/${userInfo?._id}`
+      `https://server.renixlaboratories.com.bd/api/v1/appointment/getAppointment/${userInfo?._id}`
     )
       .then((res) => res.json())
       .then((data) => {

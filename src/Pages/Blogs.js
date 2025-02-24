@@ -1,12 +1,9 @@
-import React from "react";
-import BlogCard from "./ProductDetails/BlogPage/BlogCard";
-import { useEffect } from "react";
-import { useState } from "react";
-import Pagination from "../shared/Pagination/Pagination";
-import SecondLoading from "../shared/SecondLoading";
-import Loading from "../shared/Loading";
+import React, { useEffect, useState } from "react";
 import DynamicMetaTitle from "../Components/DynamicMetaTitle";
 import useGetSeo from "../Hooks/useGetSeo";
+import Pagination from "../shared/Pagination/Pagination";
+import SecondLoading from "../shared/SecondLoading";
+import BlogCard from "./ProductDetails/BlogPage/BlogCard";
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
@@ -19,7 +16,7 @@ const Blogs = () => {
   const [loading, setLoading] = useState();
   useEffect(() => {
     setLoading(true);
-    const url = ` https://renixserver.niroghealthplus.com/api/v1/blogs?size=${size}&page=${page}`;
+    const url = `https://server.renixlaboratories.com.bd/api/v1/blogs?size=${size}&page=${page}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -40,7 +37,6 @@ const Blogs = () => {
         metaImage={metaData?.metaImage}
         description={metaData?.metaDescription}
         canonicalUrl={metaData?.canonicalUrl}
-
       />
       <div class="mx-auto  text-center lg:mb-16 mb-8">
         <h2 class="mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">

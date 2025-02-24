@@ -1,11 +1,9 @@
-import React from "react";
-import img2 from "../../../Assets/dasboard-icon/pending-order.png";
-import img6 from "../../../Assets/dasboard-icon/pending-appointment.png";
-import img7 from "../../../Assets/dasboard-icon/completed-appointment.png";
-import { useEffect } from "react";
-import AuthUser from "../../../Hooks/authUser";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import img7 from "../../../Assets/dasboard-icon/completed-appointment.png";
+import img6 from "../../../Assets/dasboard-icon/pending-appointment.png";
+import img2 from "../../../Assets/dasboard-icon/pending-order.png";
+import AuthUser from "../../../Hooks/authUser";
 
 const DoctorDashboardIndex = () => {
   const [pending, setPending] = useState(0);
@@ -13,7 +11,7 @@ const DoctorDashboardIndex = () => {
   const [confirmed, setConfirmed] = useState(0);
   const { userInfo } = AuthUser();
   useEffect(() => {
-    const url = ` https://renixserver.niroghealthplus.com/api/v1/appointment/specific?doctorId=${
+    const url = `https://server.renixlaboratories.com.bd/api/v1/appointment/specific?doctorId=${
       userInfo?._id
     }&&appointmentStatus=${"pending"}`;
     fetch(url)
@@ -23,7 +21,7 @@ const DoctorDashboardIndex = () => {
       });
   }, []);
   useEffect(() => {
-    const url = ` https://renixserver.niroghealthplus.com/api/v1/appointment/specific?doctorId=${
+    const url = `https://server.renixlaboratories.com.bd/api/v1/appointment/specific?doctorId=${
       userInfo?._id
     }&&appointmentStatus=${"confirmed"}`;
     fetch(url)
@@ -33,7 +31,7 @@ const DoctorDashboardIndex = () => {
       });
   }, []);
   useEffect(() => {
-    const url = ` https://renixserver.niroghealthplus.com/api/v1/appointment/specific?doctorId=${
+    const url = `https://server.renixlaboratories.com.bd/api/v1/appointment/specific?doctorId=${
       userInfo?._id
     }&&appointmentStatus=${"rejected"}`;
     fetch(url)

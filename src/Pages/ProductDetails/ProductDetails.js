@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
-import ProductTable from "./ProductTable";
-import ProductInfo from "./ProductInfo";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import MyContext from "../../Utils/Context/MyContext";
-import { useContext } from "react";
 import DynamicMetaTitle from "../../Components/DynamicMetaTitle";
+import MyContext from "../../Utils/Context/MyContext";
+import ProductInfo from "./ProductInfo";
+import ProductTable from "./ProductTable";
 
 const ProductDetails = () => {
   const [order, setOrder] = useState([]);
@@ -16,7 +15,7 @@ const ProductDetails = () => {
   const { id } = useParams();
   useEffect(() => {
     fetch(
-      ` https://renixserver.niroghealthplus.com/api/v1/medicine/specific?fieldName=slug&&fieldValue=${id}`
+      `https://server.renixlaboratories.com.bd/api/v1/medicine/specific?fieldName=slug&&fieldValue=${id}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -103,7 +102,6 @@ const ProductDetails = () => {
         description={product?.metaDescription}
         metaImage={product?.metaImage}
         canonicalUrl={product?.canonicalUrl}
-
       />
       <div className="lg:w-3/5 md:w-10/12 mx-auto w-11/12">
         <div className="grid md:grid-cols-2 grid-cols-1 gap-6 mt-5 shadow-md p-5">

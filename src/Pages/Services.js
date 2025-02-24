@@ -1,7 +1,6 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
-import useGetSeo from "../Hooks/useGetSeo";
+import React, { useEffect, useState } from "react";
 import DynamicMetaTitle from "../Components/DynamicMetaTitle";
+import useGetSeo from "../Hooks/useGetSeo";
 
 const Services = () => {
   const metaData = useGetSeo("security_page");
@@ -15,7 +14,7 @@ const Services = () => {
   };
 
   useEffect(() => {
-    const url = ` https://renixserver.niroghealthplus.com/api/v1/medicine`;
+    const url = `https://server.renixlaboratories.com.bd/api/v1/medicine`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {

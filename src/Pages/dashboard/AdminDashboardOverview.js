@@ -1,23 +1,21 @@
-import React from "react";
-import "./Dashboard.css";
-import img1 from "../../Assets/dasboard-icon/total-order.png";
-import img2 from "../../Assets/dasboard-icon/pending-order.png";
+import React, { useEffect, useState } from "react";
 import img3 from "../../Assets/dasboard-icon/complete-order.png";
+import img2 from "../../Assets/dasboard-icon/pending-order.png";
+import img1 from "../../Assets/dasboard-icon/total-order.png";
 import img4 from "../../Assets/dasboard-icon/total-selling.png";
-import { useState } from "react";
-import { useEffect } from "react";
 import Loading from "../../shared/Loading";
+import "./Dashboard.css";
 
 const AdminDashboardOverview = () => {
   const [order, setOrder] = useState([]);
-  const [loading ,setLoading] = useState()
+  const [loading, setLoading] = useState();
   useEffect(() => {
-    setLoading(true)
-    fetch(` https://renixserver.niroghealthplus.com/api/v1/order/getOrders`)
+    setLoading(true);
+    fetch(`https://server.renixlaboratories.com.bd/api/v1/order/getOrders`)
       .then((res) => res.json())
       .then((data) => {
         setOrder(data?.data);
-        setLoading(false)
+        setLoading(false);
       });
   }, []);
   const pending = order.filter((item) => item.orderStatus === "pending");
@@ -27,8 +25,8 @@ const AdminDashboardOverview = () => {
   }, 0);
   console.log(order);
 
-  if(loading){
-   return <Loading/>
+  if (loading) {
+    return <Loading />;
   }
   return (
     <section className="py-8">

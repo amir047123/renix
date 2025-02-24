@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import Loading from "../../shared/Loading";
-import useGetSeo from "../../Hooks/useGetSeo";
 import { Link } from "react-router-dom";
 import DynamicMetaTitle from "../../Components/DynamicMetaTitle";
+import useGetSeo from "../../Hooks/useGetSeo";
+import Loading from "../../shared/Loading";
 
 const News = () => {
   const metaData = useGetSeo("news_page");
@@ -17,7 +17,7 @@ const News = () => {
   const fetchNewsAndMedia = () => {
     setLoading(true);
     fetch(
-      "https://renixserver.niroghealthplus.com/api/v1/newsAndMedia/specific?fieldName=newsCategory&fieldValue=News"
+      "https://server.renixlaboratories.com.bd/api/v1/newsAndMedia/specific?fieldName=newsCategory&fieldValue=News"
     )
       .then((response) => response.json())
       .then((data) => {
@@ -39,8 +39,6 @@ const News = () => {
         metaImage={metaData?.metaImage}
         description={metaData?.metaDescription}
         canonicalUrl={metaData?.canonicalUrl}
-
-
       />
       <section className="flex flex-col justify-center max-w-6xl min-h-screen px-4 py-10 mx-auto sm:px-6">
         <div className="flex flex-wrap items-center justify-between mb-8">
@@ -65,6 +63,7 @@ const News = () => {
                 target="_blank"
                 className="px-2 py-2 shadow-md"
                 key={index}
+                rel="noreferrer"
               >
                 <img
                   alt=""

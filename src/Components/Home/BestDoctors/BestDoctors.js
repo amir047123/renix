@@ -2,13 +2,11 @@ import React from "react";
 import demoDoctor from "../../../Assets/images/doctor.jpg";
 import img7 from "../../../Assets/images/Dorctors/team-custom-icon-3.png";
 
-import { Icon } from "@iconify/react";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 const BestDoctors = () => {
   const [user, setUser] = useState([]);
   useEffect(() => {
-    const url = ` https://renixserver.niroghealthplus.com/api/v1/user`;
+    const url = `https://server.renixlaboratories.com.bd/api/v1/user`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {

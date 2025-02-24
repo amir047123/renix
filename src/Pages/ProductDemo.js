@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import { TbCurrencyTaka } from "react-icons/tb";
+import { Link } from "react-router-dom";
 
 import img1 from "../Assets/images/Products/01. Syrup Cold Free.webp";
 import img2 from "../Assets/images/Products/02. Apelon Syrup.webp";
 import img3 from "../Assets/images/Products/03. Syrup  R-Reniton.webp";
 import img4 from "../Assets/images/Products/04. Syrup Aptivate.webp";
-import img5 from "../Assets/images/Products/R-Mons (1).webp";
 import img6 from "../Assets/images/Products/06. Syrup Allshifa.webp";
+import img5 from "../Assets/images/Products/R-Mons (1).webp";
 
-import img7 from "../Assets/images/Products/09. Syrup Hazmina Plus.webp";
 import img8 from "../Assets/images/Products/08. Syrup R-Kuli.webp";
-import img9 from "../Assets/images/Products/12. S.Solid Dykmuni.webp";
+import img7 from "../Assets/images/Products/09. Syrup Hazmina Plus.webp";
 import img10 from "../Assets/images/Products/10.  Tablet Dyman.webp";
 import img11 from "../Assets/images/Products/11. Capsule Stinuv.webp";
 import img12 from "../Assets/images/Products/12. Capsul Noasma.webp";
+import img9 from "../Assets/images/Products/12. S.Solid Dykmuni.webp";
 import img13 from "../Assets/images/Products/13. Tablet Gynosave.webp";
 import img14 from "../Assets/images/Products/14. Suspension Procid.webp";
 import img15 from "../Assets/images/Products/15. Capsul Ranix-Ginseng.webp";
@@ -255,7 +255,7 @@ const FeatureProducts = () => {
   //     const size = 10; // Provide the desired size value
   //     const page = 1; // Provide the desired page value
 
-  //     const url = ` https://renixserver.niroghealthplus.com/api/v1/medicine?size=${size}&page=${page}`;
+  //     const url = `https://server.renixlaboratories.com.bd/api/v1/medicine?size=${size}&page=${page}`;
   //     fetch(url)
   //       .then((res) => res.json())
   //       .then((data) => {

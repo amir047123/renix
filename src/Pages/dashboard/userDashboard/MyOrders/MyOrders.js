@@ -1,15 +1,13 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { MdPendingActions } from "react-icons/md";
 import AuthUser from "../../../../Hooks/authUser";
-import { useState } from "react";
 const MyOrders = () => {
   const [order, setOrder] = useState([]);
   const { userInfo } = AuthUser();
   useEffect(() => {
     fetch(
-      ` https://renixserver.niroghealthplus.com/api/v1/order/getOrder/${userInfo?._id}`
+      `https://server.renixlaboratories.com.bd/api/v1/order/getOrder/${userInfo?._id}`
     )
       .then((res) => res.json())
       .then((data) => {

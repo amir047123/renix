@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { get, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import CommonForgetImg from "../../Assets/images/auth/forgetImage.png";
 import Swal from "sweetalert2";
+import CommonForgetImg from "../../Assets/images/auth/forgetImage.png";
 
 const InsertOtp = () => {
   const [token, setToken] = useState(null);
@@ -13,7 +13,7 @@ const InsertOtp = () => {
   );
   useEffect(() => {
     fetch(
-      `https://renixserver.niroghealthplus.com/api/v1/user/by-email?email=${userLoginEmail}`
+      `https://server.renixlaboratories.com.bd/api/v1/user/by-email?email=${userLoginEmail}`
     )
       .then((res) => res.json())
       .then((data) => {

@@ -1,9 +1,7 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { SiGooglemeet } from "react-icons/si";
-import { useState } from "react";
-import Pagination from "../../../../shared/Pagination/Pagination";
 import AuthUser from "../../../../Hooks/authUser";
+import Pagination from "../../../../shared/Pagination/Pagination";
 
 const ConfirmedAppointment = () => {
   const { userInfo } = AuthUser();
@@ -14,7 +12,7 @@ const ConfirmedAppointment = () => {
   const [size, setSize] = useState(6);
 
   useEffect(() => {
-    const url = ` https://renixserver.niroghealthplus.com/api/v1/appointment/specific?page=${page}&&size=${size}&&doctorId=${
+    const url = `https://server.renixlaboratories.com.bd/api/v1/appointment/specific?page=${page}&&size=${size}&&doctorId=${
       userInfo?._id
     }&&appointmentStatus=${"confirmed"}`;
     fetch(url)

@@ -1,15 +1,13 @@
-import React from "react";
-import { TbEdit } from "react-icons/tb";
+import React, { useEffect, useState } from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import Swal from "sweetalert2";
-import { useEffect } from "react";
-import { useState } from "react";
+import { TbEdit } from "react-icons/tb";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 const AllBlogsCategory = () => {
   const [refresh, setRefresh] = useState(false);
   const [category, setCategory] = useState([]);
   useEffect(() => {
-    const url = ` https://renixserver.niroghealthplus.com/api/v1/blogsCategory`;
+    const url = `https://server.renixlaboratories.com.bd/api/v1/blogsCategory`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -30,7 +28,7 @@ const AllBlogsCategory = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(
-          ` https://renixserver.niroghealthplus.com/api/v1/blogsCategory/deleteBlogsCategory/${id}`,
+          `https://server.renixlaboratories.com.bd/api/v1/blogsCategory/deleteBlogsCategory/${id}`,
           {
             method: "DELETE",
           }

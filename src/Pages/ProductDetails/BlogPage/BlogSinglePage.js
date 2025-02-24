@@ -7,34 +7,35 @@ const BlogSinglePage = () => {
   const [recent, setRecent] = useState([]);
   const { id } = useParams();
   const [_id, setId] = useState(id);
-  const [loading,setLoading]=useState()
+  const [loading, setLoading] = useState();
   useEffect(() => {
-    setLoading(true)
-    fetch(` https://renixserver.niroghealthplus.com/api/v1/blogs/blogDetails/${_id}`)
+    setLoading(true);
+    fetch(
+      `https://server.renixlaboratories.com.bd/api/v1/blogs/blogDetails/${_id}`
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         setBlog(data?.data);
-        setLoading(false)
+        setLoading(false);
       });
   }, [_id]);
 
   useEffect(() => {
-    setLoading(true)
-    const url = ` https://renixserver.niroghealthplus.com/api/v1/blogs`;
+    setLoading(true);
+    const url = `https://server.renixlaboratories.com.bd/api/v1/blogs`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         setRecent(data?.data.slice(0, 4));
-        setLoading(false)
+        setLoading(false);
       });
   }, []);
   const des = blog?.description?.replace(/<\/?p>/g, "");
 
-
-  if(loading){
-    return <SecondLoading/>
+  if (loading) {
+    return <SecondLoading />;
   }
   return (
     <div>
@@ -60,7 +61,6 @@ const BlogSinglePage = () => {
 
           <ol>
             {recent.map((recentBlog) => (
-              
               <li
                 key={recentBlog?._id}
                 className="mb-2 flex hover:text-primary cursor-pointer uppercase"
@@ -68,11 +68,8 @@ const BlogSinglePage = () => {
                 <p onClick={() => setId(recentBlog?._id)}>
                   {recentBlog?.title}
                 </p>
-
               </li>
-              
             ))}
-
           </ol>
         </div>
       </div>

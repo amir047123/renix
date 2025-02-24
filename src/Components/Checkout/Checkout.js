@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import MyContext from "../../Utils/Context/MyContext";
+import Location from "../../Components/Bangladesh Location/location.json";
 import PostHooks from "../../Hooks/PostHooks";
 import AuthUser from "../../Hooks/authUser";
-import Location from "../../Components/Bangladesh Location/location.json";
+import MyContext from "../../Utils/Context/MyContext";
 const Checkout = () => {
   const { userInfo } = AuthUser();
   const [division, setDivision] = useState("");
@@ -16,7 +15,9 @@ const Checkout = () => {
   const [shipping, setShipping] = useState([]);
 
   useEffect(() => {
-    fetch(`https://renixserver.niroghealthplus.com/api/v1/shipping/getShippings`)
+    fetch(
+      `https://server.renixlaboratories.com.bd/api/v1/shipping/getShippings`
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data?.data.length) {
@@ -69,7 +70,7 @@ const Checkout = () => {
     };
 
     await PostHooks(
-      " https://renixserver.niroghealthplus.com/api/v1/order/addOrder",
+      "https://server.renixlaboratories.com.bd/api/v1/order/addOrder",
       { customerDetails, order, customerId, subTotal },
       "order successfully submitted"
     );

@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import NewsAndMedia from "../../Components/Home/newAndMedia/NewsAndMedia";
-import Loading from "../../shared/Loading";
-import useGetSeo from "../../Hooks/useGetSeo";
 import DynamicMetaTitle from "../../Components/DynamicMetaTitle";
+import useGetSeo from "../../Hooks/useGetSeo";
+import Loading from "../../shared/Loading";
 
 const Media = () => {
   const [newsAndMedia, setNewsAndMedia] = useState([]);
@@ -16,7 +15,9 @@ const Media = () => {
 
   const fetchNewsAndMedia = () => {
     setLoading(true);
-    fetch("https://renixserver.niroghealthplus.com/api/v1/newsAndMedia/specific?fieldName=newsCategory&fieldValue=Media")
+    fetch(
+      "https://server.renixlaboratories.com.bd/api/v1/newsAndMedia/specific?fieldName=newsCategory&fieldValue=Media"
+    )
       .then((response) => response.json())
       .then((data) => {
         setNewsAndMedia(data.data);
@@ -32,13 +33,11 @@ const Media = () => {
 
   return (
     <div>
-        <DynamicMetaTitle
+      <DynamicMetaTitle
         title={metaData?.metaTitle}
         metaImage={metaData?.metaImage}
         description={metaData?.metaDescription}
         canonicalUrl={metaData?.canonicalUrl}
-
-
       />
       <section className="flex flex-col justify-center max-w-6xl min-h-screen px-4 py-10 mx-auto sm:px-6">
         <div className="flex flex-wrap items-center justify-between mb-8">
@@ -49,6 +48,7 @@ const Media = () => {
             href="https://www.youtube.com/@renixlaboratoriesltd"
             target="_blank"
             className="block pb-1 mt-2 text-base font-black text-blue-600 uppercase border-b border-transparent hover:border-blue-600"
+            rel="noreferrer"
           >
             Go To YouTube Channel
           </a>
@@ -58,7 +58,13 @@ const Media = () => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 px-2">
             {newsAndMedia.map((news, index) => (
-              <a href={news?.youtubeLink} target="_blank" className="px-2 py-2 shadow-md" key={index}>
+              <a
+                href={news?.youtubeLink}
+                target="_blank"
+                className="px-2 py-2 shadow-md"
+                key={index}
+                rel="noreferrer"
+              >
                 <img
                   alt=""
                   src={news?.newsImage}
@@ -66,7 +72,9 @@ const Media = () => {
                   style={{ maxHeight: "400px", width: "100%" }}
                 />
 
-                <h3 className="mt-4 text-lg font-bold text-gray-900 sm:text-xl">{news?.newsTitle}</h3>
+                <h3 className="mt-4 text-lg font-bold text-gray-900 sm:text-xl">
+                  {news?.newsTitle}
+                </h3>
 
                 <p
                   className="mt-2 text-gray-700"
