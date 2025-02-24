@@ -12,6 +12,9 @@ import NewsAndMedia from "../Components/Home/newAndMedia/NewsAndMedia";
 import ShowCase from "../Components/Home/ProductShowcase/ShowCase";
 import DynamicMetaTitle from "../Components/DynamicMetaTitle";
 import useGetSeo from "../Hooks/useGetSeo";
+import Hero from "../Components/Home/Hero/Hero";
+import RenixOverview from "../Components/Home/RenixOverview/RenixOverview";
+import SpecializedProducts from "../Components/Home/SpecializedProducts/SpecializedProducts";
 
 const Home = () => {
   const metaData = useGetSeo("home_page");
@@ -24,7 +27,10 @@ const Home = () => {
         canonicalUrl={metaData?.canonicalUrl}
 
       />
-      <HomeSlider />
+      <Hero/>
+      {/* <HomeSlider /> */}
+<RenixOverview/>
+<SpecializedProducts/>
       <HealthCareProducts />
       <NaturalSolution />
       <WhoWeAre />
