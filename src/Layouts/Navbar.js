@@ -41,9 +41,9 @@ const Navbar = () => {
         <div className=" mx-auto px-4 sm:px-6 lg:px-8 xl:px-16">
           <div className="flex items-center justify-between md:h-20 h-[70px]">
             {/* Logo */}
-            <div className="flex-shrink-0">
+            <Link to="/" className="flex-shrink-0">
               <img className="md:w-[75px] w-16" src={logo} alt="logo" />
-            </div>
+            </Link>
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center ">
