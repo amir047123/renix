@@ -13,6 +13,7 @@ import ShowCase from "../Components/Home/ProductShowcase/ShowCase";
 import DynamicMetaTitle from "../Components/DynamicMetaTitle";
 import useGetSeo from "../Hooks/useGetSeo";
 import Hero from "../Components/Home/Hero/Hero";
+import RenixOverview from "../Components/Home/RenixOverview/RenixOverview";
 
 const Home = () => {
   const metaData = useGetSeo("home_page");
@@ -27,7 +28,7 @@ const Home = () => {
       />
       <Hero/>
       {/* <HomeSlider /> */}
-
+<RenixOverview/>
       <HealthCareProducts />
       <NaturalSolution />
       <WhoWeAre />
