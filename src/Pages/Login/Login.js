@@ -18,7 +18,7 @@ const LoginPage = () => {
       .post("/user/login", { email: email, password: password })
       .then((res) => {
         if (res?.data?.status === "success") {
-          console.log(res.data.data);
+    
           swal("Success", "Successfully Login ", "success");
           setToken(
             res.data.data.user.email,
@@ -28,9 +28,11 @@ const LoginPage = () => {
             res.data.data.userIp
           );
           setLoading(false);
+          navigate(`/${res?.data?.data?.user?.role}Dashboard`);
           window.location.reload();
-          // window.location.reload();
+       
         } else {
+          setLoading(false);
           // console.log("rrrrrr");
         }
       })

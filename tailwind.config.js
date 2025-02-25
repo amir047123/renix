@@ -24,6 +24,8 @@ module.exports = withMT({
       // 1366px for our medium desktop monitor size
       exl: "1440px",
       // 1440px for our regular desktop device size
+      exxl: "1540px",
+      // 1440px for our regular desktop device size
     },
 
     colors: {

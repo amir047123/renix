@@ -118,14 +118,9 @@ const Products = () => {
 
           {/* ✅ Product Grid Section (Appears Below in Mobile, Right in Desktop) */}
           <div className="col-span-full md:col-span-8 lg:col-span-9 order-2">
-            <div className="grid lg:grid-cols-5 md:grid-cols-2 sm:grid-flow-col-1 gap-6">
+            <div className="grid exxl:grid-cols-5 exl:grid-cols-4 lg:grid-cols-3 sml:grid-cols-2 sm:grid-col-1  gap-4">
               {productData?.data?.map((item) => (
-                <div
-                  key={item?._id}
-                  className="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300"
-                >
-                  <Card item={item} />
-                </div>
+                <Card key={item?._id} item={item} />
               ))}
             </div>
 

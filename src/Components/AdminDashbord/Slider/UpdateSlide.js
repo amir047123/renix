@@ -1,47 +1,70 @@
-import JoditEditor from "jodit-react";
-import React, { useRef, useState } from "react";
+import axios from "axios";
+import React, { useEffect,  useState } from "react";
 import { useForm } from "react-hook-form";
-
+import { useParams } from "react-router-dom";
 import { singleImageUpload } from "../../../Hooks/ImageUpload";
-import PostHooks from "../../../Hooks/PostHooks";
+import UpdateHooks from "../../../Hooks/UpdateHooks";
 
-const SliderPost = ({ addSlide }) => {
+
+const UpdateSlide = () => {
+  const { id } = useParams();
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm();
-  const editor = useRef(null);
-  const [image, setImage] = useState("");
+
+  const [image, setImage] = useState(null);
 
   const handleChangeUploadImage = async (event) => {
-    const file = event.target.files[0];
-    const formData = new FormData();
-    formData.append("image", file);
-    singleImageUpload(formData, setImage);
+    const image = event.target.files[0];
+    if (image) {
+      const formData = new FormData();
+      formData.append("image", image);
+      singleImageUpload(formData, setImage);
+    }
   };
+  useEffect(() => {
+    const getSlideDetails = async () => {
+      let { data } = await axios.get(
+        `http://localhost:3001/api/v1/slide/getSlideById/${id}`
+      );
 
-  const onSubmit =async (formData) => {
-    const slide = {
-      title: formData.title,
-      subtitle: formData.subtitle,
-      description: formData.description,
-      buttonText: formData.buttonText,
-      img: image,
-      link: formData.link,
+
+      setValue("title", data?.data?.title);
+      setValue("subtitle", data?.data?.subtitle);
+      setValue("buttonText", data?.data?.buttonText);
+      setValue("link", data?.data?.link);
+      setValue("img", data?.data?.img);
+      setImage(data?.data?.img);
+      setValue("description", data?.data?.description);
+
     };
-   await PostHooks(
-     "http://localhost:3001/api/v1/slide/addSlide",
-     slide,
-     "Slide successfully posted"
-   );
+    getSlideDetails();
+  }, [id, setValue]);
+
+  const onSubmit = async (formData) => {
+  const slide = {
+    title: formData.title,
+    subtitle: formData.subtitle,
+    description: formData.description,
+    buttonText: formData?.buttonText,
+    img: image?image:formData.img,
+    link: formData.link,
   };
 
-
+    // Assuming _id is defined somewhere in the component
+    await UpdateHooks(
+      `http://localhost:3001/api/v1/slide/updateSlide/${id}`,
+      slide,
+      "successfully Update"
+    );
+  };
 
   return (
     <div className="p-6 bg-white rounded-lg shadow-md w-full max-w-4xl mx-auto border border-blue-gray-100  mt-10">
-      <h2 className="text-3xl font-semibold mb-6 text-center">Add New Slide</h2>
+      <h2 className="text-3xl font-semibold mb-6 text-center">Update New Slide</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <input
           type="text"
@@ -78,11 +101,15 @@ const SliderPost = ({ addSlide }) => {
           className="w-full p-2 border border-blue-gray-100 rounded"
         />
 
-        <input
-          type="file"
-          onChange={handleChangeUploadImage}
-          className="w-full p-2 border border-blue-gray-100 rounded"
-        />
+        <div className="flex items-center gap-5">
+          <input
+            type="file"
+            onChange={handleChangeUploadImage}
+            className="w-full p-2 border border-blue-gray-100 rounded"
+          />
+
+          <img className="w-20 rounded-lg" src={image} alt="img"></img>
+        </div>
         {errors.img && <p className="text-red-500">{errors.img.message}</p>}
 
         <input
@@ -96,11 +123,11 @@ const SliderPost = ({ addSlide }) => {
           type="submit"
           className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500 w-full"
         >
-          Add Slide
+          Update Slide
         </button>
       </form>
     </div>
   );
 };
 
-export default SliderPost;
+export default UpdateSlide;

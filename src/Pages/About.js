@@ -20,8 +20,9 @@ const About = () => {
         description={metaData?.metaDescription}
         canonicalUrl={metaData?.canonicalUrl}
       />
-      {/* <WebNav /> */}
+
       <Navbar />
+
       <section className=""></section>
 
       <section className="py-14 bg-[#f7f7f7]">

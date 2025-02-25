@@ -7,7 +7,7 @@ const Card = ({ item }) => {
 
   return (
     <>
-      <div className="w-64 bg-white shadow-lg rounded-lg overflow-hidden border  border-primary">
+      <div className="w-full bg-white shadow-lg rounded-lg overflow-hidden border  border-primary">
         {/* ✅ Product Image */}
         <Link to={`/product/${item?.slug}`}>
           <div className="relative p-3 flex justify-center">
@@ -54,7 +54,7 @@ const Card = ({ item }) => {
               href="https://renixcare.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-primary text-white px-4 py-1.5 text-sm rounded-full font-medium"
+              className="bg-primary text-white px-4 py-1.5 text-sm rounded-full font-medium whitespace-nowrap"
             >
               Buy Now
             </a>

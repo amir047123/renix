@@ -5,6 +5,7 @@ import AdminShipping from "../Components/AdminDashbord/AdminShipping/AdminShippi
 import ContactRenix from "../Components/AdminDashbord/ContactRenix";
 import AllSlider from "../Components/AdminDashbord/Slider/AllSlider";
 import SliderPost from "../Components/AdminDashbord/Slider/SliderPost";
+import UpdateSlide from "../Components/AdminDashbord/Slider/UpdateSlide";
 import AllAccounts from "../Pages/AllAccounts/AllAccounts";
 import AddNewsAndMedia from "../Pages/News and Media/AddNewsAndMedia";
 import AddNewsCategory from "../Pages/News and Media/AddNewsCategory";
@@ -82,6 +83,10 @@ const AdminRoutes = [
 
   { path: "post-slider", Component: SliderPost },
   { path: "all-slider", Component: AllSlider },
+  {
+    path: "all-slider/update-slide/:id",
+    Component: UpdateSlide,
+  },
 ];
 
 export default AdminRoutes;
