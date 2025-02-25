@@ -7,7 +7,7 @@ import Slider from "react-slick";
 
 const fetchProducts = async () => {
   const { data } = await axios.get(
-    "https://server.renixlaboratories.com.bd/api/v1/medicine?size=6&page=0"
+    "http://localhost:3001/api/v1/medicine?size=6&page=0"
   );
   return data?.data;
 };

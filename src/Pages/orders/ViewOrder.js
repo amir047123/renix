@@ -9,7 +9,7 @@ const ViewOrder = () => {
 
   useEffect(() => {
     setLoading(true);
-    const url = `https://server.renixlaboratories.com.bd/api/v1/order/getOrderById/${id}`;
+    const url = `http://localhost:3001/api/v1/order/getOrderById/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {

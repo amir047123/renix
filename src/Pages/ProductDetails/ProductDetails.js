@@ -9,7 +9,7 @@ import ProductTable from "./ProductTable";
 
 const fetchProduct = async (id) => {
   const response = await fetch(
-    `https://server.renixlaboratories.com.bd/api/v1/medicine/specific?fieldName=slug&&fieldValue=${id}`
+    `http://localhost:3001/api/v1/medicine/specific?fieldName=slug&&fieldValue=${id}`
   );
   const data = await response.json();
   return data.data[0];

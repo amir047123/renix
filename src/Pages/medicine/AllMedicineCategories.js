@@ -11,7 +11,7 @@ const AllMedicineCategories = () => {
   const [category, setCategory] = useState([]);
   useEffect(() => {
     setLoading(true);
-    const url = `https://server.renixlaboratories.com.bd/api/v1/category`;
+    const url = `http://localhost:3001/api/v1/category`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -32,12 +32,9 @@ const AllMedicineCategories = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(
-          `https://server.renixlaboratories.com.bd/api/v1/category/deleteCategory/${id}`,
-          {
-            method: "DELETE",
-          }
-        ).then((res) => {
+        fetch(`http://localhost:3001/api/v1/category/deleteCategory/${id}`, {
+          method: "DELETE",
+        }).then((res) => {
           if (res.status === 200) {
             setRefresh(!refresh);
             Swal.fire("Deleted!", "Your file has been deleted.", "success");

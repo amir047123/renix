@@ -13,10 +13,10 @@ const pageSize = 10; // Number of products per page
 
 const fetchProducts = async ({ queryKey }) => {
   const [_, categoryId, page] = queryKey;
-  let url = `https://server.renixlaboratories.com.bd/api/v1/medicine?size=${pageSize}&page=${page}`;
+  let url = `http://localhost:3001/api/v1/medicine?size=${pageSize}&page=${page}`;
 
   if (categoryId) {
-    url = `https://server.renixlaboratories.com.bd/api/v1/medicine/specific?fieldName=medicineCategory&fieldValue=${categoryId}&size=${pageSize}&page=${page}`;
+    url = `http://localhost:3001/api/v1/medicine/specific?fieldName=medicineCategory&fieldValue=${categoryId}&size=${pageSize}&page=${page}`;
   }
 
   const { data } = await axios.get(url);
@@ -24,9 +24,7 @@ const fetchProducts = async ({ queryKey }) => {
 };
 
 const fetchCategories = async () => {
-  const { data } = await axios.get(
-    "https://server.renixlaboratories.com.bd/api/v1/category"
-  );
+  const { data } = await axios.get("http://localhost:3001/api/v1/category");
   return data?.data;
 };
 

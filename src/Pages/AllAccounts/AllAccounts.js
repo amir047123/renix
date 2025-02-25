@@ -19,7 +19,7 @@ const AllAccounts = () => {
 
   useEffect(() => {
     setLoading(true);
-    const url = `https://server.renixlaboratories.com.bd/api/v1/user?size=${size}&page=${page}&filter=${input}`;
+    const url = `http://localhost:3001/api/v1/user?size=${size}&page=${page}&filter=${input}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {

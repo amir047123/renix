@@ -45,7 +45,7 @@ const AddNewsAndMedia = () => {
 
     // post api call
     await PostHooks(
-      "https://server.renixlaboratories.com.bd/api/v1/newsAndMedia/addNewsAndMedia",
+      "http://localhost:3001/api/v1/newsAndMedia/addNewsAndMedia",
       news,
       "Medicine successfully posted"
     );

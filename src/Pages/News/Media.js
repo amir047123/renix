@@ -7,7 +7,7 @@ import useGetSeo from "../../Hooks/useGetSeo";
 
 const fetchMedia = async () => {
   const response = await fetch(
-    "https://server.renixlaboratories.com.bd/api/v1/newsAndMedia/specific?fieldName=newsCategory&fieldValue=Media"
+    "http://localhost:3001/api/v1/newsAndMedia/specific?fieldName=newsCategory&fieldValue=Media"
   );
   if (!response.ok) {
     throw new Error("Failed to fetch media data.");

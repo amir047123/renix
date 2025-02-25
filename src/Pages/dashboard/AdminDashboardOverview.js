@@ -11,7 +11,7 @@ const AdminDashboardOverview = () => {
   const [loading, setLoading] = useState();
   useEffect(() => {
     setLoading(true);
-    fetch(`https://server.renixlaboratories.com.bd/api/v1/order/getOrders`)
+    fetch(`http://localhost:3001/api/v1/order/getOrders`)
       .then((res) => res.json())
       .then((data) => {
         setOrder(data?.data);
