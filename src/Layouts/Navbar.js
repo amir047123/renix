@@ -7,11 +7,13 @@ import { BsChevronDown } from "react-icons/bs";
 import { FaChevronDown } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 import logo from '../../src/Assets/images/logo.svg'
+import AuthUser from "../Hooks/authUser";
 
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false);
+   const { userInfo, logout } = AuthUser();
 
   const navLinks = [
     { name: "Home", to: "/" },
@@ -32,6 +34,7 @@ const Navbar = () => {
     { name: "Contact Us", to: "/contact" },
     { name: "Renix Store", to: "https://store.renixlaboratories.com.bd" },
   ];
+
 
   return (
     <header>
@@ -86,11 +89,19 @@ const Navbar = () => {
             </div>
 
             {/* Login Button */}
-            <Link to="/login" className="hidden lg:flex items-center">
-              <Button className="bg-accent rounded-full text-white hover:bg-accent/90">
-                Login
-              </Button>
-            </Link>
+            {userInfo?.role ? (
+              <Link to={`/${userInfo?.role}Dashboard`} className="hidden lg:flex items-center">
+                <Button className="bg-accent rounded-full text-white hover:bg-accent/90">
+                  Dashboard
+                </Button>
+              </Link>
+            ) : (
+              <Link to="/login" className="hidden lg:flex items-center">
+                <Button className="bg-accent rounded-full text-white hover:bg-accent/90">
+                  Login
+                </Button>
+              </Link>
+            )}
 
             {/* Mobile menu button */}
             <div className="lg:hidden">
@@ -148,11 +159,19 @@ const Navbar = () => {
                   )}
                 </div>
               ))}
-              <Link to="/login" className="mt-4 px-3">
-                <Button className="w-full bg-accent text-white hover:bg-accent/90">
-                  Login
-                </Button>
-              </Link>
+              {userInfo?.role ? (
+                <Link to={`/${userInfo?.role}Dashboard`} className="mt-4 px-3">
+                  <Button className="w-full bg-accent text-white hover:bg-accent/90">
+                    Dashboard
+                  </Button>
+                </Link>
+              ) : (
+                <Link to="/login" className="mt-4 px-3">
+                  <Button className="w-full bg-accent text-white hover:bg-accent/90">
+                    Login
+                  </Button>
+                </Link>
+              )}
             </div>
           </div>
         )}
