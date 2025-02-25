@@ -301,7 +301,7 @@ const AddMedicine = () => {
               className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-500"
               placeholder="Medicine Security Code"
               {...register("securityCode", {
-                required: "Medicine Security Code is required",
+                // required: "Medicine Security Code is required",
               })}
             />
             {errors.securityCode && (
@@ -420,7 +420,7 @@ const AddMedicine = () => {
               </label>
               <input
                 {...register("metaTitle", {
-                  required: "Meta Title is required",
+                  // required: "Meta Title is required",
                 })}
                 name="metaTitle"
                 className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5    focus:border-blue-500"
@@ -459,7 +459,7 @@ const AddMedicine = () => {
               <textarea
                 name="metaDescription"
                 {...register("metaDescription", {
-                  required: "Meta Description is required",
+                  // required: "Meta Description is required",
                 })}
                 rows={7}
                 className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 focus:border-blue-500"
@@ -501,7 +501,7 @@ const AddMedicine = () => {
                 id="canonical-url"
                 name="canonicalUrl"
                 {...register("canonicalUrl", {
-                  required: "Canonical Url is required",
+                  // required: "Canonical Url is required",
                 })}
                 className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 focus:border-blue-500"
                 placeholder="Enter Canonical URL"
