@@ -1,9 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import CommonForgetImg from "../../Assets/images/auth/forgetImage.png";
-import { useForm } from "react-hook-form";
-import { useState } from "react";
-import { useEffect } from "react";
 import { server_url } from "../../Config/API";
 import UpdateHooks from "../../Hooks/UpdateHooks";
 
@@ -14,7 +12,7 @@ const SetNewPassword = () => {
   const email = JSON.parse(loginEmail);
   useEffect(() => {
     fetch(
-      ` https://renixserver.niroghealthplus.com/api/v1/user/by-email?email=${email}`
+      `http://localhost:3001/api/v1/user/by-email?email=${email}`
     )
       .then((res) => res.json())
       .then((data) => {

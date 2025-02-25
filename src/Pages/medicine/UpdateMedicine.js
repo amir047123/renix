@@ -1,11 +1,10 @@
-import React, { useRef, useState } from "react";
-import { useForm } from "react-hook-form";
 import JoditEditor from "jodit-react";
-import { singleImageUpload } from "../../Hooks/ImageUpload";
-import { useEffect } from "react";
-import UpdateHooks from "../../Hooks/UpdateHooks";
+import React, { useEffect, useRef, useState } from "react";
+import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import DynamicMetaTitle from "../../Components/DynamicMetaTitle";
+import { singleImageUpload } from "../../Hooks/ImageUpload";
+import UpdateHooks from "../../Hooks/UpdateHooks";
 
 const UpdateMedicine = () => {
   const { id } = useParams();
@@ -31,7 +30,7 @@ const UpdateMedicine = () => {
   const [content, setContent] = useState("");
 
   useEffect(() => {
-    const url = `https://renixserver.niroghealthplus.com/api/v1/category`;
+    const url = `http://localhost:3001/api/v1/category`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -40,7 +39,7 @@ const UpdateMedicine = () => {
   }, []);
 
   useEffect(() => {
-    const url = `https://renixserver.niroghealthplus.com/api/v1/medicine/medicineDetails/${id}`;
+    const url = `http://localhost:3001/api/v1/medicine/medicineDetails/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -100,7 +99,7 @@ const UpdateMedicine = () => {
       metaImage,
     };
 
-    const updateUrl = `https://renixserver.niroghealthplus.com/api/v1/medicine/updateMedicine/${id}`;
+    const updateUrl = `http://localhost:3001/api/v1/medicine/updateMedicine/${id}`;
 
     await UpdateHooks(updateUrl, medicineData, "Medicine successfully updated");
   };

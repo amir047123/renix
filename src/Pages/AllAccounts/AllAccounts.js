@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { TbEdit } from "react-icons/tb";
 import { CiSearch } from "react-icons/ci";
-import Pagination from "../../shared/Pagination/Pagination";
+import { RiDeleteBin2Fill } from "react-icons/ri";
+import { TbEdit } from "react-icons/tb";
 import { server_url } from "../../Config/API";
 import UpdateHooks from "../../Hooks/UpdateHooks";
-import { RiDeleteBin2Fill } from "react-icons/ri";
 import Loading from "../../shared/Loading";
+import Pagination from "../../shared/Pagination/Pagination";
 
 const AllAccounts = () => {
   const [input, setInput] = useState("");
@@ -15,18 +15,18 @@ const AllAccounts = () => {
   const [page, setPage] = useState(0);
   const [size, setSize] = useState(1000);
   const [refresh, setRefresh] = useState(false);
-  const [loading,setLoading]= useState()
+  const [loading, setLoading] = useState();
 
   useEffect(() => {
-    setLoading(true)
-    const url = ` https://renixserver.niroghealthplus.com/api/v1/user?size=${size}&page=${page}&filter=${input}`;
+    setLoading(true);
+    const url = `http://localhost:3001/api/v1/user?size=${size}&page=${page}&filter=${input}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         setUsers(data?.data);
         setQuantity(data?.total);
-        setLoading(false)
+        setLoading(false);
       });
   }, [size, page, refresh, input]);
   const handelFilter = (e) => {
@@ -59,9 +59,9 @@ const AllAccounts = () => {
     setRefresh(!refresh);
   };
 
-if(loading){
-  return <Loading/>
-}
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <section className="py-10 md:py-14">

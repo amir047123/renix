@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { Icon } from "@iconify/react";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import DeleteHook from "../../Hooks/DeleteHook";
 import Loading from "../../shared/Loading";
 
@@ -17,7 +16,7 @@ function AllEmails() {
     async function fetchcollectEmails() {
       try {
         const response = await axios.get(
-          "https://renixserver.niroghealthplus.com/api/v1/collectEmail/getCollectEmails"
+          "http://localhost:3001/api/v1/collectEmail/getCollectEmails"
         );
         setcollectEmails(response?.data?.data);
         setFiltecollectEmails(response?.data?.data);
@@ -42,12 +41,8 @@ function AllEmails() {
 
   const handleSearch = () => {
     setFiltecollectEmails(
-      collectEmails?.filter(
-        (collectEmails) =>
-          
-          collectEmails?.email
-            .toLowerCase()
-            .includes(searchTerm.toLowerCase())
+      collectEmails?.filter((collectEmails) =>
+        collectEmails?.email.toLowerCase().includes(searchTerm.toLowerCase())
       )
     );
   };
@@ -129,19 +124,18 @@ function AllEmails() {
               <td className="h-16 px-6 text-sm transition duration-300 border-slate-200 stroke-slate-500 text-slate-500">
                 {index + 1}
               </td>
-            
+
               <td className="h-16 px-6 text-sm transition duration-300 border-slate-200 stroke-slate-500 text-slate-500">
                 {collectEmails?.email}
               </td>
-           
-         
+
               <td className="h-16 px-6  transition duration-300 border-slate-200  text-secondary text-lg flex gap-2 items-center cursor-pointer">
                 <div
                   onClick={() => {
                     DeleteHook({
                       refetch,
                       setRefetch,
-                      url: `https://renixserver.niroghealthplus.com/api/v1/collectEmail/deleteCollectEmail/${collectEmails?._id}`,
+                      url: `http://localhost:3001/api/v1/collectEmail/deleteCollectEmail/${collectEmails?._id}`,
                     });
                   }}
                   className="border border-secondary py-2 px-3 rounded-md hover:bg-secondary/10 duration-300"

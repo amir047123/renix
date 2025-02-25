@@ -34,7 +34,7 @@ const AddMedicineCategory = () => {
     e.preventDefault();
 
     PostHooks(
-      " https://renixserver.niroghealthplus.com/api/v1/category",
+      "http://localhost:3001/api/v1/category",
       data,
       "Category successfully posted"
     );

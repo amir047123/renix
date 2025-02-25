@@ -1,11 +1,9 @@
-import React from "react";
-import { TbEdit } from "react-icons/tb";
+import React, { useEffect, useState } from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import Swal from "sweetalert2";
-import { useEffect } from "react";
-import { useState } from "react";
-import Loading from "../../shared/Loading";
+import { TbEdit } from "react-icons/tb";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import Loading from "../../shared/Loading";
 const AllMedicineCategories = () => {
   const [loading, setLoading] = useState();
 
@@ -13,7 +11,7 @@ const AllMedicineCategories = () => {
   const [category, setCategory] = useState([]);
   useEffect(() => {
     setLoading(true);
-    const url = ` https://renixserver.niroghealthplus.com/api/v1/category`;
+    const url = `http://localhost:3001/api/v1/category`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -34,9 +32,12 @@ const AllMedicineCategories = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(` https://renixserver.niroghealthplus.com/api/v1/category/deleteCategory/${id}`, {
-          method: "DELETE",
-        }).then((res) => {
+        fetch(
+          `http://localhost:3001/api/v1/category/deleteCategory/${id}`,
+          {
+            method: "DELETE",
+          }
+        ).then((res) => {
           if (res.status === 200) {
             setRefresh(!refresh);
             Swal.fire("Deleted!", "Your file has been deleted.", "success");

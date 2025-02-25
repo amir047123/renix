@@ -1,53 +1,66 @@
+import { motion } from "framer-motion"; // ✅ Adding smooth animations
 import React from "react";
 
 const NewsAndMedia = () => {
   const newsandMediaInfo = [
     {
       id: 1,
-      // videoUrl: "https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2FRenixlaboratoriesltd1%2Fvideos%2F6133048600107424%2F&show_text=false&width=560&t=0"
-      videoUrl: "https://www.youtube.com/embed/8m4wzSCTGks",
+      videoUrl: "https://www.youtube.com/embed/WZT7HzlGkNs?si=LJD9vz0CKTqP_Y8b",
     },
     {
       id: 2,
-      videoUrl: "https://www.youtube.com/embed/KiuZyU9rq1U",
+      videoUrl: "https://www.youtube.com/embed/CohYY9RcILk?si=9HZrg_rItNkku3ad",
     },
     {
       id: 3,
-      videoUrl: "https://www.youtube.com/embed/6zkmOr-I8qc",
+      videoUrl: "https://www.youtube.com/embed/UazPMjH6Opw?si=SQqdxloZXOZK3puD",
     },
-    // {
-    //     id: 4,
-    //     videoUrl: "https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2FRenixlaboratoriesltd1%2Fvideos%2F211425601500261%2F&show_text=false&width=560&t=0"
-
-    // },
   ];
 
   return (
-    <div className=" w-full lg:w-[90%] mx-auto py-10 text-center">
-      <h1 className="text-secondary font-semibold text-3xl mt-3">
+    <section className="w-full lg:w-[90%] mx-auto py-10 text-center">
+      {/* ✅ Section Header */}
+      <motion.h1
+        className="text-primary font-bold text-3xl md:text-4xl uppercase tracking-wide"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
         News and Media
-      </h1>
-      <p className="mt-3 text-textColor">
-        Comprehensive and Personalized Care for Your Well-being{" "}
-      </p>
-      <div className=" flex  flex-wrap  items-center pt-14">
+      </motion.h1>
+
+      <motion.p
+        className="mt-3 text-gray-600 text-lg"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        Stay updated with our latest videos and media highlights.
+      </motion.p>
+
+      {/* ✅ Video Grid */}
+      <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {newsandMediaInfo.map((info) => (
-          <div className="w-full md:w-6/12 lg:w-4/12" key={info.id}>
-            <div className="aspect-w-16 aspect-h-9  px-3 py-3">
+          <motion.div
+            key={info.id}
+            className="relative bg-white rounded-lg shadow-lg overflow-hidden"
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3 }}
+          >
+            {/* ✅ Video Container - Maintains Actual YouTube Size */}
+            <div className="w-full">
               <iframe
-                title="video"
+                title={`video-${info.id}`}
                 src={info.videoUrl}
-                className="border-none overflow-hidden  w-full h-full  lg:h-[225px] lg:w-[400px]"
-                scrolling="no"
-                frameborder="0"
+                className="w-full h-[315px] md:h-[360px] lg:h-[400px] rounded-lg"
                 allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                allowFullScreen="true"
+                allowFullScreen
               ></iframe>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

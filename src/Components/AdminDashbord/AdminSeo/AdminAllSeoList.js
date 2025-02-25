@@ -1,7 +1,7 @@
 import { Icon } from "@iconify/react";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import DeleteHook from "../../../Hooks/DeleteHook";
 import useGetSeo from "../../../Hooks/useGetSeo";
 
@@ -13,7 +13,7 @@ const AdminAllSeoList = () => {
   useEffect(() => {
     const fetchAllSeo = async () => {
       const { data } = await axios.get(
-        "https://renixserver.niroghealthplus.com/api/v1/seo/getAllSeo"
+        "http://localhost:3001/api/v1/seo/getAllSeo"
       );
       // console.log(data);
       setAllSeo(data?.data);
@@ -56,9 +56,7 @@ const AdminAllSeoList = () => {
               >
                 tilte
               </th>
-           
-             
-         
+
               <th
                 scope="col"
                 className="h-16 px-6 text-sm font-medium stroke-slate-700 text-slate-700 bg-slate-100"
@@ -86,10 +84,7 @@ const AdminAllSeoList = () => {
                 <td className="h-16 px-6 text-sm transition duration-300 border-slate-200 stroke-slate-500 text-slate-500">
                   {seo?.metaTitle}
                 </td>
-                
 
-               
-            
                 <td className="h-16 px-6  transition duration-300 border-slate-200  text-secondary text-lg flex gap-2 items-center cursor-pointer">
                   <div
                     onClick={() => {
@@ -98,7 +93,7 @@ const AdminAllSeoList = () => {
                         setRefetch,
                         setAllData: setAllSeo,
                         id: seo?._id,
-                        url: `https://renixserver.niroghealthplus.com/api/v1/seo/deleteSeo/${seo?._id}`,
+                        url: `http://localhost:3001/api/v1/seo/deleteSeo/${seo?._id}`,
                       });
                     }}
                     className="border border-secondary py-2 px-3 rounded-md hover:bg-secondary/10 duration-300"

@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import PostHooks from "../../Hooks/PostHooks";
 import AuthUser from "../../Hooks/authUser";
-import { useEffect } from "react";
 
 const AppointmentForm = () => {
   const { id } = useParams();
@@ -33,7 +32,7 @@ const AppointmentForm = () => {
     event.preventDefault();
     const appointmentInfo = formData;
     await PostHooks(
-      " https://renixserver.niroghealthplus.com/api/v1/appointment/postAppointment",
+      "http://localhost:3001/api/v1/appointment/postAppointment",
       appointmentInfo,
       "Your appointment has been sent to the doctor for review"
     );

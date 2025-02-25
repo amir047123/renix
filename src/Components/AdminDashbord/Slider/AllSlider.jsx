@@ -3,24 +3,22 @@ import toast from "react-hot-toast";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { TbEdit } from "react-icons/tb";
 import { Link } from "react-router-dom";
-import Loading from "../../shared/Loading";
+import Loading from "../../../shared/Loading";
 
-const AllNewsAndMedias = () => {
-  const [newsAndMedia, setNewsAndMedia] = useState([]);
+const AllSlider = () => {
+  const [slide, setSlide] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetchNewsAndMedia();
+    fetchSlide();
   }, []);
 
-  const fetchNewsAndMedia = () => {
+  const fetchSlide = () => {
     setLoading(true); // Set loading to true when fetching data
-    fetch(
-      "http://localhost:3001/api/v1/newsAndMedia/getNewsAndMedia"
-    )
+    fetch("http://localhost:3001/api/v1/slide/getSlide")
       .then((response) => response.json())
       .then((data) => {
-        setNewsAndMedia(data.data);
+        setSlide(data.data);
         setLoading(false); // Set loading to false when data is fetched
       })
       .catch((error) => {
@@ -33,7 +31,7 @@ const AllNewsAndMedias = () => {
   const handleDelete = (_id) => {
     console.log("Deleting item with ID:", _id);
     fetch(
-      `http://localhost:3001/api/v1/newsAndMedia/deleteNewsAndMedia/${_id}`,
+      `http://localhost:3001/api/v1/slide/deleteSlide/${_id}`,
       {
         method: "DELETE",
       }
@@ -43,7 +41,7 @@ const AllNewsAndMedias = () => {
         if (response.ok) {
           // If the delete request is successful, fetch the updated list
           toast.success("Item deleted successfully!");
-          fetchNewsAndMedia();
+          fetchSlide();
         } else {
           // Handle error scenarios here
           console.error("Failed to delete:", response.status);
@@ -55,7 +53,7 @@ const AllNewsAndMedias = () => {
 
   return (
     <section className="py-10 md:py-14">
-      <div className="container px-6 md:max-w-6xl w-full">
+      <div className="container px-6 md:max-w-6xl w-full mx-auto">
         {loading ? ( // Show loading indicator if loading is true
           <Loading />
         ) : (
@@ -79,7 +77,19 @@ const AllNewsAndMedias = () => {
                     scope="col"
                     className="px-6 py-3  text-[13px] font-medium capitalize"
                   >
-                    Category
+                    Sub title
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-3  text-[13px] font-medium capitalize"
+                  >
+                    Description
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-3  text-[13px] font-medium capitalize"
+                  >
+                    Image
                   </th>
                   <th
                     scope="col"
@@ -90,7 +100,7 @@ const AllNewsAndMedias = () => {
                 </tr>
               </thead>
               <tbody>
-                {newsAndMedia.map((item, index) => (
+                {slide?.map((item, index) => (
                   <tr
                     key={index}
                     className="bg-white border-b border-[#D0D2DA]"
@@ -101,13 +111,17 @@ const AllNewsAndMedias = () => {
                     >
                       {index + 1}
                     </th>
-                    <td className="px-6 py-4">{item.newsTitle}</td>
-                    <td className="px-6 py-4">{item.newsCategory}</td>
+                    <td className="px-6 py-4">{item?.title}</td>
+                    <td className="px-6 py-4">{item?.subtitle}</td>
+                    <td className="px-6 py-4">{item?.description}</td>
+                    <td className="px-6 py-4">
+                      <img className=" rounded-lg h-12" src={item?.img} alt="img"></img>
+                    </td>
 
                     <td className="px-6 py-4">
                       <span className="flex items-center gap-3">
                         <Link
-                          to={`update-news-media/${item._id}`}
+                          to={`update-slide/${item._id}`}
                           className="text-lg text-[#0077FF] bg-[#BBDDFF] w-7  h-7 rounded-lg flex items-center justify-center"
                         >
                           <TbEdit />
@@ -131,4 +145,4 @@ const AllNewsAndMedias = () => {
   );
 };
 
-export default AllNewsAndMedias;
+export default AllSlider;

@@ -1,6 +1,6 @@
+import JoditEditor from "jodit-react";
 import React, { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import JoditEditor from "jodit-react";
 import { singleImageUpload } from "../../Hooks/ImageUpload";
 import PostHooks from "../../Hooks/PostHooks";
 
@@ -45,7 +45,7 @@ const AddNewsAndMedia = () => {
 
     // post api call
     await PostHooks(
-      "https://renixserver.niroghealthplus.com/api/v1/newsAndMedia/addNewsAndMedia",
+      "http://localhost:3001/api/v1/newsAndMedia/addNewsAndMedia",
       news,
       "Medicine successfully posted"
     );

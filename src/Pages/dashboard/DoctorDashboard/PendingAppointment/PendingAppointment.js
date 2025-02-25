@@ -1,13 +1,11 @@
-import React from "react";
-import { useEffect } from "react";
-import { SiGooglemeet } from "react-icons/si";
+import React, { useEffect, useState } from "react";
 import { MdPendingActions } from "react-icons/md";
-import { useState } from "react";
-import Pagination from "../../../../shared/Pagination/Pagination";
-import UpdateHooks from "../../../../Hooks/UpdateHooks";
+import { SiGooglemeet } from "react-icons/si";
 import { server_url } from "../../../../Config/API";
-import MeetLinkModal from "../MeetLinkModal";
 import AuthUser from "../../../../Hooks/authUser";
+import UpdateHooks from "../../../../Hooks/UpdateHooks";
+import Pagination from "../../../../shared/Pagination/Pagination";
+import MeetLinkModal from "../MeetLinkModal";
 const PendingAppointment = () => {
   const { userInfo } = AuthUser();
   const [refresh, setRefresh] = useState(false);
@@ -27,7 +25,7 @@ const PendingAppointment = () => {
   }
 
   useEffect(() => {
-    const url = ` https://renixserver.niroghealthplus.com/api/v1/appointment/specific?page=${page}&&size=${size}&&doctorId=${
+    const url = `http://localhost:3001/api/v1/appointment/specific?page=${page}&&size=${size}&&doctorId=${
       userInfo?._id
     }&&appointmentStatus=${"pending"}`;
     fetch(url)

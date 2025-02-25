@@ -1,7 +1,6 @@
-import React from "react";
-import PostHooks from "../../Hooks/PostHooks";
-import { useState } from "react";
+import React, { useState } from "react";
 import { singleImageUpload } from "../../Hooks/ImageUpload";
+import PostHooks from "../../Hooks/PostHooks";
 
 const AddBlogCategory = () => {
   const [metaImage, setMetaImage] = useState("");
@@ -32,7 +31,7 @@ const AddBlogCategory = () => {
   const handelSubmit = (e) => {
     e.preventDefault();
     PostHooks(
-      " https://renixserver.niroghealthplus.com/api/v1/blogsCategory",
+      "http://localhost:3001/api/v1/blogsCategory",
       data,
       "Category successfully posted"
     );

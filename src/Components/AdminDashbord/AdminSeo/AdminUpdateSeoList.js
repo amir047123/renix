@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import { singleImageUpload } from "../../../Hooks/ImageUpload";
 
 const AdminUpdateSeoList = () => {
@@ -31,7 +31,7 @@ const AdminUpdateSeoList = () => {
   useEffect(() => {
     const fetchSingleSeo = async () => {
       const { data } = await axios.get(
-        `https://renixserver.niroghealthplus.com/api/v1/seo/getSeoById/${id}`
+        `http://localhost:3001/api/v1/seo/getSeoById/${id}`
       );
       setSeo(data?.data);
       setFormData({
@@ -59,7 +59,7 @@ const AdminUpdateSeoList = () => {
 
     try {
       const { data: seoData } = await axios.patch(
-        `https://renixserver.niroghealthplus.com/api/v1/seo/updateSeo/${id}`,
+        `http://localhost:3001/api/v1/seo/updateSeo/${id}`,
         data
       );
       // console.log(seoData);

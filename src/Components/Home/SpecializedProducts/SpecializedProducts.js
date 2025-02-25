@@ -1,7 +1,6 @@
 import React from "react";
 import { BsArrowUpRight } from "react-icons/bs";
-import img from '../../../Assets/images/neemo-pimple.svg'
-
+import img from "../../../Assets/images/neemo-pimple.svg";
 
 const ProductCard = ({ name, image }) => (
   <div className="relative group cursor-pointer bg-white rounded-2xl overflow-hidden">

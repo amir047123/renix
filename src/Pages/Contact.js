@@ -1,9 +1,9 @@
-import { FiSend } from "react-icons/fi";
 import React, { useState } from "react";
+import { FiSend } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import "./Contact.css";
 import DynamicMetaTitle from "../Components/DynamicMetaTitle";
 import useGetSeo from "../Hooks/useGetSeo";
+import "./Contact.css";
 
 const Contact = () => {
   const [option, setOption] = useState();
@@ -20,7 +20,7 @@ const Contact = () => {
     try {
       // Make the API call to addContactRenixes using fetch
       const response = await fetch(
-        "https://renixserver.niroghealthplus.com/api/v1/contactRenix/addContactRenix",
+        "http://localhost:3001/api/v1/contactRenix/addContactRenix",
         {
           method: "POST",
           headers: {
@@ -49,7 +49,6 @@ const Contact = () => {
         metaImage={metaData?.metaImage}
         description={metaData?.metaDescription}
         canonicalUrl={metaData?.canonicalUrl}
-
       />
       <div className="w-full md:p-14 p-5 grid grid-cols-1 lg:grid-cols-2 gap-5 ">
         <div className="py-10 px-7 rounded-md">

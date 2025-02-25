@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { Icon } from "@iconify/react";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import DeleteHook from "../../Hooks/DeleteHook";
 import Loading from "../../shared/Loading";
 
@@ -17,7 +16,7 @@ function ContactRenix() {
     async function fetchcontactRenixes() {
       try {
         const response = await axios.get(
-          "https://renixserver.niroghealthplus.com/api/v1/contactRenix/getContactRenixes"
+          "http://localhost:3001/api/v1/contactRenix/getContactRenixes"
         );
         setcontactRenixes(response?.data?.data);
         setFiltecontactRenixs(response?.data?.data);
@@ -42,13 +41,14 @@ function ContactRenix() {
 
   const handleSearch = () => {
     setFiltecontactRenixs(
-      contactRenixes?.filter((requestMedicine) =>
-        requestMedicine?.name
-          .toLowerCase()
-          .includes(searchTerm.toLowerCase()) ||
+      contactRenixes?.filter(
+        (requestMedicine) =>
+          requestMedicine?.name
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase()) ||
           requestMedicine?.email
-          .toLowerCase()
-          .includes(searchTerm.toLowerCase())
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase())
       )
     );
   };
@@ -63,11 +63,11 @@ function ContactRenix() {
     <div className=" m-5">
       <div class=" ">
         <h1 class="text-4xl font-bold text-gray-900 leading-tight mb-2 border-b-2 border-gray-500 pb-2">
-          All Contact 
+          All Contact
         </h1>
         <p class="text-lg text-gray-800 mb-8">
-          Explore essential Email for health . Act now to secure the
-          latest items
+          Explore essential Email for health . Act now to secure the latest
+          items
         </p>
       </div>
 
@@ -166,7 +166,7 @@ function ContactRenix() {
                     DeleteHook({
                       refetch,
                       setRefetch,
-                      url: `https://renixserver.niroghealthplus.com/api/v1/contactRenix/deleteContactRenix/${requestMedicine?._id}`,
+                      url: `http://localhost:3001/api/v1/contactRenix/deleteContactRenix/${requestMedicine?._id}`,
                     });
                   }}
                   className="border border-secondary py-2 px-3 rounded-md hover:bg-secondary/10 duration-300"
