@@ -16,7 +16,7 @@ const ConfirmedOrders = () => {
   const [loading, setLoading] = useState();
   useEffect(() => {
     setLoading(true);
-    const url = `http://localhost:3001/api/v1/order/specific?page=${page}&&size=${size}&&fieldName=${"orderStatus"}&&fieldValue=${"accept"}`;
+    const url = `https://server.renixlaboratories.com.bd/api/v1/order/specific?page=${page}&&size=${size}&&fieldName=${"orderStatus"}&&fieldValue=${"accept"}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {

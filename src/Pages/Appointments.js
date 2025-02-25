@@ -9,7 +9,7 @@ const Appointments = () => {
   const [size, setSize] = useState(6);
 
   useEffect(() => {
-    const url = `http://localhost:3001/api/v1/user/specific?page=${page}&&size=${size}&&fieldName=${"role"}&&fieldValue=${"doctor"}`;
+    const url = `https://server.renixlaboratories.com.bd/api/v1/user/specific?page=${page}&&size=${size}&&fieldName=${"role"}&&fieldValue=${"doctor"}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {

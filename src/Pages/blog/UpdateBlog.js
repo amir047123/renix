@@ -31,7 +31,7 @@ const UpdateBlog = () => {
   const [content, setContent] = useState("");
 
   useEffect(() => {
-    const url = `http://localhost:3001/api/v1/category`;
+    const url = `https://server.renixlaboratories.com.bd/api/v1/category`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -40,7 +40,7 @@ const UpdateBlog = () => {
   }, []);
 
   useEffect(() => {
-    const url = `http://localhost:3001/api/v1/blogs/blogDetails/${id}`;
+    const url = `https://server.renixlaboratories.com.bd/api/v1/blogs/blogDetails/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -80,7 +80,7 @@ const UpdateBlog = () => {
       metaImage,
     };
 
-    const updateUrl = `http://localhost:3001/api/v1/medicine/UpdateBlog/${id}`;
+    const updateUrl = `https://server.renixlaboratories.com.bd/api/v1/medicine/UpdateBlog/${id}`;
 
     await UpdateHooks(updateUrl, blog, "Medicine successfully updated");
   };

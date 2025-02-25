@@ -34,7 +34,7 @@ const AddMedicineCategory = () => {
     e.preventDefault();
 
     PostHooks(
-      "http://localhost:3001/api/v1/category",
+      "https://server.renixlaboratories.com.bd/api/v1/category",
       data,
       "Category successfully posted"
     );

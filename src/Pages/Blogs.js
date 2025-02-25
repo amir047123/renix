@@ -10,7 +10,7 @@ import BlogCard from "./ProductDetails/BlogPage/BlogCard";
 const fetchBlogs = async ({ queryKey }) => {
   const [, page, size] = queryKey;
   const response = await fetch(
-    `http://localhost:3001/api/v1/blogs?size=${size}&page=${page}`
+    `https://server.renixlaboratories.com.bd/api/v1/blogs?size=${size}&page=${page}`
   );
   if (!response.ok) {
     throw new Error("Failed to fetch blogs.");

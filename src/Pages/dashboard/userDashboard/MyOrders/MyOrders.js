@@ -6,7 +6,9 @@ const MyOrders = () => {
   const [order, setOrder] = useState([]);
   const { userInfo } = AuthUser();
   useEffect(() => {
-    fetch(`http://localhost:3001/api/v1/order/getOrder/${userInfo?._id}`)
+    fetch(
+      `https://server.renixlaboratories.com.bd/api/v1/order/getOrder/${userInfo?._id}`
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

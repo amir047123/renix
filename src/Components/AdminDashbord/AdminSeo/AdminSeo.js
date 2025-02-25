@@ -40,7 +40,7 @@ const AdminSeo = () => {
 
     try {
       const { data: seoData } = await axios.post(
-        "http://localhost:3001/api/v1/seo/createSeo",
+        "https://server.renixlaboratories.com.bd/api/v1/seo/createSeo",
         data
       );
       console.log(seoData);

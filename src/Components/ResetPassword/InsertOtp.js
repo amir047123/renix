@@ -12,7 +12,9 @@ const InsertOtp = () => {
     localStorage.getItem("eduFixup-login-email")
   );
   useEffect(() => {
-    fetch(`http://localhost:3001/api/v1/user/by-email?email=${userLoginEmail}`)
+    fetch(
+      `https://server.renixlaboratories.com.bd/api/v1/user/by-email?email=${userLoginEmail}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setToken(data?.data?.forgetPasswordToken);

@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 const BestDoctors = () => {
   const [user, setUser] = useState([]);
   useEffect(() => {
-    const url = `http://localhost:3001/api/v1/user`;
+    const url = `https://server.renixlaboratories.com.bd/api/v1/user`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {

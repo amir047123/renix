@@ -27,7 +27,7 @@ const AddMedicine = () => {
   };
   // get category
   useEffect(() => {
-    const url = `http://localhost:3001/api/v1/category`;
+    const url = `https://server.renixlaboratories.com.bd/api/v1/category`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -72,7 +72,7 @@ const AddMedicine = () => {
 
     // post api call
     await PostHooks(
-      "http://localhost:3001/api/v1/medicine/postMedicine",
+      "https://server.renixlaboratories.com.bd/api/v1/medicine/postMedicine",
       medicine,
       "Medicine successfully posted"
     );
@@ -363,11 +363,18 @@ const AddMedicine = () => {
                 <option value="" disabled selected>
                   Choose a Medicine type
                 </option>
-                <option value="Darmal">Darmal</option>
-                <option value="Nasal">Nasal</option>
-                <option value="Optharmal">Optharmal</option>
-                <option value="otologic">otologic</option>
-                <option value="Urogenital">Urogenital</option>
+                <option value="Tib-e-Niswan">Tib-e-Niswan</option>
+                <option value="Muqawwi-e-Azam">Muqawwi-e-Azam</option>
+                <option value="Munzij Mushil">Munzij Mushil</option>
+                <option value="Hammal Jirah">Hammal Jirah</option>
+                <option value="Munaffis Balgham">Munaffis Balgham</option>
+                <option value="Muqawwi-e-Metabolism">
+                  Muqawwi-e-Metabolism
+                </option>
+
+                <option value="Tib-e-Sehhat">Tib-e-Sehhat </option>
+                <option value="Mushil-e-Jild">Mushil-e-Jild </option>
+                <option value="Muqawwi-e-Bah">Muqawwi-e-Bah </option>
               </select>
               {errors.type && (
                 <p className="text-red-500 mt-1">{errors.type.message}</p>
@@ -379,7 +386,6 @@ const AddMedicine = () => {
                 for="repeat-password"
                 class="block mb-2 text-[13px] font-normal text-gray-900 dark:text-white"
               >
-                {" "}
                 Status
               </label>
               <select

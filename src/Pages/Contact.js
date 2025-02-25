@@ -20,7 +20,7 @@ const Contact = () => {
     try {
       // Make the API call to addContactRenixes using fetch
       const response = await fetch(
-        "http://localhost:3001/api/v1/contactRenix/addContactRenix",
+        "https://server.renixlaboratories.com.bd/api/v1/contactRenix/addContactRenix",
         {
           method: "POST",
           headers: {

@@ -25,7 +25,7 @@ const UpdateBlogCategory = () => {
   };
   useEffect(() => {
     setLoading(true);
-    const url = `http://localhost:3001/api/v1/blogsCategory/getBlogCategoryById/${id}`;
+    const url = `https://server.renixlaboratories.com.bd/api/v1/blogsCategory/getBlogCategoryById/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -54,7 +54,7 @@ const UpdateBlogCategory = () => {
 
   const handelSubmit = async (e) => {
     e.preventDefault();
-    const updateUrl = `http://localhost:3001/api/v1/blogsCategory/updateBlogsCategory/${id}`;
+    const updateUrl = `https://server.renixlaboratories.com.bd/api/v1/blogsCategory/updateBlogsCategory/${id}`;
     await UpdateHooks(
       updateUrl,
       data,

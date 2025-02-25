@@ -10,7 +10,9 @@ const BlogSinglePage = () => {
   const [loading, setLoading] = useState();
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:3001/api/v1/blogs/blogDetails/${_id}`)
+    fetch(
+      `https://server.renixlaboratories.com.bd/api/v1/blogs/blogDetails/${_id}`
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -21,7 +23,7 @@ const BlogSinglePage = () => {
 
   useEffect(() => {
     setLoading(true);
-    const url = `http://localhost:3001/api/v1/blogs`;
+    const url = `https://server.renixlaboratories.com.bd/api/v1/blogs`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {

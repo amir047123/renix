@@ -35,7 +35,7 @@ const UpdateNewsAndMedias = () => {
   useEffect(() => {
     const getNewsDetails = async () => {
       let { data } = await axios.get(
-        `http://localhost:3001/api/v1/newsAndMedia/getNewsAndMediaById/${id}`
+        `https://server.renixlaboratories.com.bd/api/v1/newsAndMedia/getNewsAndMediaById/${id}`
       );
       console.log(data.data);
       setValue("newsTitle", data?.data?.newsTitle);
@@ -66,7 +66,7 @@ const UpdateNewsAndMedias = () => {
 
     // Assuming _id is defined somewhere in the component
     await UpdateHooks(
-      `http://localhost:3001/api/v1/newsAndMedia/updateNewsAndMedia/${id}`,
+      `https://server.renixlaboratories.com.bd/api/v1/newsAndMedia/updateNewsAndMedia/${id}`,
       news,
       "successfully Update"
     );

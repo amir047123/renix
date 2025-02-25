@@ -10,7 +10,9 @@ import "./Dashboard.css";
 
 // ✅ Fetch Orders Function
 const fetchOrders = async () => {
-  const response = await fetch("http://localhost:3001/api/v1/order/getOrders");
+  const response = await fetch(
+    "https://server.renixlaboratories.com.bd/api/v1/order/getOrders"
+  );
   if (!response.ok) {
     throw new Error("Failed to fetch orders");
   }

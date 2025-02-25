@@ -9,7 +9,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 // ✅ Fetch Slides Function
 const fetchSlides = async () => {
-  const response = await fetch("http://localhost:3001/api/v1/slide/getSlide");
+  const response = await fetch(
+    "https://server.renixlaboratories.com.bd/api/v1/slide/getSlide"
+  );
   if (!response.ok) {
     throw new Error("Failed to fetch slides");
   }
