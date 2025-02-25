@@ -7,7 +7,7 @@ const NewsLetter = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:3001/api/v1/collectEmail/addCollectEmail",
+        "https://server.renixlaboratories.com.bd/api/v1/collectEmail/addCollectEmail",
         {
           method: "POST",
           headers: {

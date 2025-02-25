@@ -7,7 +7,7 @@ const AllBlogsCategory = () => {
   const [refresh, setRefresh] = useState(false);
   const [category, setCategory] = useState([]);
   useEffect(() => {
-    const url = `http://localhost:3001/api/v1/blogsCategory`;
+    const url = `https://server.renixlaboratories.com.bd/api/v1/blogsCategory`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -28,7 +28,7 @@ const AllBlogsCategory = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(
-          `http://localhost:3001/api/v1/blogsCategory/deleteBlogsCategory/${id}`,
+          `https://server.renixlaboratories.com.bd/api/v1/blogsCategory/deleteBlogsCategory/${id}`,
           {
             method: "DELETE",
           }

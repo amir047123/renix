@@ -1,19 +1,18 @@
 import { Button } from "@material-tailwind/react";
 import React, { useState } from "react";
-import { IoMenu } from "react-icons/io5";
-import { RxCross2 } from "react-icons/rx";
-import TopBar from "./TopBar";
 import { BsChevronDown } from "react-icons/bs";
 import { FaChevronDown } from "react-icons/fa";
+import { IoMenu } from "react-icons/io5";
+import { RxCross2 } from "react-icons/rx";
 import { Link, NavLink } from "react-router-dom";
-import logo from '../../src/Assets/images/logo.svg'
+import logo from "../../src/Assets/images/logo.svg";
 import AuthUser from "../Hooks/authUser";
-
+import TopBar from "./TopBar";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false);
-   const { userInfo, logout } = AuthUser();
+  const { userInfo, logout } = AuthUser();
 
   const navLinks = [
     { name: "Home", to: "/" },
@@ -32,9 +31,8 @@ const Navbar = () => {
     },
     { name: "Blogs", to: "/blogs" },
     { name: "Contact Us", to: "/contact" },
-    { name: "Renix Store", to: "https://store.renixlaboratories.com.bd" },
+    { name: "Renix Store", to: "https://renixcare.com" },
   ];
-
 
   return (
     <header>
@@ -90,7 +88,10 @@ const Navbar = () => {
 
             {/* Login Button */}
             {userInfo?.role ? (
-              <Link to={`/${userInfo?.role}Dashboard`} className="hidden lg:flex items-center">
+              <Link
+                to={`/${userInfo?.role}Dashboard`}
+                className="hidden lg:flex items-center"
+              >
                 <Button className="bg-accent rounded-full text-white hover:bg-accent/90">
                   Dashboard
                 </Button>

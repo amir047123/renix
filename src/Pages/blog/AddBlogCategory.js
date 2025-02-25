@@ -31,7 +31,7 @@ const AddBlogCategory = () => {
   const handelSubmit = (e) => {
     e.preventDefault();
     PostHooks(
-      "http://localhost:3001/api/v1/blogsCategory",
+      "https://server.renixlaboratories.com.bd/api/v1/blogsCategory",
       data,
       "Category successfully posted"
     );

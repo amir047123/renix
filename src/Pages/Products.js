@@ -13,10 +13,10 @@ const pageSize = 10; // Number of products per page
 
 const fetchProducts = async ({ queryKey }) => {
   const [_, categoryId, page] = queryKey;
-  let url = `http://localhost:3001/api/v1/medicine?size=${pageSize}&page=${page}`;
+  let url = `https://server.renixlaboratories.com.bd/api/v1/medicine?size=${pageSize}&page=${page}`;
 
   if (categoryId) {
-    url = `http://localhost:3001/api/v1/medicine/specific?fieldName=medicineCategory&fieldValue=${categoryId}&size=${pageSize}&page=${page}`;
+    url = `https://server.renixlaboratories.com.bd/api/v1/medicine/specific?fieldName=medicineCategory&fieldValue=${categoryId}&size=${pageSize}&page=${page}`;
   }
 
   const { data } = await axios.get(url);
@@ -25,7 +25,7 @@ const fetchProducts = async ({ queryKey }) => {
 
 const fetchCategories = async () => {
   const { data } = await axios.get(
-    "http://localhost:3001/api/v1/category"
+    "https://server.renixlaboratories.com.bd/api/v1/category"
   );
   return data?.data;
 };
@@ -59,7 +59,7 @@ const Products = () => {
   const totalPages = Math.ceil(productData?.total / pageSize);
 
   return (
-    <div className="m-5">
+    <div className="m-5 ">
       {/* Dynamic Meta Tags */}
       <DynamicMetaTitle
         title={metaData?.metaTitle}

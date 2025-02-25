@@ -36,7 +36,7 @@ const RenixOverview = () => {
                   </h2>
                   <img className="mb-5" src={support} alt="img"></img>
                   <p className="text-2xl font-bold text-accent">
-                    01321 137 949
+                    +880 1884-442022
                   </p>
                   <p className="text-sm text-gray-500 mt-2">
                     প্রতিদিন - সকাল ৯টা থেকে বিকাল ৫টা
@@ -105,10 +105,37 @@ const RenixOverview = () => {
               <div className="flex items-center justify-between">
                 <p className="text-[#607D8B] text-sm">Stay connect us via</p>
                 <div className="flex space-x-3 items-center">
-                  <FaFacebook className="w-5 h-5 text-blue-600" />
-                  <BsInstagram className="w-5 h-5 text-pink-600" />
-                  <BsLinkedin className="w-5 h-5 text-blue-700" />
-                  <BsYoutube className="w-5 h-5 text-red-600" />
+                  <a
+                    href="https://www.facebook.com/renixlaboratoriesltd"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <FaFacebook className="w-5 h-5 text-blue-600 hover:text-blue-800 transition duration-200" />
+                  </a>
+
+                  <a
+                    href="https://www.instagram.com/renixunani/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <BsInstagram className="w-5 h-5 text-pink-600 hover:text-pink-800 transition duration-200" />
+                  </a>
+
+                  <a
+                    href="https://www.linkedin.com/company/renix-unani-laboratories-ltd/about/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <BsLinkedin className="w-5 h-5 text-blue-700 hover:text-blue-900 transition duration-200" />
+                  </a>
+
+                  <a
+                    href="https://www.youtube.com/@renixlaboratoriesltd"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <BsYoutube className="w-5 h-5 text-red-600 hover:text-red-800 transition duration-200" />
+                  </a>
                 </div>
               </div>
             </div>

@@ -8,7 +8,7 @@ import useGetSeo from "../../Hooks/useGetSeo";
 
 const fetchShosthotarbarta = async () => {
   const response = await fetch(
-    "http://localhost:3001/api/v1/newsAndMedia/specific?fieldName=newsCategory&fieldValue=Shosthotarbarta"
+    "https://server.renixlaboratories.com.bd/api/v1/newsAndMedia/specific?fieldName=newsCategory&fieldValue=Shosthotarbarta"
   );
   if (!response.ok) {
     throw new Error("Failed to fetch Shosthotarbarta data.");

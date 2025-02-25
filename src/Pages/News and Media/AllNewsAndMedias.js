@@ -16,7 +16,7 @@ const AllNewsAndMedias = () => {
   const fetchNewsAndMedia = () => {
     setLoading(true); // Set loading to true when fetching data
     fetch(
-      "http://localhost:3001/api/v1/newsAndMedia/getNewsAndMedia"
+      "https://server.renixlaboratories.com.bd/api/v1/newsAndMedia/getNewsAndMedia"
     )
       .then((response) => response.json())
       .then((data) => {
@@ -33,7 +33,7 @@ const AllNewsAndMedias = () => {
   const handleDelete = (_id) => {
     console.log("Deleting item with ID:", _id);
     fetch(
-      `http://localhost:3001/api/v1/newsAndMedia/deleteNewsAndMedia/${_id}`,
+      `https://server.renixlaboratories.com.bd/api/v1/newsAndMedia/deleteNewsAndMedia/${_id}`,
       {
         method: "DELETE",
       }

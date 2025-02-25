@@ -1,36 +1,49 @@
-import React, { useEffect, useState } from "react";
+import { CircularProgress } from "@mui/material";
+import { useQuery } from "@tanstack/react-query";
+import React, { useState } from "react";
+import toast from "react-hot-toast";
 import { CiSearch } from "react-icons/ci";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { TbEdit } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-import Loading from "../../shared/Loading";
+import { server_url } from "../../Config/API";
 import Pagination from "../../shared/Pagination/Pagination";
 
+// ✅ Fetch Medicines Function
+const fetchMedicines = async ({ queryKey }) => {
+  const [, size, page] = queryKey;
+  const response = await fetch(
+    `${server_url}/medicine?size=${size}&page=${page}`
+  );
+  if (!response.ok) {
+    throw new Error("Failed to fetch medicines");
+  }
+  return response.json();
+};
+
 const AllMedicines = () => {
-  const [products, setProducts] = useState([]);
-  // for pagination
-  const [quantity, setQuantity] = useState(0);
   const [page, setPage] = useState(0);
   const [size, setSize] = useState(50);
-  const [refresh, setRefresh] = useState(false);
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    setLoading(true);
+  // ✅ Use TanStack Query for Fetching Medicines
+  const { data, isLoading, error, refetch } = useQuery({
+    queryKey: ["medicines", size, page],
+    queryFn: fetchMedicines,
+    keepPreviousData: true, // Keeps previous data while fetching new data
+  });
 
-    const url = `http://localhost:3001/api/v1/medicine?size=${size}&page=${page}`;
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setProducts(data?.data);
-        setQuantity(data?.total);
-      })
-      .finally(() => setLoading(false));
-  }, [size, page, refresh]);
+  // ✅ Extract Products & Quantity
+  const products = data?.data || [];
+  const quantity = data?.total || 0;
 
-  const handelDelete = (id) => {
+  // ✅ Handle Errors
+  if (error) {
+    toast.error("Error fetching medicines. Please try again.");
+  }
+
+  // ✅ Handle Delete
+  const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -41,154 +54,113 @@ const AllMedicines = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(
-          `http://localhost:3001/api/v1/medicine/deleteMedicine/${id}`,
-          {
-            method: "DELETE",
-          }
-        ).then((res) => {
+        fetch(`${server_url}/medicine/deleteMedicine/${id}`, {
+          method: "DELETE",
+        }).then((res) => {
           if (res.status === 200) {
-            setRefresh(!refresh);
+            refetch(); // ✅ Refetch data after deletion
             Swal.fire("Deleted!", "Your file has been deleted.", "success");
           }
         });
       }
     });
   };
-  if (loading) {
-    return <Loading />;
-  }
+
   return (
     <section className="py-10 md:py-14">
-      <div className="container px-6 md:max-w-6xl w-full ">
-        {/* search bar */}
+      <div className="container px-6 md:max-w-6xl w-full">
+        {/* ✅ Search Bar */}
         <form className="flex items-center text-right gap-3 mb-6 w-full">
-          <label for="simple-search" className="text-sm text-textColor">
+          <label htmlFor="simple-search" className="text-sm text-textColor">
             Search
           </label>
-          <div className="relative ">
-            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-              <span className="text-xl text-textColor">
-                <CiSearch />
-              </span>
+          <div className="relative">
+            <div className="absolute inset-y-0 left-0 flex items-center pl-3">
+              <CiSearch className="text-xl text-textColor" />
             </div>
             <input
               type="text"
-              className="bg-[#F0FDF4] w-full text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  pl-10 px-2.5 py-3 border-none"
+              className="bg-[#F0FDF4] w-full text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pl-10 px-2.5 py-3 border-none"
               placeholder="Search"
               required
             />
           </div>
         </form>
 
-        {/* medicine list table */}
-        <div className="relative overflow-x-auto">
-          <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border border-[#D0D2DA]  table_head rounded-lg">
-              <tr className="py-4 rounded-lg">
-                <th
-                  scope="col"
-                  className="px-6 py-3 text-xs font-medium capitalize"
-                >
-                  Seriol No
-                </th>
-                <th
-                  scope="col"
-                  className="px-6 py-3 text-xs font-medium capitalize"
-                >
-                  Medicine Name
-                </th>
-                <th
-                  scope="col"
-                  className="px-6 py-3 text-xs font-medium capitalize"
-                >
-                  Category
-                </th>
-                <th
-                  scope="col"
-                  className="px-6 py-3 text-xs font-medium capitalize"
-                >
-                  Price
-                </th>
-                <th
-                  scope="col"
-                  className="px-6 py-3 text-xs font-medium capitalize"
-                >
-                  Generic
-                </th>
-                <th
-                  scope="col"
-                  className="px-6 py-3 text-xs font-medium capitalize"
-                >
-                  Stock
-                </th>
-                <th
-                  scope="col"
-                  className="px-6 py-3 text-xs font-medium capitalize"
-                >
-                  Status
-                </th>
-                <th
-                  scope="col"
-                  className="px-6 py-3 text-xs font-medium capitalize"
-                >
-                  Strength
-                </th>
-                <th
-                  scope="col"
-                  className="px-6 py-3 text-xs font-medium capitalize"
-                >
-                  Action
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {products?.map((product, i) => (
-                <tr
-                  key={product?._id}
-                  product={product}
-                  className="bg-white border-b border-[#D0D2DA]"
-                >
-                  <th
-                    scope="row"
-                    className="px-6 py-4 text-xs font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                  >
-                    {i + 1}
-                  </th>
-                  <td className="px-6 text-xs py-4">{product?.name}</td>
-                  <td className="px-6 text-xs py-4">
-                    {product?.medicineCategory}
-                  </td>
-                  <td className="px-6 text-xs py-4">{product?.price}</td>
-                  <td className="px-6 text-xs py-4">{product?.genericName}</td>
-                  <td className="px-6 text-xs py-4">{product?.stock}</td>
-                  <td className="px-6 text-xs py-4">
-                    {product?.medicineStatus}
-                  </td>
-                  <td className="px-6 text-xs py-4">{product?.strength}</td>
-                  <td className="px-6 text-xs py-4">
-                    <span className="flex items-center gap-3">
-                      <Link to={`edit-medicine/${product?._id}`}>
-                        {" "}
-                        <button className="text-lg text-[#0077FF] bg-[#BBDDFF] w-7  h-7 rounded-lg flex items-center justify-center">
-                          <TbEdit />
-                        </button>
-                      </Link>
-                      <button
-                        onClick={() => handelDelete(product?._id)}
-                        className="text-lg text-[#F87171] bg-[#FEE2E2] w-7  h-7 rounded-lg flex items-center justify-center"
-                      >
-                        <RiDeleteBin6Line />
-                      </button>
-                    </span>
-                  </td>
+        {/* ✅ Loading State (Applies to Table Rows Only) */}
+        {isLoading ? (
+          <div className="flex justify-center items-center h-40">
+            <CircularProgress size={50} color="primary" />
+          </div>
+        ) : (
+          <div className="relative overflow-x-auto">
+            <table className="w-full text-sm text-left text-gray-500">
+              <thead className="text-xs text-gray-700 uppercase bg-gray-50 border border-[#D0D2DA]">
+                <tr>
+                  {[
+                    "Serial No",
+                    "Medicine Name",
+                    "Category",
+                    "Price",
+                    "Generic",
+                    "Stock",
+                    "Status",
+                    "Strength",
+                    "Action",
+                  ].map((heading, index) => (
+                    <th
+                      key={index}
+                      className="px-6 py-3 text-xs font-medium capitalize"
+                    >
+                      {heading}
+                    </th>
+                  ))}
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {products.map((product, i) => (
+                  <tr
+                    key={product._id}
+                    className="bg-white border-b border-[#D0D2DA]"
+                  >
+                    <td className="px-6 py-4 text-xs font-medium text-gray-900">
+                      {i + 1}
+                    </td>
+                    <td className="px-6 text-xs py-4">{product.name}</td>
+                    <td className="px-6 text-xs py-4">
+                      {product.medicineCategory}
+                    </td>
+                    <td className="px-6 text-xs py-4">{product.price}</td>
+                    <td className="px-6 text-xs py-4">{product.genericName}</td>
+                    <td className="px-6 text-xs py-4">{product.stock}</td>
+                    <td className="px-6 text-xs py-4">
+                      {product.medicineStatus}
+                    </td>
+                    <td className="px-6 text-xs py-4">{product.strength}</td>
+                    <td className="px-6 text-xs py-4">
+                      <span className="flex items-center gap-3">
+                        <Link to={`edit-medicine/${product._id}`}>
+                          <button className="text-lg text-[#0077FF] bg-[#BBDDFF] w-7 h-7 rounded-lg flex items-center justify-center">
+                            <TbEdit />
+                          </button>
+                        </Link>
+                        <button
+                          onClick={() => handleDelete(product._id)}
+                          className="text-lg text-[#F87171] bg-[#FEE2E2] w-7 h-7 rounded-lg flex items-center justify-center"
+                        >
+                          <RiDeleteBin6Line />
+                        </button>
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
-      {/* pagination */}
+
+      {/* ✅ Pagination */}
       <Pagination
         quantity={quantity}
         page={page}

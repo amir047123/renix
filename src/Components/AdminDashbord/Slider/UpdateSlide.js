@@ -1,10 +1,9 @@
 import axios from "axios";
-import React, { useEffect,  useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import { singleImageUpload } from "../../../Hooks/ImageUpload";
 import UpdateHooks from "../../../Hooks/UpdateHooks";
-
 
 const UpdateSlide = () => {
   const { id } = useParams();
@@ -28,9 +27,8 @@ const UpdateSlide = () => {
   useEffect(() => {
     const getSlideDetails = async () => {
       let { data } = await axios.get(
-        `http://localhost:3001/api/v1/slide/getSlideById/${id}`
+        `https://server.renixlaboratories.com.bd/api/v1/slide/getSlideById/${id}`
       );
-
 
       setValue("title", data?.data?.title);
       setValue("subtitle", data?.data?.subtitle);
@@ -39,24 +37,23 @@ const UpdateSlide = () => {
       setValue("img", data?.data?.img);
       setImage(data?.data?.img);
       setValue("description", data?.data?.description);
-
     };
     getSlideDetails();
   }, [id, setValue]);
 
   const onSubmit = async (formData) => {
-  const slide = {
-    title: formData.title,
-    subtitle: formData.subtitle,
-    description: formData.description,
-    buttonText: formData?.buttonText,
-    img: image?image:formData.img,
-    link: formData.link,
-  };
+    const slide = {
+      title: formData.title,
+      subtitle: formData.subtitle,
+      description: formData.description,
+      buttonText: formData?.buttonText,
+      img: image ? image : formData.img,
+      link: formData.link,
+    };
 
     // Assuming _id is defined somewhere in the component
     await UpdateHooks(
-      `http://localhost:3001/api/v1/slide/updateSlide/${id}`,
+      `https://server.renixlaboratories.com.bd/api/v1/slide/updateSlide/${id}`,
       slide,
       "successfully Update"
     );
@@ -64,7 +61,9 @@ const UpdateSlide = () => {
 
   return (
     <div className="p-6 bg-white rounded-lg shadow-md w-full max-w-4xl mx-auto border border-blue-gray-100  mt-10">
-      <h2 className="text-3xl font-semibold mb-6 text-center">Update New Slide</h2>
+      <h2 className="text-3xl font-semibold mb-6 text-center">
+        Update New Slide
+      </h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <input
           type="text"

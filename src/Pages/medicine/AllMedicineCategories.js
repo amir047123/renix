@@ -11,7 +11,7 @@ const AllMedicineCategories = () => {
   const [category, setCategory] = useState([]);
   useEffect(() => {
     setLoading(true);
-    const url = `http://localhost:3001/api/v1/category`;
+    const url = `https://server.renixlaboratories.com.bd/api/v1/category`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -33,7 +33,7 @@ const AllMedicineCategories = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(
-          `http://localhost:3001/api/v1/category/deleteCategory/${id}`,
+          `https://server.renixlaboratories.com.bd/api/v1/category/deleteCategory/${id}`,
           {
             method: "DELETE",
           }

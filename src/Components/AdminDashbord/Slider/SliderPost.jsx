@@ -1,4 +1,3 @@
-import JoditEditor from "jodit-react";
 import React, { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -21,7 +20,7 @@ const SliderPost = ({ addSlide }) => {
     singleImageUpload(formData, setImage);
   };
 
-  const onSubmit =async (formData) => {
+  const onSubmit = async (formData) => {
     const slide = {
       title: formData.title,
       subtitle: formData.subtitle,
@@ -30,14 +29,12 @@ const SliderPost = ({ addSlide }) => {
       img: image,
       link: formData.link,
     };
-   await PostHooks(
-     "http://localhost:3001/api/v1/slide/addSlide",
-     slide,
-     "Slide successfully posted"
-   );
+    await PostHooks(
+      "https://server.renixlaboratories.com.bd/api/v1/slide/addSlide",
+      slide,
+      "Slide successfully posted"
+    );
   };
-
-
 
   return (
     <div className="p-6 bg-white rounded-lg shadow-md w-full max-w-4xl mx-auto border border-blue-gray-100  mt-10">

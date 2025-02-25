@@ -8,7 +8,7 @@ const VerifyEmail = () => {
   console.log("params id", params.id);
   const handleVerify = () => {
     fetch(
-      `http://localhost:3001/api/v1/user/verify?id=${params.id}`,
+      `https://server.renixlaboratories.com.bd/api/v1/user/verify?id=${params.id}`,
       {
         method: "PATCH",
         headers: {

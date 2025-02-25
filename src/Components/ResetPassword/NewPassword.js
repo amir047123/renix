@@ -12,7 +12,7 @@ const SetNewPassword = () => {
   const email = JSON.parse(loginEmail);
   useEffect(() => {
     fetch(
-      `http://localhost:3001/api/v1/user/by-email?email=${email}`
+      `https://server.renixlaboratories.com.bd/api/v1/user/by-email?email=${email}`
     )
       .then((res) => res.json())
       .then((data) => {

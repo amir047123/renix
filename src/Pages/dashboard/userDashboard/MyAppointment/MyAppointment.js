@@ -7,7 +7,7 @@ const MyAppointment = () => {
   const { userInfo } = AuthUser();
   useEffect(() => {
     fetch(
-      `http://localhost:3001/api/v1/appointment/getAppointment/${userInfo?._id}`
+      `https://server.renixlaboratories.com.bd/api/v1/appointment/getAppointment/${userInfo?._id}`
     )
       .then((res) => res.json())
       .then((data) => {
