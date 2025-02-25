@@ -1,35 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Autoplay, Pagination } from 'swiper';
-
-import img from '../../../Assets/images/hero-img.svg'
+import toast from 'react-hot-toast';
 
 const Hero = () => {
-      const slides = [
-        {
-          title: "NATURAL HEALING",
-          subtitle: "with HERBAL SOLUTIONS.",
-          description: "Your Path to a Healthier Life Starts Here!",
-          buttonText: "Shop Now",
-          img: img,
-        },
-        {
-          title: "ORGANIC REMEDIES",
-          subtitle: "for BETTER HEALTH.",
-          description: "Discover Nature's Healing Power",
-          buttonText: "Learn More",
-          img: img,
-        },
-        {
-          title: "HOLISTIC WELLNESS",
-          subtitle: "through NATURAL CARE.",
-          description: "Experience Traditional Healing Methods",
-          buttonText: "Explore Now",
-          img: img,
-        },
-      ];
+  const [slides, setSlides] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    fetchSlide();
+  }, []);
+
+  const fetchSlide = () => {
+    setLoading(true); // Set loading to true when fetching data
+    fetch("http://localhost:3001/api/v1/slide/getSlide")
+      .then((response) => response.json())
+      .then((data) => {
+        setSlides(data.data);
+        setLoading(false); // Set loading to false when data is fetched
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setLoading(false); // Set loading to false if there's an error
+        toast.error("Error fetching data.");
+      });
+  };
     return (
       <div className="relative w-full md:h-[650px] h-[400px] ">
         <Swiper

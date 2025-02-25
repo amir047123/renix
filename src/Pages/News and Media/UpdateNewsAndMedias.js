@@ -1,11 +1,10 @@
+import axios from "axios";
+import JoditEditor from "jodit-react";
 import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import JoditEditor from "jodit-react";
+import { useParams } from "react-router-dom";
 import { singleImageUpload } from "../../Hooks/ImageUpload";
 import UpdateHooks from "../../Hooks/UpdateHooks";
-import { useParams } from "react-router-dom";
-import toast from "react-hot-toast";
-import axios from "axios";
 
 const UpdateNewsAndMedias = () => {
   const { id } = useParams();
@@ -36,7 +35,7 @@ const UpdateNewsAndMedias = () => {
   useEffect(() => {
     const getNewsDetails = async () => {
       let { data } = await axios.get(
-        `https://renixserver.niroghealthplus.com/api/v1/newsAndMedia/getNewsAndMediaById/${id}`
+        `http://localhost:3001/api/v1/newsAndMedia/getNewsAndMediaById/${id}`
       );
       console.log(data.data);
       setValue("newsTitle", data?.data?.newsTitle);
@@ -67,7 +66,7 @@ const UpdateNewsAndMedias = () => {
 
     // Assuming _id is defined somewhere in the component
     await UpdateHooks(
-      `https://renixserver.niroghealthplus.com/api/v1/newsAndMedia/updateNewsAndMedia/${id}`,
+      `http://localhost:3001/api/v1/newsAndMedia/updateNewsAndMedia/${id}`,
       news,
       "successfully Update"
     );

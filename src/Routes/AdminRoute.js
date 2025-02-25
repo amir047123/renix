@@ -1,6 +1,11 @@
+import AdminAllSeoList from "../Components/AdminDashbord/AdminSeo/AdminAllSeoList";
+import AdminSeo from "../Components/AdminDashbord/AdminSeo/AdminSeo";
+import AdminUpdateSeoList from "../Components/AdminDashbord/AdminSeo/AdminUpdateSeoList";
 import AdminShipping from "../Components/AdminDashbord/AdminShipping/AdminShipping";
 import ContactRenix from "../Components/AdminDashbord/ContactRenix";
-import NewsAndMedia from "../Components/Home/newAndMedia/NewsAndMedia";
+import AllSlider from "../Components/AdminDashbord/Slider/AllSlider";
+import SliderPost from "../Components/AdminDashbord/Slider/SliderPost";
+import UpdateSlide from "../Components/AdminDashbord/Slider/UpdateSlide";
 import AllAccounts from "../Pages/AllAccounts/AllAccounts";
 import AddNewsAndMedia from "../Pages/News and Media/AddNewsAndMedia";
 import AddNewsCategory from "../Pages/News and Media/AddNewsCategory";
@@ -10,26 +15,23 @@ import AddBlog from "../Pages/blog/AddBlog";
 import AddBlogCategory from "../Pages/blog/AddBlogCategory";
 import AllBlogs from "../Pages/blog/AllBlogs";
 import AllBlogsCategory from "../Pages/blog/AllBlogsCategory";
+import UpdateBlog from "../Pages/blog/UpdateBlog";
+import UpdateBlogCategory from "../Pages/blog/UpdateBlogCategory";
 import Dashboard from "../Pages/dashboard/AdminDashboardOverview";
 import AddDoctor from "../Pages/doctors/AddDoctor";
 import AllDoctors from "../Pages/doctors/AllDoctors";
 import AllEmails from "../Pages/email/AllEmails";
 import AddMedicine from "../Pages/medicine/AddMedicine";
 import AddMedicineCategory from "../Pages/medicine/AddMedicineCategory";
-import UpdateMedicineCategory from "../Pages/medicine/UpdateMedicineCategory";
 import AllMedicineCategories from "../Pages/medicine/AllMedicineCategories";
 import AllMedicines from "../Pages/medicine/AllMedicines";
 import UpdateMedicine from "../Pages/medicine/UpdateMedicine";
+import UpdateMedicineCategory from "../Pages/medicine/UpdateMedicineCategory";
 import ConfirmedOrders from "../Pages/orders/ConfirmedOrders";
 import OrderOverview from "../Pages/orders/OrderOverview";
 import PendingOrders from "../Pages/orders/PendingOrders";
 import RejectedOrders from "../Pages/orders/RejectedOrders";
 import ViewOrder from "../Pages/orders/ViewOrder";
-import UpdateBlogCategory from "../Pages/blog/UpdateBlogCategory";
-import UpdateBlog from "../Pages/blog/UpdateBlog";
-import AdminAllSeoList from "../Components/AdminDashbord/AdminSeo/AdminAllSeoList";
-import AdminSeo from "../Components/AdminDashbord/AdminSeo/AdminSeo";
-import AdminUpdateSeoList from "../Components/AdminDashbord/AdminSeo/AdminUpdateSeoList";
 
 const AdminRoutes = [
   { path: "overview", Component: Dashboard },
@@ -77,6 +79,13 @@ const AdminRoutes = [
   {
     path: "all-news-media/update-news-media/:id",
     Component: UpdateNewsAndMedias,
+  },
+
+  { path: "post-slider", Component: SliderPost },
+  { path: "all-slider", Component: AllSlider },
+  {
+    path: "all-slider/update-slide/:id",
+    Component: UpdateSlide,
   },
 ];
 

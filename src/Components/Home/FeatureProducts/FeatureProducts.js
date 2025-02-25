@@ -1,87 +1,115 @@
-import "./FeatureProducts.css";
-import React, { useState, useEffect } from "react";
+import { Box, CircularProgress } from "@mui/material"; // ✅ Import MUI Loader
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import React from "react";
 import { Link } from "react-router-dom";
-import { TbCurrencyTaka } from "react-icons/tb";
-import Card from "../../Card/Card";
+
+const fetchProducts = async () => {
+  const { data } = await axios.get(
+    "http://localhost:3001/api/v1/medicine?size=8&page=0"
+  );
+  return data?.data;
+};
+
 const FeatureProducts = () => {
-  const [products, setProducts] = useState([]);
-  useEffect(() => {
-    const url = ` https://renixserver.niroghealthplus.com/api/v1/medicine?size=${8}&page=${0}`;
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setProducts(data?.data);
-      });
-  }, []);
+  // Fetch products using TanStack Query
+  const {
+    data: products = [],
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["featuredProducts"],
+    queryFn: fetchProducts,
+    keepPreviousData: true,
+  });
+
   return (
-    <div className="lg:w-[90%] w-full mx-auto my-10 ">
-      <h3 className="bg-thirdLightPrimary w-36 mx-auto font ">F e a t u r e</h3>
-      <h1 className="text-secondary text-center font-semibold text-3xl mt-3">
-        Feature Products
-      </h1>
-      {/* <div className=" flex gap-6  mx-auto justify-center  mt-24">
-        {products?.map((product) => (
-          <Link
-            to={`/products/${product?._id}`}
-            className="w-80  px-8 py-4 shadow-md rounded-lg"
-            key={product._id}
-          >
-            <div className="w-full  h-64 rounded-xl ">
-              <div className="flex justify-between items-center">
-                <span class="bg-primary self-end  text-white text-xs font-medium  px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
-                  sale !
-                </span>
-              </div>
-              <img src={product.img} alt="" className="w-full mx-auto h-52 " />
-              <p className="text-secondary my-2 font-medium text-xs float-right">
-                Stock: {product.stock}
-              </p>
-            </div>
-            <div className="text-left">
-              <h1 className="text-secondary text-sm mt-2">
-                {product.productName}
-              </h1>
-              <h1 className="text-secondary text-sm mt-2 ">
-                Generic Name: {product.genericName}
-              </h1>
-              <h1 className="text-secondary text-sm mt-2">
-                Strength: {product.strength}
-              </h1>
+    <div className="lg:w-[90%] w-full mx-auto my-10">
+      {/* ✅ Section Title */}
+      <div>
+        <h3 className="bg-thirdLightPrimary w-36 mx-auto text-sm font-semibold text-gray-700 py-1 rounded-md text-center">
+          FEATURED
+        </h3>
+        <h1 className="text-secondary text-center font-bold text-3xl mt-3 uppercase">
+          Feature Products
+        </h1>
+      </div>
 
-              <div className="flex  items-center text-left  ">
-                <span className="text-lg mt-2 mr-2">
-                  <TbCurrencyTaka></TbCurrencyTaka>
-                </span>
-                <p className="text-lightPrimary text-lg mt-2">
-                  {" "}
-                  {product.price}
+      {/* ✅ Loading State */}
+      {isLoading && (
+        <Box className="flex justify-center items-center h-40">
+          <CircularProgress size={50} color="primary" />
+        </Box>
+      )}
+
+      {/* ✅ Error Handling */}
+      {error && (
+        <p className="text-center text-red-500 text-lg">
+          ⚠️ Error loading products. Please try again!
+        </p>
+      )}
+
+      {/* ✅ Product Grid */}
+      {!isLoading && !error && (
+        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8 w-full mt-10">
+          {products.map((item) => (
+            <Link
+              to={`/product/${item?.slug}`}
+              key={item._id}
+              className="group block bg-white shadow-lg rounded-xl overflow-hidden transition-transform duration-300 hover:shadow-xl hover:scale-105"
+            >
+              {/* ✅ Product Image */}
+              <div className="relative">
+                <img
+                  src={item.img}
+                  alt={item.name}
+                  className="w-full h-64 object-cover"
+                />
+
+                {/* ✅ Sale Badge */}
+                {item?.discount && (
+                  <span className="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-semibold uppercase">
+                    Sale!
+                  </span>
+                )}
+              </div>
+
+              {/* ✅ Product Details */}
+              <div className="p-5 text-center">
+                <h3 className="text-lg font-semibold text-gray-900 group-hover:underline">
+                  {item.name}
+                </h3>
+                <p className="text-sm text-gray-600 mt-1">
+                  {item.genericName || "Unani Medicine"}
                 </p>
+                <p className="text-sm text-gray-600">
+                  Strength: {item.strength}
+                </p>
+
+                {/* ✅ Price & Stock Info */}
+
+                {/* ✅ Buy Now Button */}
+                <Link
+                  to="https://renixcare.com"
+                  className="mt-4 inline-block bg-primary text-white px-6 py-2 rounded-full font-medium transition hover:bg-opacity-90"
+                >
+                  Buy Now
+                </Link>
               </div>
-            </div>
-          </Link>
-        ))}
-      </div> */}
+            </Link>
+          ))}
+        </div>
+      )}
 
-
-      <div className="   grid lg:grid-cols-4 md:grid-cols-2  w-full  ">
-        {products?.map((item) => (
-         
-          <Card key={item?._id} item={item}></Card>
-        ))}
-
-        
-       </div>
-
-       <div className="mt-5 flex justify-center ">
+      {/* ✅ View All Button */}
+      <div className="mt-10 flex justify-center">
         <Link
           to="/products"
-          className="border-2   border-primary p-3 rounded-md text-primary text-md hover:text-white hover:bg-primary"
+          className="border-2 border-primary px-6 py-3 rounded-md text-primary text-md font-medium transition hover:text-white hover:bg-primary"
         >
-          View all
+          View All
         </Link>
       </div>
-    
     </div>
   );
 };

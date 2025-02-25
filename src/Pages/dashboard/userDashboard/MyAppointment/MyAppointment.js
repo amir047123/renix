@@ -1,15 +1,13 @@
-import React from "react";
-import { useEffect } from "react";
-import { SiGooglemeet } from "react-icons/si";
+import React, { useEffect, useState } from "react";
 import { MdPendingActions } from "react-icons/md";
+import { SiGooglemeet } from "react-icons/si";
 import AuthUser from "../../../../Hooks/authUser";
-import { useState } from "react";
 const MyAppointment = () => {
   const [appointment, setAppointment] = useState([]);
   const { userInfo } = AuthUser();
   useEffect(() => {
     fetch(
-      ` https://renixserver.niroghealthplus.com/api/v1/appointment/getAppointment/${userInfo?._id}`
+      `http://localhost:3001/api/v1/appointment/getAppointment/${userInfo?._id}`
     )
       .then((res) => res.json())
       .then((data) => {

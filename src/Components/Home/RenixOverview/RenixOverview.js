@@ -3,17 +3,16 @@ import {
   BsArrowRight,
   BsInstagram,
   BsLinkedin,
-  BsPhone,
   BsYoutube,
 } from "react-icons/bs";
-import { FaFacebook, FaYoutube } from "react-icons/fa";
+import { FaFacebook } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import leave from "../../../Assets/images/leave.svg";
+import logo from "../../../Assets/images/logo.svg";
+import neemo from "../../../Assets/images/neemo-pimple.svg";
 import bg from "../../../Assets/images/overview-bg.svg";
 import support from "../../../Assets/images/support.svg";
 import time from "../../../Assets/images/time.svg";
-import neemo from "../../../Assets/images/neemo-pimple.svg";
-import leave from "../../../Assets/images/leave.svg";
-import logo from "../../../Assets/images/logo.svg";
-import { Link } from "react-router-dom";
 
 const RenixOverview = () => {
   return (

@@ -1,86 +1,124 @@
-import React, { useEffect, useState } from 'react';
-import { shuffle } from 'lodash';
-import { Link } from 'react-router-dom';
+import { Box, CircularProgress } from "@mui/material"; // ✅ Import MUI Loader
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { shuffle } from "lodash";
+import React from "react";
+import { Link } from "react-router-dom";
+
+const fetchProducts = async () => {
+  const { data } = await axios.get(
+    "http://localhost:3001/api/v1/medicine?size=8&page=0"
+  );
+  return data?.data;
+};
 
 const ShowCase = () => {
-// Shuffle the products array to get a random order
+  // Fetch products using TanStack Query
+  const {
+    data: products = [],
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["showcaseProducts"],
+    queryFn: fetchProducts,
+    keepPreviousData: true,
+  });
 
+  // Shuffle and get two random products
+  const randomProducts = shuffle(products).slice(0, 2);
 
-// Select only the first two productsa
-  const [products, setProducts] = useState([]); 
-  // Shuffle the products array to get a random order
-  const shuffledProducts = shuffle(products);
+  return (
+    <div className="bg-gradient-to-r from-thirdLightPrimary via-whiteSmoke to-thirdLightPrimary py-12">
+      <section className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:items-center">
+          {/* ✅ Left Section - Title & Description */}
+          <div className="text-center lg:text-left">
+            <h2 className="text-3xl font-bold text-gray-900 uppercase">
+              Latest Arrivals
+            </h2>
+            <p className="mt-4 text-gray-600 text-lg">
+              Explore our newest Unani medicine collection, formulated for your
+              health and well-being.
+            </p>
 
-  // Select only the first two products
-  const randomProducts = shuffledProducts.slice(4,6);
+            <Link
+              to="https://renixcare.com"
+              className="mt-6 inline-block rounded bg-gray-900 px-8 py-3 text-lg font-semibold bg-primary text-white transition hover:bg-gray-700"
+            >
+              Shop All
+            </Link>
+          </div>
 
-  useEffect(() => {
-    const url = ` https://renixserver.niroghealthplus.com/api/v1/medicine?size=${8}&page=${0}`;
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setProducts(data?.data);
-      });
-  }, []);
-    return (
-        <div className='  bg-gradient-to-r from-thirdLightPrimary via-whiteSmoke to-thirdLightPrimary'>
-            <section>
-  <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
-    <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:items-stretch">
-      <div className="grid place-content-center rounded bg-gray-100 p-6 sm:p-8">
-        <div className="mx-auto max-w-md text-center lg:text-left">
-          <header>
-            <h2 className="text-xl font-bold text-gray-900 sm:text-3xl uppercase">Latest</h2>
+          {/* ✅ Right Section - Products Showcase */}
+          <div className="lg:col-span-2">
+            {/* ✅ Loading State */}
+            {isLoading && (
+              <Box className="flex justify-center items-center h-40">
+                <CircularProgress size={50} color="primary" />
+              </Box>
+            )}
 
-            <p className="mt-4 text-gray-500">
-            Apart from these popular treatments, Unani medicine is known for its promising results in the treatment of autoimmune disorders such as Psoriasis            </p>
-          </header>
+            {/* ✅ Error Handling */}
+            {error && (
+              <p className="text-center text-red-500 text-lg">
+                ⚠️ Error loading products. Please try again!
+              </p>
+            )}
 
-          <Link
-            to="https://store.renixlaboratories.com.bd"
-            className="mt-8 inline-block  rounded border border-gray-900 bg-gray-900 px-12 py-3 text-sm font-medium text-black transition hover:shadow focus:outline-none focus:ring"
-          >
-            Shop All
-          </Link>
+            {/* ✅ Product Grid */}
+            {!isLoading && !error && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                {randomProducts.map((product) => (
+                  <div
+                    key={product._id}
+                    className="group relative overflow-hidden rounded-xl bg-white shadow-md hover:shadow-xl transition duration-300"
+                  >
+                    {/* ✅ Product Image */}
+                    <Link to={`/product/${product?.slug}`} className="block">
+                      <img
+                        src={product.img}
+                        alt={product.name}
+                        className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                    </Link>
+
+                    {/* ✅ Product Details */}
+                    <div className="p-5 text-center">
+                      <h3 className="text-lg font-semibold text-gray-900 group-hover:underline">
+                        {product.name}
+                      </h3>
+                      <p className="mt-2 text-gray-700 text-sm">
+                        {product.shortDescription ||
+                          "Premium quality Unani medicine."}
+                      </p>
+
+                      {/* ✅ Price & CTA Button */}
+                      <div className="mt-4 flex items-center justify-center space-x-4">
+                        {/* <p className="text-xl font-semibold text-gray-900">
+                          ৳ {product.price || "N/A"}
+                        </p> */}
+                        <Link
+                          to={`/product/${product?.slug}`}
+                          className="inline-block bg-primary text-white px-6 py-2 rounded-full font-medium transition hover:bg-opacity-90"
+                        >
+                          Explore Now
+                        </Link>
+                      </div>
+                    </div>
+
+                    {/* ✅ New Arrival Badge */}
+                    <div className="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-semibold uppercase">
+                      New
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
-      </div>
-
-      <div className="lg:col-span-2 lg:py-8">
-        <ul className="grid grid-cols-2 gap-4">
-
-        {randomProducts.map((product) => (
-        <li key={product._id}>
-          <Link to={`/product/${product?.slug}`} className="group block">
-            <img
-              src={product.img}
-              alt=""
-              className="aspect-square w-80 rounded object-cover"
-            />
-
-            <div className="mt-3">
-              <h3 className="font-medium text-gray-900 group-hover:underline group-hover:underline-offset-4">
-                {product.name}
-              </h3>
-
-              {/* <p className="mt-1 text-sm text-gray-700"> ৳ {`${product.price}`}</p> */}
-            </div>
-          </Link>
-        </li>
-      ))}
-
-
-        
-
-        
-        </ul>
-      </div>
+      </section>
     </div>
-  </div>
-</section>
-
-        </div>
-    );
+  );
 };
 
 export default ShowCase;

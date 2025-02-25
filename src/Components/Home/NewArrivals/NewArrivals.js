@@ -1,109 +1,116 @@
+import { Box, CircularProgress } from "@mui/material"; // ✅ Import MUI Loader
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import React from "react";
-
-import Slider from "react-slick";
-import { TbCurrencyTaka } from "react-icons/tb";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import { useEffect } from "react";
+import Slider from "react-slick";
+
+const fetchProducts = async () => {
+  const { data } = await axios.get(
+    "http://localhost:3001/api/v1/medicine?size=6&page=0"
+  );
+  return data?.data;
+};
 
 const NewArrivals = () => {
-  const [products, setProducts] = useState([]);
-  useEffect(() => {
-    const url = ` https://renixserver.niroghealthplus.com/api/v1/medicine?size=${6}&page=${0}`;
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setProducts(data?.data);
-      });
-  }, []);
-  var settings = {
+  // Fetch products using TanStack Query
+  const {
+    data: products = [],
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["newArrivals"],
+    queryFn: fetchProducts,
+    keepPreviousData: true,
+  });
+
+  // ✅ Slick Slider Settings
+  const settings = {
     dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 4,
-
     slidesToScroll: 1,
     autoplay: true,
+    autoplaySpeed: 2000,
     arrows: true,
-    autoplaySpeed: 1500,
     responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 992,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          initialSlide: 1,
-        },
-      },
+      { breakpoint: 1024, settings: { slidesToShow: 3, slidesToScroll: 1 } },
+      { breakpoint: 992, settings: { slidesToShow: 2, slidesToScroll: 1 } },
+      { breakpoint: 768, settings: { slidesToShow: 1, slidesToScroll: 1 } },
     ],
-    // fade: true,
   };
 
   return (
-    <div className=" mx-auto py-14 ">
-      <div className="lg:w-[90%] w-full  mx-auto my-10 text-center">
-        <h3 className="bg-thirdLightPrimary w-36 mx-auto font ">
-          F e a t u r e
+    <div className="mx-auto py-14">
+      <div className="lg:w-[90%] w-full mx-auto my-10 text-center">
+        {/* ✅ Section Title */}
+        <h3 className="bg-thirdLightPrimary w-36 mx-auto text-sm font-semibold text-gray-700 py-1 rounded-md">
+          FEATURED
         </h3>
-        <h1 className="text-secondary font-semibold text-3xl mt-3 mb-6">
+        <h1 className="text-secondary font-bold text-3xl mt-3 mb-6 uppercase">
           New Arrivals
         </h1>
-        <Slider {...settings}>
-          {products?.map((product) => (
-            <div className="w-[90%] sm:w-6/12 md:w-4/12  " key={product._id}>
-              <div className="m-4 w-50 rounded-xl border-2 border-whiteSmoke ">
-                {/* <h2 className="bg-primary w-10 text-left text-xs pl-1 pt-1 pb-1  text-white mt-3">
-                  Sale!
-                </h2> */}
-                <Link to={`/product/${product?.slug}`}>
-                <img
-                  src={product.img}
-                  alt=""
-                  className="w-[200px] mx-auto  h-auto mt-7"
-                />
-                </Link>
-                <div className="pl-4 pb-2">
-                  <h1 className="text-secondary text-left   text-lg mt-2">
-                    {product.name}
-                  </h1>
-                  <p className="text-left text-blue-gray-500">
-                    {product?.strength}
-                  </p>
 
-                  <p className="text-left text-blue-gray-500">
-                    {product?.supplierName}
-                  </p>
+        {/* ✅ Loading State */}
+        {isLoading && (
+          <Box className="flex justify-center items-center h-40">
+            <CircularProgress size={50} color="primary" />
+          </Box>
+        )}
 
-                  {/* <Link to={`/products/${product?._id}`}>
-                    <div class="flex items-center justify-between pr-5">
-                      <span class="font-bold text-lg">৳ {product.price}</span>
-                      <button class="bg-primary  text-white font-bold py-2 px-4 rounded">
+        {/* ✅ Error Handling */}
+        {error && (
+          <p className="text-center text-red-500 text-lg">
+            ⚠️ Error loading products. Please try again!
+          </p>
+        )}
+
+        {/* ✅ Product Slider */}
+        {!isLoading && !error && (
+          <Slider {...settings}>
+            {products.map((product) => (
+              <div key={product._id} className="px-3">
+                <div className="bg-white shadow-lg rounded-xl overflow-hidden transition transform hover:scale-105 duration-300">
+                  {/* ✅ Product Image */}
+                  <Link to={`/product/${product?.slug}`} className="block">
+                    <img
+                      src={product.img}
+                      alt={product.name}
+                      className="w-full h-64 object-cover"
+                    />
+                  </Link>
+
+                  {/* ✅ Product Details */}
+                  <div className="p-5 text-center">
+                    <h3 className="text-lg font-semibold text-gray-900">
+                      {product.name}
+                    </h3>
+                    <p className="text-sm text-gray-600">{product?.strength}</p>
+                    <p className="text-sm text-gray-600">
+                      {product?.supplierName}
+                    </p>
+
+                    {/* ✅ Price & CTA Button */}
+                    <div className="mt-4 flex items-center justify-center space-x-4">
+                      <Link
+                        to="https://renixcare.com"
+                        className="bg-primary text-white px-6 py-2 rounded-full font-medium transition hover:bg-opacity-90"
+                      >
                         Buy Now
-                      </button>
+                      </Link>
                     </div>
-                  </Link> */}
+                  </div>
+
+                  {/* ✅ New Arrival Badge */}
+                  <div className="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-semibold uppercase">
+                    New
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </Slider>
+            ))}
+          </Slider>
+        )}
       </div>
     </div>
   );

@@ -1,9 +1,7 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { MdPendingActions } from "react-icons/md";
-import { useState } from "react";
-import Pagination from "../../../../shared/Pagination/Pagination";
 import AuthUser from "../../../../Hooks/authUser";
+import Pagination from "../../../../shared/Pagination/Pagination";
 
 const RejectedAppointment = () => {
   const [appointment, setAppointment] = useState([]);
@@ -13,7 +11,7 @@ const RejectedAppointment = () => {
   const { userInfo } = AuthUser();
 
   useEffect(() => {
-    const url = ` https://renixserver.niroghealthplus.com/api/v1/appointment/specific?page=${page}&&size=${size}&&doctorId=${
+    const url = `http://localhost:3001/api/v1/appointment/specific?page=${page}&&size=${size}&&doctorId=${
       userInfo?._id
     }&&appointmentStatus=${"rejected"}`;
     fetch(url)

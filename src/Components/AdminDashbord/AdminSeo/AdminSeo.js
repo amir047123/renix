@@ -1,7 +1,7 @@
-import { useState } from "react";
 import axios from "axios";
-import { singleImageUpload } from "../../../Hooks/ImageUpload";
+import { useState } from "react";
 import toast from "react-hot-toast";
+import { singleImageUpload } from "../../../Hooks/ImageUpload";
 
 const AdminSeo = () => {
   const [metaImage, setMetaImage] = useState("");
@@ -40,7 +40,7 @@ const AdminSeo = () => {
 
     try {
       const { data: seoData } = await axios.post(
-        "https://renixserver.niroghealthplus.com/api/v1/seo/createSeo",
+        "http://localhost:3001/api/v1/seo/createSeo",
         data
       );
       console.log(seoData);

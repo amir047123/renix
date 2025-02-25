@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { TbEdit } from "react-icons/tb";
-import { RiDeleteBin6Line } from "react-icons/ri";
 import { CiSearch } from "react-icons/ci";
-import Pagination from "../../shared/Pagination/Pagination";
-import Swal from "sweetalert2";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { TbEdit } from "react-icons/tb";
 import { Link } from "react-router-dom";
-import DeleteHook from "../../Hooks/DeleteHook";
+import Swal from "sweetalert2";
 import Loading from "../../shared/Loading";
+import Pagination from "../../shared/Pagination/Pagination";
 
 const AllMedicines = () => {
   const [products, setProducts] = useState([]);
@@ -20,7 +19,7 @@ const AllMedicines = () => {
   useEffect(() => {
     setLoading(true);
 
-    const url = ` https://renixserver.niroghealthplus.com/api/v1/medicine?size=${size}&page=${page}`;
+    const url = `http://localhost:3001/api/v1/medicine?size=${size}&page=${page}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -29,7 +28,6 @@ const AllMedicines = () => {
         setQuantity(data?.total);
       })
       .finally(() => setLoading(false));
-
   }, [size, page, refresh]);
 
   const handelDelete = (id) => {
@@ -43,9 +41,12 @@ const AllMedicines = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(` https://renixserver.niroghealthplus.com/api/v1/medicine/deleteMedicine/${id}`, {
-          method: "DELETE",
-        }).then((res) => {
+        fetch(
+          `http://localhost:3001/api/v1/medicine/deleteMedicine/${id}`,
+          {
+            method: "DELETE",
+          }
+        ).then((res) => {
           if (res.status === 200) {
             setRefresh(!refresh);
             Swal.fire("Deleted!", "Your file has been deleted.", "success");
@@ -155,11 +156,15 @@ const AllMedicines = () => {
                     {i + 1}
                   </th>
                   <td className="px-6 text-xs py-4">{product?.name}</td>
-                  <td className="px-6 text-xs py-4">{product?.medicineCategory}</td>
+                  <td className="px-6 text-xs py-4">
+                    {product?.medicineCategory}
+                  </td>
                   <td className="px-6 text-xs py-4">{product?.price}</td>
                   <td className="px-6 text-xs py-4">{product?.genericName}</td>
                   <td className="px-6 text-xs py-4">{product?.stock}</td>
-                  <td className="px-6 text-xs py-4">{product?.medicineStatus}</td>
+                  <td className="px-6 text-xs py-4">
+                    {product?.medicineStatus}
+                  </td>
                   <td className="px-6 text-xs py-4">{product?.strength}</td>
                   <td className="px-6 text-xs py-4">
                     <span className="flex items-center gap-3">

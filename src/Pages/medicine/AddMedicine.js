@@ -1,10 +1,9 @@
-import React, { useRef, useState } from "react";
-import { useForm } from "react-hook-form";
-import JoditEditor from "jodit-react";
 import { Markup } from "interweave";
+import JoditEditor from "jodit-react";
+import React, { useEffect, useRef, useState } from "react";
+import { useForm } from "react-hook-form";
 import { singleImageUpload } from "../../Hooks/ImageUpload";
 import PostHooks from "../../Hooks/PostHooks";
-import { useEffect } from "react";
 
 const AddMedicine = () => {
   const [image, setImage] = useState(null);
@@ -28,7 +27,7 @@ const AddMedicine = () => {
   };
   // get category
   useEffect(() => {
-    const url = ` https://renixserver.niroghealthplus.com/api/v1/category`;
+    const url = `http://localhost:3001/api/v1/category`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -73,7 +72,7 @@ const AddMedicine = () => {
 
     // post api call
     await PostHooks(
-      "https://renixserver.niroghealthplus.com/api/v1/medicine/postMedicine",
+      "http://localhost:3001/api/v1/medicine/postMedicine",
       medicine,
       "Medicine successfully posted"
     );

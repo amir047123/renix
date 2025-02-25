@@ -1,44 +1,68 @@
-import React, { useState } from "react";
+import React from "react";
+import { FaRegStar, FaStar } from "react-icons/fa"; // ✅ Import Star Icons
 import { Link } from "react-router-dom";
 
 const Card = ({ item }) => {
-
+  const rating = item?.rating || 5;
 
   return (
-    <Link to={`/product/${item?.slug}`}>
-      <div className="  ">
-        <div className="m-4 w-50 rounded-xl border-2 border-whiteSmoke ">
-          {/* <h2 className="bg-primary w-14 text-left text-xs pl-1 pt-1 pb-1  text-white mt-3 whitespace-nowrap">
-                  {item?.discount?item?.discount:0}% Off
-                </h2> */}
-          <img
-            src={item.img}
-            alt=""
-            className="w-[200px] mx-auto  h-auto mt-7"
-          />
-          <div className="pl-4 pb-2">
-            <h1 className="text-secondary text-left   text-lg mt-2">
-              {item.name}
-            </h1>
-            <p className="text-left text-blue-gray-500">{item?.strength}</p>
+    <>
+      <div className="w-full bg-white shadow-lg rounded-lg overflow-hidden border  border-primary">
+        {/* ✅ Product Image */}
+        <Link to={`/product/${item?.slug}`}>
+          <div className="relative p-3 flex justify-center">
+            <img
+              src={item.img}
+              alt={item.name}
+              className="w-40 h-40 object-contain"
+            />
 
-            <p className="text-left text-xs text-blue-gray-500 mb-2">
-              {item?.supplierName}
-            </p>
+            {/* ✅ Discount Badge */}
+            {item?.discount && (
+              <span className="absolute top-2 left-2 bg-red-500 text-white px-3 py-1 text-xs font-bold rounded-full">
+                {item?.discount}% OFF
+              </span>
+            )}
+          </div>
+        </Link>
 
-            <Link to={`/products/${item?.slug}`}>
-              {/* <div class="flex items-center justify-between pr-5">
-                      <span class="font-bold text-lg">৳ {item.price}</span>
-                      <button class="bg-primary  text-white font-bold py-2 px-4 rounded">
-                        Buy Now
-                      </button>
-                    </div> */}
-            </Link>
+        {/* ✅ Product Details */}
+        <div className="px-4 pb-4">
+          <h3 className="text-md font-semibold text-gray-900 truncate">
+            {item.name}
+          </h3>
+          <p className="text-gray-500 text-xs">{item?.strength}</p>
+          <p className="text-gray-500 text-xs">{item?.supplierName}</p>
+
+          {/* ✅ Price & CTA Button */}
+          <div className="mt-3 flex justify-between items-center">
+            {/* ✅ Star Ratings */}
+            <div className="flex items-center">
+              {[...Array(5)].map((_, index) => (
+                <span key={index}>
+                  {index < rating ? (
+                    <FaStar className="text-yellow-500 text-md" />
+                  ) : (
+                    <FaRegStar className="text-gray-300 text-md" />
+                  )}
+                </span>
+              ))}
+            </div>
+
+            {/* ✅ Buy Now Button */}
+            <a
+              href="https://renixcare.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-primary text-white px-4 py-1.5 text-sm rounded-full font-medium whitespace-nowrap"
+            >
+              Buy Now
+            </a>
           </div>
         </div>
       </div>
-    </Link>
+    </>
   );
 };
 
-export default Card
+export default Card;
