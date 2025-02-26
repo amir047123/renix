@@ -52,6 +52,7 @@ const UpdateBlog = () => {
         setValue("metaTitle", data?.data?.metaTitle || "");
         setValue("metaDescription", data?.data?.metaDescription || "");
         setValue("slug", data?.data?.slug || "");
+        setBlogDescription(data?.data?.description || "");
       });
   }, [id, setValue]);
 
@@ -81,9 +82,9 @@ const UpdateBlog = () => {
       metaImage,
     };
 
-    const updateUrl = `${server_url}/medicine/UpdateBlog/${id}`;
+    const updateUrl = `${server_url}/blogs/updateBlog/${id}`;
 
-    await UpdateHooks(updateUrl, blog, "Medicine successfully updated");
+    await UpdateHooks(updateUrl, blog, "Blog successfully updated");
   };
 
   return (

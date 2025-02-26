@@ -40,7 +40,7 @@ const AddBlog = () => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        setCategory(data?.data);
+        setCategory(data?.data?.result);
       });
   }, []);
   const handleChangeUploadImage = async (event) => {

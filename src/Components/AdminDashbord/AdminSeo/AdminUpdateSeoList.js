@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { singleImageUpload } from "../../../Hooks/ImageUpload";
 import { server_url } from "../../../Config/API";
+import UpdateHooks from "../../../Hooks/UpdateHooks";
 
 const AdminUpdateSeoList = () => {
   const { id } = useParams();
@@ -56,21 +57,9 @@ const AdminUpdateSeoList = () => {
       slug: formData.slug,
     };
 
-    try {
-      const { data: seoData } = await axios.patch(
-        `${server_url}/seo/updateSeo/${id}`,
-        data
-      );
-      // console.log(seoData);
-      if (seoData.status === "error") {
-        toast.error(seoData.message);
-      } else if (seoData.status === "success") {
-        toast.success("Seo Updated!");
-      }
-    } catch (error) {
-      toast.error(error.message || "An error occurred");
-      // console.error("Error making POST request:", error.message);
-    }
+    const updateUrl = `${server_url}/seo/updateSeo/${id}`;
+
+    await UpdateHooks(updateUrl, data, "SEO successfully updated");
   };
 
   return (

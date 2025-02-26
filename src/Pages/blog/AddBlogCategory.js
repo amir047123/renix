@@ -169,7 +169,7 @@ const AddBlogCategory = () => {
                 type="submit"
                 className="text-white bg-primary hover:bg-lightPrimary focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
               >
-                Add Blog
+                Add Blog Category
               </button>
             </div>
           </form>

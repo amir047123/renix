@@ -8,7 +8,7 @@ import { TbEdit } from "react-icons/tb";
 import { server_url } from "../../Config/API";
 import UpdateHooks from "../../Hooks/UpdateHooks";
 import Pagination from "../../shared/Pagination/Pagination";
-import WarningModal from "../../shared/Modals/WarningModal";
+import Swal from "sweetalert2";
 
 // ✅ Fetch Users Function
 const fetchUsers = async ({ queryKey }) => {
@@ -61,24 +61,33 @@ const AllAccounts = () => {
     refetch();
   };
 
-  const [open, setOpen] = useState(false);
-  const [userId, setUserId] = useState("");
-
-  // ✅ Handle User Deletion
-  const deleteUser = async () => {
-    const BASE_URL = `${server_url}/user/${userId}`;
-    await fetch(BASE_URL, { method: "DELETE" });
-    setUserId("");
-    setOpen(false);
-    // setPage(0);
-    refetch();
+  const deleteUser = (id) => {
+    const BASE_URL = `${server_url}/user/${id}`;
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(BASE_URL, { method: "DELETE" }).then((res) => {
+          if (res.status === 200) {
+            setPage(0);
+            refetch();
+            Swal.fire("Deleted!", "Your file has been deleted.", "success");
+          }
+        });
+      }
+    });
   };
 
   const tableHeader = ["Serial No", "Name", "Email", "Phone", "Role", "Action"];
 
   return (
     <section className="py-10 md:py-14">
-      <WarningModal open={open} setOpen={setOpen} onConfirm={deleteUser} />
       <div className="container px-6 md:max-w-7xl w-full">
         {/* ✅ Search Bar */}
         <form
@@ -152,6 +161,12 @@ const AllAccounts = () => {
                     </Box>
                   </td>
                 </tr>
+              ) : users?.length === 0 ? (
+                <tr>
+                  <td colSpan={tableHeader.length} className="py-4 text-center">
+                    No User Found!
+                  </td>
+                </tr>
               ) : (
                 users.map((user, i) => (
                   <tr
@@ -203,8 +218,7 @@ const AllAccounts = () => {
 
                           <button
                             onClick={() => {
-                              setUserId(user._id);
-                              setOpen(true);
+                              deleteUser(user._id);
                             }}
                             className="text-red-500 bg-red-100 px-2 py-1 rounded-lg flex items-center gap-1"
                           >
