@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import DynamicMetaTitle from "../Components/DynamicMetaTitle";
 import useGetSeo from "../Hooks/useGetSeo";
 import "./Contact.css";
+import { server_url } from "../Config/API";
 
 const Contact = () => {
   const [option, setOption] = useState();
@@ -20,7 +21,7 @@ const Contact = () => {
     try {
       // Make the API call to addContactRenixes using fetch
       const response = await fetch(
-        "https://server.renixlaboratories.com.bd/api/v1/contactRenix/addContactRenix",
+        `${server_url}/contactRenix/addContactRenix`,
         {
           method: "POST",
           headers: {

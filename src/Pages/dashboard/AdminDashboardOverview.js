@@ -7,12 +7,11 @@ import img2 from "../../Assets/dasboard-icon/pending-order.png";
 import img1 from "../../Assets/dasboard-icon/total-order.png";
 import img4 from "../../Assets/dasboard-icon/total-selling.png";
 import "./Dashboard.css";
+import { server_url } from "../../Config/API";
 
 // ✅ Fetch Orders Function
 const fetchOrders = async () => {
-  const response = await fetch(
-    "https://server.renixlaboratories.com.bd/api/v1/order/getOrders"
-  );
+  const response = await fetch(`${server_url}/order/getOrders`);
   if (!response.ok) {
     throw new Error("Failed to fetch orders");
   }

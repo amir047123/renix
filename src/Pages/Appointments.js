@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import DoctorsCard from "../Components/DoctorsCard/DoctorsCard";
 import Pagination from "../shared/Pagination/Pagination";
+import { server_url } from "../Config/API";
 
 const Appointments = () => {
   const [doctors, setDoctors] = useState([]);
@@ -9,7 +10,7 @@ const Appointments = () => {
   const [size, setSize] = useState(6);
 
   useEffect(() => {
-    const url = `https://server.renixlaboratories.com.bd/api/v1/user/specific?page=${page}&&size=${size}&&fieldName=${"role"}&&fieldValue=${"doctor"}`;
+    const url = `${server_url}/user/specific?page=${page}&&size=${size}&&fieldName=${"role"}&&fieldValue=${"doctor"}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {

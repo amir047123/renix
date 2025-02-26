@@ -7,6 +7,7 @@ import { server_url } from "../../Config/API";
 import UpdateHooks from "../../Hooks/UpdateHooks";
 import Loading from "../../shared/Loading";
 import Pagination from "../../shared/Pagination/Pagination";
+
 const PendingOrders = () => {
   const [refresh, setRefresh] = useState(false);
   const [order, setOrder] = useState([]);
@@ -16,7 +17,7 @@ const PendingOrders = () => {
   const [loading, setLoading] = useState();
   useEffect(() => {
     setLoading(true);
-    const url = `https://server.renixlaboratories.com.bd/api/v1/order/specific?page=${page}&&size=${size}&&fieldName=${"orderStatus"}&&fieldValue=${"pending"}`;
+    const url = `${server_url}/order/specific?page=${page}&&size=${size}&&fieldName=${"orderStatus"}&&fieldValue=${"pending"}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {

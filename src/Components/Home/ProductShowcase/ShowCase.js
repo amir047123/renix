@@ -4,11 +4,10 @@ import axios from "axios";
 import { shuffle } from "lodash";
 import React from "react";
 import { Link } from "react-router-dom";
+import { server_url } from "../../../Config/API";
 
 const fetchProducts = async () => {
-  const { data } = await axios.get(
-    "https://server.renixlaboratories.com.bd/api/v1/medicine?size=8&page=0"
-  );
+  const { data } = await axios.get(`${server_url}/medicine?size=8&page=0`);
   return data?.data;
 };
 

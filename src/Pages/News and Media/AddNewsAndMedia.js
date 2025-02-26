@@ -3,6 +3,7 @@ import React, { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { singleImageUpload } from "../../Hooks/ImageUpload";
 import PostHooks from "../../Hooks/PostHooks";
+import { server_url } from "../../Config/API";
 
 const AddNewsAndMedia = () => {
   const {
@@ -45,7 +46,7 @@ const AddNewsAndMedia = () => {
 
     // post api call
     await PostHooks(
-      "https://server.renixlaboratories.com.bd/api/v1/newsAndMedia/addNewsAndMedia",
+      `${server_url}/newsAndMedia/addNewsAndMedia`,
       news,
       "Medicine successfully posted"
     );

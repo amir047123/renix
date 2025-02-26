@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { MdPendingActions } from "react-icons/md";
 import AuthUser from "../../../../Hooks/authUser";
 import Pagination from "../../../../shared/Pagination/Pagination";
+import { server_url } from "../../../../Config/API";
 
 const RejectedAppointment = () => {
   const [appointment, setAppointment] = useState([]);
@@ -11,7 +12,7 @@ const RejectedAppointment = () => {
   const { userInfo } = AuthUser();
 
   useEffect(() => {
-    const url = `https://server.renixlaboratories.com.bd/api/v1/appointment/specific?page=${page}&&size=${size}&&doctorId=${
+    const url = `${server_url}/appointment/specific?page=${page}&&size=${size}&&doctorId=${
       userInfo?._id
     }&&appointmentStatus=${"rejected"}`;
     fetch(url)

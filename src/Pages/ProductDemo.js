@@ -24,6 +24,7 @@ import img18 from "../Assets/images/Products/18. Capsul Hazmina Plus.webp";
 import img19 from "../Assets/images/Products/19. Capsule Renivit.webp";
 import img20 from "../Assets/images/Products/20. Capsule Valaria.webp";
 import img21 from "../Assets/images/Products/21. RENIX-GINSENG-SYRUP.png";
+// import { server_url } from "../Config/API";
 
 const FeatureProducts = () => {
   const [displayButton, setDisplayButton] = useState("");
@@ -255,7 +256,7 @@ const FeatureProducts = () => {
   //     const size = 10; // Provide the desired size value
   //     const page = 1; // Provide the desired page value
 
-  //     const url = `https://server.renixlaboratories.com.bd/api/v1/medicine?size=${size}&page=${page}`;
+  // const url = `${server_url}/medicine?size=${size}&page=${page}`;
   //     fetch(url)
   //       .then((res) => res.json())
   //       .then((data) => {

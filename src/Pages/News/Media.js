@@ -4,10 +4,11 @@ import React from "react";
 import toast from "react-hot-toast";
 import DynamicMetaTitle from "../../Components/DynamicMetaTitle";
 import useGetSeo from "../../Hooks/useGetSeo";
+import { server_url } from "../../Config/API";
 
 const fetchMedia = async () => {
   const response = await fetch(
-    "https://server.renixlaboratories.com.bd/api/v1/newsAndMedia/specific?fieldName=newsCategory&fieldValue=Media"
+    `${server_url}/newsAndMedia/specific?fieldName=newsCategory&fieldValue=Media`
   );
   if (!response.ok) {
     throw new Error("Failed to fetch media data.");

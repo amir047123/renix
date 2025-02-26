@@ -36,7 +36,7 @@ const AddBlog = () => {
   }, [userInfo?._id]);
   // get category
   useEffect(() => {
-    const url = `https://server.renixlaboratories.com.bd/api/v1/blogsCategory`;
+    const url = `${server_url}/blogsCategory`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -72,7 +72,7 @@ const AddBlog = () => {
 
     // post api call
     PostHooks(
-      "https://server.renixlaboratories.com.bd/api/v1/blogs/postBlog",
+      `${server_url}/blogs/postBlog`,
       blog,
       "Medicine successfully posted"
     );

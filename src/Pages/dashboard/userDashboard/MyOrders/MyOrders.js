@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { MdPendingActions } from "react-icons/md";
 import AuthUser from "../../../../Hooks/authUser";
+import { server_url } from "../../../../Config/API";
+
 const MyOrders = () => {
   const [order, setOrder] = useState([]);
   const { userInfo } = AuthUser();
   useEffect(() => {
-    fetch(
-      `https://server.renixlaboratories.com.bd/api/v1/order/getOrder/${userInfo?._id}`
-    )
+    fetch(`${server_url}/order/getOrder/${userInfo?._id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

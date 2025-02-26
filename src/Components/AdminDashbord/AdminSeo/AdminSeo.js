@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { singleImageUpload } from "../../../Hooks/ImageUpload";
+import { server_url } from "../../../Config/API";
 
 const AdminSeo = () => {
   const [metaImage, setMetaImage] = useState("");
@@ -40,7 +41,7 @@ const AdminSeo = () => {
 
     try {
       const { data: seoData } = await axios.post(
-        "https://server.renixlaboratories.com.bd/api/v1/seo/createSeo",
+        `${server_url}/seo/createSeo`,
         data
       );
       console.log(seoData);

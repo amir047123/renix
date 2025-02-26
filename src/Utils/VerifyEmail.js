@@ -1,21 +1,19 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router";
 import swal from "sweetalert";
+import { server_url } from "../Config/API";
 
 const VerifyEmail = () => {
   const params = useParams();
   const navigate = useNavigate();
   console.log("params id", params.id);
   const handleVerify = () => {
-    fetch(
-      `https://server.renixlaboratories.com.bd/api/v1/user/verify?id=${params.id}`,
-      {
-        method: "PATCH",
-        headers: {
-          "content-type": "application/json",
-        },
-      }
-    )
+    fetch(`${server_url}/user/verify?id=${params.id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data?.modifiedCount === 1) {

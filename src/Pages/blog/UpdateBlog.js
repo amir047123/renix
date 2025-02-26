@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import AuthUser from "../../Hooks/authUser";
 import { singleImageUpload } from "../../Hooks/ImageUpload";
 import UpdateHooks from "../../Hooks/UpdateHooks";
+import { server_url } from "../../Config/API";
 
 const UpdateBlog = () => {
   const { id } = useParams();
@@ -31,7 +32,7 @@ const UpdateBlog = () => {
   const [content, setContent] = useState("");
 
   useEffect(() => {
-    const url = `https://server.renixlaboratories.com.bd/api/v1/category`;
+    const url = `${server_url}/category`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -40,7 +41,7 @@ const UpdateBlog = () => {
   }, []);
 
   useEffect(() => {
-    const url = `https://server.renixlaboratories.com.bd/api/v1/blogs/blogDetails/${id}`;
+    const url = `${server_url}/blogs/blogDetails/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -80,7 +81,7 @@ const UpdateBlog = () => {
       metaImage,
     };
 
-    const updateUrl = `https://server.renixlaboratories.com.bd/api/v1/medicine/UpdateBlog/${id}`;
+    const updateUrl = `${server_url}/medicine/UpdateBlog/${id}`;
 
     await UpdateHooks(updateUrl, blog, "Medicine successfully updated");
   };

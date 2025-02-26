@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { singleImageUpload } from "../../../Hooks/ImageUpload";
+import { server_url } from "../../../Config/API";
 
 const AdminUpdateSeoList = () => {
   const { id } = useParams();
@@ -30,9 +31,7 @@ const AdminUpdateSeoList = () => {
   };
   useEffect(() => {
     const fetchSingleSeo = async () => {
-      const { data } = await axios.get(
-        `https://server.renixlaboratories.com.bd/api/v1/seo/getSeoById/${id}`
-      );
+      const { data } = await axios.get(`${server_url}/seo/getSeoById/${id}`);
       setSeo(data?.data);
       setFormData({
         page: data?.data?.page || "",
@@ -59,7 +58,7 @@ const AdminUpdateSeoList = () => {
 
     try {
       const { data: seoData } = await axios.patch(
-        `https://server.renixlaboratories.com.bd/api/v1/seo/updateSeo/${id}`,
+        `${server_url}/seo/updateSeo/${id}`,
         data
       );
       // console.log(seoData);

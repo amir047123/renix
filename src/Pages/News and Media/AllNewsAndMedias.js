@@ -4,6 +4,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { TbEdit } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import Loading from "../../shared/Loading";
+import { server_url } from "../../Config/API";
 
 const AllNewsAndMedias = () => {
   const [newsAndMedia, setNewsAndMedia] = useState([]);
@@ -15,9 +16,7 @@ const AllNewsAndMedias = () => {
 
   const fetchNewsAndMedia = () => {
     setLoading(true); // Set loading to true when fetching data
-    fetch(
-      "https://server.renixlaboratories.com.bd/api/v1/newsAndMedia/getNewsAndMedia"
-    )
+    fetch(`${server_url}/newsAndMedia/getNewsAndMedia`)
       .then((response) => response.json())
       .then((data) => {
         setNewsAndMedia(data.data);
@@ -32,12 +31,9 @@ const AllNewsAndMedias = () => {
 
   const handleDelete = (_id) => {
     console.log("Deleting item with ID:", _id);
-    fetch(
-      `https://server.renixlaboratories.com.bd/api/v1/newsAndMedia/deleteNewsAndMedia/${_id}`,
-      {
-        method: "DELETE",
-      }
-    )
+    fetch(`${server_url}/newsAndMedia/deleteNewsAndMedia/${_id}`, {
+      method: "DELETE",
+    })
       .then((response) => {
         console.log("Response from delete request:", response);
         if (response.ok) {

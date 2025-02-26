@@ -5,10 +5,11 @@ import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import DynamicMetaTitle from "../../Components/DynamicMetaTitle";
 import useGetSeo from "../../Hooks/useGetSeo";
+import { server_url } from "../../Config/API";
 
 const fetchShosthotarbarta = async () => {
   const response = await fetch(
-    "https://server.renixlaboratories.com.bd/api/v1/newsAndMedia/specific?fieldName=newsCategory&fieldValue=Shosthotarbarta"
+    `${server_url}/newsAndMedia/specific?fieldName=newsCategory&fieldValue=Shosthotarbarta`
   );
   if (!response.ok) {
     throw new Error("Failed to fetch Shosthotarbarta data.");

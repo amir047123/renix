@@ -4,6 +4,7 @@ import Location from "../../Components/Bangladesh Location/location.json";
 import PostHooks from "../../Hooks/PostHooks";
 import AuthUser from "../../Hooks/authUser";
 import MyContext from "../../Utils/Context/MyContext";
+import { server_url } from "../../Config/API";
 const Checkout = () => {
   const { userInfo } = AuthUser();
   const [division, setDivision] = useState("");
@@ -15,9 +16,7 @@ const Checkout = () => {
   const [shipping, setShipping] = useState([]);
 
   useEffect(() => {
-    fetch(
-      `https://server.renixlaboratories.com.bd/api/v1/shipping/getShippings`
-    )
+    fetch(`${server_url}/shipping/getShippings`)
       .then((res) => res.json())
       .then((data) => {
         if (data?.data.length) {
@@ -70,7 +69,7 @@ const Checkout = () => {
     };
 
     await PostHooks(
-      "https://server.renixlaboratories.com.bd/api/v1/order/addOrder",
+      `${server_url}/order/addOrder`,
       { customerDetails, order, customerId, subTotal },
       "order successfully submitted"
     );

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { singleImageUpload } from "../../Hooks/ImageUpload";
 import PostHooks from "../../Hooks/PostHooks";
+import { server_url } from "../../Config/API";
 
 const AddBlogCategory = () => {
   const [metaImage, setMetaImage] = useState("");
@@ -31,7 +32,7 @@ const AddBlogCategory = () => {
   const handelSubmit = (e) => {
     e.preventDefault();
     PostHooks(
-      "https://server.renixlaboratories.com.bd/api/v1/blogsCategory",
+      `${server_url}/blogsCategory`,
       data,
       "Category successfully posted"
     );

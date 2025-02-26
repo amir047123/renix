@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { singleImageUpload } from "../../Hooks/ImageUpload";
 import UpdateHooks from "../../Hooks/UpdateHooks";
+import { server_url } from "../../Config/API";
 
 const UpdateBlogCategory = () => {
   const { id } = useParams();
@@ -25,7 +26,7 @@ const UpdateBlogCategory = () => {
   };
   useEffect(() => {
     setLoading(true);
-    const url = `https://server.renixlaboratories.com.bd/api/v1/blogsCategory/getBlogCategoryById/${id}`;
+    const url = `${server_url}/blogsCategory/getBlogCategoryById/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -54,7 +55,7 @@ const UpdateBlogCategory = () => {
 
   const handelSubmit = async (e) => {
     e.preventDefault();
-    const updateUrl = `https://server.renixlaboratories.com.bd/api/v1/blogsCategory/updateBlogsCategory/${id}`;
+    const updateUrl = `${server_url}/blogsCategory/updateBlogsCategory/${id}`;
     await UpdateHooks(
       updateUrl,
       data,

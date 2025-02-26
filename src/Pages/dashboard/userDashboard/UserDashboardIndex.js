@@ -8,15 +8,14 @@ import img2 from "../../../Assets/dasboard-icon/pending-order.png";
 import img5 from "../../../Assets/dasboard-icon/total-appointment.png";
 import img1 from "../../../Assets/dasboard-icon/total-order.png";
 import AuthUser from "../../../Hooks/authUser";
+import { server_url } from "../../../Config/API";
 
 const AdminDashboardOverview = () => {
   const [order, setOrder] = useState([]);
   const [appointment, setAppointment] = useState([]);
   const { userInfo } = AuthUser();
   useEffect(() => {
-    fetch(
-      `https://server.renixlaboratories.com.bd/api/v1/order/getOrder/${userInfo?._id}`
-    )
+    fetch(`${server_url}/order/getOrder/${userInfo?._id}`)
       .then((res) => res.json())
       .then((data) => {
         setOrder(data?.data);
@@ -25,9 +24,7 @@ const AdminDashboardOverview = () => {
   const pending = order.filter((item) => item.orderStatus === "pending");
   const confirmed = order.filter((item) => item.orderStatus === "accept");
   useEffect(() => {
-    fetch(
-      `https://server.renixlaboratories.com.bd/api/v1/appointment/getAppointment/${userInfo?._id}`
-    )
+    fetch(`${server_url}/appointment/getAppointment/${userInfo?._id}`)
       .then((res) => res.json())
       .then((data) => {
         setAppointment(data?.data);

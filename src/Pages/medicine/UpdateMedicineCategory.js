@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { singleImageUpload } from "../../Hooks/ImageUpload";
 import UpdateHooks from "../../Hooks/UpdateHooks";
+import { server_url } from "../../Config/API";
 
 const UpdateMedicineCategory = () => {
   const { id } = useParams();
@@ -25,7 +26,7 @@ const UpdateMedicineCategory = () => {
   };
   useEffect(() => {
     setLoading(true);
-    const url = `https://server.renixlaboratories.com.bd/api/v1/category/getCategoryById/${id}`;
+    const url = `${server_url}/category/getCategoryById/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -54,7 +55,7 @@ const UpdateMedicineCategory = () => {
   console.log(data);
   const handelSubmit = async (e) => {
     e.preventDefault();
-    const updateUrl = `https://server.renixlaboratories.com.bd/api/v1/category/updateCategoryById/${id}`;
+    const updateUrl = `${server_url}/category/updateCategoryById/${id}`;
     await UpdateHooks(
       updateUrl,
       data,

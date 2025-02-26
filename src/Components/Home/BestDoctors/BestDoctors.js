@@ -1,12 +1,13 @@
 import React from "react";
 import demoDoctor from "../../../Assets/images/doctor.jpg";
 import img7 from "../../../Assets/images/Dorctors/team-custom-icon-3.png";
-
 import { useEffect, useState } from "react";
+import { server_url } from "../../../Config/API";
+
 const BestDoctors = () => {
   const [user, setUser] = useState([]);
   useEffect(() => {
-    const url = `https://server.renixlaboratories.com.bd/api/v1/user`;
+    const url = `${server_url}/user`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {

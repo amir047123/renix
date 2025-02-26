@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import DynamicMetaTitle from "../../Components/DynamicMetaTitle";
 import { singleImageUpload } from "../../Hooks/ImageUpload";
 import UpdateHooks from "../../Hooks/UpdateHooks";
+import { server_url } from "../../Config/API";
 
 const UpdateMedicine = () => {
   const { id } = useParams();
@@ -30,7 +31,7 @@ const UpdateMedicine = () => {
   const [content, setContent] = useState("");
 
   useEffect(() => {
-    const url = `https://server.renixlaboratories.com.bd/api/v1/category`;
+    const url = `${server_url}/category`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -39,7 +40,7 @@ const UpdateMedicine = () => {
   }, []);
 
   useEffect(() => {
-    const url = `https://server.renixlaboratories.com.bd/api/v1/medicine/medicineDetails/${id}`;
+    const url = `${server_url}/medicine/medicineDetails/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -99,7 +100,7 @@ const UpdateMedicine = () => {
       metaImage,
     };
 
-    const updateUrl = `https://server.renixlaboratories.com.bd/api/v1/medicine/updateMedicine/${id}`;
+    const updateUrl = `${server_url}/medicine/updateMedicine/${id}`;
 
     await UpdateHooks(updateUrl, medicineData, "Medicine successfully updated");
   };

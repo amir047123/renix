@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { SiGooglemeet } from "react-icons/si";
 import AuthUser from "../../../../Hooks/authUser";
 import Pagination from "../../../../shared/Pagination/Pagination";
+import { server_url } from "../../../../Config/API";
 
 const ConfirmedAppointment = () => {
   const { userInfo } = AuthUser();
@@ -12,7 +13,7 @@ const ConfirmedAppointment = () => {
   const [size, setSize] = useState(6);
 
   useEffect(() => {
-    const url = `https://server.renixlaboratories.com.bd/api/v1/appointment/specific?page=${page}&&size=${size}&&doctorId=${
+    const url = `${server_url}/appointment/specific?page=${page}&&size=${size}&&doctorId=${
       userInfo?._id
     }&&appointmentStatus=${"confirmed"}`;
     fetch(url)

@@ -4,6 +4,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { TbEdit } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import Loading from "../../../shared/Loading";
+import { server_url } from "../../../Config/API";
 
 const AllSlider = () => {
   const [slide, setSlide] = useState([]);
@@ -15,7 +16,7 @@ const AllSlider = () => {
 
   const fetchSlide = () => {
     setLoading(true); // Set loading to true when fetching data
-    fetch("https://server.renixlaboratories.com.bd/api/v1/slide/getSlide")
+    fetch(`${server_url}/slide/getSlide`)
       .then((response) => response.json())
       .then((data) => {
         setSlide(data.data);
@@ -30,12 +31,9 @@ const AllSlider = () => {
 
   const handleDelete = (_id) => {
     console.log("Deleting item with ID:", _id);
-    fetch(
-      `https://server.renixlaboratories.com.bd/api/v1/slide/deleteSlide/${_id}`,
-      {
-        method: "DELETE",
-      }
-    )
+    fetch(`${server_url}/slide/deleteSlide/${_id}`, {
+      method: "DELETE",
+    })
       .then((response) => {
         console.log("Response from delete request:", response);
         if (response.ok) {

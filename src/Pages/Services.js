@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import DynamicMetaTitle from "../Components/DynamicMetaTitle";
 import useGetSeo from "../Hooks/useGetSeo";
+import { server_url } from "../Config/API";
 
 const Services = () => {
   const metaData = useGetSeo("security_page");
@@ -14,7 +15,7 @@ const Services = () => {
   };
 
   useEffect(() => {
-    const url = `https://server.renixlaboratories.com.bd/api/v1/medicine`;
+    const url = `${server_url}/medicine`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {

@@ -3,6 +3,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import DeleteHook from "../../Hooks/DeleteHook";
 import Loading from "../../shared/Loading";
+import { server_url } from "../../Config/API";
 
 function ContactRenix() {
   const [contactRenixes, setcontactRenixes] = useState([]);
@@ -16,7 +17,7 @@ function ContactRenix() {
     async function fetchcontactRenixes() {
       try {
         const response = await axios.get(
-          "https://server.renixlaboratories.com.bd/api/v1/contactRenix/getContactRenixes"
+          `${server_url}/contactRenix/getContactRenixes`
         );
         setcontactRenixes(response?.data?.data);
         setFiltecontactRenixs(response?.data?.data);
@@ -166,7 +167,7 @@ function ContactRenix() {
                     DeleteHook({
                       refetch,
                       setRefetch,
-                      url: `https://server.renixlaboratories.com.bd/api/v1/contactRenix/deleteContactRenix/${requestMedicine?._id}`,
+                      url: `${server_url}/contactRenix/deleteContactRenix/${requestMedicine?._id}`,
                     });
                   }}
                   className="border border-secondary py-2 px-3 rounded-md hover:bg-secondary/10 duration-300"

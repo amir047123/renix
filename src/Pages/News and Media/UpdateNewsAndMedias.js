@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import { singleImageUpload } from "../../Hooks/ImageUpload";
 import UpdateHooks from "../../Hooks/UpdateHooks";
+import { server_url } from "../../Config/API";
 
 const UpdateNewsAndMedias = () => {
   const { id } = useParams();
@@ -35,7 +36,7 @@ const UpdateNewsAndMedias = () => {
   useEffect(() => {
     const getNewsDetails = async () => {
       let { data } = await axios.get(
-        `https://server.renixlaboratories.com.bd/api/v1/newsAndMedia/getNewsAndMediaById/${id}`
+        `${server_url}/newsAndMedia/getNewsAndMediaById/${id}`
       );
       console.log(data.data);
       setValue("newsTitle", data?.data?.newsTitle);
@@ -66,7 +67,7 @@ const UpdateNewsAndMedias = () => {
 
     // Assuming _id is defined somewhere in the component
     await UpdateHooks(
-      `https://server.renixlaboratories.com.bd/api/v1/newsAndMedia/updateNewsAndMedia/${id}`,
+      `${server_url}/newsAndMedia/updateNewsAndMedia/${id}`,
       news,
       "successfully Update"
     );

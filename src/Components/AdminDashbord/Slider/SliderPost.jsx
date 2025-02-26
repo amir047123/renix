@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 
 import { singleImageUpload } from "../../../Hooks/ImageUpload";
 import PostHooks from "../../../Hooks/PostHooks";
+import { server_url } from "../../../Config/API";
 
 const SliderPost = ({ addSlide }) => {
   const {
@@ -30,7 +31,7 @@ const SliderPost = ({ addSlide }) => {
       link: formData.link,
     };
     await PostHooks(
-      "https://server.renixlaboratories.com.bd/api/v1/slide/addSlide",
+      `${server_url}/slide/addSlide`,
       slide,
       "Slide successfully posted"
     );

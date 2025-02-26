@@ -6,10 +6,11 @@ import DynamicMetaTitle from "../../Components/DynamicMetaTitle";
 import MyContext from "../../Utils/Context/MyContext";
 import ProductInfo from "./ProductInfo";
 import ProductTable from "./ProductTable";
+import { server_url } from "../../Config/API";
 
 const fetchProduct = async (id) => {
   const response = await fetch(
-    `https://server.renixlaboratories.com.bd/api/v1/medicine/specific?fieldName=slug&&fieldValue=${id}`
+    `${server_url}/medicine/specific?fieldName=slug&&fieldValue=${id}`
   );
   const data = await response.json();
   return data.data[0];

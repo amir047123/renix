@@ -4,17 +4,16 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import DeleteHook from "../../../Hooks/DeleteHook";
 import useGetSeo from "../../../Hooks/useGetSeo";
+import { server_url } from "../../../Config/API";
 
 const AdminAllSeoList = () => {
   const [refetch, setRefetch] = useState(false);
-  const data = useGetSeo("product_details_page");
+  useGetSeo("product_details_page");
 
   const [allSeo, setAllSeo] = useState([]);
   useEffect(() => {
     const fetchAllSeo = async () => {
-      const { data } = await axios.get(
-        "https://server.renixlaboratories.com.bd/api/v1/seo/getAllSeo"
-      );
+      const { data } = await axios.get(`${server_url}/seo/getAllSeo`);
       // console.log(data);
       setAllSeo(data?.data);
     };
@@ -93,7 +92,7 @@ const AdminAllSeoList = () => {
                         setRefetch,
                         setAllData: setAllSeo,
                         id: seo?._id,
-                        url: `https://server.renixlaboratories.com.bd/api/v1/seo/deleteSeo/${seo?._id}`,
+                        url: `${server_url}/seo/deleteSeo/${seo?._id}`,
                       });
                     }}
                     className="border border-secondary py-2 px-3 rounded-md hover:bg-secondary/10 duration-300"

@@ -4,6 +4,8 @@ import { TbEdit } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import Loading from "../../shared/Loading";
+import { server_url } from "../../Config/API";
+
 const AllMedicineCategories = () => {
   const [loading, setLoading] = useState();
 
@@ -11,7 +13,7 @@ const AllMedicineCategories = () => {
   const [category, setCategory] = useState([]);
   useEffect(() => {
     setLoading(true);
-    const url = `https://server.renixlaboratories.com.bd/api/v1/category`;
+    const url = `${server_url}/category`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -32,12 +34,9 @@ const AllMedicineCategories = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(
-          `https://server.renixlaboratories.com.bd/api/v1/category/deleteCategory/${id}`,
-          {
-            method: "DELETE",
-          }
-        ).then((res) => {
+        fetch(`${server_url}/category/deleteCategory/${id}`, {
+          method: "DELETE",
+        }).then((res) => {
           if (res.status === 200) {
             setRefresh(!refresh);
             Swal.fire("Deleted!", "Your file has been deleted.", "success");

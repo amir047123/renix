@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import PostHooks from "../../Hooks/PostHooks";
 import AuthUser from "../../Hooks/authUser";
+import { server_url } from "../../Config/API";
 
 const AppointmentForm = () => {
   const { id } = useParams();
@@ -32,7 +33,7 @@ const AppointmentForm = () => {
     event.preventDefault();
     const appointmentInfo = formData;
     await PostHooks(
-      "https://server.renixlaboratories.com.bd/api/v1/appointment/postAppointment",
+      `${server_url}/appointment/postAppointment`,
       appointmentInfo,
       "Your appointment has been sent to the doctor for review"
     );

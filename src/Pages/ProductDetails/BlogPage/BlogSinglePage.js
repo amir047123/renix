@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import SecondLoading from "../../../shared/SecondLoading";
+import { server_url } from "../../../Config/API";
 
 const BlogSinglePage = () => {
   const [blog, setBlog] = useState({});
@@ -10,9 +11,7 @@ const BlogSinglePage = () => {
   const [loading, setLoading] = useState();
   useEffect(() => {
     setLoading(true);
-    fetch(
-      `https://server.renixlaboratories.com.bd/api/v1/blogs/blogDetails/${_id}`
-    )
+    fetch(`${server_url}/blogs/blogDetails/${_id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -23,7 +22,7 @@ const BlogSinglePage = () => {
 
   useEffect(() => {
     setLoading(true);
-    const url = `https://server.renixlaboratories.com.bd/api/v1/blogs`;
+    const url = `${server_url}/blogs`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {

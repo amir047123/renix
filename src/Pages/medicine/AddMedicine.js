@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { singleImageUpload } from "../../Hooks/ImageUpload";
 import PostHooks from "../../Hooks/PostHooks";
+import { server_url } from "../../Config/API";
 
 const AddMedicine = () => {
   const [image, setImage] = useState(null);
@@ -27,7 +28,7 @@ const AddMedicine = () => {
   };
   // get category
   useEffect(() => {
-    const url = `https://server.renixlaboratories.com.bd/api/v1/category`;
+    const url = `${server_url}/category`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -72,7 +73,7 @@ const AddMedicine = () => {
 
     // post api call
     await PostHooks(
-      "https://server.renixlaboratories.com.bd/api/v1/medicine/postMedicine",
+      `${server_url}/medicine/postMedicine`,
       medicine,
       "Medicine successfully posted"
     );

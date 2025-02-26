@@ -5,6 +5,8 @@ import { TbEdit } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import Pagination from "../../shared/Pagination/Pagination";
+import { server_url } from "../../Config/API";
+
 const AllBlogs = () => {
   const [blogs, setBlogs] = useState([]);
   // for pagination
@@ -13,7 +15,7 @@ const AllBlogs = () => {
   const [size, setSize] = useState(6);
   const [refresh, setRefresh] = useState(false);
   useEffect(() => {
-    const url = `https://server.renixlaboratories.com.bd/api/v1/blogs?size=${size}&page=${page}`;
+    const url = `${server_url}/blogs?size=${size}&page=${page}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -34,12 +36,9 @@ const AllBlogs = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(
-          `https://server.renixlaboratories.com.bd/api/v1/blogs/deleteBlog/${id}`,
-          {
-            method: "DELETE",
-          }
-        ).then((res) => {
+        fetch(`${server_url}/blogs/deleteBlog/${id}`, {
+          method: "DELETE",
+        }).then((res) => {
           if (res.status === 200) {
             setRefresh(!refresh);
             Swal.fire("Deleted!", "Your file has been deleted.", "success");

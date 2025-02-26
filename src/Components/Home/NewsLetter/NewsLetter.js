@@ -1,4 +1,5 @@
 import React from "react";
+import { server_url } from "../../../Config/API";
 
 const NewsLetter = () => {
   const handleSubscriber = async (event) => {
@@ -7,7 +8,7 @@ const NewsLetter = () => {
 
     try {
       const response = await fetch(
-        "https://server.renixlaboratories.com.bd/api/v1/collectEmail/addCollectEmail",
+        `${server_url}/collectEmail/addCollectEmail`,
         {
           method: "POST",
           headers: {

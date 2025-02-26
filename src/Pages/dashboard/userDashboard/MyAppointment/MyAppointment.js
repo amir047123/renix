@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { MdPendingActions } from "react-icons/md";
 import { SiGooglemeet } from "react-icons/si";
 import AuthUser from "../../../../Hooks/authUser";
+import { server_url } from "../../../../Config/API";
+
 const MyAppointment = () => {
   const [appointment, setAppointment] = useState([]);
   const { userInfo } = AuthUser();
   useEffect(() => {
-    fetch(
-      `https://server.renixlaboratories.com.bd/api/v1/appointment/getAppointment/${userInfo?._id}`
-    )
+    fetch(`${server_url}/appointment/getAppointment/${userInfo?._id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

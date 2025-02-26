@@ -8,15 +8,16 @@ import DynamicMetaTitle from "../Components/DynamicMetaTitle";
 import CategoryItems from "../Components/Products/CategoryItems";
 import useGetSeo from "../Hooks/useGetSeo";
 import Pagination from "../shared/Pagination";
+import { server_url } from "../Config/API";
 
 const pageSize = 10; // Number of products per page
 
 const fetchProducts = async ({ queryKey }) => {
   const [_, categoryId, page] = queryKey;
-  let url = `https://server.renixlaboratories.com.bd/api/v1/medicine?size=${pageSize}&page=${page}`;
+  let url = `${server_url}/medicine?size=${pageSize}&page=${page}`;
 
   if (categoryId) {
-    url = `https://server.renixlaboratories.com.bd/api/v1/medicine/specific?fieldName=medicineCategory&fieldValue=${categoryId}&size=${pageSize}&page=${page}`;
+    url = `${server_url}/medicine/specific?fieldName=medicineCategory&fieldValue=${categoryId}&size=${pageSize}&page=${page}`;
   }
 
   const { data } = await axios.get(url);
@@ -24,9 +25,7 @@ const fetchProducts = async ({ queryKey }) => {
 };
 
 const fetchCategories = async () => {
-  const { data } = await axios.get(
-    "https://server.renixlaboratories.com.bd/api/v1/category"
-  );
+  const { data } = await axios.get(`${server_url}/category`);
   return data?.data;
 };
 

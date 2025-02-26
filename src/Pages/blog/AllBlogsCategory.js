@@ -3,11 +3,13 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { TbEdit } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import { server_url } from "../../Config/API";
+
 const AllBlogsCategory = () => {
   const [refresh, setRefresh] = useState(false);
   const [category, setCategory] = useState([]);
   useEffect(() => {
-    const url = `https://server.renixlaboratories.com.bd/api/v1/blogsCategory`;
+    const url = `${server_url}/blogsCategory`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -27,12 +29,9 @@ const AllBlogsCategory = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(
-          `https://server.renixlaboratories.com.bd/api/v1/blogsCategory/deleteBlogsCategory/${id}`,
-          {
-            method: "DELETE",
-          }
-        ).then((res) => {
+        fetch(`${server_url}/blogsCategory/deleteBlogsCategory/${id}`, {
+          method: "DELETE",
+        }).then((res) => {
           if (res.status === 200) {
             setRefresh(!refresh);
             Swal.fire("Deleted!", "Your file has been deleted.", "success");
