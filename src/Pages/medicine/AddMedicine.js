@@ -30,7 +30,6 @@ const AddMedicine = () => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
         setCategory(data?.data);
       });
   }, []);

@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const BlogCard = ({ blog }) => {
-  console.log(blog);
   const { description, title, _id } = blog;
   const des = description?.replace(/<\/?p>/g, "").slice(0, 250);
   return (

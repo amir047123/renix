@@ -10,7 +10,6 @@ const RegistrationPage = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
     const confirmPassword = e.target.confirmPassword.value;
-    console.log(fullName, email, password, confirmPassword);
     const user = { fullName, email, password, confirmPassword };
     CreateUserHook(user, navigate);
   };

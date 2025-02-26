@@ -70,19 +70,16 @@ const AdminDashboard = () => {
   //open drop down
   const handleMedicineDropdown = (e) => {
     openMedicine === true ? setOpenMedicine(false) : setOpenMedicine(true);
-    //console.log('clicked')
   };
 
   //open order drop down
   const handleOrderDropdown = (e) => {
     openOrder === true ? setOpenOrder(false) : setOpenOrder(true);
-    //console.log('clicked')
   };
 
   //open blog drop down
   const handleBlogDropdown = (e) => {
     openBlog === true ? setOpenBlog(false) : setOpenBlog(true);
-    //console.log('clicked')
   };
   const handleNewsDropdown = () => {
     openNews === true ? setOpenNews(false) : setOpenNews(true);

@@ -11,7 +11,6 @@ const ResetPassword = () => {
 
   const forgot = (data) => {
     const { email } = data;
-    console.log(email);
     localStorage.setItem("eduFixup-login-email", JSON.stringify(email));
     const baseUrl = server_url + "/user/forgot-password";
 
@@ -28,7 +27,6 @@ const ResetPassword = () => {
           swal("success", data.message, "success");
           navigate("/insert-token");
         } else {
-          console.log(data);
           swal("Oops", data.error, "error");
         }
       });

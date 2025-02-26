@@ -22,7 +22,6 @@ const ViewOrder = () => {
   if (loading) {
     return <Loading />;
   }
-  console.log(order);
   return (
     <div>
       {order ? (

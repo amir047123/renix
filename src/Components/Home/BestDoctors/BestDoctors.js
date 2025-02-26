@@ -11,12 +11,10 @@ const BestDoctors = () => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setUser(data?.data);
       });
   }, []);
   const doctors = user?.filter((item) => item?.role === "doctor");
-  console.log(doctors);
   return (
     <div className="lg:w-[90%] w-full mx-auto my-10 text-center ">
       <h1 className="text-secondary font-semibold text-3xl mt-3">

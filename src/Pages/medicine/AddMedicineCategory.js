@@ -30,7 +30,6 @@ const AddMedicineCategory = () => {
 
     metaImage,
   };
-  console.log(data);
   const handelSubmit = (e) => {
     e.preventDefault();
 

@@ -10,7 +10,6 @@ const useGetSeo = (pageName) => {
         `${server_url}/seo/specific?fieldName=page&fieldValue=${pageName}`
       );
       setGetSeo(data?.data[0]);
-      console.log(data?.data[0]);
     };
 
     fetchSeo();

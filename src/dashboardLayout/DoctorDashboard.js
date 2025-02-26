@@ -30,7 +30,6 @@ const DoctorDashboard = () => {
 
   const handleOrderDropdown = (e) => {
     openOrder === true ? setOpenOrder(false) : setOpenOrder(true);
-    //console.log('clicked')
   };
   useEffect(() => {
     const handleClickOutside = (event) => {

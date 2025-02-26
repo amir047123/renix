@@ -11,7 +11,6 @@ const MyOrders = () => {
     fetch(`${server_url}/order/getOrder/${userInfo?._id}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setOrder(data?.data);
       });
   }, [userInfo?._id]);

@@ -23,7 +23,6 @@ const WebNav = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const handleBlogDropdown = (e) => {
     openBlog === true ? setOpenBlog(false) : setOpenBlog(true);
-    //console.log('clicked')
   };
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -38,7 +37,6 @@ const WebNav = () => {
       .then((res) => res.json())
       .then((data) => setUser(data?.data));
   }, [userInfo?._id]);
-  console.log(user);
   //close sidenav when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {

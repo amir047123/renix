@@ -16,7 +16,9 @@ const AddDoctor = () => {
       doctorName: data.name,
       description: description,
     };
-    console.log(doctor);
+
+    console.error(doctor);
+    e.target.reset();
   };
   return (
     <section className="py-10 md:py-14">

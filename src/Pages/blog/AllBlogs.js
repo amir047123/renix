@@ -25,7 +25,6 @@ const AllBlogs = () => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setBlogs(data?.data);
         setQuantity(data?.total);
         setLoading(false);

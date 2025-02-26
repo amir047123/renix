@@ -244,7 +244,6 @@ const FeatureProducts = () => {
   // const handleProductClick = (productId) => {
   //     const selected = products.find((product) => product._id === productId);
   //     setSelectedProduct(selected);
-  //     console.log('Selected Product:', selected);
 
   //   };const [product, setProduct] = useState({});
 
@@ -257,7 +256,6 @@ const FeatureProducts = () => {
   //     fetch(url)
   //       .then((res) => res.json())
   //       .then((data) => {
-  //         // console.log(data);
   //         // Set the fetched data to the state variables
   //         setProduct(data?.data);
 

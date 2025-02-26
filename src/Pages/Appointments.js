@@ -16,7 +16,6 @@ const Appointments = () => {
       .then((data) => {
         setDoctors(data?.data);
         setQuantity(data?.total);
-        // console.log("data", data);
       });
   }, [page, size]);
   return (

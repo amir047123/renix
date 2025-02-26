@@ -17,15 +17,12 @@ const InsertOtp = () => {
       .then((res) => res.json())
       .then((data) => {
         setToken(data?.data?.forgetPasswordToken);
-        console.log(data?.data?.forgetPasswordToken);
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const { register, handleSubmit } = useForm();
   const handleToken = (data) => {
-    console.log("data token", data.token);
-    console.log("token", token);
     if (data.token !== token) {
       Swal.fire({
         icon: "error",

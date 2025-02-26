@@ -45,7 +45,6 @@ const MyAccount = () => {
       zipCode: data.zipCode || user.zipCode,
       img: imageUrl,
     };
-    console.log(newData);
     UpdateHooks(BASE_URL, newData, true, "Profile Updated");
   };
 

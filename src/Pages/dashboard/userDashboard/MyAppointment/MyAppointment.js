@@ -11,7 +11,6 @@ const MyAppointment = () => {
     fetch(`${server_url}/appointment/getAppointment/${userInfo?._id}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setAppointment(data?.data);
       });
   }, [userInfo?._id]);

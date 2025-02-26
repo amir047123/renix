@@ -41,12 +41,8 @@ const AdminShipping = () => {
       toast?.success(`Shipping data Updated !`);
     } else {
       try {
-        const response = await axios.post(
-          `${server_url}/shipping/addShippings`,
-          formData
-        );
+        await axios.post(`${server_url}/shipping/addShippings`, formData);
         toast.success("Shipping posted!");
-        console.log("POST request successful:", response);
       } catch (error) {
         toast?.error(error);
         console.error("Error making POST request:", error);

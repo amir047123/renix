@@ -47,7 +47,6 @@ const UpdateMedicineCategory = () => {
 
     metaImage,
   };
-  console.log(data);
   const handelSubmit = async (e) => {
     e.preventDefault();
     const updateUrl = `${server_url}/category/updateCategoryById/${id}`;

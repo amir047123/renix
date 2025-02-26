@@ -38,7 +38,6 @@ const UpdateNewsAndMedias = () => {
       let { data } = await axios.get(
         `${server_url}/newsAndMedia/getNewsAndMediaById/${id}`
       );
-      console.log(data.data);
       setValue("newsTitle", data?.data?.newsTitle);
       setValue("newsCategory", data?.data?.newsCategory);
       setValue("youtubeLink", data?.data?.youtubeLink);

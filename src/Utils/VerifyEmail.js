@@ -6,7 +6,6 @@ import { server_url } from "../Config/API";
 const VerifyEmail = () => {
   const params = useParams();
   const navigate = useNavigate();
-  console.log("params id", params.id);
   const handleVerify = () => {
     fetch(`${server_url}/user/verify?id=${params.id}`, {
       method: "PATCH",

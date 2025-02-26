@@ -20,7 +20,6 @@ const RejectedAppointment = () => {
       .then((data) => {
         setAppointment(data?.data);
         setQuantity(data?.total);
-        // console.log("data", data);
       });
   }, [page, size, userInfo?._id]);
   return (

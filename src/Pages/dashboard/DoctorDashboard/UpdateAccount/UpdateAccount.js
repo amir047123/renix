@@ -45,7 +45,6 @@ const UpdateAccount = () => {
       department: data.department || user.department,
       img: imageUrl,
     };
-    console.log(newData);
     UpdateHooks(BASE_URL, newData, true, "Profile Updated");
   };
 

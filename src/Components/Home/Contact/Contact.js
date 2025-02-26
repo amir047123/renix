@@ -21,17 +21,10 @@ const Contact = () => {
         form.current,
         "9MiE1hKbHiGAs4Uea"
       )
-      .then(
-        (result) => {
-          toast.success("Successfully Send Message");
-          // console.log(result.text);
-          console.log("Successfully message sent");
-          reset();
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
+      .then(() => {
+        toast.success("Successfully Send Message");
+        reset();
+      });
   };
 
   return (

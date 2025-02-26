@@ -13,7 +13,6 @@ const UpdateMedicine = () => {
   const [category, setCategory] = useState([]);
   const [medicine, setMedicine] = useState({});
   const [metaImage, setMetaImage] = useState("");
-  console.log(medicine);
   const handleChangeMetaImage = async (event) => {
     const image = event.target.files[0];
     const formData = new FormData();

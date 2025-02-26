@@ -14,7 +14,6 @@ const BlogSinglePage = () => {
     fetch(`${server_url}/blogs/blogDetails/${_id}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setBlog(data?.data);
         setLoading(false);
       });
@@ -26,7 +25,6 @@ const BlogSinglePage = () => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setRecent(data?.data.slice(0, 4));
         setLoading(false);
       });

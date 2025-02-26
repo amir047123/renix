@@ -33,7 +33,6 @@ const PendingAppointment = () => {
       .then((data) => {
         setAppointment(data?.data);
         setQuantity(data?.total);
-        // console.log("data", data);
       });
   }, [page, size, refresh, userInfo?._id]);
 

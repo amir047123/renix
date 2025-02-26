@@ -1,5 +1,6 @@
 import React from "react";
 import { server_url } from "../../../Config/API";
+import toast from "react-hot-toast";
 
 const NewsLetter = () => {
   const handleSubscriber = async (event) => {
@@ -19,14 +20,11 @@ const NewsLetter = () => {
       );
 
       if (response.ok) {
-        console.log("Subscription successful");
         // Reset the form
         event.target.reset();
-      } else {
-        console.error("Failed to subscribe");
       }
     } catch (error) {
-      console.error("Error:", error);
+      toast.error("Error:", error);
     }
   };
 

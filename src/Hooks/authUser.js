@@ -52,7 +52,6 @@ export default function AuthUser() {
   };
 
   const logout = () => {
-    console.log(userInfo);
     localStorage.clear();
     fetch(`${server_url}/user/delete-ip/${userInfo?._id}`, {
       method: "POST",
