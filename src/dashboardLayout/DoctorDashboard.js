@@ -70,7 +70,7 @@ const DoctorDashboard = () => {
             <div
               id="drawer-navigation"
               className="drawer_height w-1/5  z-40 fixed left-0 top-0 p-4 overflow-y-auto h-full bg-secondary dark:bg-gray-800"
-              tabindex="-1"
+              tabIndex="-1"
               aria-labelledby="drawer-navigation-label"
             >
               <div className="py-4 ">
@@ -292,7 +292,7 @@ const DoctorDashboard = () => {
                   className={`side_nav_admin block lg:hidden z-40 h-screen p-4  bg-secondary w-80 dark:bg-gray-800 ${
                     issideNavOpen === true ? "activ" : ""
                   }`}
-                  tabindex="-1"
+                  tabIndex="-1"
                 >
                   <button
                     type="button"

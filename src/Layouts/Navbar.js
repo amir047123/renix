@@ -12,7 +12,7 @@ import TopBar from "./TopBar";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false);
-  const { userInfo, logout } = AuthUser();
+  const { userInfo } = AuthUser();
 
   const navLinks = [
     { name: "Home", to: "/" },

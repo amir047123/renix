@@ -8,6 +8,7 @@ import { TbEdit } from "react-icons/tb";
 import { server_url } from "../../Config/API";
 import UpdateHooks from "../../Hooks/UpdateHooks";
 import Pagination from "../../shared/Pagination/Pagination";
+import WarningModal from "../../shared/Modals/WarningModal";
 
 // ✅ Fetch Users Function
 const fetchUsers = async ({ queryKey }) => {
@@ -26,6 +27,7 @@ const fetchUsers = async ({ queryKey }) => {
 
 const AllAccounts = () => {
   const [input, setInput] = useState("");
+  const [search, setSearch] = useState("");
   const [page, setPage] = useState(0);
   const [size, setSize] = useState(10);
 
@@ -59,16 +61,25 @@ const AllAccounts = () => {
     refetch();
   };
 
+  const [open, setOpen] = useState(false);
+  const [userId, setUserId] = useState("");
+
   // ✅ Handle User Deletion
-  const deleteUser = async (id) => {
-    const BASE_URL = `${server_url}/user/${id}`;
+  const deleteUser = async () => {
+    const BASE_URL = `${server_url}/user/${userId}`;
     await fetch(BASE_URL, { method: "DELETE" });
+    setUserId("");
+    setOpen(false);
+    // setPage(0);
     refetch();
   };
 
+  const tableHeader = ["Serial No", "Name", "Email", "Phone", "Role", "Action"];
+
   return (
     <section className="py-10 md:py-14">
-      <div className="container px-6 md:max-w-6xl w-full">
+      <WarningModal open={open} setOpen={setOpen} onConfirm={deleteUser} />
+      <div className="container px-6 md:max-w-7xl w-full">
         {/* ✅ Search Bar */}
         <form
           onSubmit={handleFilter}
@@ -79,6 +90,8 @@ const AllAccounts = () => {
               <CiSearch className="text-xl text-textColor" />
             </div>
             <input
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
               name="filter"
               type="text"
               className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full pl-10 px-2.5 py-3 border-none"
@@ -97,6 +110,7 @@ const AllAccounts = () => {
             type="button"
             onClick={() => {
               setInput("");
+              setSearch("");
               refetch();
             }}
             className="bg-red-500 text-white px-4 py-2 rounded-md"
@@ -106,43 +120,49 @@ const AllAccounts = () => {
         </form>
 
         {/* ✅ Loading State */}
-        {isLoading ? (
-          <Box className="flex justify-center items-center h-40">
-            <CircularProgress size={50} color="primary" />
-          </Box>
-        ) : (
-          <div className="relative overflow-x-auto">
-            <table className="w-full text-sm text-left text-gray-500">
-              <thead className="text-xs text-gray-700 uppercase bg-gray-50 border border-[#D0D2DA]">
+
+        <div className="relative overflow-x-auto">
+          <table className="w-full text-sm text-left text-gray-500">
+            <thead className="text-xs text-gray-700 uppercase bg-green-50 ">
+              <tr>
+                {tableHeader.map((heading, index) => (
+                  <th
+                    key={index}
+                    className={`px-6 py-4 text-[13px] font-semibold capitalize rounded-none 
+                      ${
+                        index === 0
+                          ? "rounded-l-xl"
+                          : index === tableHeader.length - 1
+                          ? "rounded-r-xl text-center"
+                          : ""
+                      }
+                    `}
+                  >
+                    {heading}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {isLoading ? (
                 <tr>
-                  {[
-                    "Serial No",
-                    "Name",
-                    "Email",
-                    "Phone",
-                    "Role",
-                    "Action",
-                  ].map((heading, index) => (
-                    <th
-                      key={index}
-                      className="px-6 py-3 text-[13px] font-medium capitalize"
-                    >
-                      {heading}
-                    </th>
-                  ))}
+                  <td colSpan={tableHeader.length}>
+                    <Box className="flex justify-center items-center h-40">
+                      <CircularProgress size={50} color="primary" />
+                    </Box>
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {users.map((user, i) => (
+              ) : (
+                users.map((user, i) => (
                   <tr
                     key={user._id}
-                    className={`border-b ${
+                    className={`${
                       user.role === "admin"
-                        ? "bg-red-100 border-red-200"
-                        : "bg-white border-[#D0D2DA]"
+                        ? "bg-red-100 border-red-200 rounded-lg"
+                        : "bg-white border-[#D0D2DA] border-b"
                     }`}
                   >
-                    <td className="px-6 py-4 font-medium text-gray-900">
+                    <td className="pl-8 pr-6 py-4 font-medium text-gray-900 rounded-l-lg">
                       {i + 1}
                     </td>
                     <td className="px-6 py-4">{user.fullName}</td>
@@ -150,9 +170,9 @@ const AllAccounts = () => {
                     <td className="px-6 py-4">{user.number}</td>
                     <td className="px-6 py-4">{user.role}</td>
 
-                    <td className="px-6 py-4">
+                    <td className="px-6 py-4 rounded-r-lg">
                       {user.role !== "admin" && (
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-3 justify-center">
                           {user.role !== "doctor" ? (
                             <button
                               onClick={() =>
@@ -182,7 +202,10 @@ const AllAccounts = () => {
                           )}
 
                           <button
-                            onClick={() => deleteUser(user._id)}
+                            onClick={() => {
+                              setUserId(user._id);
+                              setOpen(true);
+                            }}
                             className="text-red-500 bg-red-100 px-2 py-1 rounded-lg flex items-center gap-1"
                           >
                             <RiDeleteBin2Fill className="text-lg" /> Delete
@@ -191,11 +214,11 @@ const AllAccounts = () => {
                       )}
                     </td>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
 
       {/* ✅ Pagination */}
