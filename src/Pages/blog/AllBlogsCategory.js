@@ -64,7 +64,7 @@ const AllBlogsCategory = () => {
 
   return (
     <section className="py-10 md:py-14">
-      <div className="container px-6 md:max-w-6xl w-full ">
+      <div className="container px-6 md:max-w-7xl w-full ">
         <form
           onSubmit={handleFilter}
           className="flex items-center justify-end gap-3 mb-6"

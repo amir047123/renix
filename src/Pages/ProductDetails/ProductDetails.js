@@ -10,7 +10,7 @@ import { server_url } from "../../Config/API";
 
 const fetchProduct = async (id) => {
   const response = await fetch(
-    `${server_url}/medicine/specific?fieldName=slug&&fieldValue=${id}`
+    `${server_url}/medicine/specific?fieldName1=slug&&fieldValue1=${id}`
   );
   const data = await response.json();
   return data.data[0];

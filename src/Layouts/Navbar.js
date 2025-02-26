@@ -54,7 +54,7 @@ const Navbar = () => {
                     to={link.to}
                     className={({ isActive }) =>
                       `text-sm inline-flex items-center whitespace-nowrap border-r xl:px-5 px-3 border-gray text-blue-gray-700 ${
-                        isActive
+                        isActive && link.name !== "News & Media"
                           ? "text-accent font-medium"
                           : "text-gray-600 hover:text-accent"
                       }`

@@ -26,7 +26,7 @@ const AllMedicines = () => {
   const [input, setInput] = useState("");
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(0);
-  const [size, setSize] = useState(50);
+  const [size, setSize] = useState(10);
 
   // ✅ Use TanStack Query for Fetching Medicines
   const { data, isLoading, error, refetch } = useQuery({

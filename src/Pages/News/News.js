@@ -9,7 +9,7 @@ import { server_url } from "../../Config/API";
 
 const fetchNewsAndMedia = async () => {
   const response = await fetch(
-    `${server_url}/newsAndMedia/specific?fieldName=newsCategory&fieldValue=News`
+    `${server_url}/newsAndMedia/specific?fieldName1=newsCategory&fieldValue1=News`
   );
   if (!response.ok) {
     throw new Error("Failed to fetch news data.");
@@ -43,7 +43,7 @@ const News = () => {
         canonicalUrl={metaData?.canonicalUrl}
       />
 
-      <section className="flex flex-col justify-center max-w-6xl min-h-screen px-4 py-10 mx-auto sm:px-6">
+      <section className="flex flex-col max-w-6xl min-h-screen px-4 py-10 mx-auto sm:px-6">
         <div className="flex flex-wrap items-center justify-between mb-8">
           <h2 className="mr-10 text-4xl font-bold leading-none md:text-5xl text-gray-800">
             Renix Unani Laboratories Ltd Media
