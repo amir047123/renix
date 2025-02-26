@@ -20,7 +20,7 @@ const DoctorDashboardIndex = () => {
       .then((data) => {
         setPending(data?.total);
       });
-  }, []);
+  }, [userInfo?._id]);
   useEffect(() => {
     const url = `${server_url}/appointment/specific?doctorId=${
       userInfo?._id
@@ -30,7 +30,7 @@ const DoctorDashboardIndex = () => {
       .then((data) => {
         setConfirmed(data?.total);
       });
-  }, []);
+  }, [userInfo?._id]);
   useEffect(() => {
     const url = `${server_url}/appointment/specific?doctorId=${
       userInfo?._id
@@ -40,7 +40,7 @@ const DoctorDashboardIndex = () => {
       .then((data) => {
         setRejected(data?.total);
       });
-  }, []);
+  }, [userInfo?._id]);
   return (
     <section className="py-8">
       <div className="container w-full md:max-w-6xl px-8">

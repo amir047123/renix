@@ -13,7 +13,7 @@ import { server_url } from "../Config/API";
 const pageSize = 10; // Number of products per page
 
 const fetchProducts = async ({ queryKey }) => {
-  const [_, categoryId, page] = queryKey;
+  const [, categoryId, page] = queryKey;
   let url = `${server_url}/medicine?size=${pageSize}&page=${page}`;
 
   if (categoryId) {

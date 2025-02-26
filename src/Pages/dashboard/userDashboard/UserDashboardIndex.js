@@ -20,7 +20,7 @@ const AdminDashboardOverview = () => {
       .then((data) => {
         setOrder(data?.data);
       });
-  }, []);
+  }, [userInfo?._id]);
   const pending = order.filter((item) => item.orderStatus === "pending");
   const confirmed = order.filter((item) => item.orderStatus === "accept");
   useEffect(() => {
@@ -29,7 +29,7 @@ const AdminDashboardOverview = () => {
       .then((data) => {
         setAppointment(data?.data);
       });
-  }, []);
+  }, [userInfo?._id]);
 
   const pendingAppointment = appointment.filter(
     (item) => item.appointmentStatus === "pending"

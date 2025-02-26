@@ -7,9 +7,6 @@ import { server_url } from "../../Config/API";
 
 const UpdateBlogCategory = () => {
   const { id } = useParams();
-  const [loading, setLoading] = useState();
-
-  const [refresh, setRefresh] = useState(false);
   const [metaImage, setMetaImage] = useState("");
   const [formData, setFormData] = useState({
     name: "",
@@ -24,14 +21,12 @@ const UpdateBlogCategory = () => {
       [e.target.name]: e.target.value,
     });
   };
+
   useEffect(() => {
-    setLoading(true);
     const url = `${server_url}/blogsCategory/getBlogCategoryById/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        setLoading(false);
-        console.log(data, 33);
         setFormData({
           name: data?.data?.name || "",
           canonicalUrl: data?.data?.canonicalUrl || "",
@@ -40,7 +35,8 @@ const UpdateBlogCategory = () => {
           slug: data?.data?.slug || "",
         });
       });
-  }, [refresh, id]);
+  }, [id]);
+
   const handleChangeMetaImage = async (event) => {
     const image = event.target.files[0];
     const formData = new FormData();

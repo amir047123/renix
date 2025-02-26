@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { singleImageUpload } from "../../../Hooks/ImageUpload";
@@ -11,7 +11,6 @@ const SliderPost = ({ addSlide }) => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const editor = useRef(null);
   const [image, setImage] = useState("");
 
   const handleChangeUploadImage = async (event) => {

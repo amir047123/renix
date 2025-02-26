@@ -93,6 +93,7 @@ const WebNav = () => {
           <div
             ref={navWrapper}
             className={`side_nav shadow-lg shadow-gray-300 ${
+              // eslint-disable-next-line eqeqeq
               isOpen == true ? "active" : ""
             }`}
           >

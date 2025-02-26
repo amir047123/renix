@@ -1,5 +1,4 @@
 import React from "react";
-import News from "../Pages/News/News";
 import AllNews from "./News/AllNews";
 import useGetSeo from "../Hooks/useGetSeo";
 import DynamicMetaTitle from "../Components/DynamicMetaTitle";

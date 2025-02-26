@@ -7,9 +7,7 @@ import { server_url } from "../../Config/API";
 
 const UpdateMedicineCategory = () => {
   const { id } = useParams();
-  const [loading, setLoading] = useState();
 
-  const [refresh, setRefresh] = useState(false);
   const [metaImage, setMetaImage] = useState("");
   const [formData, setFormData] = useState({
     name: "",
@@ -25,13 +23,10 @@ const UpdateMedicineCategory = () => {
     });
   };
   useEffect(() => {
-    setLoading(true);
     const url = `${server_url}/category/getCategoryById/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        setLoading(false);
-
         setFormData({
           name: data?.data?.name || "",
           canonicalUrl: data?.data?.canonicalUrl || "",
@@ -40,7 +35,7 @@ const UpdateMedicineCategory = () => {
           slug: data?.data?.slug || "",
         });
       });
-  }, [refresh, id]);
+  }, [id]);
   const handleChangeMetaImage = async (event) => {
     const image = event.target.files[0];
     const formData = new FormData();

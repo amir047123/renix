@@ -22,7 +22,7 @@ const RejectedAppointment = () => {
         setQuantity(data?.total);
         // console.log("data", data);
       });
-  }, [page, size]);
+  }, [page, size, userInfo?._id]);
   return (
     <section className="py-10 md:py-14">
       <div className="container px-6 md:max-w-6xl w-full ">

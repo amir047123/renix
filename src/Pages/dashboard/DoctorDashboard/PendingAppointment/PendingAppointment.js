@@ -35,7 +35,7 @@ const PendingAppointment = () => {
         setQuantity(data?.total);
         // console.log("data", data);
       });
-  }, [page, size, refresh]);
+  }, [page, size, refresh, userInfo?._id]);
 
   const handelRejected = async (id) => {
     const BASE_URL = `${server_url}/appointment/appointmentStatus/${id}`;

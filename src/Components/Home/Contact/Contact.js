@@ -1,7 +1,6 @@
 import React from "react";
 import emailjs from "@emailjs/browser";
-import { useEffect, useRef } from "react";
-// import toast from 'react-hot-toast';
+import { useRef } from "react";
 import { useForm } from "react-hook-form";
 import { Icon } from "@iconify/react";
 import { toast } from "react-hot-toast";
@@ -11,13 +10,10 @@ const Contact = () => {
   const {
     register,
     handleSubmit,
-    control,
     reset,
     formState: { errors },
   } = useForm();
   const handleSendData = (data) => {
-    //console.log("data", data);
-
     emailjs
       .sendForm(
         "service_77t3s4k",
@@ -41,12 +37,12 @@ const Contact = () => {
   return (
     <div className=" mt-5">
       <div className=" text-center">
-      <h1 className="text-secondary font-semibold text-3xl mt-3">
-        Contact Us 
-      </h1>
-      <p className="mt-3 text-textColor">
-        Comprehensive and Personalized Care for Your Well-being{" "}
-      </p>
+        <h1 className="text-secondary font-semibold text-3xl mt-3">
+          Contact Us
+        </h1>
+        <p className="mt-3 text-textColor">
+          Comprehensive and Personalized Care for Your Well-being{" "}
+        </p>
       </div>
       <div className=" lg:w-[80%] mx-auto ">
         <div className="w-full  p-5 grid grid-cols-1 lg:grid-cols-2 gap-5">

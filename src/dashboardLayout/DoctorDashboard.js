@@ -8,7 +8,7 @@ import { FiLogIn, FiSettings } from "react-icons/fi";
 import profilePic from "../Assets/images/users/us1.jpg";
 import SearchBar from "../Components/searchBar/SearchBar";
 import Home from "../Pages/Home";
-import { FaEye, FaSitemap } from "react-icons/fa";
+import { FaEye } from "react-icons/fa";
 import AuthUser from "../Hooks/authUser";
 import { BiBorderAll } from "react-icons/bi";
 import { RxCaretDown } from "react-icons/rx";

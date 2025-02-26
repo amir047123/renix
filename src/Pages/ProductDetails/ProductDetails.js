@@ -1,9 +1,9 @@
 import { CircularProgress } from "@mui/material"; // Import MUI Circular Progress
 import { useQuery } from "@tanstack/react-query";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import DynamicMetaTitle from "../../Components/DynamicMetaTitle";
-import MyContext from "../../Utils/Context/MyContext";
+// import MyContext from "../../Utils/Context/MyContext";
 import ProductInfo from "./ProductInfo";
 import ProductTable from "./ProductTable";
 import { server_url } from "../../Config/API";
@@ -18,10 +18,10 @@ const fetchProduct = async (id) => {
 
 const ProductDetails = () => {
   const { id } = useParams();
-  const [addToCart, setAddToCart] = useState(false);
+  // const [addToCart, setAddToCart] = useState(false);
   const [activeTab, setActiveTab] = useState("tab1");
-  const [quantity, setQuantity] = useState(1);
-  const { refresh, setRefresh } = useContext(MyContext);
+  // const [quantity, setQuantity] = useState(1);
+  // const { refresh, setRefresh } = useContext(MyContext);
 
   // Fetch product data using TanStack Query
   const {
@@ -49,66 +49,73 @@ const ProductDetails = () => {
       </div>
     );
 
-  const { description, genericName, img, name, price, supplierName, _id } =
-    product || {};
+  const {
+    description,
+    genericName,
+    img,
+    name,
+    //  price,
+    supplierName,
+    // _id
+  } = product || {};
 
   // Fetch order data from localStorage
-  const order = JSON.parse(localStorage.getItem("order"))?.find(
-    (item) => item._id === _id
-  );
+  // const order = JSON.parse(localStorage.getItem("order"))?.find(
+  //   (item) => item._id === _id
+  // );
 
-  const handleCountMinus = () => {
-    if (order?.quantity === 1) {
-      setAddToCart(false);
-    } else {
-      setQuantity((prevCount) => prevCount - 1);
-    }
-  };
+  // const handleCountMinus = () => {
+  //   if (order?.quantity === 1) {
+  //     setAddToCart(false);
+  //   } else {
+  //     setQuantity((prevCount) => prevCount - 1);
+  //   }
+  // };
 
-  // Function to update localStorage for cart
-  const addOrderInLocalStorage = () => {
-    const existingOrder = JSON.parse(localStorage.getItem("order")) || [];
-    const exist = existingOrder.find((item) => item._id === _id);
+  // // Function to update localStorage for cart
+  // const addOrderInLocalStorage = () => {
+  //   const existingOrder = JSON.parse(localStorage.getItem("order")) || [];
+  //   const exist = existingOrder.find((item) => item._id === _id);
 
-    if (exist) {
-      exist.quantity += 1;
-      localStorage.setItem(
-        "order",
-        JSON.stringify(
-          existingOrder.map((item) => (item._id === _id ? exist : item))
-        )
-      );
-    } else {
-      localStorage.setItem(
-        "order",
-        JSON.stringify([...existingOrder, { ...product, quantity }])
-      );
-    }
+  //   if (exist) {
+  //     exist.quantity += 1;
+  //     localStorage.setItem(
+  //       "order",
+  //       JSON.stringify(
+  //         existingOrder.map((item) => (item._id === _id ? exist : item))
+  //       )
+  //     );
+  //   } else {
+  //     localStorage.setItem(
+  //       "order",
+  //       JSON.stringify([...existingOrder, { ...product, quantity }])
+  //     );
+  //   }
 
-    setRefresh(!refresh);
-  };
+  //   setRefresh(!refresh);
+  // };
 
-  const handleQuantity = (action) => {
-    const existingOrder = JSON.parse(localStorage.getItem("order")) || [];
-    const exist = existingOrder.find((item) => item._id === _id);
+  // const handleQuantity = (action) => {
+  //   const existingOrder = JSON.parse(localStorage.getItem("order")) || [];
+  //   const exist = existingOrder.find((item) => item._id === _id);
 
-    if (exist) {
-      if (action === "odd" && exist.quantity > 1) {
-        exist.quantity -= 1;
-      } else if (action === "even") {
-        exist.quantity += 1;
-      }
+  //   if (exist) {
+  //     if (action === "odd" && exist.quantity > 1) {
+  //       exist.quantity -= 1;
+  //     } else if (action === "even") {
+  //       exist.quantity += 1;
+  //     }
 
-      localStorage.setItem(
-        "order",
-        JSON.stringify(
-          existingOrder.map((item) => (item._id === _id ? exist : item))
-        )
-      );
-    }
+  //     localStorage.setItem(
+  //       "order",
+  //       JSON.stringify(
+  //         existingOrder.map((item) => (item._id === _id ? exist : item))
+  //       )
+  //     );
+  //   }
 
-    setRefresh(!refresh);
-  };
+  //   setRefresh(!refresh);
+  // };
 
   return (
     <>

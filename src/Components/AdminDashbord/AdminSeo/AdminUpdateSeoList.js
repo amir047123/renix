@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { toast } from "react-toastify";
 import { singleImageUpload } from "../../../Hooks/ImageUpload";
 import { server_url } from "../../../Config/API";
 import UpdateHooks from "../../../Hooks/UpdateHooks";

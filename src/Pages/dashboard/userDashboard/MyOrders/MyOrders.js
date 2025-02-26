@@ -14,7 +14,7 @@ const MyOrders = () => {
         console.log(data);
         setOrder(data?.data);
       });
-  }, []);
+  }, [userInfo?._id]);
   return (
     <section className="py-10 md:py-14">
       <div className="container px-6 md:max-w-6xl w-full ">

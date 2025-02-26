@@ -32,6 +32,7 @@ const BestDoctors = () => {
               <img
                 src={img7}
                 className="bg-primary w-12  h-12  rounded-full text-xs  ml-[150px] mt-4 text-white absolute"
+                alt="img"
               />
               <img
                 src={Data?.img ? Data.img : demoDoctor}

@@ -6,7 +6,6 @@ import { server_url } from "../../../../Config/API";
 
 const ConfirmedAppointment = () => {
   const { userInfo } = AuthUser();
-  const [refresh, setRefresh] = useState(false);
   const [appointment, setAppointment] = useState([]);
   const [quantity, setQuantity] = useState(0);
   const [page, setPage] = useState(0);
@@ -23,7 +22,7 @@ const ConfirmedAppointment = () => {
         setQuantity(data?.total);
         // console.log("data", data);
       });
-  }, [page, size, refresh]);
+  }, [page, size, userInfo?._id]);
 
   return (
     <section className="py-10 md:py-14">

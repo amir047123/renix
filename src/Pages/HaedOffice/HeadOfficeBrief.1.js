@@ -1,9 +1,7 @@
-import React from 'react';
+import React from "react";
 
 export function HeadOfficeBrief({ colors }) {
-  const {
-    primary, lightPrimary, secondLightPrimary, thirdLightPrimary, whiteSmoke, secondary, textColor, lightTextColor, darkGray, gray,
-  } = colors;
+  const { primary, whiteSmoke, textColor, gray } = colors;
 
   return (
     <div className={`bg-${whiteSmoke} py-8`}>
@@ -12,16 +10,27 @@ export function HeadOfficeBrief({ colors }) {
           Head Office
         </h2>
         <p className={`text-${gray} text-center mb-4`}>
-          Renix Unani Laboratories Limited, Fatullah 1421 Dhaka, Dhaka Division, Bangladesh
+          Renix Unani Laboratories Limited, Fatullah 1421 Dhaka, Dhaka Division,
+          Bangladesh
         </p>
         <p className={`text-center`}>
-          Hotline: <a href="tel:+8801884442022" className={`text-${primary}`}>01884442022</a>
+          Hotline:{" "}
+          <a href="tel:+8801884442022" className={`text-${primary}`}>
+            01884442022
+          </a>
         </p>
         <p className={`text-center mt-4 text-${textColor}`}>
-          Email: <a href="mailto:info@renixlaboratories.com" className={`text-${primary}`}>info@renixlaboratories.com</a>
+          Email:{" "}
+          <a
+            href="mailto:info@renixlaboratories.com"
+            className={`text-${primary}`}
+          >
+            info@renixlaboratories.com
+          </a>
         </p>
         <p className={`text-center mt-4 text-${textColor}`}>
-          Introduction: Renix Laboratories (Unani) Ltd. is contributing to healthcare by manufacturing high-quality holistic medicines.
+          Introduction: Renix Laboratories (Unani) Ltd. is contributing to
+          healthcare by manufacturing high-quality holistic medicines.
         </p>
         <div className="mt-6 flex justify-center">
           <iframe

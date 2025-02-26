@@ -1,10 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { MdOutlineCategory } from "react-icons/md";
 
 const BlogCard = ({ blog }) => {
   console.log(blog);
-  const { category, img, author, authorImg, description, title, _id } = blog;
+  const { description, title, _id } = blog;
   const des = description?.replace(/<\/?p>/g, "").slice(0, 250);
   return (
     <article class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 mb-5 ">
@@ -27,7 +26,6 @@ const BlogCard = ({ blog }) => {
         </span>
       </div>
 
-   
       <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900  dark:text-white">
         {title}
       </h2>

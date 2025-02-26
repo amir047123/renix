@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const HeadOfficeComponent = () => {
   const colors = {
@@ -12,29 +12,39 @@ const HeadOfficeComponent = () => {
     textColor: "#3B4D36",
     lightTextColor: "#6C7968",
     darkGray: "#9DA69B",
-    gray: "#CED2CD"
+    gray: "#CED2CD",
   };
 
-  const { whiteSmoke, textColor, gray, primary } = colors;
+  const { whiteSmoke } = colors;
 
   return (
     <div className={`bg-${whiteSmoke} py-8`}>
-      
       <div>
-        <h1 className='text-center'>  Head Office </h1>
+        <h1 className="text-center"> Head Office </h1>
       </div>
       <div className="card">
-      <h2>Renix Laboratories (Unani) Ltd.</h2>
-      <p>
-        Renix Laboratories (Unani) Ltd. is contributing to healthcare by producing high-quality complete medicine with all-natural herbs. In the face of increasing antibiotic resistance and the side effects of medicines, alternative medicine has garnered worldwide interest. By modernizing the scientific method through extensive research on the Unani treatment system from 5000 years ago, Unani treatment has proven to be successful and effective without side effects.
-      </p>
-      <p>
-        The Hon'ble Prime Minister of Bangladesh has recognized the importance of herbal medicine production by making timely decisions. Approximately 350 Unani and Ayurvedic doctors have been appointed in all hospitals and upazila health complexes of Bangladesh, with recruitment underway for remaining upazilas. Renix Laboratories has appointed around 20 doctors permanently, who are providing Unani health services in remote areas of the country.
-      </p>
-    </div>
+        <h2>Renix Laboratories (Unani) Ltd.</h2>
+        <p>
+          Renix Laboratories (Unani) Ltd. is contributing to healthcare by
+          producing high-quality complete medicine with all-natural herbs. In
+          the face of increasing antibiotic resistance and the side effects of
+          medicines, alternative medicine has garnered worldwide interest. By
+          modernizing the scientific method through extensive research on the
+          Unani treatment system from 5000 years ago, Unani treatment has proven
+          to be successful and effective without side effects.
+        </p>
+        <p>
+          The Hon'ble Prime Minister of Bangladesh has recognized the importance
+          of herbal medicine production by making timely decisions.
+          Approximately 350 Unani and Ayurvedic doctors have been appointed in
+          all hospitals and upazila health complexes of Bangladesh, with
+          recruitment underway for remaining upazilas. Renix Laboratories has
+          appointed around 20 doctors permanently, who are providing Unani
+          health services in remote areas of the country.
+        </p>
+      </div>
 
       <div className="container mx-auto px-4">
-        
         <div className="mt-6 flex justify-center">
           <iframe
             title="Google Map"

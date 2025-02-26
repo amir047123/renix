@@ -42,7 +42,7 @@ const RenixOverview = () => {
     setElement(document.getElementById("specializedProducts"));
   }, []);
 
-  const { data, isLoading } = useQuery({
+  const { data } = useQuery({
     queryKey: ["medicine", 1],
     queryFn: fetchMedicines,
     keepPreviousData: true, // Keeps previous data while fetching new data

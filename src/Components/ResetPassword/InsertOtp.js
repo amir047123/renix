@@ -19,13 +19,10 @@ const InsertOtp = () => {
         setToken(data?.data?.forgetPasswordToken);
         console.log(data?.data?.forgetPasswordToken);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
   const handleToken = (data) => {
     console.log("data token", data.token);
     console.log("token", token);

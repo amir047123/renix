@@ -1,4 +1,3 @@
-import { Markup } from "interweave";
 import JoditEditor from "jodit-react";
 import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -18,7 +17,6 @@ const AddMedicine = () => {
   const editor = useRef(null);
   //description content
   const [content, setContent] = useState("");
-  const parsed = <Markup content={content} />;
   const [metaImage, setMetaImage] = useState("");
   const handleChangeMetaImage = async (event) => {
     const image = event.target.files[0];

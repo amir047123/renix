@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { TbCurrencyTaka } from "react-icons/tb";
 import { Link } from "react-router-dom";
 
@@ -27,9 +27,6 @@ import img21 from "../Assets/images/Products/21. RENIX-GINSENG-SYRUP.png";
 // import { server_url } from "../Config/API";
 
 const FeatureProducts = () => {
-  const [displayButton, setDisplayButton] = useState("");
-  const [selectedProduct, setSelectedProduct] = useState(null);
-
   const products = [
     {
       _id: 1,

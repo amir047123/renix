@@ -21,6 +21,7 @@ const PendingOrders = () => {
 
   useEffect(() => {
     fetchNewsAndMedia();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [size, page, input, refresh]);
 
   const fetchNewsAndMedia = () => {

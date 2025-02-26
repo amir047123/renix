@@ -17,13 +17,7 @@ const SetNewPassword = () => {
         setUser(data);
       });
   }, [email]);
-  // const [user, setUser] = useState(null);
-  console.log(user);
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const handleResetPassword = (data) => {
     const updatedPassword = {

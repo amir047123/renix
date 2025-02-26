@@ -1,14 +1,11 @@
-import React, { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import AuthUser from "../../Hooks/authUser";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const { http, setToken, getToken, userInfo, userIp } = AuthUser();
-  const [loading, setLoading] = useState(false);
-  const location = useLocation();
-  const from = location?.state?.from?.pathname || "/";
+  const { http, setToken } = AuthUser();
 
   const handelSubmit = (e) => {
     e.preventDefault();
@@ -18,7 +15,6 @@ const LoginPage = () => {
       .post("/user/login", { email: email, password: password })
       .then((res) => {
         if (res?.data?.status === "success") {
-    
           swal("Success", "Successfully Login ", "success");
           setToken(
             res.data.data.user.email,
@@ -27,18 +23,11 @@ const LoginPage = () => {
             res.data.data.user,
             res.data.data.userIp
           );
-          setLoading(false);
           navigate(`/${res?.data?.data?.user?.role}Dashboard`);
           window.location.reload();
-       
-        } else {
-          setLoading(false);
-          // console.log("rrrrrr");
         }
       })
       .catch((err) => {
-        console.log("Error", err.response.data.message);
-        setLoading(false);
         if (
           err.response.data.message ===
           "No user Found. Please Create an account"

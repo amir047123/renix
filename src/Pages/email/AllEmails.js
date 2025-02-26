@@ -19,6 +19,7 @@ const AllEmails = () => {
 
   useEffect(() => {
     fetchEmails();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [size, page, input, refresh]);
 
   const fetchEmails = () => {

@@ -9,7 +9,7 @@ import { disctricData } from "../../../../Utils/DistricData";
 const UpdateAccount = () => {
   const [imageUrl, setMyImageUrl] = useState(null);
   const { userInfo } = AuthUser();
-  const [user, setUser] = useState({});
+  const [user] = useState({});
 
   const BASE_URL = `${server_url}/user/${userInfo?._id}`;
   // useEffect(() => {
@@ -33,9 +33,6 @@ const UpdateAccount = () => {
   //---------------------update profile-------------
   const handleUpdateProfile = async (data) => {
     data.imageURL = imageUrl;
-
-    const { email, ...others } = data;
-    console.log(data);
 
     const newData = {
       number: data.number || user.number,
