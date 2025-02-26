@@ -1,17 +1,29 @@
 import React, { useEffect, useRef, useState } from "react";
 import { BiBorderAll } from "react-icons/bi";
 import { FiLogIn, FiUsers } from "react-icons/fi";
-import { TbMedicineSyrup } from "react-icons/tb";
+import {
+  TbCategory,
+  TbHistory,
+  TbMedicineSyrup,
+  TbNews,
+  TbSeo,
+} from "react-icons/tb";
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import logo from "../Assets/images/logo.svg";
 import "./AdminDashboard.css";
 
 import { FiSettings } from "react-icons/fi";
-import { IoMdNotificationsOutline } from "react-icons/io";
 import {
+  IoMdAddCircleOutline,
+  IoMdCloseCircle,
+  IoMdNotificationsOutline,
+} from "react-icons/io";
+import {
+  MdOutlineAddComment,
   MdOutlineArticle,
   MdOutlineDashboardCustomize,
   MdOutlineMailOutline,
+  MdOutlinePendingActions,
 } from "react-icons/md";
 import { RxCaretDown, RxDashboard } from "react-icons/rx";
 
@@ -19,8 +31,15 @@ import profilePic from "../Assets/images/users/us1.jpg";
 import SearchBar from "../Components/searchBar/SearchBar";
 import AuthUser from "../Hooks/authUser";
 import Home from "../Pages/Home";
-import { RiMedicineBottleLine } from "react-icons/ri";
-import { GiMedicines } from "react-icons/gi";
+import {
+  RiAddBoxFill,
+  RiGalleryFill,
+  RiImageAddLine,
+  RiMedicineBottleLine,
+  RiNewspaperLine,
+} from "react-icons/ri";
+import { GiConfirmed, GiMedicines } from "react-icons/gi";
+import { FaImages, FaNewspaper } from "react-icons/fa";
 
 const AdminDashboard = () => {
   const { userInfo, logout } = AuthUser();
@@ -260,7 +279,7 @@ const AdminDashboard = () => {
                     >
                       <div className="flex items-center gap-4">
                         <span className="text-lg">
-                          <BiBorderAll />
+                          <TbHistory />
                         </span>
 
                         <span className="">Orders</span>
@@ -286,6 +305,9 @@ const AdminDashboard = () => {
                             isActive ? activeStyle : undefined
                           }
                         >
+                          <span className="text-lg ml-2">
+                            <MdOutlinePendingActions />
+                          </span>
                           <span className="ml-3">Pending Orders</span>
                         </NavLink>
                       </li>
@@ -297,6 +319,9 @@ const AdminDashboard = () => {
                             isActive ? activeStyle : undefined
                           }
                         >
+                          <span className="text-lg ml-2">
+                            <GiConfirmed />
+                          </span>
                           <span className="ml-3">Confirmed Orders</span>
                         </NavLink>
                       </li>
@@ -308,6 +333,9 @@ const AdminDashboard = () => {
                             isActive ? activeStyle : undefined
                           }
                         >
+                          <span className="text-lg ml-2">
+                            <IoMdCloseCircle />
+                          </span>
                           <span className="ml-3">Rejected Orders</span>
                         </NavLink>
                       </li>
@@ -321,7 +349,7 @@ const AdminDashboard = () => {
                     >
                       <div className="flex items-center gap-4">
                         <span className="text-lg">
-                          <BiBorderAll />
+                          <FaNewspaper />
                         </span>
 
                         <span className="">News And Media</span>
@@ -347,6 +375,9 @@ const AdminDashboard = () => {
                             isActive ? activeStyle : undefined
                           }
                         >
+                          <span className="text-lg ml-2">
+                            <MdOutlineAddComment />
+                          </span>
                           <span className="ml-3"> Add News And Media</span>
                         </NavLink>
                       </li>
@@ -358,6 +389,9 @@ const AdminDashboard = () => {
                             isActive ? activeStyle : undefined
                           }
                         >
+                          <span className="text-lg ml-2">
+                            <TbNews />
+                          </span>
                           <span className="ml-3">All News And Media</span>
                         </NavLink>
                       </li>
@@ -371,7 +405,7 @@ const AdminDashboard = () => {
                     >
                       <div className="flex items-center gap-4">
                         <span className="text-lg">
-                          <BiBorderAll />
+                          <FaImages />
                         </span>
 
                         <span className="">Sliders</span>
@@ -397,6 +431,10 @@ const AdminDashboard = () => {
                             isActive ? activeStyle : undefined
                           }
                         >
+                          <span className="text-lg ml-2">
+                            <RiImageAddLine />
+                          </span>
+
                           <span className="ml-3"> Add Slider</span>
                         </NavLink>
                       </li>
@@ -408,6 +446,10 @@ const AdminDashboard = () => {
                             isActive ? activeStyle : undefined
                           }
                         >
+                          <span className="text-lg ml-2">
+                            <RiGalleryFill />
+                          </span>
+
                           <span className="ml-3">All Sliders</span>
                         </NavLink>
                       </li>
@@ -447,6 +489,9 @@ const AdminDashboard = () => {
                             isActive ? activeStyle : undefined
                           }
                         >
+                          <span className="text-lg ml-2">
+                            <MdOutlineDashboardCustomize />
+                          </span>
                           <span className="ml-3">Add Category</span>
                         </NavLink>
                       </li>
@@ -458,7 +503,10 @@ const AdminDashboard = () => {
                             isActive ? activeStyle : undefined
                           }
                         >
-                          <span className="ml-3">all Blogs Category</span>
+                          <span className="text-lg ml-2">
+                            <RxDashboard />
+                          </span>
+                          <span className="ml-3">All Blogs Category</span>
                         </NavLink>
                       </li>
                       <li>
@@ -469,6 +517,9 @@ const AdminDashboard = () => {
                             isActive ? activeStyle : undefined
                           }
                         >
+                          <span className="text-lg ml-2">
+                            <RiAddBoxFill />
+                          </span>
                           <span className="ml-3">Add Blog</span>
                         </NavLink>
                       </li>
@@ -480,6 +531,9 @@ const AdminDashboard = () => {
                             isActive ? activeStyle : undefined
                           }
                         >
+                          <span className="text-lg ml-2">
+                            <RiNewspaperLine />
+                          </span>
                           <span className="ml-3">All Blogs</span>
                         </NavLink>
                       </li>
@@ -521,7 +575,7 @@ const AdminDashboard = () => {
                     >
                       <div className="flex items-center gap-4">
                         <span className="text-lg">
-                          <BiBorderAll />
+                          <TbSeo />
                         </span>
 
                         <span className="">SEO</span>
@@ -547,6 +601,9 @@ const AdminDashboard = () => {
                             isActive ? activeStyle : undefined
                           }
                         >
+                          <span className="text-lg ml-2">
+                            <IoMdAddCircleOutline />
+                          </span>
                           <span className="ml-3"> Add Seo</span>
                         </NavLink>
                       </li>
@@ -558,6 +615,9 @@ const AdminDashboard = () => {
                             isActive ? activeStyle : undefined
                           }
                         >
+                          <span className="text-lg ml-2">
+                            <TbCategory />
+                          </span>
                           <span className="ml-3">All Seo</span>
                         </NavLink>
                       </li>
