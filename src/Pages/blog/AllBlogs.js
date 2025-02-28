@@ -1,13 +1,13 @@
+import { Box, CircularProgress } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { CiSearch } from "react-icons/ci";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { TbEdit } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-import Pagination from "../../shared/Pagination/Pagination";
 import { server_url } from "../../Config/API";
-import { Box, CircularProgress } from "@mui/material";
-import toast from "react-hot-toast";
+import Pagination from "../../shared/Pagination/Pagination";
 
 const AllBlogs = () => {
   const [blogs, setBlogs] = useState([]);
@@ -20,12 +20,8 @@ const AllBlogs = () => {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-<<<<<<< HEAD
-    const url = `http://localhost:3001/api/v1/blogs?size=${size}&page=${page}`;
-=======
     const url = `${server_url}/blogs?size=${size}&page=${page}&filter=${input}`;
     setLoading(true);
->>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -51,11 +47,7 @@ const AllBlogs = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-<<<<<<< HEAD
-        fetch(`http://localhost:3001/api/v1/blogs/deleteBlog/${id}`, {
-=======
         fetch(`${server_url}/blogs/deleteBlog/${id}`, {
->>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
           method: "DELETE",
         }).then((res) => {
           if (res.status === 200) {

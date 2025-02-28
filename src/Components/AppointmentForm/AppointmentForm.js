@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { server_url } from "../../Config/API";
 import PostHooks from "../../Hooks/PostHooks";
 import AuthUser from "../../Hooks/authUser";
-import { server_url } from "../../Config/API";
 
 const AppointmentForm = () => {
   const { id } = useParams();
@@ -34,11 +34,7 @@ const AppointmentForm = () => {
     event.preventDefault();
     const appointmentInfo = formData;
     await PostHooks(
-<<<<<<< HEAD
-      "http://localhost:3001/api/v1/appointment/postAppointment",
-=======
       `${server_url}/appointment/postAppointment`,
->>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
       appointmentInfo,
       "Your appointment has been sent to the doctor for review"
     );

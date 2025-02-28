@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import SecondLoading from "../../../shared/SecondLoading";
 import { server_url } from "../../../Config/API";
+import SecondLoading from "../../../shared/SecondLoading";
 
 const BlogSinglePage = () => {
   const [blog, setBlog] = useState({});
@@ -11,11 +11,7 @@ const BlogSinglePage = () => {
   const [loading, setLoading] = useState();
   useEffect(() => {
     setLoading(true);
-<<<<<<< HEAD
-    fetch(`http://localhost:3001/api/v1/blogs/blogDetails/${_id}`)
-=======
     fetch(`${server_url}/blogs/blogDetails/${_id}`)
->>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
       .then((res) => res.json())
       .then((data) => {
         setBlog(data?.data);
@@ -25,11 +21,7 @@ const BlogSinglePage = () => {
 
   useEffect(() => {
     setLoading(true);
-<<<<<<< HEAD
-    const url = `http://localhost:3001/api/v1/blogs`;
-=======
     const url = `${server_url}/blogs`;
->>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
     fetch(url)
       .then((res) => res.json())
       .then((data) => {

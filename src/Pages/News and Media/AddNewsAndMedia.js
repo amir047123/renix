@@ -1,9 +1,9 @@
 import JoditEditor from "jodit-react";
 import React, { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
+import { server_url } from "../../Config/API";
 import { singleImageUpload } from "../../Hooks/ImageUpload";
 import PostHooks from "../../Hooks/PostHooks";
-import { server_url } from "../../Config/API";
 
 const AddNewsAndMedia = () => {
   const {
@@ -46,11 +46,7 @@ const AddNewsAndMedia = () => {
 
     // post api call
     await PostHooks(
-<<<<<<< HEAD
-      "http://localhost:3001/api/v1/newsAndMedia/addNewsAndMedia",
-=======
       `${server_url}/newsAndMedia/addNewsAndMedia`,
->>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
       news,
       "Medicine successfully posted"
     );

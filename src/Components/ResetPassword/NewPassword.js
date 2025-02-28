@@ -11,11 +11,7 @@ const SetNewPassword = () => {
   const [user, setUser] = useState({});
   const email = JSON.parse(loginEmail);
   useEffect(() => {
-<<<<<<< HEAD
-    fetch(`http://localhost:3001/api/v1/user/by-email?email=${email}`)
-=======
     fetch(`${server_url}/user/by-email?email=${email}`)
->>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
       .then((res) => res.json())
       .then((data) => {
         setUser(data);

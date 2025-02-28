@@ -4,16 +4,12 @@ import React from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import DynamicMetaTitle from "../../Components/DynamicMetaTitle";
-import useGetSeo from "../../Hooks/useGetSeo";
 import { server_url } from "../../Config/API";
+import useGetSeo from "../../Hooks/useGetSeo";
 
 const fetchNewsAndMedia = async () => {
   const response = await fetch(
-<<<<<<< HEAD
-    "http://localhost:3001/api/v1/newsAndMedia/specific?fieldName=newsCategory&fieldValue=News"
-=======
     `${server_url}/newsAndMedia/specific?fieldName1=newsCategory&fieldValue1=News`
->>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
   );
   if (!response.ok) {
     throw new Error("Failed to fetch news data.");

@@ -1,12 +1,12 @@
+import { Box, CircularProgress } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { CiSearch } from "react-icons/ci";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { TbEdit } from "react-icons/tb";
 import { Link } from "react-router-dom";
-import { server_url } from "../../Config/API";
 import Swal from "sweetalert2";
-import { CiSearch } from "react-icons/ci";
-import { Box, CircularProgress } from "@mui/material";
+import { server_url } from "../../Config/API";
 import Pagination from "../../shared/Pagination/Pagination";
 
 const AllNewsAndMedias = () => {
@@ -26,13 +26,9 @@ const AllNewsAndMedias = () => {
 
   const fetchNewsAndMedia = () => {
     setLoading(true); // Set loading to true when fetching data
-<<<<<<< HEAD
-    fetch("http://localhost:3001/api/v1/newsAndMedia/getNewsAndMedia")
-=======
     fetch(
       `${server_url}/newsAndMedia/getNewsAndMedia?size=${size}&page=${page}&filter=${input}`
     )
->>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
       .then((response) => response.json())
       .then((data) => {
         setNewsAndMedia(data.data);
@@ -46,14 +42,6 @@ const AllNewsAndMedias = () => {
       });
   };
 
-<<<<<<< HEAD
-  const handleDelete = (_id) => {
-    console.log("Deleting item with ID:", _id);
-    fetch(
-      `http://localhost:3001/api/v1/newsAndMedia/deleteNewsAndMedia/${_id}`,
-      {
-        method: "DELETE",
-=======
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -73,7 +61,6 @@ const AllNewsAndMedias = () => {
             Swal.fire("Deleted!", "Your file has been deleted.", "success");
           }
         });
->>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
       }
     });
   };

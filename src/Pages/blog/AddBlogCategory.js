@@ -1,7 +1,7 @@
 import React, { useState } from "react";
+import { server_url } from "../../Config/API";
 import { singleImageUpload } from "../../Hooks/ImageUpload";
 import PostHooks from "../../Hooks/PostHooks";
-import { server_url } from "../../Config/API";
 
 const AddBlogCategory = () => {
   const [metaImage, setMetaImage] = useState("");
@@ -32,11 +32,7 @@ const AddBlogCategory = () => {
   const handelSubmit = (e) => {
     e.preventDefault();
     PostHooks(
-<<<<<<< HEAD
-      "http://localhost:3001/api/v1/blogsCategory",
-=======
       `${server_url}/blogsCategory`,
->>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
       data,
       "Category successfully posted"
     );

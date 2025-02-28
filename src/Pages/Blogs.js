@@ -3,20 +3,14 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import DynamicMetaTitle from "../Components/DynamicMetaTitle";
+import { server_url } from "../Config/API";
 import useGetSeo from "../Hooks/useGetSeo";
 import Pagination from "../shared/Pagination/Pagination";
 import BlogCard from "./ProductDetails/BlogPage/BlogCard";
-import { server_url } from "../Config/API";
 
 const fetchBlogs = async ({ queryKey }) => {
   const [, page, size] = queryKey;
-<<<<<<< HEAD
-  const response = await fetch(
-    `http://localhost:3001/api/v1/blogs?size=${size}&page=${page}`
-  );
-=======
   const response = await fetch(`${server_url}/blogs?size=${size}&page=${page}`);
->>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
   if (!response.ok) {
     throw new Error("Failed to fetch blogs.");
   }

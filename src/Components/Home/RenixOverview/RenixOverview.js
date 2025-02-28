@@ -1,3 +1,4 @@
+import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 import {
   BsArrowRight,
@@ -14,7 +15,6 @@ import bg from "../../../Assets/images/overview-bg.svg";
 import support from "../../../Assets/images/support.svg";
 import time from "../../../Assets/images/time.svg";
 import { server_url } from "../../../Config/API";
-import { useQuery } from "@tanstack/react-query";
 
 const fetchMedicines = async () => {
   const response = await fetch(

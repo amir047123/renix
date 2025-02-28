@@ -2,9 +2,9 @@ import React from "react";
 import { FiSend } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import DynamicMetaTitle from "../Components/DynamicMetaTitle";
+import { server_url } from "../Config/API";
 import useGetSeo from "../Hooks/useGetSeo";
 import "./Contact.css";
-import { server_url } from "../Config/API";
 
 const Contact = () => {
   const metaData = useGetSeo("contact_page");
@@ -20,11 +20,7 @@ const Contact = () => {
     try {
       // Make the API call to addContactRenixes using fetch
       const response = await fetch(
-<<<<<<< HEAD
-        "http://localhost:3001/api/v1/contactRenix/addContactRenix",
-=======
         `${server_url}/contactRenix/addContactRenix`,
->>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
         {
           method: "POST",
           headers: {

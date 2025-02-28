@@ -53,11 +53,7 @@ export default function AuthUser() {
 
   const logout = () => {
     localStorage.clear();
-<<<<<<< HEAD
-    fetch(`http://localhost:3001/api/v1/user/delete-ip/${userInfo?._id}`, {
-=======
     fetch(`${server_url}/user/delete-ip/${userInfo?._id}`, {
->>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -73,11 +69,7 @@ export default function AuthUser() {
   };
 
   const http = axios.create({
-<<<<<<< HEAD
-    baseURL: "http://localhost:3001/api/v1",
-=======
     baseURL: server_url,
->>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
     headers: {
       "Content-type": "application/json",
       Authorization: `Bearer ${token}`,
