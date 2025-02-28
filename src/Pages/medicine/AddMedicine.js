@@ -27,7 +27,7 @@ const AddMedicine = () => {
   };
   // get category
   useEffect(() => {
-    const url = `https://server.renixlaboratories.com.bd/api/v1/category`;
+    const url = `http://localhost:3001/api/v1/category`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -72,7 +72,7 @@ const AddMedicine = () => {
 
     // post api call
     await PostHooks(
-      "https://server.renixlaboratories.com.bd/api/v1/medicine/postMedicine",
+      "http://localhost:3001/api/v1/medicine/postMedicine",
       medicine,
       "Medicine successfully posted"
     );

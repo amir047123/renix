@@ -30,7 +30,7 @@ const SliderPost = ({ addSlide }) => {
       link: formData.link,
     };
     await PostHooks(
-      "https://server.renixlaboratories.com.bd/api/v1/slide/addSlide",
+      "http://localhost:3001/api/v1/slide/addSlide",
       slide,
       "Slide successfully posted"
     );

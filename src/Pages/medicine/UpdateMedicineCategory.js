@@ -25,7 +25,7 @@ const UpdateMedicineCategory = () => {
   };
   useEffect(() => {
     setLoading(true);
-    const url = `https://server.renixlaboratories.com.bd/api/v1/category/getCategoryById/${id}`;
+    const url = `http://localhost:3001/api/v1/category/getCategoryById/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -54,7 +54,7 @@ const UpdateMedicineCategory = () => {
   console.log(data);
   const handelSubmit = async (e) => {
     e.preventDefault();
-    const updateUrl = `https://server.renixlaboratories.com.bd/api/v1/category/updateCategoryById/${id}`;
+    const updateUrl = `http://localhost:3001/api/v1/category/updateCategoryById/${id}`;
     await UpdateHooks(
       updateUrl,
       data,

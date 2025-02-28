@@ -32,7 +32,7 @@ const AppointmentForm = () => {
     event.preventDefault();
     const appointmentInfo = formData;
     await PostHooks(
-      "https://server.renixlaboratories.com.bd/api/v1/appointment/postAppointment",
+      "http://localhost:3001/api/v1/appointment/postAppointment",
       appointmentInfo,
       "Your appointment has been sent to the doctor for review"
     );

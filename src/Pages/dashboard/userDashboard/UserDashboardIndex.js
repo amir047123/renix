@@ -14,9 +14,7 @@ const AdminDashboardOverview = () => {
   const [appointment, setAppointment] = useState([]);
   const { userInfo } = AuthUser();
   useEffect(() => {
-    fetch(
-      `https://server.renixlaboratories.com.bd/api/v1/order/getOrder/${userInfo?._id}`
-    )
+    fetch(`http://localhost:3001/api/v1/order/getOrder/${userInfo?._id}`)
       .then((res) => res.json())
       .then((data) => {
         setOrder(data?.data);
@@ -26,7 +24,7 @@ const AdminDashboardOverview = () => {
   const confirmed = order.filter((item) => item.orderStatus === "accept");
   useEffect(() => {
     fetch(
-      `https://server.renixlaboratories.com.bd/api/v1/appointment/getAppointment/${userInfo?._id}`
+      `http://localhost:3001/api/v1/appointment/getAppointment/${userInfo?._id}`
     )
       .then((res) => res.json())
       .then((data) => {

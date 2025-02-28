@@ -15,7 +15,7 @@ const AllSlider = () => {
 
   const fetchSlide = () => {
     setLoading(true); // Set loading to true when fetching data
-    fetch("https://server.renixlaboratories.com.bd/api/v1/slide/getSlide")
+    fetch("http://localhost:3001/api/v1/slide/getSlide")
       .then((response) => response.json())
       .then((data) => {
         setSlide(data.data);
@@ -30,12 +30,9 @@ const AllSlider = () => {
 
   const handleDelete = (_id) => {
     console.log("Deleting item with ID:", _id);
-    fetch(
-      `https://server.renixlaboratories.com.bd/api/v1/slide/deleteSlide/${_id}`,
-      {
-        method: "DELETE",
-      }
-    )
+    fetch(`http://localhost:3001/api/v1/slide/deleteSlide/${_id}`, {
+      method: "DELETE",
+    })
       .then((response) => {
         console.log("Response from delete request:", response);
         if (response.ok) {

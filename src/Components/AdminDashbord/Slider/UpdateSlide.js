@@ -27,7 +27,7 @@ const UpdateSlide = () => {
   useEffect(() => {
     const getSlideDetails = async () => {
       let { data } = await axios.get(
-        `https://server.renixlaboratories.com.bd/api/v1/slide/getSlideById/${id}`
+        `http://localhost:3001/api/v1/slide/getSlideById/${id}`
       );
 
       setValue("title", data?.data?.title);
@@ -53,7 +53,7 @@ const UpdateSlide = () => {
 
     // Assuming _id is defined somewhere in the component
     await UpdateHooks(
-      `https://server.renixlaboratories.com.bd/api/v1/slide/updateSlide/${id}`,
+      `http://localhost:3001/api/v1/slide/updateSlide/${id}`,
       slide,
       "successfully Update"
     );

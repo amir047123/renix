@@ -13,9 +13,7 @@ const AdminShipping = () => {
 
   //   load data
   useEffect(() => {
-    fetch(
-      `https://server.renixlaboratories.com.bd/api/v1/shipping/getShippings`
-    )
+    fetch(`http://localhost:3001/api/v1/shipping/getShippings`)
       .then((res) => res.json())
       .then((data) => {
         if (data?.data.length) {
@@ -36,14 +34,14 @@ const AdminShipping = () => {
 
     if (formData?._id) {
       await UpdateHooks(
-        `https://server.renixlaboratories.com.bd/api/v1/shipping/updateShippings/${formData?._id}`,
+        `http://localhost:3001/api/v1/shipping/updateShippings/${formData?._id}`,
         formData
       );
       toast?.success(`Shipping data Updated !`);
     } else {
       try {
         const response = await axios.post(
-          "https://server.renixlaboratories.com.bd/api/v1/shipping/addShippings",
+          "http://localhost:3001/api/v1/shipping/addShippings",
           formData
         );
         toast.success("Shipping posted!");

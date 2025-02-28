@@ -15,9 +15,7 @@ const Checkout = () => {
   const [shipping, setShipping] = useState([]);
 
   useEffect(() => {
-    fetch(
-      `https://server.renixlaboratories.com.bd/api/v1/shipping/getShippings`
-    )
+    fetch(`http://localhost:3001/api/v1/shipping/getShippings`)
       .then((res) => res.json())
       .then((data) => {
         if (data?.data.length) {
@@ -70,7 +68,7 @@ const Checkout = () => {
     };
 
     await PostHooks(
-      "https://server.renixlaboratories.com.bd/api/v1/order/addOrder",
+      "http://localhost:3001/api/v1/order/addOrder",
       { customerDetails, order, customerId, subTotal },
       "order successfully submitted"
     );
