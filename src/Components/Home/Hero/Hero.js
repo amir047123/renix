@@ -6,10 +6,11 @@ import { Autoplay, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { server_url } from "../../../Config/API";
 
 // ✅ Fetch Slides Function
 const fetchSlides = async () => {
-  const response = await fetch("http://localhost:3001/api/v1/slide/getSlide");
+  const response = await fetch(`${server_url}/slide/getSlide`);
   if (!response.ok) {
     throw new Error("Failed to fetch slides");
   }

@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 
 import { useParams } from "react-router-dom";
+import { server_url } from "../../Config/API";
 import { singleImageUpload } from "../../Hooks/ImageUpload";
 import UpdateHooks from "../../Hooks/UpdateHooks";
 
 const UpdateMedicineCategory = () => {
   const { id } = useParams();
-  const [loading, setLoading] = useState();
 
-  const [refresh, setRefresh] = useState(false);
   const [metaImage, setMetaImage] = useState("");
   const [formData, setFormData] = useState({
     name: "",
@@ -24,13 +23,10 @@ const UpdateMedicineCategory = () => {
     });
   };
   useEffect(() => {
-    setLoading(true);
-    const url = `http://localhost:3001/api/v1/category/getCategoryById/${id}`;
+    const url = `${server_url}/category/getCategoryById/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        setLoading(false);
-
         setFormData({
           name: data?.data?.name || "",
           canonicalUrl: data?.data?.canonicalUrl || "",
@@ -39,7 +35,7 @@ const UpdateMedicineCategory = () => {
           slug: data?.data?.slug || "",
         });
       });
-  }, [refresh, id]);
+  }, [id]);
   const handleChangeMetaImage = async (event) => {
     const image = event.target.files[0];
     const formData = new FormData();
@@ -51,10 +47,9 @@ const UpdateMedicineCategory = () => {
 
     metaImage,
   };
-  console.log(data);
   const handelSubmit = async (e) => {
     e.preventDefault();
-    const updateUrl = `http://localhost:3001/api/v1/category/updateCategoryById/${id}`;
+    const updateUrl = `${server_url}/category/updateCategoryById/${id}`;
     await UpdateHooks(
       updateUrl,
       data,

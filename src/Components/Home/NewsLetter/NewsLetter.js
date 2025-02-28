@@ -1,4 +1,6 @@
 import React from "react";
+import { server_url } from "../../../Config/API";
+import toast from "react-hot-toast";
 
 const NewsLetter = () => {
   const handleSubscriber = async (event) => {
@@ -7,7 +9,11 @@ const NewsLetter = () => {
 
     try {
       const response = await fetch(
+<<<<<<< HEAD
         "http://localhost:3001/api/v1/collectEmail/addCollectEmail",
+=======
+        `${server_url}/collectEmail/addCollectEmail`,
+>>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
         {
           method: "POST",
           headers: {
@@ -18,14 +24,11 @@ const NewsLetter = () => {
       );
 
       if (response.ok) {
-        console.log("Subscription successful");
         // Reset the form
         event.target.reset();
-      } else {
-        console.error("Failed to subscribe");
       }
     } catch (error) {
-      console.error("Error:", error);
+      toast.error("Error:", error);
     }
   };
 

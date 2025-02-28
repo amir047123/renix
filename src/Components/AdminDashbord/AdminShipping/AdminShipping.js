@@ -2,6 +2,7 @@ import { Icon } from "@iconify/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { server_url } from "../../../Config/API";
 import UpdateHooks from "../../../Hooks/UpdateHooks";
 
 const AdminShipping = () => {
@@ -13,7 +14,7 @@ const AdminShipping = () => {
 
   //   load data
   useEffect(() => {
-    fetch(`http://localhost:3001/api/v1/shipping/getShippings`)
+    fetch(`${server_url}/shipping/getShippings`)
       .then((res) => res.json())
       .then((data) => {
         if (data?.data.length) {
@@ -34,18 +35,14 @@ const AdminShipping = () => {
 
     if (formData?._id) {
       await UpdateHooks(
-        `http://localhost:3001/api/v1/shipping/updateShippings/${formData?._id}`,
+        `${server_url}/shipping/updateShippings/${formData?._id}`,
         formData
       );
       toast?.success(`Shipping data Updated !`);
     } else {
       try {
-        const response = await axios.post(
-          "http://localhost:3001/api/v1/shipping/addShippings",
-          formData
-        );
+        await axios.post(`${server_url}/shipping/addShippings`, formData);
         toast.success("Shipping posted!");
-        console.log("POST request successful:", response);
       } catch (error) {
         toast?.error(error);
         console.error("Error making POST request:", error);

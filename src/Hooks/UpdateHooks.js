@@ -10,7 +10,6 @@ const UpdateHooks = async (url, data, on = false, message = "") => {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log("from error", data);
       if (data.status === "success") {
         if (on) swal("Success", message, "success");
       } else if (data.status === "fail") {
@@ -24,9 +23,6 @@ const UpdateHooks = async (url, data, on = false, message = "") => {
           "error"
         );
       }
-    })
-    .catch((err) => {
-      console.log("from nid update", err);
     });
 };
 

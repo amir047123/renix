@@ -5,7 +5,7 @@ const NaturalSolution = () => {
   return (
     <div className="lg:flex md:flex py-14">
       <div className="md:w-1/3 ">
-        <img src={img1} alt="tree image" />
+        <img src={img1} alt="tree" />
       </div>
       <div className="md:w-2/3 text-center sm:px-3 md:px-0">
         <h1 className="font-bold uppercase text-3xl text-secondary">
@@ -26,7 +26,7 @@ const NaturalSolution = () => {
       </div>
       <div className="md:w-1/3 ">
         {" "}
-        <img src={img2} alt="medicine image" />
+        <img src={img2} alt="medicine" />
       </div>
     </div>
   );

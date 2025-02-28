@@ -1,6 +1,7 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
+import { server_url } from "../../../Config/API";
 import { singleImageUpload } from "../../../Hooks/ImageUpload";
 import PostHooks from "../../../Hooks/PostHooks";
 
@@ -10,7 +11,6 @@ const SliderPost = ({ addSlide }) => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const editor = useRef(null);
   const [image, setImage] = useState("");
 
   const handleChangeUploadImage = async (event) => {
@@ -30,7 +30,7 @@ const SliderPost = ({ addSlide }) => {
       link: formData.link,
     };
     await PostHooks(
-      "http://localhost:3001/api/v1/slide/addSlide",
+      `${server_url}/slide/addSlide`,
       slide,
       "Slide successfully posted"
     );

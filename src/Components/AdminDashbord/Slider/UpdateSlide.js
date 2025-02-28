@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
+import { server_url } from "../../../Config/API";
 import { singleImageUpload } from "../../../Hooks/ImageUpload";
 import UpdateHooks from "../../../Hooks/UpdateHooks";
 
@@ -26,9 +27,7 @@ const UpdateSlide = () => {
   };
   useEffect(() => {
     const getSlideDetails = async () => {
-      let { data } = await axios.get(
-        `http://localhost:3001/api/v1/slide/getSlideById/${id}`
-      );
+      let { data } = await axios.get(`${server_url}/slide/getSlideById/${id}`);
 
       setValue("title", data?.data?.title);
       setValue("subtitle", data?.data?.subtitle);
@@ -53,7 +52,7 @@ const UpdateSlide = () => {
 
     // Assuming _id is defined somewhere in the component
     await UpdateHooks(
-      `http://localhost:3001/api/v1/slide/updateSlide/${id}`,
+      `${server_url}/slide/updateSlide/${id}`,
       slide,
       "successfully Update"
     );

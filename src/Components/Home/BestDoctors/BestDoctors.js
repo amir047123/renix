@@ -1,21 +1,24 @@
 import React from "react";
 import demoDoctor from "../../../Assets/images/doctor.jpg";
 import img7 from "../../../Assets/images/Dorctors/team-custom-icon-3.png";
-
 import { useEffect, useState } from "react";
+import { server_url } from "../../../Config/API";
+
 const BestDoctors = () => {
   const [user, setUser] = useState([]);
   useEffect(() => {
+<<<<<<< HEAD
     const url = `http://localhost:3001/api/v1/user`;
+=======
+    const url = `${server_url}/user`;
+>>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setUser(data?.data);
       });
   }, []);
   const doctors = user?.filter((item) => item?.role === "doctor");
-  console.log(doctors);
   return (
     <div className="lg:w-[90%] w-full mx-auto my-10 text-center ">
       <h1 className="text-secondary font-semibold text-3xl mt-3">
@@ -31,6 +34,7 @@ const BestDoctors = () => {
               <img
                 src={img7}
                 className="bg-primary w-12  h-12  rounded-full text-xs  ml-[150px] mt-4 text-white absolute"
+                alt="img"
               />
               <img
                 src={Data?.img ? Data.img : demoDoctor}

@@ -2,17 +2,22 @@ import React, { useEffect, useState } from "react";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { MdPendingActions } from "react-icons/md";
 import AuthUser from "../../../../Hooks/authUser";
+import { server_url } from "../../../../Config/API";
+
 const MyOrders = () => {
   const [order, setOrder] = useState([]);
   const { userInfo } = AuthUser();
   useEffect(() => {
+<<<<<<< HEAD
     fetch(`http://localhost:3001/api/v1/order/getOrder/${userInfo?._id}`)
+=======
+    fetch(`${server_url}/order/getOrder/${userInfo?._id}`)
+>>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setOrder(data?.data);
       });
-  }, []);
+  }, [userInfo?._id]);
   return (
     <section className="py-10 md:py-14">
       <div className="container px-6 md:max-w-6xl w-full ">

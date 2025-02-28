@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { toast } from "react-toastify";
+import { server_url } from "../../../Config/API";
 import { singleImageUpload } from "../../../Hooks/ImageUpload";
+import UpdateHooks from "../../../Hooks/UpdateHooks";
 
 const AdminUpdateSeoList = () => {
   const { id } = useParams();
@@ -30,9 +31,7 @@ const AdminUpdateSeoList = () => {
   };
   useEffect(() => {
     const fetchSingleSeo = async () => {
-      const { data } = await axios.get(
-        `http://localhost:3001/api/v1/seo/getSeoById/${id}`
-      );
+      const { data } = await axios.get(`${server_url}/seo/getSeoById/${id}`);
       setSeo(data?.data);
       setFormData({
         page: data?.data?.page || "",
@@ -57,21 +56,9 @@ const AdminUpdateSeoList = () => {
       slug: formData.slug,
     };
 
-    try {
-      const { data: seoData } = await axios.patch(
-        `http://localhost:3001/api/v1/seo/updateSeo/${id}`,
-        data
-      );
-      // console.log(seoData);
-      if (seoData.status === "error") {
-        toast.error(seoData.message);
-      } else if (seoData.status === "success") {
-        toast.success("Seo Updated!");
-      }
-    } catch (error) {
-      toast.error(error.message || "An error occurred");
-      // console.error("Error making POST request:", error.message);
-    }
+    const updateUrl = `${server_url}/seo/updateSeo/${id}`;
+
+    await UpdateHooks(updateUrl, data, "SEO successfully updated");
   };
 
   return (

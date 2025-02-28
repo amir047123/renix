@@ -2,7 +2,6 @@ import Profile from "../Pages/AboutUs/Profile";
 import Mission from "../Pages/AboutUs/Mission";
 import Responsibility from "../Pages/AboutUs/Responsibility";
 import Message from "../Pages/AboutUs/Message";
-import About from "../Pages/About";
 import OurPeople from "../Pages/AboutUs/OurPeople";
 import Ceo from "../Pages/AboutUs/Ceo";
 

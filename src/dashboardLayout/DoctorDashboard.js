@@ -8,7 +8,7 @@ import { FiLogIn, FiSettings } from "react-icons/fi";
 import profilePic from "../Assets/images/users/us1.jpg";
 import SearchBar from "../Components/searchBar/SearchBar";
 import Home from "../Pages/Home";
-import { FaEye, FaSitemap } from "react-icons/fa";
+import { FaEye } from "react-icons/fa";
 import AuthUser from "../Hooks/authUser";
 import { BiBorderAll } from "react-icons/bi";
 import { RxCaretDown } from "react-icons/rx";
@@ -30,7 +30,6 @@ const DoctorDashboard = () => {
 
   const handleOrderDropdown = (e) => {
     openOrder === true ? setOpenOrder(false) : setOpenOrder(true);
-    //console.log('clicked')
   };
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -70,7 +69,7 @@ const DoctorDashboard = () => {
             <div
               id="drawer-navigation"
               className="drawer_height w-1/5  z-40 fixed left-0 top-0 p-4 overflow-y-auto h-full bg-secondary dark:bg-gray-800"
-              tabindex="-1"
+              tabIndex="-1"
               aria-labelledby="drawer-navigation-label"
             >
               <div className="py-4 ">
@@ -292,7 +291,7 @@ const DoctorDashboard = () => {
                   className={`side_nav_admin block lg:hidden z-40 h-screen p-4  bg-secondary w-80 dark:bg-gray-800 ${
                     issideNavOpen === true ? "activ" : ""
                   }`}
-                  tabindex="-1"
+                  tabIndex="-1"
                 >
                   <button
                     type="button"

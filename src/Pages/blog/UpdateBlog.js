@@ -2,9 +2,10 @@ import JoditEditor from "jodit-react";
 import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
-import AuthUser from "../../Hooks/authUser";
 import { singleImageUpload } from "../../Hooks/ImageUpload";
 import UpdateHooks from "../../Hooks/UpdateHooks";
+import { server_url } from "../../Config/API";
+import AuthUser from "../../Hooks/authUser";
 
 const UpdateBlog = () => {
   const { id } = useParams();
@@ -28,10 +29,14 @@ const UpdateBlog = () => {
     formState: { errors },
     setValue,
   } = useForm();
-  const [content, setContent] = useState("");
+  const [, setContent] = useState("");
 
   useEffect(() => {
+<<<<<<< HEAD
     const url = `http://localhost:3001/api/v1/category`;
+=======
+    const url = `${server_url}/category`;
+>>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -40,7 +45,11 @@ const UpdateBlog = () => {
   }, []);
 
   useEffect(() => {
+<<<<<<< HEAD
     const url = `http://localhost:3001/api/v1/blogs/blogDetails/${id}`;
+=======
+    const url = `${server_url}/blogs/blogDetails/${id}`;
+>>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -51,6 +60,7 @@ const UpdateBlog = () => {
         setValue("metaTitle", data?.data?.metaTitle || "");
         setValue("metaDescription", data?.data?.metaDescription || "");
         setValue("slug", data?.data?.slug || "");
+        setBlogDescription(data?.data?.description || "");
       });
   }, [id, setValue]);
 
@@ -80,10 +90,20 @@ const UpdateBlog = () => {
       metaImage,
     };
 
+<<<<<<< HEAD
     const updateUrl = `http://localhost:3001/api/v1/medicine/UpdateBlog/${id}`;
+=======
+    const updateUrl = `${server_url}/blogs/updateBlog/${id}`;
+>>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
 
-    await UpdateHooks(updateUrl, blog, "Medicine successfully updated");
+    await UpdateHooks(updateUrl, blog, "Blog successfully updated");
   };
+
+  useEffect(() => {
+    fetch(`${server_url}/user/${userInfo?._id}`)
+      .then((res) => res.json())
+      .then((data) => setUser(data?.data));
+  }, [userInfo?._id]);
 
   return (
     <section className="py-10 md:py-14">

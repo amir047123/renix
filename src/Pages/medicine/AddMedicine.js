@@ -1,7 +1,7 @@
-import { Markup } from "interweave";
 import JoditEditor from "jodit-react";
 import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
+import { server_url } from "../../Config/API";
 import { singleImageUpload } from "../../Hooks/ImageUpload";
 import PostHooks from "../../Hooks/PostHooks";
 
@@ -17,7 +17,6 @@ const AddMedicine = () => {
   const editor = useRef(null);
   //description content
   const [content, setContent] = useState("");
-  const parsed = <Markup content={content} />;
   const [metaImage, setMetaImage] = useState("");
   const handleChangeMetaImage = async (event) => {
     const image = event.target.files[0];
@@ -27,11 +26,10 @@ const AddMedicine = () => {
   };
   // get category
   useEffect(() => {
-    const url = `http://localhost:3001/api/v1/category`;
+    const url = `${server_url}/category`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
         setCategory(data?.data);
       });
   }, []);
@@ -68,11 +66,12 @@ const AddMedicine = () => {
       metaDescription: data.metaDescription,
       slug: data.slug,
       metaImage,
+      isSpecial: data?.isSpecial,
     };
 
     // post api call
     await PostHooks(
-      "http://localhost:3001/api/v1/medicine/postMedicine",
+      `${server_url}/medicine/postMedicine`,
       medicine,
       "Medicine successfully posted"
     );
@@ -138,33 +137,62 @@ const AddMedicine = () => {
           </div>
 
           {/* medicine category */}
-
-          <div className="mb-1">
-            <label
-              for="repeat-password"
-              class="block mb-2 text-[13px] font-normal text-gray-900 dark:text-white"
-            >
-              Medicine Category
-            </label>
-            <select
-              className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              {...register("medicineCategory", {
-                required: "category is required",
-              })}
-            >
-              <option value="" disabled selected>
-                Choose a category
-              </option>
-              {category?.map((cat) => (
-                <option key={cat?._id} cat={cat} value={cat?.name}>
-                  {cat?.name}
+          <div className="grid grid-cols-2 gap-4">
+            <div className="mb-1">
+              <label
+                for="repeat-password"
+                class="block mb-2 text-[13px] font-normal text-gray-900 dark:text-white"
+              >
+                Medicine Category
+              </label>
+              <select
+                className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                {...register("medicineCategory", {
+                  required: "category is required",
+                })}
+              >
+                <option value="" disabled selected>
+                  Choose a category
                 </option>
-              ))}
-            </select>
-            {errors.category && (
-              <p className="text-red-500 mt-1">{errors.category.message}</p>
-            )}
+                {category?.map((cat) => (
+                  <option key={cat?._id} cat={cat} value={cat?.name}>
+                    {cat?.name}
+                  </option>
+                ))}
+              </select>
+              {errors.category && (
+                <p className="text-red-500 mt-1">{errors.category.message}</p>
+              )}
+            </div>
+
+            <div className="mb-1">
+              <label
+                for="isSpecial"
+                class="block mb-2 text-[13px] font-normal text-gray-900 dark:text-white"
+              >
+                Is Special
+              </label>
+              <select
+                className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                {...register("isSpecial")}
+              >
+                <option value="" disabled selected>
+                  Select Special True or False
+                </option>
+
+                <option key={true} value={true}>
+                  True
+                </option>
+                <option key={false} value={false}>
+                  False
+                </option>
+              </select>
+              {errors.isSpecial && (
+                <p className="text-red-500 mt-1">{errors.isSpecial.message}</p>
+              )}
+            </div>
           </div>
+
           {/* medicine image */}
 
           <div className="mb-1">

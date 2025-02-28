@@ -7,19 +7,12 @@ import { server_url } from "../../Config/API";
 
 const ResetPassword = () => {
   const navigate = useNavigate();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const forgot = (data) => {
     const { email } = data;
-    console.log(email);
     localStorage.setItem("eduFixup-login-email", JSON.stringify(email));
     const baseUrl = server_url + "/user/forgot-password";
-
-    // FetchPostMethod(baseUrl, { email });
 
     fetch(baseUrl, {
       method: "POST",
@@ -34,7 +27,6 @@ const ResetPassword = () => {
           swal("success", data.message, "success");
           navigate("/insert-token");
         } else {
-          console.log(data);
           swal("Oops", data.error, "error");
         }
       });

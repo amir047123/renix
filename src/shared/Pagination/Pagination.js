@@ -52,7 +52,10 @@ const MuiPagination = ({ quantity, size, setSize, page, setPage }) => {
         {/* Page Size Selection */}
         <Select
           value={size}
-          onChange={(e) => setSize(e.target.value)}
+          onChange={(e) => {
+            setPage(0);
+            setSize(e.target.value);
+          }}
           sx={{
             ml: 2,
             height: "40px",

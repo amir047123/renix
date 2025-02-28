@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 const UnderConstruction = () => {
   // Set the target date for the countdown (Year, Month Index (0-11), Day, Hour, Minute, Second)
@@ -16,7 +16,9 @@ const UnderConstruction = () => {
     const distance = targetDate - now;
 
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const hours = Math.floor(
+      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
@@ -30,12 +32,17 @@ const UnderConstruction = () => {
   useEffect(() => {
     const interval = setInterval(updateCountdown, 1000);
     return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div className="w-full h-screen bg-primary from-teal-400 to-blue-500 flex flex-col justify-center items-center text-white">
-      <h1 className="text-5xl">We are <b>Almost</b> there!</h1>
-      <h1 className="text-5xl">React JS <b>AND</b> Node JS APP</h1>
+      <h1 className="text-5xl">
+        We are <b>Almost</b> there!
+      </h1>
+      <h1 className="text-5xl">
+        React JS <b>AND</b> Node JS APP
+      </h1>
       <p>Stay tuned for something amazing!!!</p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mt-10 lg:mt-20">

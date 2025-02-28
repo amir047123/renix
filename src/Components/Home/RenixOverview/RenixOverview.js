@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   BsArrowRight,
   BsInstagram,
@@ -13,8 +13,44 @@ import neemo from "../../../Assets/images/neemo-pimple.svg";
 import bg from "../../../Assets/images/overview-bg.svg";
 import support from "../../../Assets/images/support.svg";
 import time from "../../../Assets/images/time.svg";
+import { server_url } from "../../../Config/API";
+import { useQuery } from "@tanstack/react-query";
+
+const fetchMedicines = async () => {
+  const response = await fetch(
+    `${server_url}/medicine?size=${1}&isSpecial=yes`
+  );
+  if (!response.ok) {
+    throw new Error("Failed to fetch medicine");
+  }
+  return response.json();
+};
 
 const RenixOverview = () => {
+  const [element, setElement] = useState(
+    document.getElementById("specializedProducts")
+  );
+  const scrollToSpecializedProducts = () => {
+    if (element) {
+      window.scrollTo({
+        top: element.offsetTop,
+        behavior: "smooth",
+      });
+    }
+  };
+  useEffect(() => {
+    setElement(document.getElementById("specializedProducts"));
+  }, []);
+
+  const { data } = useQuery({
+    queryKey: ["medicine", 1],
+    queryFn: fetchMedicines,
+    keepPreviousData: true, // Keeps previous data while fetching new data
+  });
+
+  // ✅ Extract Products & Quantity
+  const product = data?.data?.[0] || [];
+
   return (
     <div
       style={{ backgroundImage: `url(${bg})` }}
@@ -62,25 +98,26 @@ const RenixOverview = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <h2 className="text-accent font-semibold text-lg mb-2">
-                    Neemo Pimple Removal
+                    {product?.name || "Neemo Pimple Removal"}
                   </h2>
                   <p className="text-[#607D8B] text-sm mt-1">
-                    Natural and Effective Blood Purifier.
+                    {product?.description ||
+                      "Natural and Effective Blood Purifier."}
                   </p>
                 </div>
                 <img
-                  src={neemo}
+                  src={product?.img || neemo}
                   alt="Neemo Product"
                   className=" object-contain"
                 />
               </div>
-              <Link
-                to="/products"
+              <button
+                onClick={scrollToSpecializedProducts}
                 className="mt-3 flex items-center text-white bg-accent px-3 w-full  py-2 rounded-full hover:bg-indigo-800 transition-colors text-sm justify-center"
               >
                 See More Product
                 <BsArrowRight className="w-4 h-4 ml-2" />
-              </Link>
+              </button>
             </div>
           </div>
 

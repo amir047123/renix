@@ -4,11 +4,16 @@ import axios from "axios";
 import { shuffle } from "lodash";
 import React from "react";
 import { Link } from "react-router-dom";
+import { server_url } from "../../../Config/API";
 
 const fetchProducts = async () => {
+<<<<<<< HEAD
   const { data } = await axios.get(
     "http://localhost:3001/api/v1/medicine?size=8&page=0"
   );
+=======
+  const { data } = await axios.get(`${server_url}/medicine?size=8&page=0`);
+>>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
   return data?.data;
 };
 

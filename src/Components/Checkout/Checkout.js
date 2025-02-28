@@ -4,6 +4,7 @@ import Location from "../../Components/Bangladesh Location/location.json";
 import PostHooks from "../../Hooks/PostHooks";
 import AuthUser from "../../Hooks/authUser";
 import MyContext from "../../Utils/Context/MyContext";
+import { server_url } from "../../Config/API";
 const Checkout = () => {
   const { userInfo } = AuthUser();
   const [division, setDivision] = useState("");
@@ -15,7 +16,11 @@ const Checkout = () => {
   const [shipping, setShipping] = useState([]);
 
   useEffect(() => {
+<<<<<<< HEAD
     fetch(`http://localhost:3001/api/v1/shipping/getShippings`)
+=======
+    fetch(`${server_url}/shipping/getShippings`)
+>>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
       .then((res) => res.json())
       .then((data) => {
         if (data?.data.length) {
@@ -68,7 +73,11 @@ const Checkout = () => {
     };
 
     await PostHooks(
+<<<<<<< HEAD
       "http://localhost:3001/api/v1/order/addOrder",
+=======
+      `${server_url}/order/addOrder`,
+>>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
       { customerDetails, order, customerId, subTotal },
       "order successfully submitted"
     );
