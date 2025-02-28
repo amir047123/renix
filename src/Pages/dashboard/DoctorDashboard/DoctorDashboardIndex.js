@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import img7 from "../../../Assets/dasboard-icon/completed-appointment.png";
 import img6 from "../../../Assets/dasboard-icon/pending-appointment.png";
 import img2 from "../../../Assets/dasboard-icon/pending-order.png";
-import AuthUser from "../../../Hooks/authUser";
 import { server_url } from "../../../Config/API";
+import AuthUser from "../../../Hooks/authUser";
 
 const DoctorDashboardIndex = () => {
   const [pending, setPending] = useState(0);
@@ -12,11 +12,7 @@ const DoctorDashboardIndex = () => {
   const [confirmed, setConfirmed] = useState(0);
   const { userInfo } = AuthUser();
   useEffect(() => {
-<<<<<<< HEAD
-    const url = `http://localhost:3001/api/v1/appointment/specific?doctorId=${
-=======
     const url = `${server_url}/appointment/specific?doctorId=${
->>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
       userInfo?._id
     }&&appointmentStatus=${"pending"}`;
     fetch(url)
@@ -26,11 +22,7 @@ const DoctorDashboardIndex = () => {
       });
   }, [userInfo?._id]);
   useEffect(() => {
-<<<<<<< HEAD
-    const url = `http://localhost:3001/api/v1/appointment/specific?doctorId=${
-=======
     const url = `${server_url}/appointment/specific?doctorId=${
->>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
       userInfo?._id
     }&&appointmentStatus=${"confirmed"}`;
     fetch(url)
@@ -40,11 +32,7 @@ const DoctorDashboardIndex = () => {
       });
   }, [userInfo?._id]);
   useEffect(() => {
-<<<<<<< HEAD
-    const url = `http://localhost:3001/api/v1/appointment/specific?doctorId=${
-=======
     const url = `${server_url}/appointment/specific?doctorId=${
->>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
       userInfo?._id
     }&&appointmentStatus=${"rejected"}`;
     fetch(url)

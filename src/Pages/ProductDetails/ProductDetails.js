@@ -4,17 +4,13 @@ import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import DynamicMetaTitle from "../../Components/DynamicMetaTitle";
 // import MyContext from "../../Utils/Context/MyContext";
+import { server_url } from "../../Config/API";
 import ProductInfo from "./ProductInfo";
 import ProductTable from "./ProductTable";
-import { server_url } from "../../Config/API";
 
 const fetchProduct = async (id) => {
   const response = await fetch(
-<<<<<<< HEAD
-    `http://localhost:3001/api/v1/medicine/specific?fieldName=slug&&fieldValue=${id}`
-=======
     `${server_url}/medicine/specific?fieldName1=slug&&fieldValue1=${id}`
->>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
   );
   const data = await response.json();
   return data.data[0];

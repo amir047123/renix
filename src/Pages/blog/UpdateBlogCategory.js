@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 
 import { useParams } from "react-router-dom";
+import { server_url } from "../../Config/API";
 import { singleImageUpload } from "../../Hooks/ImageUpload";
 import UpdateHooks from "../../Hooks/UpdateHooks";
-import { server_url } from "../../Config/API";
 
 const UpdateBlogCategory = () => {
   const { id } = useParams();
@@ -23,12 +23,7 @@ const UpdateBlogCategory = () => {
   };
 
   useEffect(() => {
-<<<<<<< HEAD
-    setLoading(true);
-    const url = `http://localhost:3001/api/v1/blogsCategory/getBlogCategoryById/${id}`;
-=======
     const url = `${server_url}/blogsCategory/getBlogCategoryById/${id}`;
->>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -56,11 +51,7 @@ const UpdateBlogCategory = () => {
 
   const handelSubmit = async (e) => {
     e.preventDefault();
-<<<<<<< HEAD
-    const updateUrl = `http://localhost:3001/api/v1/blogsCategory/updateBlogsCategory/${id}`;
-=======
     const updateUrl = `${server_url}/blogsCategory/updateBlogsCategory/${id}`;
->>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
     await UpdateHooks(
       updateUrl,
       data,

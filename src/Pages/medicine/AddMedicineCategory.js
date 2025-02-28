@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import PostHooks from "../../Hooks/PostHooks";
 
-import { singleImageUpload } from "../../Hooks/ImageUpload";
 import { server_url } from "../../Config/API";
+import { singleImageUpload } from "../../Hooks/ImageUpload";
 
 const AddMedicineCategory = () => {
   const [metaImage, setMetaImage] = useState("");
@@ -33,15 +33,7 @@ const AddMedicineCategory = () => {
   const handelSubmit = (e) => {
     e.preventDefault();
 
-<<<<<<< HEAD
-    PostHooks(
-      "http://localhost:3001/api/v1/category",
-      data,
-      "Category successfully posted"
-    );
-=======
     PostHooks(`${server_url}/category`, data, "Category successfully posted");
->>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
 
     // clear input
 

@@ -1,11 +1,11 @@
+import { Box, CircularProgress } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import { CiSearch } from "react-icons/ci";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { TbEdit } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { server_url } from "../../Config/API";
-import { Box, CircularProgress } from "@mui/material";
-import { CiSearch } from "react-icons/ci";
 import Pagination from "../../shared/Pagination/Pagination";
 
 const AllBlogsCategory = () => {
@@ -19,12 +19,8 @@ const AllBlogsCategory = () => {
   const [quantity, setQuantity] = useState(0);
 
   useEffect(() => {
-<<<<<<< HEAD
-    const url = `http://localhost:3001/api/v1/blogsCategory`;
-=======
     const url = `${server_url}/blogsCategory?size=${size}&page=${page}&filter=${input}`;
     setLoading(true);
->>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -45,18 +41,9 @@ const AllBlogsCategory = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-<<<<<<< HEAD
-        fetch(
-          `http://localhost:3001/api/v1/blogsCategory/deleteBlogsCategory/${id}`,
-          {
-            method: "DELETE",
-          }
-        ).then((res) => {
-=======
         fetch(`${server_url}/blogsCategory/deleteBlogsCategory/${id}`, {
           method: "DELETE",
         }).then((res) => {
->>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
           if (res.status === 200) {
             setRefresh(!refresh);
             Swal.fire("Deleted!", "Your file has been deleted.", "success");

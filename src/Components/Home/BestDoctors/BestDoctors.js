@@ -1,17 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import demoDoctor from "../../../Assets/images/doctor.jpg";
 import img7 from "../../../Assets/images/Dorctors/team-custom-icon-3.png";
-import { useEffect, useState } from "react";
 import { server_url } from "../../../Config/API";
 
 const BestDoctors = () => {
   const [user, setUser] = useState([]);
   useEffect(() => {
-<<<<<<< HEAD
-    const url = `http://localhost:3001/api/v1/user`;
-=======
     const url = `${server_url}/user`;
->>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
     fetch(url)
       .then((res) => res.json())
       .then((data) => {

@@ -3,9 +3,9 @@ import JoditEditor from "jodit-react";
 import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
+import { server_url } from "../../Config/API";
 import { singleImageUpload } from "../../Hooks/ImageUpload";
 import UpdateHooks from "../../Hooks/UpdateHooks";
-import { server_url } from "../../Config/API";
 
 const UpdateNewsAndMedias = () => {
   const { id } = useParams();
@@ -36,11 +36,7 @@ const UpdateNewsAndMedias = () => {
   useEffect(() => {
     const getNewsDetails = async () => {
       let { data } = await axios.get(
-<<<<<<< HEAD
-        `http://localhost:3001/api/v1/newsAndMedia/getNewsAndMediaById/${id}`
-=======
         `${server_url}/newsAndMedia/getNewsAndMediaById/${id}`
->>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
       );
       setValue("newsTitle", data?.data?.newsTitle);
       setValue("newsCategory", data?.data?.newsCategory);
@@ -70,11 +66,7 @@ const UpdateNewsAndMedias = () => {
 
     // Assuming _id is defined somewhere in the component
     await UpdateHooks(
-<<<<<<< HEAD
-      `http://localhost:3001/api/v1/newsAndMedia/updateNewsAndMedia/${id}`,
-=======
       `${server_url}/newsAndMedia/updateNewsAndMedia/${id}`,
->>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
       news,
       "successfully Update"
     );
