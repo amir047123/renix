@@ -12,7 +12,7 @@ const MyAccount = () => {
   const [imageUrl, setMyImageUrl] = useState(null);
   const metaData = useGetSeo("my_account");
   const { userInfo } = AuthUser();
-  const [user, setUser] = useState({});
+  const [user] = useState({});
 
   const BASE_URL = `${server_url}/user/${userInfo?._id}`;
   // useEffect(() => {
@@ -37,9 +37,6 @@ const MyAccount = () => {
   const handleUpdateProfile = async (data) => {
     data.imageURL = imageUrl;
 
-    const { email, ...others } = data;
-    console.log(data);
-
     const newData = {
       number: data.number || user.number,
       city: data.city || user.gender,
@@ -48,7 +45,6 @@ const MyAccount = () => {
       zipCode: data.zipCode || user.zipCode,
       img: imageUrl,
     };
-    console.log(newData);
     UpdateHooks(BASE_URL, newData, true, "Profile Updated");
   };
 

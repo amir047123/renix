@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import CommonForgetImg from "../../Assets/images/auth/forgetImage.png";
+import { server_url } from "../../Config/API";
 
 const InsertOtp = () => {
   const [token, setToken] = useState(null);
@@ -12,24 +13,20 @@ const InsertOtp = () => {
     localStorage.getItem("eduFixup-login-email")
   );
   useEffect(() => {
-    fetch(
-      `https://server.renixlaboratories.com.bd/api/v1/user/by-email?email=${userLoginEmail}`
-    )
+<<<<<<< HEAD
+    fetch(`http://localhost:3001/api/v1/user/by-email?email=${userLoginEmail}`)
+=======
+    fetch(`${server_url}/user/by-email?email=${userLoginEmail}`)
+>>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
       .then((res) => res.json())
       .then((data) => {
         setToken(data?.data?.forgetPasswordToken);
-        console.log(data?.data?.forgetPasswordToken);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
   const handleToken = (data) => {
-    console.log("data token", data.token);
-    console.log("token", token);
     if (data.token !== token) {
       Swal.fire({
         icon: "error",

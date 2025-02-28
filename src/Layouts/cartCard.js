@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import MyContext from "../Utils/Context/MyContext";
 import { AiFillDelete } from "react-icons/ai";
 
@@ -46,7 +46,11 @@ const CartCard = ({ order }) => {
   const handleCountMinus = () => {};
   return (
     <div className="border border-white rounded-lg grid grid-cols-12 justify-between items-center md:gap-2 gap-2 py-1 shadow">
-      <img className="col-span-2 rounded-lg w-16 border border-white m-1 p-1" src={order?.img} alt="" />
+      <img
+        className="col-span-2 rounded-lg w-16 border border-white m-1 p-1"
+        src={order?.img}
+        alt=""
+      />
       <div className="md:text-base text-[10px] font-semibold text-white col-span-4">
         <h4 className="whitespace-nowrap">{order?.genericName}</h4>
         <h4>{order?.price}</h4>

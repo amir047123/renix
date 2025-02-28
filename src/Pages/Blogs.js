@@ -6,12 +6,17 @@ import DynamicMetaTitle from "../Components/DynamicMetaTitle";
 import useGetSeo from "../Hooks/useGetSeo";
 import Pagination from "../shared/Pagination/Pagination";
 import BlogCard from "./ProductDetails/BlogPage/BlogCard";
+import { server_url } from "../Config/API";
 
 const fetchBlogs = async ({ queryKey }) => {
   const [, page, size] = queryKey;
+<<<<<<< HEAD
   const response = await fetch(
-    `https://server.renixlaboratories.com.bd/api/v1/blogs?size=${size}&page=${page}`
+    `http://localhost:3001/api/v1/blogs?size=${size}&page=${page}`
   );
+=======
+  const response = await fetch(`${server_url}/blogs?size=${size}&page=${page}`);
+>>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
   if (!response.ok) {
     throw new Error("Failed to fetch blogs.");
   }

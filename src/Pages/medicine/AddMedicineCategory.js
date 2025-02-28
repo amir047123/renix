@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import PostHooks from "../../Hooks/PostHooks";
 
 import { singleImageUpload } from "../../Hooks/ImageUpload";
+import { server_url } from "../../Config/API";
 
 const AddMedicineCategory = () => {
   const [metaImage, setMetaImage] = useState("");
@@ -29,15 +30,18 @@ const AddMedicineCategory = () => {
 
     metaImage,
   };
-  console.log(data);
   const handelSubmit = (e) => {
     e.preventDefault();
 
+<<<<<<< HEAD
     PostHooks(
-      "https://server.renixlaboratories.com.bd/api/v1/category",
+      "http://localhost:3001/api/v1/category",
       data,
       "Category successfully posted"
     );
+=======
+    PostHooks(`${server_url}/category`, data, "Category successfully posted");
+>>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
 
     // clear input
 

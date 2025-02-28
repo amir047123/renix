@@ -2,21 +2,9 @@ import React from "react";
 import logo from "../Assets/images/logo.svg";
 import { Link } from "react-router-dom";
 import SocialIcon from "../shared/socialIcon/SocialIcon";
-import {
-  FaFacebook,
-  FaTwitter,
-  FaLinkedin,
-  FaInstagram,
-  FaWhatsapp,
-} from "react-icons/fa";
+import { FaWhatsapp } from "react-icons/fa";
 
 const Footer = () => {
-  const handleWhatsAppClick = () => {
-    const phoneNumber = encodeURIComponent("01884442022");
-    const whatsappURL = `https://api.whatsapp.com/send?phone=${phoneNumber}`;
-    window.open(whatsappURL, "_blank");
-  };
-
   return (
     <div>
       <footer className="bg-secondary dark:bg-gray-900">

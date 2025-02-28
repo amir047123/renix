@@ -9,8 +9,7 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Pagination, Navigation, Autoplay } from "swiper";
-import SlideComponent, { SlideComponentOne, SlideComponentThree, SlideComponentTwo } from "../SlideComponent/SlideComponent";
-import SlideComponentFour from "../SlideComponent/SlideComponent";
+import { SlideComponentOne } from "../SlideComponent/SlideComponent";
 
 const HomeSlider = () => {
   return (

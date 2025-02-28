@@ -3,12 +3,10 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { singleImageUpload } from "../../Hooks/ImageUpload";
 import UpdateHooks from "../../Hooks/UpdateHooks";
+import { server_url } from "../../Config/API";
 
 const UpdateBlogCategory = () => {
   const { id } = useParams();
-  const [loading, setLoading] = useState();
-
-  const [refresh, setRefresh] = useState(false);
   const [metaImage, setMetaImage] = useState("");
   const [formData, setFormData] = useState({
     name: "",
@@ -23,14 +21,17 @@ const UpdateBlogCategory = () => {
       [e.target.name]: e.target.value,
     });
   };
+
   useEffect(() => {
+<<<<<<< HEAD
     setLoading(true);
-    const url = `https://server.renixlaboratories.com.bd/api/v1/blogsCategory/getBlogCategoryById/${id}`;
+    const url = `http://localhost:3001/api/v1/blogsCategory/getBlogCategoryById/${id}`;
+=======
+    const url = `${server_url}/blogsCategory/getBlogCategoryById/${id}`;
+>>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        setLoading(false);
-        console.log(data, 33);
         setFormData({
           name: data?.data?.name || "",
           canonicalUrl: data?.data?.canonicalUrl || "",
@@ -39,7 +40,8 @@ const UpdateBlogCategory = () => {
           slug: data?.data?.slug || "",
         });
       });
-  }, [refresh, id]);
+  }, [id]);
+
   const handleChangeMetaImage = async (event) => {
     const image = event.target.files[0];
     const formData = new FormData();
@@ -54,7 +56,11 @@ const UpdateBlogCategory = () => {
 
   const handelSubmit = async (e) => {
     e.preventDefault();
-    const updateUrl = `https://server.renixlaboratories.com.bd/api/v1/blogsCategory/updateBlogsCategory/${id}`;
+<<<<<<< HEAD
+    const updateUrl = `http://localhost:3001/api/v1/blogsCategory/updateBlogsCategory/${id}`;
+=======
+    const updateUrl = `${server_url}/blogsCategory/updateBlogsCategory/${id}`;
+>>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
     await UpdateHooks(
       updateUrl,
       data,

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { TbCurrencyTaka } from "react-icons/tb";
 import { Link } from "react-router-dom";
 
@@ -24,11 +24,9 @@ import img18 from "../Assets/images/Products/18. Capsul Hazmina Plus.webp";
 import img19 from "../Assets/images/Products/19. Capsule Renivit.webp";
 import img20 from "../Assets/images/Products/20. Capsule Valaria.webp";
 import img21 from "../Assets/images/Products/21. RENIX-GINSENG-SYRUP.png";
+// import { server_url } from "../Config/API";
 
 const FeatureProducts = () => {
-  const [displayButton, setDisplayButton] = useState("");
-  const [selectedProduct, setSelectedProduct] = useState(null);
-
   const products = [
     {
       _id: 1,
@@ -246,7 +244,6 @@ const FeatureProducts = () => {
   // const handleProductClick = (productId) => {
   //     const selected = products.find((product) => product._id === productId);
   //     setSelectedProduct(selected);
-  //     console.log('Selected Product:', selected);
 
   //   };const [product, setProduct] = useState({});
 
@@ -255,11 +252,14 @@ const FeatureProducts = () => {
   //     const size = 10; // Provide the desired size value
   //     const page = 1; // Provide the desired page value
 
-  //     const url = `https://server.renixlaboratories.com.bd/api/v1/medicine?size=${size}&page=${page}`;
+<<<<<<< HEAD
+  //     const url = `http://localhost:3001/api/v1/medicine?size=${size}&page=${page}`;
+=======
+  // const url = `${server_url}/medicine?size=${size}&page=${page}`;
+>>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
   //     fetch(url)
   //       .then((res) => res.json())
   //       .then((data) => {
-  //         // console.log(data);
   //         // Set the fetched data to the state variables
   //         setProduct(data?.data);
 

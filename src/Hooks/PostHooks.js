@@ -10,7 +10,6 @@ const PostHooks = (url, data, successMsg) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data, "14");
       if (data.status === "success") {
         return swal(successMsg ? successMsg : "Success");
       } else {

@@ -36,11 +36,15 @@ const AddBlog = () => {
   }, [userInfo?._id]);
   // get category
   useEffect(() => {
-    const url = `https://server.renixlaboratories.com.bd/api/v1/blogsCategory`;
+<<<<<<< HEAD
+    const url = `http://localhost:3001/api/v1/blogsCategory`;
+=======
+    const url = `${server_url}/blogsCategory`;
+>>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        setCategory(data?.data);
+        setCategory(data?.data?.result);
       });
   }, []);
   const handleChangeUploadImage = async (event) => {
@@ -72,7 +76,11 @@ const AddBlog = () => {
 
     // post api call
     PostHooks(
-      "https://server.renixlaboratories.com.bd/api/v1/blogs/postBlog",
+<<<<<<< HEAD
+      "http://localhost:3001/api/v1/blogs/postBlog",
+=======
+      `${server_url}/blogs/postBlog`,
+>>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
       blog,
       "Medicine successfully posted"
     );

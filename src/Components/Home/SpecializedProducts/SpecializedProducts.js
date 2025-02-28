@@ -1,6 +1,8 @@
 import React from "react";
 import { BsArrowUpRight } from "react-icons/bs";
-import img from "../../../Assets/images/neemo-pimple.svg";
+import { server_url } from "../../../Config/API";
+import { useQuery } from "@tanstack/react-query";
+import { Box, CircularProgress } from "@mui/material";
 
 const ProductCard = ({ name, image }) => (
   <div className="relative group cursor-pointer bg-white rounded-2xl overflow-hidden">
@@ -21,36 +23,57 @@ const ProductCard = ({ name, image }) => (
   </div>
 );
 
+const fetchMedicines = async () => {
+  const response = await fetch(
+    `${server_url}/medicine?size=${6}&isSpecial=yes`
+  );
+  if (!response.ok) {
+    throw new Error("Failed to fetch medicines");
+  }
+  return response.json();
+};
+
 const SpecializedProducts = () => {
-  const products = [
-    { id: 1, name: "Gastrogel", image: img },
-    { id: 2, name: "Renix Ginseng", image: img },
-    { id: 3, name: "R-Dysman", image: img },
-    { id: 4, name: "Aptixelix", image: img },
-    { id: 5, name: "R-Dysman", image: img },
-    { id: 6, name: "Aptixelix", image: img },
-    { id: 7, name: "Gastrogel", image: img },
-    { id: 8, name: "Renix Ginseng", image: img },
-  ];
+  const { data, isLoading } = useQuery({
+    queryKey: ["medicine", 6],
+    queryFn: fetchMedicines,
+    keepPreviousData: true, // Keeps previous data while fetching new data
+  });
+
+  // ✅ Extract Products & Quantity
+  const products = data?.data || [];
 
   return (
-    <div className="bg-gradient-to-b from-indigo-900 to-emerald-900  p-8 md:p-12">
+    <div
+      className="bg-gradient-to-b from-indigo-900 to-emerald-900  p-8 md:p-12"
+      id="specializedProducts"
+    >
       <div className="container mx-auto mt-10">
         <h2 className="text-3xl md:text-4xl font-medium text-white mb-8">
           Specialized Products on{" "}
           <span className="text-yellow-400">Renix Unani Laboratories Ltd.</span>
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-10">
-          {products.map((product) => (
-            <ProductCard
-              key={product.id}
-              name={product.name}
-              image={product.image}
-              isFeatured={product.isFeatured}
-            />
-          ))}
-        </div>
+        {isLoading ? (
+          <Box className="flex justify-center items-center h-40 mt-10">
+            <CircularProgress size={50} color="primary" />
+          </Box>
+        ) : products?.length === 0 ? (
+          <h4 className="text-2xl font-medium text-center mt-20">
+            No Specialized Products Found!
+          </h4>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-10">
+            {products?.map((product) => (
+              <ProductCard
+                key={product._id}
+                name={product.name}
+                image={product.img}
+                isFeatured={product.isFeatured}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

@@ -2,17 +2,21 @@ import React, { useEffect, useState } from "react";
 import { SiGooglemeet } from "react-icons/si";
 import AuthUser from "../../../../Hooks/authUser";
 import Pagination from "../../../../shared/Pagination/Pagination";
+import { server_url } from "../../../../Config/API";
 
 const ConfirmedAppointment = () => {
   const { userInfo } = AuthUser();
-  const [refresh, setRefresh] = useState(false);
   const [appointment, setAppointment] = useState([]);
   const [quantity, setQuantity] = useState(0);
   const [page, setPage] = useState(0);
   const [size, setSize] = useState(6);
 
   useEffect(() => {
-    const url = `https://server.renixlaboratories.com.bd/api/v1/appointment/specific?page=${page}&&size=${size}&&doctorId=${
+<<<<<<< HEAD
+    const url = `http://localhost:3001/api/v1/appointment/specific?page=${page}&&size=${size}&&doctorId=${
+=======
+    const url = `${server_url}/appointment/specific?page=${page}&&size=${size}&&doctorId=${
+>>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
       userInfo?._id
     }&&appointmentStatus=${"confirmed"}`;
     fetch(url)
@@ -20,9 +24,8 @@ const ConfirmedAppointment = () => {
       .then((data) => {
         setAppointment(data?.data);
         setQuantity(data?.total);
-        // console.log("data", data);
       });
-  }, [page, size, refresh]);
+  }, [page, size, userInfo?._id]);
 
   return (
     <section className="py-10 md:py-14">

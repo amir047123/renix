@@ -22,7 +22,6 @@ import ResetPassword from "../Components/ResetPassword/ResetPassword";
 import InsertOtp from "../Components/ResetPassword/InsertOtp";
 import SetNewPassword from "../Components/ResetPassword/NewPassword";
 import AppointmentForm from "../Components/AppointmentForm/AppointmentForm";
-import RequireAuth from "../shared/RequireAuth/RequireAuth";
 import AllNews from "../Pages/News/AllNews";
 import Shasthokotha from "../Pages/News/Shasthokotha";
 import Shosthotarbarta from "../Pages/News/Shosthotarbarta";
@@ -62,7 +61,7 @@ const PublicRoutes = [
   { path: "/shosthotarbarta", Component: Shosthotarbarta },
   { path: "/news", Component: News },
   { path: "/media", Component: Media },
-  {path:"/upcoming",Component:UnderConstruction}
+  { path: "/upcoming", Component: UnderConstruction },
 ];
 
 export default PublicRoutes;

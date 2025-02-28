@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { server_url } from "../../Config/API";
 import Loading from "../../shared/Loading";
 
 const ViewOrder = () => {
@@ -9,7 +10,7 @@ const ViewOrder = () => {
 
   useEffect(() => {
     setLoading(true);
-    const url = `https://server.renixlaboratories.com.bd/api/v1/order/getOrderById/${id}`;
+    const url = `${server_url}/order/getOrderById/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -21,7 +22,6 @@ const ViewOrder = () => {
   if (loading) {
     return <Loading />;
   }
-  console.log(order);
   return (
     <div>
       {order ? (

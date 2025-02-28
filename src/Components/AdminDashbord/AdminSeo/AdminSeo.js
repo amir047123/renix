@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { server_url } from "../../../Config/API";
 import { singleImageUpload } from "../../../Hooks/ImageUpload";
 
 const AdminSeo = () => {
@@ -27,7 +28,6 @@ const AdminSeo = () => {
   };
 
   const handleSubmit = async (event) => {
-    console.log("clicked");
     event.preventDefault();
     const data = {
       page: formData.page,
@@ -40,19 +40,16 @@ const AdminSeo = () => {
 
     try {
       const { data: seoData } = await axios.post(
-        "https://server.renixlaboratories.com.bd/api/v1/seo/createSeo",
+        `${server_url}/seo/createSeo`,
         data
       );
-      console.log(seoData);
       if (seoData.status === "error") {
-        console.log(seoData.status);
         toast.error(seoData.message);
       } else if (seoData.status === "success") {
         toast.success("Seo posted!");
       }
     } catch (error) {
       toast.error(error.message || "An error occurred");
-      // console.error("Error making POST request:", error.message);
     }
   };
 

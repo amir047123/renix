@@ -4,6 +4,7 @@ import img7 from "../../../Assets/dasboard-icon/completed-appointment.png";
 import img6 from "../../../Assets/dasboard-icon/pending-appointment.png";
 import img2 from "../../../Assets/dasboard-icon/pending-order.png";
 import AuthUser from "../../../Hooks/authUser";
+import { server_url } from "../../../Config/API";
 
 const DoctorDashboardIndex = () => {
   const [pending, setPending] = useState(0);
@@ -11,7 +12,11 @@ const DoctorDashboardIndex = () => {
   const [confirmed, setConfirmed] = useState(0);
   const { userInfo } = AuthUser();
   useEffect(() => {
-    const url = `https://server.renixlaboratories.com.bd/api/v1/appointment/specific?doctorId=${
+<<<<<<< HEAD
+    const url = `http://localhost:3001/api/v1/appointment/specific?doctorId=${
+=======
+    const url = `${server_url}/appointment/specific?doctorId=${
+>>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
       userInfo?._id
     }&&appointmentStatus=${"pending"}`;
     fetch(url)
@@ -19,9 +24,13 @@ const DoctorDashboardIndex = () => {
       .then((data) => {
         setPending(data?.total);
       });
-  }, []);
+  }, [userInfo?._id]);
   useEffect(() => {
-    const url = `https://server.renixlaboratories.com.bd/api/v1/appointment/specific?doctorId=${
+<<<<<<< HEAD
+    const url = `http://localhost:3001/api/v1/appointment/specific?doctorId=${
+=======
+    const url = `${server_url}/appointment/specific?doctorId=${
+>>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
       userInfo?._id
     }&&appointmentStatus=${"confirmed"}`;
     fetch(url)
@@ -29,9 +38,13 @@ const DoctorDashboardIndex = () => {
       .then((data) => {
         setConfirmed(data?.total);
       });
-  }, []);
+  }, [userInfo?._id]);
   useEffect(() => {
-    const url = `https://server.renixlaboratories.com.bd/api/v1/appointment/specific?doctorId=${
+<<<<<<< HEAD
+    const url = `http://localhost:3001/api/v1/appointment/specific?doctorId=${
+=======
+    const url = `${server_url}/appointment/specific?doctorId=${
+>>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
       userInfo?._id
     }&&appointmentStatus=${"rejected"}`;
     fetch(url)
@@ -39,7 +52,7 @@ const DoctorDashboardIndex = () => {
       .then((data) => {
         setRejected(data?.total);
       });
-  }, []);
+  }, [userInfo?._id]);
   return (
     <section className="py-8">
       <div className="container w-full md:max-w-6xl px-8">

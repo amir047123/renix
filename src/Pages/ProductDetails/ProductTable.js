@@ -1,7 +1,7 @@
 import React from "react";
 
 const ProductTable = ({ product }) => {
-  const { price, strength, name, genericName, medicineCategory } = product;
+  const { strength, name, genericName, medicineCategory } = product;
   return (
     <table class="w-full my-4 uppercase border-collapse border border-slate-500  text-sm text-left text-gray-500 dark:text-gray-400">
       <tbody>
