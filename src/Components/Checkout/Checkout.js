@@ -68,14 +68,17 @@ const Checkout = () => {
       note,
     };
 
-    await PostHooks(
+    const result = await PostHooks(
       `${server_url}/order/addOrder`,
       { customerDetails, order, customerId, subTotal },
       "order successfully submitted"
     );
-    localStorage.removeItem("order");
-    setRefresh(!refresh);
-    navigate("/products");
+
+    if (result) {
+      localStorage.removeItem("order");
+      setRefresh(!refresh);
+      navigate("/products");
+    }
   };
 
   return (

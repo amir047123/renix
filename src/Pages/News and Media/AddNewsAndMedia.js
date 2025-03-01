@@ -46,14 +46,16 @@ const AddNewsAndMedia = () => {
     };
 
     // post api call
-    await PostHooks(
+    const result = await PostHooks(
       `${server_url}/newsAndMedia/addNewsAndMedia`,
       news,
       "Medicine successfully posted"
     );
 
-    reset();
-    setNewsDescription("");
+    if (result) {
+      reset();
+      setNewsDescription("");
+    }
   };
 
   const config = {

@@ -51,7 +51,7 @@ const AddBlog = () => {
   };
 
   //handle add medicine
-  const handleAddBlog = (data) => {
+  const handleAddBlog = async (data) => {
     const blog = {
       date: new Date().getDate(),
       month: new Date().getDate(),
@@ -71,13 +71,15 @@ const AddBlog = () => {
     };
 
     // post api call
-    PostHooks(
+    const result = await PostHooks(
       `${server_url}/blogs/postBlog`,
       blog,
       "Medicine successfully posted"
     );
-    reset();
-    setBlogDescription("");
+    if (result) {
+      reset();
+      setBlogDescription("");
+    }
   };
 
   const config = {

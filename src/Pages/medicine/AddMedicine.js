@@ -71,13 +71,16 @@ const AddMedicine = () => {
     };
 
     // post api call
-    await PostHooks(
+    const result = await PostHooks(
       `${server_url}/medicine/postMedicine`,
       medicine,
       "Medicine successfully posted"
     );
-    reset();
-    setContent("");
+
+    if (result) {
+      reset();
+      setContent("");
+    }
   };
 
   const config = {

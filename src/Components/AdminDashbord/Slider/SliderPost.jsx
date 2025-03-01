@@ -10,6 +10,7 @@ const SliderPost = ({ addSlide }) => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
   const [image, setImage] = useState("");
 
@@ -29,11 +30,15 @@ const SliderPost = ({ addSlide }) => {
       img: image,
       link: formData.link,
     };
-    await PostHooks(
+    const result = await PostHooks(
       `${server_url}/slide/addSlide`,
       slide,
       "Slide successfully posted"
     );
+
+    if (result) {
+      reset();
+    }
   };
 
   return (

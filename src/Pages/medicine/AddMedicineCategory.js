@@ -30,20 +30,25 @@ const AddMedicineCategory = () => {
 
     metaImage,
   };
-  const handelSubmit = (e) => {
+  const handelSubmit = async (e) => {
     e.preventDefault();
 
-    PostHooks(`${server_url}/category`, data, "Category successfully posted");
+    const result = await PostHooks(
+      `${server_url}/category`,
+      data,
+      "Category successfully posted"
+    );
 
     // clear input
-
-    setFormData({
-      name: "",
-      canonicalUrl: "",
-      metaTitle: "",
-      metaDescription: "",
-      slug: "",
-    });
+    if (result) {
+      setFormData({
+        name: "",
+        canonicalUrl: "",
+        metaTitle: "",
+        metaDescription: "",
+        slug: "",
+      });
+    }
   };
   return (
     <section className="py-10 md:py-14">
