@@ -106,7 +106,9 @@ const UpdateSlide = () => {
             className="w-full p-2 border border-blue-gray-100 rounded"
           />
 
-          <img className="w-20 rounded-lg" src={image} alt="img"></img>
+          {image && (
+            <img className="w-20 rounded-lg" src={image} alt="img"></img>
+          )}
         </div>
         {errors.img && <p className="text-red-500">{errors.img.message}</p>}
 

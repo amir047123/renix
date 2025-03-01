@@ -6,9 +6,9 @@ import AdminDashboard from "./dashboardLayout/AdminDashboard";
 import AdminRoutes from "./Routes/AdminRoute";
 import { aboutRoutes } from "./Routes/AboutRoutes";
 import About from "./Pages/About";
-import OrderFLoatingCart from "./Layouts/OrderFLoatingCart";
+// import OrderFLoatingCart from "./Layouts/OrderFLoatingCart";
 import { useState, useEffect } from "react";
-import { BsFillBagFill } from "react-icons/bs";
+// import { BsFillBagFill } from "react-icons/bs";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import AdminDashboardOverview from "./Pages/dashboard/AdminDashboardOverview";
@@ -25,8 +25,8 @@ import DoctorRoutes from "./Routes/DoctorRoutes";
 function App() {
   const [user, setUser] = useState();
   const { userInfo } = AuthUser();
-  const [openCart, setOpenCart] = useState(false);
-  const [order, setOrder] = useState([]);
+  // const [openCart, setOpenCart] = useState(false);
+  const [, setOrder] = useState([]);
   const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
