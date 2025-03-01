@@ -53,7 +53,8 @@ const AddMedicine = () => {
       img: image,
       supplierName: data.supplierName,
       price: data.price,
-      description: content,
+      description: data.description,
+      fullDescription: content,
       strength: data.strength,
       securityCode: data.securityCode,
       stock: data.stock,
@@ -77,6 +78,14 @@ const AddMedicine = () => {
     );
     reset();
   };
+
+  const config = {
+    sanitize: true, // Enables Jodit's built-in sanitization
+    allowHTML: true, // Keeps valid HTML content
+    removeScript: true, // Removes <script> tags for security
+    removeOnPaste: false, // Keeps formatting when pasting content
+  };
+
   return (
     <section className="py-10 md:py-14">
       <div className=" form_wrapper bg-white px-10  w-full mx-auto md:max-w-4xl lg:max-w-4xl rounded">
@@ -234,6 +243,27 @@ const AddMedicine = () => {
               <p className="text-red-500 mt-1">{errors.price.message}</p>
             )}
           </div>
+
+          <div className="mb-1">
+            <label
+              for="description"
+              class="block mb-2 text-[13px] font-normal text-gray-900 dark:text-white"
+            >
+              Short Description
+            </label>
+            <input
+              type="text"
+              className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-500"
+              placeholder="Short Description"
+              {...register("description", {
+                required: "Short Description is required",
+              })}
+              maxLength={100}
+            />
+            {errors.description && (
+              <p className="text-red-500 mt-1">{errors.description.message}</p>
+            )}
+          </div>
           {/* medicine description */}
           <div className="mb-1">
             <label
@@ -256,7 +286,7 @@ const AddMedicine = () => {
             <JoditEditor
               ref={editor}
               value={content}
-              // config={config}
+              config={config}
               // tabIndex={1} // tabIndex of textarea
               onBlur={(newContent) => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
               // {...register("description", {
