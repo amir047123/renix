@@ -109,6 +109,13 @@ const UpdateMedicine = () => {
     await UpdateHooks(updateUrl, medicineData, "Medicine successfully updated");
   };
 
+  const config = {
+    sanitize: true,
+    allowHTML: true,
+    removeScript: true,
+    removeOnPaste: false,
+  };
+
   return (
     <>
       <DynamicMetaTitle title={medicine.metaTitle} />
@@ -284,6 +291,7 @@ const UpdateMedicine = () => {
               </label>
 
               <JoditEditor
+                config={config}
                 ref={editor}
                 value={content}
                 onBlur={(newContent) => setContent(newContent)}

@@ -93,6 +93,13 @@ const UpdateBlog = () => {
       .then((data) => setUser(data?.data));
   }, [userInfo?._id]);
 
+  const config = {
+    sanitize: true,
+    allowHTML: true,
+    removeScript: true,
+    removeOnPaste: false,
+  };
+
   return (
     <section className="py-10 md:py-14">
       <div className=" form_wrapper bg-white px-10  w-full mx-auto md:max-w-4xl lg:max-w-4xl rounded">
@@ -180,6 +187,7 @@ const UpdateBlog = () => {
               Description
             </label>
             <JoditEditor
+              config={config}
               ref={editor}
               value={blogDescription}
               onBlur={(newContent) => setBlogDescription(newContent)}

@@ -81,10 +81,10 @@ const AddMedicine = () => {
   };
 
   const config = {
-    sanitize: true, // Enables Jodit's built-in sanitization
-    allowHTML: true, // Keeps valid HTML content
-    removeScript: true, // Removes <script> tags for security
-    removeOnPaste: false, // Keeps formatting when pasting content
+    sanitize: true,
+    allowHTML: true,
+    removeScript: true,
+    removeOnPaste: false,
   };
 
   return (
