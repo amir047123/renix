@@ -4,8 +4,8 @@ import React from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import DynamicMetaTitle from "../../Components/DynamicMetaTitle";
-import useGetSeo from "../../Hooks/useGetSeo";
 import { server_url } from "../../Config/API";
+import useGetSeo from "../../Hooks/useGetSeo";
 
 const fetchNewsAndMedia = async () => {
   const response = await fetch(

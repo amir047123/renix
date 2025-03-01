@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import demoDoctor from "../../../Assets/images/doctor.jpg";
 import img7 from "../../../Assets/images/Dorctors/team-custom-icon-3.png";
-import { useEffect, useState } from "react";
 import { server_url } from "../../../Config/API";
 
 const BestDoctors = () => {

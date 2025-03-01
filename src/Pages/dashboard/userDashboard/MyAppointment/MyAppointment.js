@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { MdPendingActions } from "react-icons/md";
 import { SiGooglemeet } from "react-icons/si";
-import AuthUser from "../../../../Hooks/authUser";
 import { server_url } from "../../../../Config/API";
+import AuthUser from "../../../../Hooks/authUser";
 
 const MyAppointment = () => {
   const [appointment, setAppointment] = useState([]);

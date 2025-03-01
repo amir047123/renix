@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Location from "../../Components/Bangladesh Location/location.json";
+import { server_url } from "../../Config/API";
 import PostHooks from "../../Hooks/PostHooks";
 import AuthUser from "../../Hooks/authUser";
 import MyContext from "../../Utils/Context/MyContext";
-import { server_url } from "../../Config/API";
 const Checkout = () => {
   const { userInfo } = AuthUser();
   const [division, setDivision] = useState("");

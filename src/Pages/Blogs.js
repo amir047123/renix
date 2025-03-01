@@ -3,10 +3,10 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import DynamicMetaTitle from "../Components/DynamicMetaTitle";
+import { server_url } from "../Config/API";
 import useGetSeo from "../Hooks/useGetSeo";
 import Pagination from "../shared/Pagination/Pagination";
 import BlogCard from "./ProductDetails/BlogPage/BlogCard";
-import { server_url } from "../Config/API";
 
 const fetchBlogs = async ({ queryKey }) => {
   const [, page, size] = queryKey;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import SecondLoading from "../../../shared/SecondLoading";
 import { server_url } from "../../../Config/API";
+import SecondLoading from "../../../shared/SecondLoading";
 
 const BlogSinglePage = () => {
   const [blog, setBlog] = useState({});

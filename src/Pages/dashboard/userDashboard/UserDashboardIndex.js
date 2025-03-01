@@ -7,8 +7,8 @@ import img6 from "../../../Assets/dasboard-icon/pending-appointment.png";
 import img2 from "../../../Assets/dasboard-icon/pending-order.png";
 import img5 from "../../../Assets/dasboard-icon/total-appointment.png";
 import img1 from "../../../Assets/dasboard-icon/total-order.png";
-import AuthUser from "../../../Hooks/authUser";
 import { server_url } from "../../../Config/API";
+import AuthUser from "../../../Hooks/authUser";
 
 const AdminDashboardOverview = () => {
   const [order, setOrder] = useState([]);

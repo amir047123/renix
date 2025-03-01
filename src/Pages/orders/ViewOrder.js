@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Loading from "../../shared/Loading";
 import { server_url } from "../../Config/API";
+import Loading from "../../shared/Loading";
 
 const ViewOrder = () => {
   const { id } = useParams();

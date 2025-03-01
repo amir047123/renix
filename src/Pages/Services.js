@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import DynamicMetaTitle from "../Components/DynamicMetaTitle";
-import useGetSeo from "../Hooks/useGetSeo";
 import { server_url } from "../Config/API";
+import useGetSeo from "../Hooks/useGetSeo";
 
 const Services = () => {
   const metaData = useGetSeo("security_page");

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 
 import { useParams } from "react-router-dom";
+import { server_url } from "../../Config/API";
 import { singleImageUpload } from "../../Hooks/ImageUpload";
 import UpdateHooks from "../../Hooks/UpdateHooks";
-import { server_url } from "../../Config/API";
 
 const UpdateBlogCategory = () => {
   const { id } = useParams();

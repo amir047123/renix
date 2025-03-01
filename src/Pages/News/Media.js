@@ -3,8 +3,8 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import toast from "react-hot-toast";
 import DynamicMetaTitle from "../../Components/DynamicMetaTitle";
-import useGetSeo from "../../Hooks/useGetSeo";
 import { server_url } from "../../Config/API";
+import useGetSeo from "../../Hooks/useGetSeo";
 
 const fetchMedia = async () => {
   const response = await fetch(

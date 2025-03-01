@@ -62,7 +62,7 @@ const FeatureProducts = () => {
                 <img
                   src={item.img}
                   alt={item.name}
-                  className="w-full h-64 object-cover"
+                  className="w-full h-full object-cover"
                 />
 
                 {/* ✅ Sale Badge */}

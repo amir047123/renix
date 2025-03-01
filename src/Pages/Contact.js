@@ -2,9 +2,9 @@ import React from "react";
 import { FiSend } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import DynamicMetaTitle from "../Components/DynamicMetaTitle";
+import { server_url } from "../Config/API";
 import useGetSeo from "../Hooks/useGetSeo";
 import "./Contact.css";
-import { server_url } from "../Config/API";
 
 const Contact = () => {
   const metaData = useGetSeo("contact_page");

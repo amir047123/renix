@@ -6,9 +6,9 @@ import { useParams } from "react-router-dom";
 import Card from "../Components/Card/Card";
 import DynamicMetaTitle from "../Components/DynamicMetaTitle";
 import CategoryItems from "../Components/Products/CategoryItems";
+import { server_url } from "../Config/API";
 import useGetSeo from "../Hooks/useGetSeo";
 import Pagination from "../shared/Pagination";
-import { server_url } from "../Config/API";
 
 const pageSize = 10; // Number of products per page
 

@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import img7 from "../../../Assets/dasboard-icon/completed-appointment.png";
 import img6 from "../../../Assets/dasboard-icon/pending-appointment.png";
 import img2 from "../../../Assets/dasboard-icon/pending-order.png";
-import AuthUser from "../../../Hooks/authUser";
 import { server_url } from "../../../Config/API";
+import AuthUser from "../../../Hooks/authUser";
 
 const DoctorDashboardIndex = () => {
   const [pending, setPending] = useState(0);

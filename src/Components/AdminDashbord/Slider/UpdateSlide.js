@@ -2,9 +2,9 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
+import { server_url } from "../../../Config/API";
 import { singleImageUpload } from "../../../Hooks/ImageUpload";
 import UpdateHooks from "../../../Hooks/UpdateHooks";
-import { server_url } from "../../../Config/API";
 
 const UpdateSlide = () => {
   const { id } = useParams();

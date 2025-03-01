@@ -1,6 +1,6 @@
 import React from "react";
-import { server_url } from "../../../Config/API";
 import toast from "react-hot-toast";
+import { server_url } from "../../../Config/API";
 
 const NewsLetter = () => {
   const handleSubscriber = async (event) => {

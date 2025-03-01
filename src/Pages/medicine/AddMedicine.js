@@ -1,9 +1,9 @@
 import JoditEditor from "jodit-react";
 import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
+import { server_url } from "../../Config/API";
 import { singleImageUpload } from "../../Hooks/ImageUpload";
 import PostHooks from "../../Hooks/PostHooks";
-import { server_url } from "../../Config/API";
 
 const AddMedicine = () => {
   const [image, setImage] = useState(null);

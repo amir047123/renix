@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { MdPendingActions } from "react-icons/md";
+import { server_url } from "../../../../Config/API";
 import AuthUser from "../../../../Hooks/authUser";
 import Pagination from "../../../../shared/Pagination/Pagination";
-import { server_url } from "../../../../Config/API";
 
 const RejectedAppointment = () => {
   const [appointment, setAppointment] = useState([]);

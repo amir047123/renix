@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import PostHooks from "../../Hooks/PostHooks";
 
-import { singleImageUpload } from "../../Hooks/ImageUpload";
 import { server_url } from "../../Config/API";
+import { singleImageUpload } from "../../Hooks/ImageUpload";
 
 const AddMedicineCategory = () => {
   const [metaImage, setMetaImage] = useState("");

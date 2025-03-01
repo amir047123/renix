@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { singleImageUpload } from "../../../Hooks/ImageUpload";
 import { server_url } from "../../../Config/API";
+import { singleImageUpload } from "../../../Hooks/ImageUpload";
 
 const AdminSeo = () => {
   const [metaImage, setMetaImage] = useState("");

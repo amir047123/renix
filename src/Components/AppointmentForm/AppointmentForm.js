@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { server_url } from "../../Config/API";
 import PostHooks from "../../Hooks/PostHooks";
 import AuthUser from "../../Hooks/authUser";
-import { server_url } from "../../Config/API";
 
 const AppointmentForm = () => {
   const { id } = useParams();

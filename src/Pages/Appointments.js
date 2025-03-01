@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import DoctorsCard from "../Components/DoctorsCard/DoctorsCard";
-import Pagination from "../shared/Pagination/Pagination";
 import { server_url } from "../Config/API";
+import Pagination from "../shared/Pagination/Pagination";
 
 const Appointments = () => {
   const [doctors, setDoctors] = useState([]);

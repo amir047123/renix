@@ -252,7 +252,11 @@ const FeatureProducts = () => {
   //     const size = 10; // Provide the desired size value
   //     const page = 1; // Provide the desired page value
 
+<<<<<<< HEAD
+  //     const url = `http://localhost:3001/api/v1/medicine?size=${size}&page=${page}`;
+=======
   // const url = `${server_url}/medicine?size=${size}&page=${page}`;
+>>>>>>> 47bb5cedf53f5587c42b72757c4a2d7953614036
   //     fetch(url)
   //       .then((res) => res.json())
   //       .then((data) => {

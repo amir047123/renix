@@ -4,9 +4,9 @@ import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import DynamicMetaTitle from "../../Components/DynamicMetaTitle";
 // import MyContext from "../../Utils/Context/MyContext";
+import { server_url } from "../../Config/API";
 import ProductInfo from "./ProductInfo";
 import ProductTable from "./ProductTable";
-import { server_url } from "../../Config/API";
 
 const fetchProduct = async (id) => {
   const response = await fetch(

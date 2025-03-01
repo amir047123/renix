@@ -2,8 +2,8 @@ import { Icon } from "@iconify/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import UpdateHooks from "../../../Hooks/UpdateHooks";
 import { server_url } from "../../../Config/API";
+import UpdateHooks from "../../../Hooks/UpdateHooks";
 
 const AdminShipping = () => {
   const [formData, setFormData] = useState({

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
+import { server_url } from "../../Config/API";
 import { singleImageUpload } from "../../Hooks/ImageUpload";
 import PostHooks from "../../Hooks/PostHooks";
-import { server_url } from "../../Config/API";
 
 const AddBlogCategory = () => {
   const [metaImage, setMetaImage] = useState("");

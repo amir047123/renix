@@ -1,11 +1,11 @@
+import { Box, CircularProgress } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import { CiSearch } from "react-icons/ci";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { TbEdit } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { server_url } from "../../Config/API";
-import { Box, CircularProgress } from "@mui/material";
-import { CiSearch } from "react-icons/ci";
 import Pagination from "../../shared/Pagination/Pagination";
 
 const AllMedicineCategories = () => {
