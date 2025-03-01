@@ -108,7 +108,7 @@ const RenixOverview = () => {
                 <img
                   src={product?.img || neemo}
                   alt="Neemo Product"
-                  className=" object-contain"
+                  className=" object-contain w-36 h-36"
                 />
               </div>
               <button

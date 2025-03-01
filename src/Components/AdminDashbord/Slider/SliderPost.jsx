@@ -79,12 +79,17 @@ const SliderPost = ({ addSlide }) => {
           {...register("buttonText")}
           className="w-full p-2 border border-blue-gray-100 rounded"
         />
+        <div className="flex items-center gap-3">
+          <input
+            type="file"
+            onChange={handleChangeUploadImage}
+            className="w-full p-2 border border-blue-gray-100 rounded"
+          />
+          {image && (
+            <img className="w-12 rounded-md" src={image} alt="img"></img>
+          )}
+        </div>
 
-        <input
-          type="file"
-          onChange={handleChangeUploadImage}
-          className="w-full p-2 border border-blue-gray-100 rounded"
-        />
         {errors.img && <p className="text-red-500">{errors.img.message}</p>}
 
         <input

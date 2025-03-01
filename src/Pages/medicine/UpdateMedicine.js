@@ -57,8 +57,10 @@ const UpdateMedicine = () => {
         setValue("medicineStatus", data?.data?.medicineStatus || "");
         setValue("img", data?.data?.img || "");
         setValue("discount", data?.data?.discount || "");
-        setImage(data?.data?.img);
-        setContent(data?.data?.description || "");
+        setImage(data?.data?.img || "");
+        setMetaImage(data?.data?.metaImage || "");
+        setContent(data?.data?.fullDescription || "");
+        setValue("description", data?.data?.description || "");
         setValue("canonicalUrl", data?.data?.canonicalUrl || "");
         setValue("metaTitle", data?.data?.metaTitle || "");
         setValue("metaDescription", data?.data?.metaDescription || "");
@@ -67,6 +69,7 @@ const UpdateMedicine = () => {
           "isSpecial",
           data?.data?.isSpecial === false ? false : true || ""
         );
+        setValue("orderUrl", data?.data?.orderUrl || "");
       });
   }, [id, setValue]);
 
@@ -88,7 +91,8 @@ const UpdateMedicine = () => {
       img: image,
       supplierName: data.supplierName,
       price: data.price,
-      description: content,
+      description: data.description,
+      fullDescription: content,
       strength: data.strength,
       securityCode: data.securityCode,
       stock: data.stock,
@@ -102,6 +106,7 @@ const UpdateMedicine = () => {
       slug: data.slug,
       metaImage,
       isSpecial: data?.isSpecial,
+      orderUrl: data?.orderUrl,
     };
 
     const updateUrl = `${server_url}/medicine/updateMedicine/${id}`;
@@ -254,7 +259,9 @@ const UpdateMedicine = () => {
                   id="file_input"
                   type="file"
                 />
-                <img className="w-12 rounded-md" src={image} alt="img"></img>
+                {image && (
+                  <img className="w-12 rounded-md" src={image} alt="img"></img>
+                )}
               </div>
               {errors.img && (
                 <p className="text-red-500 mt-1">{errors.img.message}</p>
@@ -281,6 +288,30 @@ const UpdateMedicine = () => {
                 <p className="text-red-500 mt-1">{errors.price.message}</p>
               )}
             </div>
+
+            <div className="mb-1">
+              <label
+                for="description"
+                class="block mb-2 text-[13px] font-normal text-gray-900 dark:text-white"
+              >
+                Short Description
+              </label>
+              <input
+                type="text"
+                className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-500"
+                placeholder="Short Description"
+                {...register("description", {
+                  required: "Short Description is required",
+                })}
+                maxLength={100}
+              />
+              {errors.description && (
+                <p className="text-red-500 mt-1">
+                  {errors.description.message}
+                </p>
+              )}
+            </div>
+
             {/* medicine description */}
             <div className="mb-1">
               <label
@@ -421,11 +452,18 @@ const UpdateMedicine = () => {
                   <option value="" disabled selected>
                     Choose a Medicine type
                   </option>
-                  <option value="Darmal">Darmal</option>
-                  <option value="Nasal">Nasal</option>
-                  <option value="Optharmal">Optharmal</option>
-                  <option value="otologic">otologic</option>
-                  <option value="Urogenital">Urogenital</option>
+                  <option value="Tib-e-Niswan">Tib-e-Niswan</option>
+                  <option value="Muqawwi-e-Azam">Muqawwi-e-Azam</option>
+                  <option value="Munzij Mushil">Munzij Mushil</option>
+                  <option value="Hammal Jirah">Hammal Jirah</option>
+                  <option value="Munaffis Balgham">Munaffis Balgham</option>
+                  <option value="Muqawwi-e-Metabolism">
+                    Muqawwi-e-Metabolism
+                  </option>
+
+                  <option value="Tib-e-Sehhat">Tib-e-Sehhat </option>
+                  <option value="Mushil-e-Jild">Mushil-e-Jild </option>
+                  <option value="Muqawwi-e-Bah">Muqawwi-e-Bah </option>
                 </select>
                 {errors.type && (
                   <p className="text-red-500 mt-1">{errors.type.message}</p>
@@ -458,6 +496,27 @@ const UpdateMedicine = () => {
                 )}
               </div>
             </div>
+
+            <div className="mb-1">
+              <label
+                for="orderUrl"
+                class="block mb-2 text-[13px] font-normal text-gray-900 dark:text-white"
+              >
+                Order URL
+              </label>
+              <input
+                type="text"
+                className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-500"
+                placeholder="Order URL"
+                {...register("orderUrl", {
+                  required: "Order URL is required",
+                })}
+              />
+              {errors.orderUrl && (
+                <p className="text-red-500 mt-1">{errors.orderUrl.message}</p>
+              )}
+            </div>
+
             {/* Seo meta tags started */}
             <div>
               <h2 className="border-b border-solid border-gray-300 mb-5 pb-3">
@@ -533,12 +592,21 @@ const UpdateMedicine = () => {
                 >
                   Meta Image
                 </label>
-                <input
-                  onChange={handleChangeMetaImage}
-                  className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 focus:border-blue-500"
-                  type="file"
-                  placeholder="Meta description"
-                />
+                <div className="flex items-center gap-3">
+                  <input
+                    onChange={handleChangeMetaImage}
+                    className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 focus:border-blue-500"
+                    type="file"
+                    placeholder="Meta description"
+                  />
+                  {metaImage && (
+                    <img
+                      className="w-12 rounded-md"
+                      src={metaImage}
+                      alt="img"
+                    ></img>
+                  )}
+                </div>
               </div>
 
               <div className="mb-5">
