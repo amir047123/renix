@@ -89,7 +89,7 @@ const SliderPost = ({ addSlide }) => {
 
         <input
           type="text"
-          placeholder="YouTube Link"
+          placeholder="Button Link"
           {...register("link")}
           className="w-full p-2 border border-blue-gray-100 rounded"
         />

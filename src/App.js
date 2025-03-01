@@ -41,13 +41,13 @@ function App() {
   }, [userInfo?._id]);
 
   // Track page view when the component mounts
-  
+
   return (
     <MyContext.Provider value={{ refresh, setRefresh, user }}>
       <div className="relative">
         {/* Order floating cart */}
         {/* Render OrderFLoatingCart conditionally */}
-        {openCart ? (
+        {/* {openCart ? (
           <OrderFLoatingCart setOpenCart={setOpenCart} />
         ) : (
           <div className="fixed z-20 top-[45vh] right-0 cursor-pointer">
@@ -65,7 +65,7 @@ function App() {
               </div>
             </div>
           </div>
-        )}
+        )} */}
 
         <Routes>
           {/* Main Routes */}
@@ -114,9 +114,6 @@ function App() {
 }
 
 export default App;
-
-
-
 
 // {openCart ? (
 //   <OrderFLoatingCart setOpenCart={setOpenCart}></OrderFLoatingCart>

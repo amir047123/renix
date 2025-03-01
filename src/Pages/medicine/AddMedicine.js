@@ -527,7 +527,6 @@ const AddMedicine = () => {
                 })}
                 className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:outline-none block w-full p-2.5 focus:border-none"
                 placeholder="Enter a slug"
-                required
               />
               {errors.slug && (
                 <p className="text-red-500 mt-1">{errors.slug.message}</p>
