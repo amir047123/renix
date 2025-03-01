@@ -68,6 +68,7 @@ const AddMedicine = () => {
       slug: data.slug,
       metaImage,
       isSpecial: data?.isSpecial,
+      orderUrl: data?.orderUrl,
     };
 
     // post api call
@@ -468,6 +469,27 @@ const AddMedicine = () => {
               )}
             </div>
           </div>
+
+          <div className="mb-1">
+            <label
+              for="orderUrl"
+              class="block mb-2 text-[13px] font-normal text-gray-900 dark:text-white"
+            >
+              Order URL
+            </label>
+            <input
+              type="text"
+              className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-500"
+              placeholder="Order URL"
+              {...register("orderUrl", {
+                required: "Order URL is required",
+              })}
+            />
+            {errors.orderUrl && (
+              <p className="text-red-500 mt-1">{errors.orderUrl.message}</p>
+            )}
+          </div>
+
           {/* Seo meta tags started */}
           <div>
             <h2 className="border-b border-solid border-gray-300 mb-5 pb-3">

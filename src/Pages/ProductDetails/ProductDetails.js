@@ -50,6 +50,7 @@ const ProductDetails = () => {
     );
 
   const {
+    orderUrl,
     fullDescription,
     description,
     genericName,
@@ -139,7 +140,7 @@ const ProductDetails = () => {
               <p>{genericName}</p>
               <p>{supplierName}</p>
 
-              <Link to="https://renixcare.com/">
+              <Link target="_blank" to={orderUrl || "https://renixcare.com/"}>
                 <button className="border-2 w-full border-primary p-3 rounded-md text-primary text-md hover:text-white hover:bg-primary">
                   Order Now{" "}
                 </button>
