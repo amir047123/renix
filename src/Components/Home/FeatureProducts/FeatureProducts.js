@@ -52,18 +52,19 @@ const FeatureProducts = () => {
       {!isLoading && !error && (
         <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8 w-full mt-10">
           {products.map((item) => (
-            <Link
-              to={`/product/${item?.slug}`}
+            <div
               key={item._id}
               className="group block bg-white shadow-lg rounded-xl overflow-hidden transition-transform duration-300 hover:shadow-xl hover:scale-105"
             >
               {/* ✅ Product Image */}
               <div className="relative">
-                <img
-                  src={item.img}
-                  alt={item.name}
-                  className="w-full h-full object-cover"
-                />
+                <Link to={`/product/${item.slug}`}>
+                  <img
+                    src={item.img}
+                    alt={item.name}
+                    className="w-full h-full object-cover"
+                  />
+                </Link>
 
                 {/* ✅ Sale Badge */}
                 {item?.discount && (
@@ -88,14 +89,16 @@ const FeatureProducts = () => {
                 {/* ✅ Price & Stock Info */}
 
                 {/* ✅ Buy Now Button */}
-                <Link
-                  to="https://renixcare.com"
+                <a
+                  href={item.orderUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="mt-4 inline-block bg-primary text-white px-6 py-2 rounded-full font-medium transition hover:bg-opacity-90"
                 >
-                  Buy Now
-                </Link>
+                  Buy Nows
+                </a>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       )}

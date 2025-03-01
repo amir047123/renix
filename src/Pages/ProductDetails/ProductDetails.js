@@ -1,7 +1,7 @@
 import { CircularProgress } from "@mui/material"; // Import MUI Circular Progress
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import DynamicMetaTitle from "../../Components/DynamicMetaTitle";
 // import MyContext from "../../Utils/Context/MyContext";
 import { server_url } from "../../Config/API";
@@ -140,11 +140,12 @@ const ProductDetails = () => {
               <p>{genericName}</p>
               <p>{supplierName}</p>
 
-              <Link target="_blank" to={orderUrl || "https://renixcare.com/"}>
+              <a href={orderUrl} target="_blank" rel="noopener noreferrer">
                 <button className="border-2 w-full border-primary p-3 rounded-md text-primary text-md hover:text-white hover:bg-primary">
-                  Order Now{" "}
+                  Order Now
                 </button>
-              </Link>
+              </a>
+
               {/* {addToCart ? (
                 <div className="border-primary p-1 flex justify-evenly items-center">
                   <span
