@@ -77,6 +77,7 @@ const AddMedicine = () => {
       "Medicine successfully posted"
     );
     reset();
+    setContent("");
   };
 
   const config = {
@@ -294,7 +295,7 @@ const AddMedicine = () => {
 
               // })}
               //tabIndex={1} // tabIndex of textarea
-              onChange={(newContent) => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
+              // onChange={(newContent) => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
               // onChange={newContent => { }}
               // config={{
               //   cleanHTML: false, // Disable auto-paragraph feature

@@ -169,7 +169,7 @@ const UpdateNewsAndMedias = () => {
             <JoditEditor
               ref={editor}
               value={newsDescription}
-              onChange={(newContent) => setNewsDescription(newContent)}
+              onBlur={(newContent) => setNewsDescription(newContent)}
             />
           </div>
           {/* Seo meta tags started */}

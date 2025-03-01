@@ -50,6 +50,7 @@ const ProductDetails = () => {
     );
 
   const {
+    fullDescription,
     description,
     genericName,
     img,
@@ -216,7 +217,12 @@ const ProductDetails = () => {
           {activeTab === "tab1" ? (
             <ProductTable product={product} />
           ) : (
-            <ProductInfo description={description?.replace(/<\/?p>/g, "")} />
+            <ProductInfo
+              description={(fullDescription || description)?.replace(
+                /<\/?p>/g,
+                ""
+              )}
+            />
           )}
         </div>
       </div>

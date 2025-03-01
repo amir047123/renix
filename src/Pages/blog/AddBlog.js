@@ -77,6 +77,7 @@ const AddBlog = () => {
       "Medicine successfully posted"
     );
     reset();
+    setBlogDescription("");
   };
 
   return (
@@ -168,7 +169,7 @@ const AddBlog = () => {
             <JoditEditor
               ref={editor}
               value={blogDescription}
-              onChange={(newContent) => setBlogDescription(newContent)}
+              onBlur={(newContent) => setBlogDescription(newContent)}
             />
           </div>
           {/* Seo meta tags started */}

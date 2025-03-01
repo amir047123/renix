@@ -287,7 +287,7 @@ const UpdateMedicine = () => {
                 ref={editor}
                 value={content}
                 onBlur={(newContent) => setContent(newContent)}
-                onChange={(newContent) => setContent(newContent)}
+                // onChange={(newContent) => setContent(newContent)}
               />
             </div>
             {/* medicine strength */}

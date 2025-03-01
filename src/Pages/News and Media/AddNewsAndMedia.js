@@ -10,6 +10,7 @@ const AddNewsAndMedia = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
   const editor = useRef(null);
   const [newsDescription, setNewsDescription] = useState("");
@@ -50,6 +51,9 @@ const AddNewsAndMedia = () => {
       news,
       "Medicine successfully posted"
     );
+
+    reset();
+    setNewsDescription("");
   };
   return (
     <section className="py-10 md:py-14">
@@ -152,7 +156,7 @@ const AddNewsAndMedia = () => {
             <JoditEditor
               ref={editor}
               value={newsDescription}
-              onChange={(newContent) => setNewsDescription(newContent)}
+              onBlur={(newContent) => setNewsDescription(newContent)}
             />
           </div>
           {/* Seo meta tags started */}

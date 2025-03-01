@@ -182,7 +182,7 @@ const UpdateBlog = () => {
             <JoditEditor
               ref={editor}
               value={blogDescription}
-              onChange={(newContent) => setBlogDescription(newContent)}
+              onBlur={(newContent) => setBlogDescription(newContent)}
             />
           </div>
           {/* Seo meta tags started */}

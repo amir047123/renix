@@ -3,9 +3,13 @@ import { BsArrowUpRight } from "react-icons/bs";
 import { server_url } from "../../../Config/API";
 import { useQuery } from "@tanstack/react-query";
 import { Box, CircularProgress } from "@mui/material";
+import { Link } from "react-router-dom";
 
-const ProductCard = ({ name, image }) => (
-  <div className="relative group cursor-pointer bg-white rounded-2xl overflow-hidden">
+const ProductCard = ({ name, image, slug }) => (
+  <Link
+    to={`/product/${slug}`}
+    className="relative group cursor-pointer bg-white rounded-2xl overflow-hidden"
+  >
     <div className=" rounded-2xl p-6 aspect-[4/3] transform transition-transform duration-300 hover:scale-[1.02] ">
       <div className="flex justify-between">
         <img src={image} alt={name} className="w-[170px] mx-auto " />
@@ -20,7 +24,7 @@ const ProductCard = ({ name, image }) => (
         <BsArrowUpRight className="text-white/60 w-5 h-5" />
       </div>
     </div>
-  </div>
+  </Link>
 );
 
 const fetchMedicines = async () => {
@@ -69,6 +73,7 @@ const SpecializedProducts = () => {
                 key={product._id}
                 name={product.name}
                 image={product.img}
+                slug={product.slug}
                 isFeatured={product.isFeatured}
               />
             ))}
