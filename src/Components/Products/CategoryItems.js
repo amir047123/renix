@@ -6,19 +6,19 @@ const CategoryItems = ({ category }) => {
   const [openSubCategory, setOpenSubCategory] = useState(false);
   const location = useLocation();
   const [isActive, setIsActive] = useState(false);
-  const currentCategory = location?.pathname
-    ?.split("/")[2]
-    .replaceAll("%20", " ")
-    .toLowerCase();
 
   useEffect(() => {
-    console.log(category);
-    if (currentCategory === category?.toLowerCase()) {
+    const currentCategory = location?.pathname?.split("/")[2];
+    if (
+      currentCategory &&
+      currentCategory.replaceAll("%20", " ").toLowerCase() ===
+        category?.toLowerCase()
+    ) {
       setIsActive(true);
     } else {
       setIsActive(false);
     }
-  }, [category, currentCategory]);
+  }, [category, location.pathname]);
 
   return (
     <div>

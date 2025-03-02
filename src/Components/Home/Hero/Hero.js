@@ -1,5 +1,5 @@
 // import { Box, CircularProgress } from "@mui/material";
-import sliderImage from "../../../Assets/images/sliderImages/sliderImage.png";
+import sliderImage from "../../../Assets/images/sliderImages/sliderImage.webp";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import toast from "react-hot-toast";
