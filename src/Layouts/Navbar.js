@@ -31,15 +31,15 @@ const Navbar = () => {
     },
     { name: "Blogs", to: "/blogs" },
     { name: "Contact Us", to: "/contact" },
-    { name: "Renix Store", to: "https://renixcare.com" },
+    // { name: "Renix Store", to: "https://renixcare.com" },
   ];
 
   return (
-    <header>
+    <header className="bg-white sticky top-0 z-50">
       <TopBar />
 
-      <nav className="bg-white shadow-sm ">
-        <div className=" mx-auto px-4 sm:px-6 lg:px-8 xl:px-16">
+      <nav className="bg-white shadow-sm relative">
+        <div className=" mx-auto px-4 sm:px-6 lg:px-8 xl:px-16 sticky top-0">
           <div className="flex items-center justify-between md:h-20 h-[70px]">
             {/* Logo */}
             <Link to="/" className="flex-shrink-0">

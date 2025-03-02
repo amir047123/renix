@@ -29,10 +29,10 @@ const NewsLetter = () => {
   };
 
   return (
-    <div className="bg-secondary mx-auto w-full text-center pb-10 pt-10 ">
+    <div className="bg-secondary mx-auto  text-center pb-10 pt-10 ">
       <div className="">
         <h1 className="text-white text-3xl">Subscribe To our NewsLetter</h1>
-        <div className="w-full mx-auto  ">
+        <div className="mx-auto w-[90%]">
           <form
             onSubmit={handleSubscriber}
             className="flex items-center b justify-center"
