@@ -10,6 +10,7 @@ const SliderPost = ({ addSlide }) => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
   const [image, setImage] = useState("");
 
@@ -29,11 +30,15 @@ const SliderPost = ({ addSlide }) => {
       img: image,
       link: formData.link,
     };
-    await PostHooks(
+    const result = await PostHooks(
       `${server_url}/slide/addSlide`,
       slide,
       "Slide successfully posted"
     );
+
+    if (result) {
+      reset();
+    }
   };
 
   return (
@@ -74,17 +79,22 @@ const SliderPost = ({ addSlide }) => {
           {...register("buttonText")}
           className="w-full p-2 border border-blue-gray-100 rounded"
         />
+        <div className="flex items-center gap-3">
+          <input
+            type="file"
+            onChange={handleChangeUploadImage}
+            className="w-full p-2 border border-blue-gray-100 rounded"
+          />
+          {image && (
+            <img className="w-12 rounded-md" src={image} alt="img"></img>
+          )}
+        </div>
 
-        <input
-          type="file"
-          onChange={handleChangeUploadImage}
-          className="w-full p-2 border border-blue-gray-100 rounded"
-        />
         {errors.img && <p className="text-red-500">{errors.img.message}</p>}
 
         <input
           type="text"
-          placeholder="YouTube Link"
+          placeholder="Button Link"
           {...register("link")}
           className="w-full p-2 border border-blue-gray-100 rounded"
         />

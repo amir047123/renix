@@ -33,12 +33,14 @@ const AppointmentForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const appointmentInfo = formData;
-    await PostHooks(
+    const result = await PostHooks(
       `${server_url}/appointment/postAppointment`,
       appointmentInfo,
       "Your appointment has been sent to the doctor for review"
     );
-    navigate("/appointment");
+    if (result) {
+      navigate("/appointment");
+    }
   };
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });

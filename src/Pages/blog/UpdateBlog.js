@@ -53,6 +53,8 @@ const UpdateBlog = () => {
         setValue("metaDescription", data?.data?.metaDescription || "");
         setValue("slug", data?.data?.slug || "");
         setBlogDescription(data?.data?.description || "");
+        setImage(data?.data?.img || "");
+        setMetaImage(data?.data?.metaImage || "");
       });
   }, [id, setValue]);
 
@@ -92,6 +94,13 @@ const UpdateBlog = () => {
       .then((res) => res.json())
       .then((data) => setUser(data?.data));
   }, [userInfo?._id]);
+
+  const config = {
+    sanitize: true,
+    allowHTML: true,
+    removeScript: true,
+    removeOnPaste: false,
+  };
 
   return (
     <section className="py-10 md:py-14">
@@ -160,12 +169,18 @@ const UpdateBlog = () => {
               {" "}
               Blog Cover Photo
             </label>
-            <input
-              onChange={handleChangeUploadImage}
-              className="block w-full text-sm text-gray-900  rounded-lg cursor-pointer bg-[#F0FDF4] dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 p-2"
-              id="image_doctor"
-              type="file"
-            />
+            <div className="flex items-center gap-3">
+              <input
+                onChange={handleChangeUploadImage}
+                className="block w-full text-sm text-gray-900  rounded-lg cursor-pointer bg-[#F0FDF4] dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 p-2"
+                id="image_doctor"
+                type="file"
+              />{" "}
+              {image && (
+                <img className="w-12 rounded-md" src={image} alt="img"></img>
+              )}
+            </div>
+
             {errors.img && (
               <p className="text-red-500 mt-1">{errors.img.message}</p>
             )}
@@ -180,9 +195,10 @@ const UpdateBlog = () => {
               Description
             </label>
             <JoditEditor
+              config={config}
               ref={editor}
               value={blogDescription}
-              onChange={(newContent) => setBlogDescription(newContent)}
+              onBlur={(newContent) => setBlogDescription(newContent)}
             />
           </div>
           {/* Seo meta tags started */}
@@ -258,12 +274,21 @@ const UpdateBlog = () => {
               >
                 Meta Image
               </label>
-              <input
-                onChange={handleChangeMetaImage}
-                className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 focus:border-blue-500"
-                type="file"
-                placeholder="Meta description"
-              />
+              <div className="flex items-center gap-3">
+                <input
+                  onChange={handleChangeMetaImage}
+                  className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 focus:border-blue-500"
+                  type="file"
+                  placeholder="Meta description"
+                />
+                {metaImage && (
+                  <img
+                    className="w-12 rounded-md"
+                    src={metaImage}
+                    alt="img"
+                  ></img>
+                )}
+              </div>
             </div>
 
             <div className="mb-5">

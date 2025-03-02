@@ -10,6 +10,7 @@ const AddNewsAndMedia = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
   const editor = useRef(null);
   const [newsDescription, setNewsDescription] = useState("");
@@ -45,12 +46,27 @@ const AddNewsAndMedia = () => {
     };
 
     // post api call
-    await PostHooks(
+    const result = await PostHooks(
       `${server_url}/newsAndMedia/addNewsAndMedia`,
       news,
       "Medicine successfully posted"
     );
+
+    if (result) {
+      reset();
+      setNewsDescription("");
+      setImage(null);
+      setMetaImage("");
+    }
   };
+
+  const config = {
+    sanitize: true,
+    allowHTML: true,
+    removeScript: true,
+    removeOnPaste: false,
+  };
+
   return (
     <section className="py-10 md:py-14">
       <div className="form_wrapper bg-white px-10 w-full mx-auto md:max-w-4xl lg:max-w-4xl rounded">
@@ -112,14 +128,20 @@ const AddNewsAndMedia = () => {
               htmlFor="file_input"
               className="block mb-2 text-[13px] font-normal text-gray-900 dark:text-white"
             >
-              Doctor Photo
+              News Image
             </label>
-            <input
-              className="block w-full text-sm text-gray-900 rounded-lg cursor-pointer bg-[#F0FDF4] dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 p-2"
-              id="file_input"
-              type="file"
-              onChange={handleChangeUploadImage}
-            />
+            <div className="flex items-center gap-3">
+              <input
+                className="block w-full text-sm text-gray-900 rounded-lg cursor-pointer bg-[#F0FDF4] dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 p-2"
+                id="file_input"
+                type="file"
+                onChange={handleChangeUploadImage}
+              />
+              {image && (
+                <img className="w-12 rounded-md" src={image} alt="img"></img>
+              )}
+            </div>
+
             {errors.newsImage && (
               <p className="text-red-500 mt-1">{errors.newsImage.message}</p>
             )}
@@ -150,9 +172,10 @@ const AddNewsAndMedia = () => {
               Description
             </label>
             <JoditEditor
+              config={config}
               ref={editor}
               value={newsDescription}
-              onChange={(newContent) => setNewsDescription(newContent)}
+              onBlur={(newContent) => setNewsDescription(newContent)}
             />
           </div>
           {/* Seo meta tags started */}
@@ -228,12 +251,21 @@ const AddNewsAndMedia = () => {
               >
                 Meta Image
               </label>
-              <input
-                onChange={handleChangeMetaImage}
-                className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 focus:border-blue-500"
-                type="file"
-                placeholder="Meta description"
-              />
+              <div className="flex items-center gap-3">
+                <input
+                  onChange={handleChangeMetaImage}
+                  className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 focus:border-blue-500"
+                  type="file"
+                  placeholder="Meta description"
+                />
+                {metaImage && (
+                  <img
+                    className="w-12 rounded-md"
+                    src={metaImage}
+                    alt="img"
+                  ></img>
+                )}
+              </div>
             </div>
 
             <div className="mb-5">

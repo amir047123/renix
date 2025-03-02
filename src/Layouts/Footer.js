@@ -10,7 +10,7 @@ const Footer = () => {
       <footer className="bg-secondary dark:bg-gray-900">
         <div className="fixed bottom-5 sm:right-8 right-4 z-[999] cursor-pointer text-white text-4xl bg-primary w-16 h-16 flex items-center justify-center rounded-full animate-bounce">
           <a
-            href="https://api.whatsapp.com/send?phone=8801884442022"
+            href="https://api.whatsapp.com/send?phone=8801618883045"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -91,8 +91,8 @@ const Footer = () => {
                 Contact Info
               </h2>
               <ul className="text-lightTextColor flex flex-col gap-y-2 text-sm font-normal capitalize mb-8">
-                <li>+(880)1884442022</li>
-                <li>info@renixlaboratories.com</li>
+                <li>+(880)1618883045</li>
+                <li className="normal-case">renixoffice@gmail.com</li>
                 <li>RENIX UNANI LABORATORIES LIMITED,</li>
                 <li>Fatullah 1421 Dhaka, Dhaka Division, Bangladesh</li>
               </ul>
@@ -101,7 +101,7 @@ const Footer = () => {
           <hr className="my-6 border-lightTextColor border-1.5 sm:mx-auto  lg:my-6" />
           <div className="lg:flex lg:items-center lg:justify-between">
             <span className="text-sm text-lightTextColor sm:text-center dark:text-gray-400">
-              © 2023{" "}
+              © 2025{" "}
               <Link to={"/"} className="hover:underline">
                 Renix
               </Link>

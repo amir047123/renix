@@ -33,6 +33,7 @@ const AdminUpdateSeoList = () => {
     const fetchSingleSeo = async () => {
       const { data } = await axios.get(`${server_url}/seo/getSeoById/${id}`);
       setSeo(data?.data);
+      setMetaImage(data?.data?.metaImage);
       setFormData({
         page: data?.data?.page || "",
         metaTitle: data?.data?.metaTitle || "",
@@ -217,12 +218,21 @@ const AdminUpdateSeoList = () => {
             >
               Meta Image
             </label>
-            <input
-              onChange={handleChangeMetaImage}
-              className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 focus:border-blue-500"
-              type="file"
-              placeholder="Meta description"
-            />
+            <div className="flex items-center gap-3">
+              <input
+                onChange={handleChangeMetaImage}
+                className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 focus:border-blue-500"
+                type="file"
+                placeholder="Meta description"
+              />
+              {metaImage && (
+                <img
+                  className="w-12 rounded-md"
+                  src={metaImage}
+                  alt="img"
+                ></img>
+              )}
+            </div>
           </div>
         </div>
         <div className="text-center pt-3">

@@ -42,7 +42,7 @@ const NewArrivals = () => {
 
   return (
     <div className="mx-auto py-14">
-      <div className="lg:w-[90%] w-full mx-auto my-10 text-center">
+      <div className="w-[90%] mx-auto my-10 text-center">
         {/* ✅ Section Title */}
         <h3 className="bg-thirdLightPrimary w-36 mx-auto text-sm font-semibold text-gray-700 py-1 rounded-md">
           FEATURED
@@ -93,7 +93,8 @@ const NewArrivals = () => {
                     {/* ✅ Price & CTA Button */}
                     <div className="mt-4 flex items-center justify-center space-x-4">
                       <Link
-                        to="https://renixcare.com"
+                        target="_blank"
+                        to={`${product?.orderUrl}`}
                         className="bg-primary text-white px-6 py-2 rounded-full font-medium transition hover:bg-opacity-90"
                       >
                         Buy Now

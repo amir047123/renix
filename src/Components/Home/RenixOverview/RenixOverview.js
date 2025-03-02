@@ -13,7 +13,7 @@ import logo from "../../../Assets/images/logo.svg";
 import neemo from "../../../Assets/images/neemo-pimple.svg";
 import bg from "../../../Assets/images/overview-bg.svg";
 import support from "../../../Assets/images/support.svg";
-import time from "../../../Assets/images/time.svg";
+// import time from "../../../Assets/images/time.svg";
 import { server_url } from "../../../Config/API";
 
 const fetchMedicines = async () => {
@@ -64,27 +64,30 @@ const RenixOverview = () => {
               Help Line for you
             </h2>
 
-            <div className="bg-yellow-50 rounded-lg p-6 border-2 border-accent relative overflow-hidden">
+            <div className="bg-yellow-50 rounded-lg p-6 border-2 border-accent relative overflow-hidden h-[242px]">
               <div className="flex items-start space-x-3">
                 <div>
-                  <h2 className="text-accent font-semibold text-lg mb-2">
-                    কনটোর (Contour) গ্লুকোমিটার সম্পর্কে জানতে ডায়াল করুন
-                  </h2>
                   <img className="mb-5" src={support} alt="img"></img>
-                  <p className="text-2xl font-bold text-accent">
+                  <h2 className="text-accent text-base md:text-lg mb-2">
+                    রেনিক্স ইউনানী ল্যাবরেটরিজ লিঃ এর প্রতিনিধির সাথে কথা বলতে
+                    কল করুন: <span className="font-semibold">01618-883045</span>{" "}
+                    অথবা মেইল করুন:{" "}
+                    <span className="font-semibold">renixoffice@gmail.com</span>
+                  </h2>
+                  {/* <p className="text-xl mdl:text-2xl font-bold text-accent pr-28">
                     +880 1884-442022
                   </p>
-                  <p className="text-sm text-gray-500 mt-2">
+                  <p className="text-xs xl:text-sm text-gray-500 mt-2 pr-28">
                     প্রতিদিন - সকাল ৯টা থেকে বিকাল ৫টা
-                  </p>
+                  </p> */}
                 </div>
               </div>
               {/* Decorative Circle */}
-              <img
-                className="absolute right-0 bottom-0 "
+              {/* <img
+                className="absolute right-0 bottom-0"
                 src={time}
                 alt="img"
-              ></img>
+              ></img> */}
             </div>
           </div>
 
@@ -94,13 +97,13 @@ const RenixOverview = () => {
               Newly Launched Product
             </h2>
 
-            <div className="bg-white rounded-lg p-5 border-2 border-accent">
+            <div className="bg-white rounded-lg p-5 border-2 border-accent h-[242px] overflow-hidden">
               <div className="flex items-center justify-between">
                 <div>
                   <h2 className="text-accent font-semibold text-lg mb-2">
                     {product?.name || "Neemo Pimple Removal"}
                   </h2>
-                  <p className="text-[#607D8B] text-sm mt-1">
+                  <p className="text-[#607D8B] text-xs md:text-sm mt-1 line-clamp-3">
                     {product?.description ||
                       "Natural and Effective Blood Purifier."}
                   </p>
@@ -108,7 +111,7 @@ const RenixOverview = () => {
                 <img
                   src={product?.img || neemo}
                   alt="Neemo Product"
-                  className=" object-contain"
+                  className=" object-contain w-36 h-36"
                 />
               </div>
               <button
@@ -127,7 +130,7 @@ const RenixOverview = () => {
               Know about company
             </h2>
 
-            <div className="bg-white rounded-lg p-5 border-2 border-accent">
+            <div className="bg-white rounded-lg p-5 border-2 border-accent h-[242px]">
               <div className="bg-gray-100 rounded-lg  mb-5">
                 <iframe
                   title="video"
@@ -181,7 +184,7 @@ const RenixOverview = () => {
 
         {/* Renix Unani Laboratories Limited */}
         <div className="mt-20 lg:mt-28 flex flex-wrap lg:flex-nowrap items-center justify-between xl:gap-10 gap-5">
-          <div className="max-w-3xl">
+          <div className="container mx-auto w-[90%]">
             <img className="w-20" src={logo} alt="img"></img>
 
             <div className="my-8">

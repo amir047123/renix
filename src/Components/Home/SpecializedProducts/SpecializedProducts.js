@@ -3,16 +3,20 @@ import { BsArrowUpRight } from "react-icons/bs";
 import { server_url } from "../../../Config/API";
 import { useQuery } from "@tanstack/react-query";
 import { Box, CircularProgress } from "@mui/material";
+import { Link } from "react-router-dom";
 
-const ProductCard = ({ name, image }) => (
-  <div className="relative group cursor-pointer bg-white rounded-2xl overflow-hidden">
+const ProductCard = ({ name, image, slug }) => (
+  <Link
+    to={`/product/${slug}`}
+    className="relative group cursor-pointer bg-white rounded-2xl overflow-hidden"
+  >
     <div className=" rounded-2xl p-6 aspect-[4/3] transform transition-transform duration-300 hover:scale-[1.02] ">
       <div className="flex justify-between">
         <img src={image} alt={name} className="w-[170px] mx-auto " />
         <div className="md:bg-gradient-to-t md:from-accent md:via-transparent md:to-transparent absolute top-0 left-0 w-full h-full bg-gradient-to-t from-accent via-accent/40 to-transparent"></div>
         <div className="absolute bottom-0 left-0 p-6">
           <h3 className="text-[#FFF2BE] text-lg font-medium">{name}</h3>
-          <p className="text-[#ECF2F8] text-sm">
+          <p className="text-[#ecf8f7] text-sm overflow-hidden text-ellipsis whitespace-nowrap w-32 md:w-full">
             Renix Unani Laboratories Ltd.
           </p>
         </div>
@@ -20,7 +24,7 @@ const ProductCard = ({ name, image }) => (
         <BsArrowUpRight className="text-white/60 w-5 h-5" />
       </div>
     </div>
-  </div>
+  </Link>
 );
 
 const fetchMedicines = async () => {
@@ -45,13 +49,15 @@ const SpecializedProducts = () => {
 
   return (
     <div
-      className="bg-gradient-to-b from-indigo-900 to-emerald-900  p-8 md:p-12"
+      className="bg-gradient-to-r from-thirdLightPrimary via-whiteSmoke to-thirdLightPrimary  p-8 md:p-12"
       id="specializedProducts"
     >
       <div className="container mx-auto mt-10">
-        <h2 className="text-3xl md:text-4xl font-medium text-white mb-8">
+        <h2 className="text-3xl md:text-4xl font-medium mb-8">
           Specialized Products on{" "}
-          <span className="text-yellow-400">Renix Unani Laboratories Ltd.</span>
+          <span className="uppercase text-3xl font-bold text-[#47a81a]">
+            Renix Unani Laboratories Ltd.
+          </span>
         </h2>
 
         {isLoading ? (
@@ -69,6 +75,7 @@ const SpecializedProducts = () => {
                 key={product._id}
                 name={product.name}
                 image={product.img}
+                slug={product.slug}
                 isFeatured={product.isFeatured}
               />
             ))}

@@ -18,7 +18,7 @@ const NewsAndMedia = () => {
   ];
 
   return (
-    <section className="w-full lg:w-[90%] mx-auto py-10 text-center">
+    <section className="w-[90%] container mx-auto py-10 text-center">
       {/* ✅ Section Header */}
       <motion.h1
         className="text-primary font-bold text-3xl md:text-4xl uppercase tracking-wide"
@@ -39,7 +39,7 @@ const NewsAndMedia = () => {
       </motion.p>
 
       {/* ✅ Video Grid */}
-      <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="mt-10 grid grid-cols-1 sml:grid-cols-2 lg:grid-cols-3 gap-8">
         {newsandMediaInfo.map((info) => (
           <motion.div
             key={info.id}

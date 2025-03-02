@@ -53,7 +53,8 @@ const AddMedicine = () => {
       img: image,
       supplierName: data.supplierName,
       price: data.price,
-      description: content,
+      description: data.description,
+      fullDescription: content,
       strength: data.strength,
       securityCode: data.securityCode,
       stock: data.stock,
@@ -67,16 +68,31 @@ const AddMedicine = () => {
       slug: data.slug,
       metaImage,
       isSpecial: data?.isSpecial,
+      orderUrl: data?.orderUrl,
     };
 
     // post api call
-    await PostHooks(
+    const result = await PostHooks(
       `${server_url}/medicine/postMedicine`,
       medicine,
       "Medicine successfully posted"
     );
-    reset();
+
+    if (result) {
+      reset();
+      setContent("");
+      setImage(null);
+      setMetaImage("");
+    }
   };
+
+  const config = {
+    sanitize: true,
+    allowHTML: true,
+    removeScript: true,
+    removeOnPaste: false,
+  };
+
   return (
     <section className="py-10 md:py-14">
       <div className=" form_wrapper bg-white px-10  w-full mx-auto md:max-w-4xl lg:max-w-4xl rounded">
@@ -174,7 +190,9 @@ const AddMedicine = () => {
               </label>
               <select
                 className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                {...register("isSpecial")}
+                {...register("isSpecial", {
+                  required: "Is Special is required",
+                })}
               >
                 <option value="" disabled selected>
                   Select Special True or False
@@ -203,12 +221,18 @@ const AddMedicine = () => {
               {" "}
               Image
             </label>
-            <input
-              onChange={handleChangeUploadImage}
-              className="block w-full text-sm text-gray-900  rounded-lg cursor-pointer bg-[#F0FDF4] dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 p-2"
-              id="file_input"
-              type="file"
-            />
+            <div className="flex items-center gap-3">
+              <input
+                onChange={handleChangeUploadImage}
+                className="block w-full text-sm text-gray-900  rounded-lg cursor-pointer bg-[#F0FDF4] dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 p-2"
+                id="file_input"
+                type="file"
+              />
+              {image && (
+                <img className="w-12 rounded-md" src={image} alt="img"></img>
+              )}
+            </div>
+
             {errors.img && (
               <p className="text-red-500 mt-1">{errors.img.message}</p>
             )}
@@ -234,6 +258,27 @@ const AddMedicine = () => {
               <p className="text-red-500 mt-1">{errors.price.message}</p>
             )}
           </div>
+
+          <div className="mb-1">
+            <label
+              for="description"
+              class="block mb-2 text-[13px] font-normal text-gray-900 dark:text-white"
+            >
+              Short Description
+            </label>
+            <input
+              type="text"
+              className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-500"
+              placeholder="Short Description"
+              {...register("description", {
+                required: "Short Description is required",
+              })}
+              maxLength={100}
+            />
+            {errors.description && (
+              <p className="text-red-500 mt-1">{errors.description.message}</p>
+            )}
+          </div>
           {/* medicine description */}
           <div className="mb-1">
             <label
@@ -256,7 +301,7 @@ const AddMedicine = () => {
             <JoditEditor
               ref={editor}
               value={content}
-              // config={config}
+              config={config}
               // tabIndex={1} // tabIndex of textarea
               onBlur={(newContent) => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
               // {...register("description", {
@@ -264,7 +309,7 @@ const AddMedicine = () => {
 
               // })}
               //tabIndex={1} // tabIndex of textarea
-              onChange={(newContent) => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
+              // onChange={(newContent) => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
               // onChange={newContent => { }}
               // config={{
               //   cleanHTML: false, // Disable auto-paragraph feature
@@ -366,9 +411,7 @@ const AddMedicine = () => {
               type="number"
               className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-500"
               placeholder="medicine discount"
-              {...register("discount", {
-                required: false,
-              })}
+              {...register("discount")}
             />
           </div>
 
@@ -434,6 +477,27 @@ const AddMedicine = () => {
               )}
             </div>
           </div>
+
+          <div className="mb-1">
+            <label
+              for="orderUrl"
+              class="block mb-2 text-[13px] font-normal text-gray-900 dark:text-white"
+            >
+              Order URL
+            </label>
+            <input
+              type="text"
+              className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-500"
+              placeholder="Order URL"
+              {...register("orderUrl", {
+                required: "Order URL is required",
+              })}
+            />
+            {errors.orderUrl && (
+              <p className="text-red-500 mt-1">{errors.orderUrl.message}</p>
+            )}
+          </div>
+
           {/* Seo meta tags started */}
           <div>
             <h2 className="border-b border-solid border-gray-300 mb-5 pb-3">
@@ -448,7 +512,7 @@ const AddMedicine = () => {
               </label>
               <input
                 {...register("metaTitle", {
-                  // required: "Meta Title is required",
+                  required: "Meta Title is required",
                 })}
                 name="metaTitle"
                 className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5    focus:border-blue-500"
@@ -471,7 +535,6 @@ const AddMedicine = () => {
                 })}
                 className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:outline-none block w-full p-2.5 focus:border-none"
                 placeholder="Enter a slug"
-                required
               />
               {errors.slug && (
                 <p className="text-red-500 mt-1">{errors.slug.message}</p>
@@ -507,12 +570,21 @@ const AddMedicine = () => {
               >
                 Meta Image
               </label>
-              <input
-                onChange={handleChangeMetaImage}
-                className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 focus:border-blue-500"
-                type="file"
-                placeholder="Meta description"
-              />
+              <div className="flex items-center gap-3">
+                <input
+                  onChange={handleChangeMetaImage}
+                  className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 focus:border-blue-500"
+                  type="file"
+                  placeholder="Meta description"
+                />
+                {metaImage && (
+                  <img
+                    className="w-12 rounded-md"
+                    src={metaImage}
+                    alt="img"
+                  ></img>
+                )}
+              </div>
             </div>
 
             <div className="mb-5">
