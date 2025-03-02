@@ -74,19 +74,19 @@ const Products = () => {
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
         {/* ✅ Mobile-Friendly Category Bar (Appears on Top in Mobile) */}
         <div className="md:hidden bg-white shadow-md rounded-lg overflow-x-auto whitespace-nowrap p-2">
-          <h2 className="text-xl font-bold text-white bg-primary p-4 uppercase tracking-wide">
+          <h2 className="text-xl font-bold text-white bg-primary p-4 uppercase tracking-wide mb-2 text-center">
             Product Categories
           </h2>
-          <ul className="flex space-x-4">
+          <ul className="grid grid-cols-2">
             {categoryLoading ? (
-              <Box className="flex justify-center items-center h-40">
+              <Box className="col-span-2 text-center h-40 mt-10">
                 <CircularProgress size={50} color="primary" />
               </Box>
             ) : (
               categories?.map((category) => (
                 <li
                   key={category._id}
-                  className="px-4 py-2 bg-gray-100 rounded-lg cursor-pointer"
+                  className="px-2 py-2 bg-gray-100 rounded-lg cursor-pointer"
                 >
                   <CategoryItems category={category?.name} />
                 </li>

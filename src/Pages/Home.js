@@ -31,12 +31,12 @@ const Home = () => {
       <NaturalSolution />
       <WhoWeAre />
       <FeatureProducts />
-      <NewsLetter />
       <NewArrivals />
       {/* <BestDoctors /> */}
       {/* <Contact /> */}
       <ShowCase />
       <NewsAndMedia />
+      <NewsLetter />
       <LocationMap />
     </div>
   );

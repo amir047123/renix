@@ -1,15 +1,35 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { FaPlus } from "react-icons/fa";
 
 const CategoryItems = ({ category }) => {
   const [openSubCategory, setOpenSubCategory] = useState(false);
+  const location = useLocation();
+  const [isActive, setIsActive] = useState(false);
+  const currentCategory = location?.pathname
+    ?.split("/")[2]
+    .replaceAll("%20", " ")
+    .toLowerCase();
+
+  useEffect(() => {
+    console.log(category);
+    if (currentCategory === category?.toLowerCase()) {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
+  }, [category, currentCategory]);
+
   return (
     <div>
       <ul className="flex flex-col gap-3 relative">
         <li className="relative border-b border-solid border-gray px-5">
           <Link
-            className="uppercase flex justify-between items-center text-blackColor font-medium text-sm "
+            className={`uppercase flex justify-between items-center text-xs md:text-sm ${
+              isActive
+                ? "font-bold text-green-500"
+                : "text-blackColor font-medium"
+            }`}
             to={`/products/${category}`} // Update this line
           >
             {category}

@@ -66,7 +66,7 @@ const ShowCase = () => {
 
             {/* ✅ Product Grid */}
             {!isLoading && !error && (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 sml:grid-cols-2 gap-8">
                 {randomProducts.map((product) => (
                   <div
                     key={product._id}

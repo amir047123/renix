@@ -38,7 +38,7 @@ const Hero = () => {
   }
 
   return (
-    <div className="relative w-full md:h-[650px] h-[400px]">
+    <div className="relative w-full md:h-[650px] h-[300px]">
       {/* ✅ Loading State (Circular Progress) */}
       {/* {isLoading && (
         <Box className="flex justify-center items-center h-full">
@@ -116,20 +116,20 @@ const Hero = () => {
 
                   {/* ✅ Slide Content */}
                   <div className="relative z-10 flex flex-col items-start justify-center h-full px-8 container mx-auto">
-                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-2">
+                    <h2 className="text-2xl md:text-5xl font-bold text-white mb-2">
                       {slide.title}
                     </h2>
-                    <h3 className="text-3xl md:text-4xl font-semibold text-[#FEF3C7] mb-4">
+                    <h3 className="text-xl md:text-4xl font-semibold text-[#FEF3C7] mb-4">
                       {slide.subtitle}
                     </h3>
-                    <p className="text-base text-white mb-8">
+                    <p className="text-sm text-white mb-8">
                       {slide.description}
                     </p>
 
                     {slide?.buttonText && slide?.link && (
                       <Link
                         to={slide.link}
-                        className="bg-accent text-white px-8 py-3 rounded-full hover:bg-accent/80 transition-colors duration-300"
+                        className="bg-accent text-white px-4 py-2 text-sm md:text-base md:px-8 md:py-3 rounded-full hover:bg-accent/80 transition-colors duration-300"
                       >
                         {slide.buttonText}
                       </Link>

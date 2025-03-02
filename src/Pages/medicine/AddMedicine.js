@@ -190,7 +190,9 @@ const AddMedicine = () => {
               </label>
               <select
                 className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                {...register("isSpecial")}
+                {...register("isSpecial", {
+                  required: "Is Special is required",
+                })}
               >
                 <option value="" disabled selected>
                   Select Special True or False
@@ -409,9 +411,7 @@ const AddMedicine = () => {
               type="number"
               className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-500"
               placeholder="medicine discount"
-              {...register("discount", {
-                required: false,
-              })}
+              {...register("discount")}
             />
           </div>
 
@@ -512,7 +512,7 @@ const AddMedicine = () => {
               </label>
               <input
                 {...register("metaTitle", {
-                  // required: "Meta Title is required",
+                  required: "Meta Title is required",
                 })}
                 name="metaTitle"
                 className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5    focus:border-blue-500"

@@ -221,7 +221,9 @@ const UpdateMedicine = () => {
                 </label>
                 <select
                   className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  {...register("isSpecial")}
+                  {...register("isSpecial", {
+                    required: "Is Special is required",
+                  })}
                 >
                   <option value="" disabled selected>
                     Select Special True or False
@@ -387,7 +389,7 @@ const UpdateMedicine = () => {
                 className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-500"
                 placeholder="Medicine Security Code"
                 {...register("securityCode", {
-                  required: "Medicine Security Code is required",
+                  // required: "Medicine Security Code is required",
                 })}
               />
               {errors.securityCode && (
@@ -427,9 +429,7 @@ const UpdateMedicine = () => {
                 type="number"
                 className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-500"
                 placeholder="medicine discount"
-                {...register("discount", {
-                  required: false,
-                })}
+                {...register("discount")}
               />
             </div>
 
@@ -572,7 +572,7 @@ const UpdateMedicine = () => {
                 <textarea
                   name="metaDescription"
                   {...register("metaDescription", {
-                    required: "Meta Description is required",
+                    // required: "Meta Description is required",
                   })}
                   rows={7}
                   className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 focus:border-blue-500"
@@ -623,7 +623,7 @@ const UpdateMedicine = () => {
                   id="canonical-url"
                   name="canonicalUrl"
                   {...register("canonicalUrl", {
-                    required: "Canonical Url is required",
+                    // required: "Canonical Url is required",
                   })}
                   className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 focus:border-blue-500"
                   placeholder="Enter Canonical URL"

@@ -23,7 +23,7 @@ const FeatureProducts = () => {
   });
 
   return (
-    <div className="lg:w-[90%] w-full mx-auto my-10">
+    <div className="w-[90%] container mx-auto my-10">
       {/* ✅ Section Title */}
       <div>
         <h3 className="bg-thirdLightPrimary w-36 mx-auto text-sm font-semibold text-gray-700 py-1 rounded-md text-center">
@@ -59,11 +59,13 @@ const FeatureProducts = () => {
             >
               {/* ✅ Product Image */}
               <div className="relative">
-                <img
-                  src={item.img}
-                  alt={item.name}
-                  className="w-full h-full object-cover"
-                />
+                <div className="w-full flex items-center justify-center">
+                  <img
+                    src={item.img}
+                    alt={item.name}
+                    className="w-[70%] h-[70%] md:w-full md:h-full object-cover"
+                  />
+                </div>
 
                 {/* ✅ Sale Badge */}
                 {item?.discount && (
@@ -89,7 +91,8 @@ const FeatureProducts = () => {
 
                 {/* ✅ Buy Now Button */}
                 <Link
-                  to="https://renixcare.com"
+                  target="_blank"
+                  to={`${item?.orderUrl}`}
                   className="mt-4 inline-block bg-primary text-white px-6 py-2 rounded-full font-medium transition hover:bg-opacity-90"
                 >
                   Buy Now

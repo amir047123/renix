@@ -5,7 +5,7 @@ import medicine from "../../../../Assets/images/health-Product-Images/medicine.p
 
 const HealthCareProducts = () => {
   return (
-    <div className="container mx-auto my-52">
+    <div className="container mx-auto w-[90%] my-40">
       {/* section 1 of health product */}
       <div className="flex gap-10 mb-10 flex-col md:flex-row ">
         <div className="flex gap-y-7 md:gap-y-0 shadow-lg p-10 bg-opacity-30 bg-whiteSmoke flex-col lg:flex-row lg:justify-between lg:items-center rounded-2xl w-full md:w-1/2 lg:w-full">
@@ -59,7 +59,7 @@ const HealthCareProducts = () => {
             <img className="w-full mx-auto" src={healthProduct2} alt="" />
           </div>
         </div>
-        <div className="bg-secondary text-primary rounded-3xl p-8 w-full md:w-1/2 lg:w-1/3">
+        <div className="bg-secondary text-primary rounded-3xl p-8 w-full md:w-1/2 lg:w-1/3 mx-auto">
           <h1 className="text-3xl">Trusted Brands</h1>
           <p className="md:my-2">
             Renix Unani Laboratories Limited is a trusted brand dedicated to
