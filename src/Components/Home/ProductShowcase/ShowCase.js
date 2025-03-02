@@ -44,7 +44,7 @@ const ShowCase = () => {
               to="https://renixcare.com"
               className="mt-6 inline-block rounded bg-gray-900 px-8 py-3 text-lg font-semibold bg-primary text-white transition hover:bg-gray-700"
             >
-              Shop All
+              ALL PRODUCTS
             </Link>
           </div>
 
