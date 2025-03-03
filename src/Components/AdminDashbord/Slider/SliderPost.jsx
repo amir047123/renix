@@ -38,6 +38,7 @@ const SliderPost = ({ addSlide }) => {
 
     if (result) {
       reset();
+      setImage("");
     }
   };
 
