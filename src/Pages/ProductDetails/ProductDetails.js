@@ -1,10 +1,10 @@
 import { CircularProgress } from "@mui/material"; // Import MUI Circular Progress
 import { useQuery } from "@tanstack/react-query";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import DynamicMetaTitle from "../../Components/DynamicMetaTitle";
-// import MyContext from "../../Utils/Context/MyContext";
 import { server_url } from "../../Config/API";
+import MyContext from "../../Utils/Context/MyContext";
 import ProductInfo from "./ProductInfo";
 import ProductTable from "./ProductTable";
 
@@ -16,14 +16,22 @@ const fetchProduct = async (id) => {
   return data.data[0];
 };
 
+const fetchFullDescription = async (id) => {
+  const response = await fetch(
+    `${server_url}/medicine/medicineFullDescription/${id}`
+  );
+  const data = await response.json();
+  return data.data; // Full description only
+};
+
 const ProductDetails = () => {
   const { id } = useParams();
-  // const [addToCart, setAddToCart] = useState(false);
+  const [addToCart, setAddToCart] = useState(false);
   const [activeTab, setActiveTab] = useState("tab1");
-  // const [quantity, setQuantity] = useState(1);
-  // const { refresh, setRefresh } = useContext(MyContext);
+  const [quantity, setQuantity] = useState(1);
+  const { refresh, setRefresh } = useContext(MyContext);
 
-  // Fetch product data using TanStack Query
+  // Fetch basic product details
   const {
     data: product,
     isLoading,
@@ -32,6 +40,13 @@ const ProductDetails = () => {
     queryKey: ["product", id],
     queryFn: () => fetchProduct(id),
     enabled: !!id,
+  });
+
+  // Fetch full description only when product._id is available
+  const { data: fullDescription } = useQuery({
+    queryKey: ["fullDescription", product?._id],
+    queryFn: () => fetchFullDescription(product?._id),
+    enabled: !!product?._id, // ✅ Only fetch if product exists
   });
 
   // Handle Loading & Error States
@@ -49,75 +64,69 @@ const ProductDetails = () => {
       </div>
     );
 
-  const {
-    orderUrl,
-    fullDescription,
-    description,
-    genericName,
-    img,
-    name,
-    //  price,
-    supplierName,
-    // _id
-  } = product || {};
+  // Extract product properties
+  const { orderUrl, description, genericName, img, name, supplierName, _id } =
+    product || {};
 
   // Fetch order data from localStorage
-  // const order = JSON.parse(localStorage.getItem("order"))?.find(
-  //   (item) => item._id === _id
-  // );
+  const order = JSON.parse(localStorage.getItem("order"))?.find(
+    (item) => item._id === _id
+  );
 
-  // const handleCountMinus = () => {
-  //   if (order?.quantity === 1) {
-  //     setAddToCart(false);
-  //   } else {
-  //     setQuantity((prevCount) => prevCount - 1);
-  //   }
-  // };
+  // Decrease quantity in cart
+  const handleCountMinus = () => {
+    if (order?.quantity === 1) {
+      setAddToCart(false);
+    } else {
+      setQuantity((prevCount) => prevCount - 1);
+    }
+  };
 
-  // // Function to update localStorage for cart
-  // const addOrderInLocalStorage = () => {
-  //   const existingOrder = JSON.parse(localStorage.getItem("order")) || [];
-  //   const exist = existingOrder.find((item) => item._id === _id);
+  // Function to update localStorage for cart
+  const addOrderInLocalStorage = () => {
+    const existingOrder = JSON.parse(localStorage.getItem("order")) || [];
+    const exist = existingOrder.find((item) => item._id === _id);
 
-  //   if (exist) {
-  //     exist.quantity += 1;
-  //     localStorage.setItem(
-  //       "order",
-  //       JSON.stringify(
-  //         existingOrder.map((item) => (item._id === _id ? exist : item))
-  //       )
-  //     );
-  //   } else {
-  //     localStorage.setItem(
-  //       "order",
-  //       JSON.stringify([...existingOrder, { ...product, quantity }])
-  //     );
-  //   }
+    if (exist) {
+      exist.quantity += 1;
+      localStorage.setItem(
+        "order",
+        JSON.stringify(
+          existingOrder.map((item) => (item._id === _id ? exist : item))
+        )
+      );
+    } else {
+      localStorage.setItem(
+        "order",
+        JSON.stringify([...existingOrder, { ...product, quantity }])
+      );
+    }
 
-  //   setRefresh(!refresh);
-  // };
+    setRefresh(!refresh);
+  };
 
-  // const handleQuantity = (action) => {
-  //   const existingOrder = JSON.parse(localStorage.getItem("order")) || [];
-  //   const exist = existingOrder.find((item) => item._id === _id);
+  // Handle quantity update in cart
+  const handleQuantity = (action) => {
+    const existingOrder = JSON.parse(localStorage.getItem("order")) || [];
+    const exist = existingOrder.find((item) => item._id === _id);
 
-  //   if (exist) {
-  //     if (action === "odd" && exist.quantity > 1) {
-  //       exist.quantity -= 1;
-  //     } else if (action === "even") {
-  //       exist.quantity += 1;
-  //     }
+    if (exist) {
+      if (action === "odd" && exist.quantity > 1) {
+        exist.quantity -= 1;
+      } else if (action === "even") {
+        exist.quantity += 1;
+      }
 
-  //     localStorage.setItem(
-  //       "order",
-  //       JSON.stringify(
-  //         existingOrder.map((item) => (item._id === _id ? exist : item))
-  //       )
-  //     );
-  //   }
+      localStorage.setItem(
+        "order",
+        JSON.stringify(
+          existingOrder.map((item) => (item._id === _id ? exist : item))
+        )
+      );
+    }
 
-  //   setRefresh(!refresh);
-  // };
+    setRefresh(!refresh);
+  };
 
   return (
     <>
@@ -127,13 +136,15 @@ const ProductDetails = () => {
         metaImage={product?.metaImage}
         canonicalUrl={product?.canonicalUrl}
       />
+
       <div className="lg:w-3/5 md:w-10/12 mx-auto w-11/12">
+        {/* ✅ Product UI Renders Immediately */}
         <div className="grid md:grid-cols-2 grid-cols-1 gap-6 mt-5 shadow-md p-5">
-          <div className="flex justify-center items-center  border border-lightPrimary p-5">
+          <div className="flex justify-center items-center border border-lightPrimary p-5">
             <img src={img} className="w-72 h-50" alt={name} />
           </div>
           <div className="">
-            <div className="shadow-sm  border border-lightPrimary p-7">
+            <div className="shadow-sm border border-lightPrimary p-7">
               <h1 className="text-3xl font-semibold uppercase tracking-widest">
                 {name}
               </h1>
@@ -190,6 +201,7 @@ const ProductDetails = () => {
           </div>
         </div>
 
+        {/* ✅ Tabs and Full Description */}
         <div className="relative overflow-x-auto m-3 mt-8 mb-6">
           <ul className="flex">
             <li
@@ -219,12 +231,7 @@ const ProductDetails = () => {
           {activeTab === "tab1" ? (
             <ProductTable product={product} />
           ) : (
-            <ProductInfo
-              description={(fullDescription || description)?.replace(
-                /<\/?p>/g,
-                ""
-              )}
-            />
+            <ProductInfo description={fullDescription || description} />
           )}
         </div>
       </div>
