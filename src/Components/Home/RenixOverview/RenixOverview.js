@@ -155,16 +155,32 @@ const RenixOverview = () => {
             <div className="flex justify-between items-center mt-4">
               <p className="text-gray-600 text-sm">Stay connected with us:</p>
               <div className="flex space-x-3">
-                <a href="#" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="https://www.facebook.com/renixlaboratoriesltd/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <FaFacebook className="w-5 h-5 text-blue-600 hover:text-blue-800 transition" />
                 </a>
-                <a href="#" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="https://www.instagram.com/renixunani/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <BsInstagram className="w-5 h-5 text-pink-600 hover:text-pink-800 transition" />
                 </a>
-                <a href="#" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="https://www.linkedin.com/company/renix-unani-laboratories-ltd"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <BsLinkedin className="w-5 h-5 text-blue-700 hover:text-blue-900 transition" />
                 </a>
-                <a href="#" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="https://www.youtube.com/@renixlaboratoriesltd"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <BsYoutube className="w-5 h-5 text-red-600 hover:text-red-800 transition" />
                 </a>
               </div>
