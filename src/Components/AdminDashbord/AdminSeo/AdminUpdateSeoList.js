@@ -40,6 +40,7 @@ const AdminUpdateSeoList = () => {
         metaDescription: data?.data?.metaDescription || "",
         canonicalUrl: data?.data?.canonicalUrl || "",
         slug: data?.data?.slug || "",
+        metaImage: data?.data?.metaImage || "",
       });
     };
 
@@ -161,6 +162,7 @@ const AdminUpdateSeoList = () => {
               className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5    focus:border-blue-500"
               type="text"
               placeholder="Meta title"
+              required
             />
           </div>
           <div className="mb-1 w-full mr-0 md:mr-2">
@@ -174,6 +176,7 @@ const AdminUpdateSeoList = () => {
               onChange={handleChange}
               className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:outline-none block w-full p-2.5 focus:border-none"
               placeholder="Enter a slug"
+              required
             />
           </div>
 

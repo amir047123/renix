@@ -1,43 +1,43 @@
 import React from "react";
+import CEO from "../../../Assets/team/ceo.png";
+import Founder from "../../../Assets/team/founder.png";
 
 const TeamSection = () => {
   const teamMembers = [
     {
       name: "Abu Hanif",
-      position: " Founder & Managing Director",
-      image:
-        "https://cdn5.vectorstock.com/i/1000x1000/16/49/young-and-successful-business-man-cartoon-employee-vector-15281649.jpg",
+      position: "Founder & Managing Director",
+      image: Founder,
     },
     {
-      name: "RENIX",
+      name: "Mahadi Hasan",
       position: "CEO",
-      image:
-        "https://cdn5.vectorstock.com/i/1000x1000/16/49/young-and-successful-business-man-cartoon-employee-vector-15281649.jpg",
+      image: CEO,
     },
   ];
 
   return (
-    <section className="bg-white py-12">
-      <div className="container mx-auto px-4 sm:grid sm:grid-cols-1">
-        <h2 className="text-3xl font-bold text-center mb-8 text-primary">
-          Our Team
+    <section className="bg-gray-50 py-16">
+      <div className="container mx-auto px-6 text-center">
+        <h2 className="text-4xl font-bold text-gray-800 mb-12">
+          Meet Our <span className="text-primary">Team</span>
         </h2>
-        <div className="sm:grid sm:grid-cols-1 lg:flex   ">
+        <div className="flex flex-wrap justify-center gap-10">
           {teamMembers.map((member, index) => (
             <div
               key={index}
-              className="w-full sm:w-full md:w-1/3 lg:w-1/4 xl:w-1/4 px-4 mb-8"
+              className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-4 transform transition duration-300 hover:scale-105"
             >
-              <div className="bg-gray-100 p-4 rounded-lg shadow-md">
+              <div className="bg-white shadow-lg rounded-lg p-6 hover:shadow-xl">
                 <img
                   src={member.image}
                   alt={member.name}
-                  className="rounded  h-32 mx-auto mb-4"
+                  className="w-32 h-32 mx-auto rounded-full object-cover border-4 border-primary"
                 />
-                <h3 className="text-xl font-semibold text-center mb-2">
+                <h3 className="text-xl font-semibold text-gray-800 mt-4">
                   {member.name}
                 </h3>
-                <p className="text-center text-gray-600">{member.position}</p>
+                <p className="text-gray-600">{member.position}</p>
               </div>
             </div>
           ))}

@@ -51,7 +51,7 @@ const Card = ({ item }) => {
 
             {/* ✅ Buy Now Button */}
             <a
-              href="https://renixcare.com"
+              href={item?.orderUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="bg-primary text-white px-4 py-1.5 text-sm rounded-full font-medium whitespace-nowrap"

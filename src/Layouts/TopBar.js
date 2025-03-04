@@ -17,7 +17,7 @@ const TopBar = () => {
           </span>
           <div className="">
             <span className="text-[12px] text-textColor mb-2 block">
-              +880 1884-442022
+              +880 1618-883045
             </span>
           </div>
         </div>
@@ -39,7 +39,7 @@ const TopBar = () => {
           </span>
           <div className="">
             <span className="text-[12px] text-textColor block">
-              info@renixlaboratories.com
+              renixoffice@gmail.com
             </span>
           </div>
         </div>

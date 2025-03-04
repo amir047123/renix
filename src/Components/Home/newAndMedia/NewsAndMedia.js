@@ -1,21 +1,43 @@
-import { motion } from "framer-motion"; // ✅ Adding smooth animations
-import React from "react";
+import { motion } from "framer-motion";
+import React, { useState } from "react";
+import { Autoplay, Pagination } from "swiper";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 const NewsAndMedia = () => {
-  const newsandMediaInfo = [
+  const [newsAndMediaInfo, setNewsandMediaInfo] = useState([
     {
       id: 1,
-      videoUrl: "https://www.youtube.com/embed/WZT7HzlGkNs?si=LJD9vz0CKTqP_Y8b",
+      videoUrl: "WZT7HzlGkNs",
+      show: false,
     },
     {
       id: 2,
-      videoUrl: "https://www.youtube.com/embed/CohYY9RcILk?si=9HZrg_rItNkku3ad",
+      videoUrl: "CohYY9RcILk",
+      show: false,
     },
     {
       id: 3,
-      videoUrl: "https://www.youtube.com/embed/UazPMjH6Opw?si=SQqdxloZXOZK3puD",
+      videoUrl: "UazPMjH6Opw",
+      show: false,
     },
-  ];
+    {
+      id: 4,
+      videoUrl: "fzpH2WLvZk4",
+      show: false,
+    },
+    {
+      id: 5,
+      videoUrl: "5bdIoNS3HiE",
+      show: false,
+    },
+    {
+      id: 6,
+      videoUrl: "cOb1i2jyhDU",
+      show: false,
+    },
+  ]);
 
   return (
     <section className="w-[90%] container mx-auto py-10 text-center">
@@ -38,27 +60,63 @@ const NewsAndMedia = () => {
         Stay updated with our latest videos and media highlights.
       </motion.p>
 
-      {/* ✅ Video Grid */}
-      <div className="mt-10 grid grid-cols-1 sml:grid-cols-2 lg:grid-cols-3 gap-8">
-        {newsandMediaInfo.map((info) => (
-          <motion.div
-            key={info.id}
-            className="relative bg-white rounded-lg shadow-lg overflow-hidden"
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.3 }}
-          >
-            {/* ✅ Video Container - Maintains Actual YouTube Size */}
-            <div className="w-full">
-              <iframe
-                title={`video-${info.id}`}
-                src={info.videoUrl}
-                className="w-full h-[315px] md:h-[360px] lg:h-[400px] rounded-lg"
-                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                allowFullScreen
-              ></iframe>
-            </div>
-          </motion.div>
-        ))}
+      {/* ✅ Swiper Video Slider */}
+      <div className="mt-10 container mx-auto">
+        <Swiper
+          spaceBetween={20}
+          slidesPerView={1}
+          breakpoints={{
+            640: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+          }}
+          autoplay={{
+            delay: 4000,
+            disableOnInteraction: false,
+          }}
+          pagination={{ clickable: true }}
+          modules={[Autoplay, Pagination]}
+          className="pb-10"
+        >
+          {newsAndMediaInfo.map((info, i) => (
+            <SwiperSlide key={info.id}>
+              <motion.div
+                className="relative bg-white rounded-lg shadow-lg overflow-hidden"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+              >
+                {/* ✅ Video Container */}
+                <div className="w-full">
+                  {!newsAndMediaInfo?.[i]?.show ? (
+                    <img
+                      src={`https://img.youtube.com/vi/${info.videoUrl}/hqdefault.jpg`}
+                      alt="Video Thumbnail"
+                      style={{ cursor: "pointer" }}
+                      className="w-full h-[250px] sm:h-[280px] md:h-[320px] lg:h-[360px] rounded-lg object-cover"
+                      onClick={() =>
+                        setNewsandMediaInfo((prev) => {
+                          return prev?.map((item) => {
+                            if (item.id === info.id) {
+                              return { ...item, show: true };
+                            }
+                            return item;
+                          });
+                        })
+                      }
+                    />
+                  ) : (
+                    <iframe
+                      title={`video-${info.id}`}
+                      src={`https://www.youtube.com/embed/${info.videoUrl}`}
+                      className="w-full h-[250px] sm:h-[280px] md:h-[320px] lg:h-[360px] rounded-lg"
+                      allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                      allowFullScreen
+                    />
+                  )}
+                </div>
+              </motion.div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
     </section>
   );

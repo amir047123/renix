@@ -243,7 +243,7 @@ const AddBlog = () => {
               <textarea
                 name="metaDescription"
                 {...register("metaDescription", {
-                  required: "Meta Description is required",
+                  // required: "Meta Description is required",
                 })}
                 rows={7}
                 className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 focus:border-blue-500"
@@ -294,7 +294,7 @@ const AddBlog = () => {
                 id="canonical-url"
                 name="canonicalUrl"
                 {...register("canonicalUrl", {
-                  required: "Canonical Url is required",
+                  // required: "Canonical Url is required",
                 })}
                 className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 focus:border-blue-500"
                 placeholder="Enter Canonical URL"

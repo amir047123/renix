@@ -59,8 +59,8 @@ const Contact = () => {
               </h3>
               <p className="uppercase">Renix Unani Laboratories Limited,</p>
               <p>Fatullah 1421 Dhaka, Dhaka Division, Bangladesh</p>
-              <p>Phone: +(880)1884442022</p>
-              <p>E-mail: info@renixlaboratories.com</p>
+              <p>Phone: +(880)1618-883045</p>
+              <p>E-mail: renixoffice@gmail.com</p>
             </div>
             &nbsp;
             <p className="text-justify">

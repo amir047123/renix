@@ -47,6 +47,8 @@ const AdminSeo = () => {
         toast.error(seoData.message);
       } else if (seoData.status === "success") {
         toast.success("Seo posted!");
+        setMetaImage("");
+        event.target.reset();
       }
     } catch (error) {
       toast.error(error.message || "An error occurred");
@@ -111,6 +113,7 @@ const AdminSeo = () => {
               className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5    focus:border-blue-500"
               type="text"
               placeholder="Meta title"
+              required
             />
           </div>
           <div className="mb-1 w-full mr-0 md:mr-2">
@@ -124,6 +127,7 @@ const AdminSeo = () => {
               onChange={handleChange}
               className="bg-[#F0FDF4] text-gray-900 text-sm rounded-lg focus:outline-none block w-full p-2.5 focus:border-none"
               placeholder="Enter a slug"
+              required
             />
           </div>
 
