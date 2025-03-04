@@ -27,6 +27,7 @@ const fetchMedicines = async () => {
 
 const RenixOverview = () => {
   const [element, setElement] = useState(null);
+  const [showPlayer, setShowPlayer] = useState(false);
   const scrollToSpecializedProducts = () => {
     if (element) {
       window.scrollTo({
@@ -133,13 +134,23 @@ const RenixOverview = () => {
               </h2>
             </div>
             <div className="bg-gray-100 rounded-lg mt-4">
-              <iframe
-                title="video"
-                src="https://www.youtube.com/embed/PgJB9aOmARc?si=H0HzpjApfRBRlWCQ"
-                className="w-full h-40 rounded-lg"
-                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                allowFullScreen
-              ></iframe>
+              {!showPlayer ? (
+                <img
+                  src={`https://img.youtube.com/vi/PgJB9aOmARc/hqdefault.jpg`}
+                  alt="Video Thumbnail"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => setShowPlayer(true)}
+                  className="w-full h-40 rounded-lg object-cover"
+                />
+              ) : (
+                <iframe
+                  className="w-full h-40 rounded-lg"
+                  title="video"
+                  src={`https://www.youtube.com/embed/PgJB9aOmARc`}
+                  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                  allowFullScreen
+                />
+              )}
             </div>
             <div className="flex justify-between items-center mt-4">
               <p className="text-gray-600 text-sm">Stay connected with us:</p>

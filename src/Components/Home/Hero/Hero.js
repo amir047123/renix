@@ -1,14 +1,14 @@
 // import { Box, CircularProgress } from "@mui/material";
-import sliderImage from "../../../Assets/images/sliderImages/sliderImage.webp";
+import sliderImage01 from "../../../Assets/images/sliderImages/sliderImage01.webp";
+import sliderImage02 from "../../../Assets/images/sliderImages/sliderImage02.webp";
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
-import toast from "react-hot-toast";
+import React, { useEffect } from "react";
 import { Autoplay, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { server_url } from "../../../Config/API";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 // ✅ Fetch Slides Function
 const fetchSlides = async () => {
@@ -20,12 +20,35 @@ const fetchSlides = async () => {
   return data.data; // Extract slides data
 };
 
+const staticSlides = [
+  {
+    title: "Renix Herbal Care",
+    subtitle: "Traditional Unani for modern wellness.",
+    buttonText: "🌱 Discover More",
+    img: sliderImage01,
+    link: "https://renixcare.com/",
+    description:
+      "Natural remedies for immunity, energy, and overall well-being.",
+  },
+  {
+    title: "Renix Natural Remedies",
+    subtitle: "Healing with the power of Unani herbs.",
+    buttonText: "🍃 Shop Now",
+    img: sliderImage02,
+    link: "https://renixcare.com/",
+    description:
+      "Safe, effective, and time-tested herbal solutions for better health.",
+  },
+];
+
 const Hero = () => {
+  const [updatedSlides, setUpdatedSlides] = React.useState(staticSlides);
+
   // ✅ Use TanStack Query for Fetching Data
   const {
     data: slides = [],
     isLoading,
-    error,
+    isSuccess,
   } = useQuery({
     queryKey: ["slides"],
     queryFn: fetchSlides,
@@ -33,12 +56,19 @@ const Hero = () => {
   const [imageLoaded, setImageLoaded] = React.useState(false);
 
   // ✅ Error Handling
-  if (error) {
-    toast.error("Error fetching slides. Please try again.");
-  }
+
+  useEffect(() => {
+    if (isSuccess && slides?.length > 0) {
+      setUpdatedSlides(slides);
+    } else {
+      setUpdatedSlides(staticSlides);
+    }
+  }, [isSuccess, slides]);
+
+  console.log(slides, updatedSlides);
 
   return (
-    <div className="relative w-full md:h-[650px] h-[300px]">
+    <div className="relative w-full">
       {/* ✅ Loading State (Circular Progress) */}
       {/* {isLoading && (
         <Box className="flex justify-center items-center h-full">
@@ -47,19 +77,18 @@ const Hero = () => {
       )} */}
 
       {/* ✅ Swiper (Only Render When Data is Available) */}
-      {isLoading || slides?.length === 0 ? (
+      {isLoading || updatedSlides?.length === 0 ? (
         <div className="relative w-full h-full overflow-hidden">
           {/* ✅ Background Image */}
-          <div className="absolute inset-0">
-            <img
-              src={sliderImage}
-              alt="Herbal capsules on leaves"
-              className="w-full h-full object-cover"
-            />
-          </div>
+
+          <img
+            src={sliderImage01}
+            alt="Herbal capsules on leaves"
+            className="w-full h-full object-fill"
+          />
 
           {/* ✅ Slide Content */}
-          <div className="relative z-10 flex flex-col items-start justify-center h-full px-8 container mx-auto">
+          {/* <div className="relative z-10 flex flex-col items-start justify-center h-full px-8 container mx-auto">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-2">
               Renix Herbal Care
             </h2>
@@ -72,11 +101,11 @@ const Hero = () => {
             <button className="bg-accent text-white px-8 py-3 rounded-full hover:bg-accent/80 transition-colors duration-300">
               🌱 Discover More
             </button>
-          </div>
+          </div> */}
         </div>
       ) : (
-        slides &&
-        slides?.length > 0 && (
+        updatedSlides &&
+        updatedSlides?.length > 0 && (
           <Swiper
             modules={[Pagination, Autoplay]}
             pagination={{
@@ -91,31 +120,30 @@ const Hero = () => {
             loop={true}
             className="w-full h-full"
           >
-            {slides.map((slide, index) => (
+            {updatedSlides.map((slide, index) => (
               <SwiperSlide key={index}>
                 <div className="relative w-full h-full overflow-hidden">
                   {/* ✅ Background Image */}
-                  <div className="absolute inset-0">
-                    <img
-                      src={sliderImage}
-                      alt="Herbal capsules on leaves"
-                      className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ${
-                        imageLoaded ? "opacity-0" : "opacity-100"
-                      }`}
-                    />
 
-                    <img
-                      src={slide.img}
-                      alt="Herbal capsules on leaves"
-                      className={`w-full h-full object-cover transition-opacity duration-500 ${
-                        imageLoaded ? "opacity-100" : "opacity-0"
-                      }`}
-                      onLoad={() => setImageLoaded(true)}
-                    />
-                  </div>
+                  <img
+                    src={sliderImage01}
+                    alt="Herbal capsules on leaves"
+                    className={`absolute top-0 left-0 w-full h-full object-fill transition-opacity duration-500 ${
+                      imageLoaded ? "opacity-0" : "opacity-100"
+                    }`}
+                  />
+
+                  <img
+                    src={slide.img}
+                    alt="Herbal capsules on leaves"
+                    className={`w-full h-full object-fill transition-opacity duration-500 ${
+                      imageLoaded ? "opacity-100" : "opacity-0"
+                    }`}
+                    onLoad={() => setImageLoaded(true)}
+                  />
 
                   {/* ✅ Slide Content */}
-                  <div className="relative z-10 flex flex-col items-start justify-center h-full px-8 container mx-auto">
+                  {/* <div className="relative z-10 flex flex-col items-start justify-center h-full px-8 container mx-auto">
                     <h2 className="text-2xl md:text-5xl font-bold text-white mb-2">
                       {slide.title}
                     </h2>
@@ -134,7 +162,7 @@ const Hero = () => {
                         {slide.buttonText}
                       </Link>
                     )}
-                  </div>
+                  </div> */}
                 </div>
               </SwiperSlide>
             ))}
