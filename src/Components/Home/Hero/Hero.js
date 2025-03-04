@@ -1,14 +1,14 @@
 // import { Box, CircularProgress } from "@mui/material";
-import sliderImage01 from "../../../Assets/images/sliderImages/sliderImage01.webp";
-import sliderImage02 from "../../../Assets/images/sliderImages/sliderImage02.webp";
 import { useQuery } from "@tanstack/react-query";
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Autoplay, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
+import sliderImage01 from "../../../Assets/images/sliderImages/sliderImage01.webp";
+import sliderImage02 from "../../../Assets/images/sliderImages/sliderImage02.webp";
 import { server_url } from "../../../Config/API";
-// import { Link } from "react-router-dom";
 
 // ✅ Fetch Slides Function
 const fetchSlides = async () => {
@@ -22,22 +22,20 @@ const fetchSlides = async () => {
 
 const staticSlides = [
   {
-    title: "Renix Herbal Care",
-    subtitle: "Traditional Unani for modern wellness.",
-    buttonText: "🌱 Discover More",
+    title: "",
+    subtitle: "",
+    buttonText: "",
     img: sliderImage01,
     link: "https://renixcare.com/",
-    description:
-      "Natural remedies for immunity, energy, and overall well-being.",
+    description: "",
   },
   {
-    title: "Renix Natural Remedies",
-    subtitle: "Healing with the power of Unani herbs.",
-    buttonText: "🍃 Shop Now",
+    title: "",
+    subtitle: "",
+    buttonText: "",
     img: sliderImage02,
     link: "https://renixcare.com/",
-    description:
-      "Safe, effective, and time-tested herbal solutions for better health.",
+    description: "",
   },
 ];
 
@@ -65,10 +63,10 @@ const Hero = () => {
     }
   }, [isSuccess, slides]);
 
-  console.log(slides, updatedSlides);
+  // console.log(slides, updatedSlides);
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full h-[300px] md:h-[500px]">
       {/* ✅ Loading State (Circular Progress) */}
       {/* {isLoading && (
         <Box className="flex justify-center items-center h-full">
@@ -80,15 +78,16 @@ const Hero = () => {
       {isLoading || updatedSlides?.length === 0 ? (
         <div className="relative w-full h-full overflow-hidden">
           {/* ✅ Background Image */}
-
-          <img
-            src={sliderImage01}
-            alt="Herbal capsules on leaves"
-            className="w-full h-full object-fill"
-          />
+          <div className="absolute inset-0">
+            <img
+              src={sliderImage01}
+              alt="Herbal capsules on leaves"
+              className="absolute top-0 w-full h-full object-cover"
+            />
+          </div>
 
           {/* ✅ Slide Content */}
-          {/* <div className="relative z-10 flex flex-col items-start justify-center h-full px-8 container mx-auto">
+          <div className="relative z-10 flex flex-col items-start justify-center h-full px-8 container mx-auto">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-2">
               Renix Herbal Care
             </h2>
@@ -101,7 +100,7 @@ const Hero = () => {
             <button className="bg-accent text-white px-8 py-3 rounded-full hover:bg-accent/80 transition-colors duration-300">
               🌱 Discover More
             </button>
-          </div> */}
+          </div>
         </div>
       ) : (
         updatedSlides &&
@@ -124,26 +123,19 @@ const Hero = () => {
               <SwiperSlide key={index}>
                 <div className="relative w-full h-full overflow-hidden">
                   {/* ✅ Background Image */}
-
-                  <img
-                    src={sliderImage01}
-                    alt="Herbal capsules on leaves"
-                    className={`absolute top-0 left-0 w-full h-full object-fill transition-opacity duration-500 ${
-                      imageLoaded ? "opacity-0" : "opacity-100"
-                    }`}
-                  />
-
-                  <img
-                    src={slide.img}
-                    alt="Herbal capsules on leaves"
-                    className={`w-full h-full object-fill transition-opacity duration-500 ${
-                      imageLoaded ? "opacity-100" : "opacity-0"
-                    }`}
-                    onLoad={() => setImageLoaded(true)}
-                  />
+                  <div className="absolute inset-0">
+                    <img
+                      src={slide.img}
+                      alt="Herbal capsules on leaves"
+                      className={`absolute top-0 w-full h-full object-cover transition-opacity duration-500 ${
+                        imageLoaded ? "opacity-100" : "opacity-0"
+                      }`}
+                      onLoad={() => setImageLoaded(true)}
+                    />
+                  </div>
 
                   {/* ✅ Slide Content */}
-                  {/* <div className="relative z-10 flex flex-col items-start justify-center h-full px-8 container mx-auto">
+                  <div className="relative z-10 flex flex-col items-start justify-center h-full px-8 container mx-auto">
                     <h2 className="text-2xl md:text-5xl font-bold text-white mb-2">
                       {slide.title}
                     </h2>
@@ -162,7 +154,7 @@ const Hero = () => {
                         {slide.buttonText}
                       </Link>
                     )}
-                  </div> */}
+                  </div>
                 </div>
               </SwiperSlide>
             ))}

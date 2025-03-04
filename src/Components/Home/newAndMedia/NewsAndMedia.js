@@ -39,8 +39,6 @@ const NewsAndMedia = () => {
     },
   ]);
 
-  console.log(newsAndMediaInfo);
-
   return (
     <section className="w-[90%] container mx-auto py-10 text-center">
       {/* ✅ Section Header */}
