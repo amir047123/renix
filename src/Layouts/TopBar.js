@@ -39,7 +39,7 @@ const TopBar = () => {
           </span>
           <div className="">
             <span className="text-[12px] text-textColor block">
-              info@renixlaboratories.com
+              renixoffice@gmail.com
             </span>
           </div>
         </div>
