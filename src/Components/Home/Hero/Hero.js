@@ -8,7 +8,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { server_url } from "../../../Config/API";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // ✅ Fetch Slides Function
 const fetchSlides = async () => {
@@ -68,7 +68,7 @@ const Hero = () => {
   console.log(slides, updatedSlides);
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full h-[300px] md:h-[500px]">
       {/* ✅ Loading State (Circular Progress) */}
       {/* {isLoading && (
         <Box className="flex justify-center items-center h-full">
@@ -80,15 +80,16 @@ const Hero = () => {
       {isLoading || updatedSlides?.length === 0 ? (
         <div className="relative w-full h-full overflow-hidden">
           {/* ✅ Background Image */}
-
-          <img
-            src={sliderImage01}
-            alt="Herbal capsules on leaves"
-            className="w-full h-full object-fill"
-          />
+          <div className="absolute inset-0">
+            <img
+              src={sliderImage01}
+              alt="Herbal capsules on leaves"
+              className="absolute top-0 w-full h-full object-cover"
+            />
+          </div>
 
           {/* ✅ Slide Content */}
-          {/* <div className="relative z-10 flex flex-col items-start justify-center h-full px-8 container mx-auto">
+          <div className="relative z-10 flex flex-col items-start justify-center h-full px-8 container mx-auto">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-2">
               Renix Herbal Care
             </h2>
@@ -101,7 +102,7 @@ const Hero = () => {
             <button className="bg-accent text-white px-8 py-3 rounded-full hover:bg-accent/80 transition-colors duration-300">
               🌱 Discover More
             </button>
-          </div> */}
+          </div>
         </div>
       ) : (
         updatedSlides &&
@@ -124,26 +125,19 @@ const Hero = () => {
               <SwiperSlide key={index}>
                 <div className="relative w-full h-full overflow-hidden">
                   {/* ✅ Background Image */}
-
-                  <img
-                    src={sliderImage01}
-                    alt="Herbal capsules on leaves"
-                    className={`absolute top-0 left-0 w-full h-full object-fill transition-opacity duration-500 ${
-                      imageLoaded ? "opacity-0" : "opacity-100"
-                    }`}
-                  />
-
-                  <img
-                    src={slide.img}
-                    alt="Herbal capsules on leaves"
-                    className={`w-full h-full object-fill transition-opacity duration-500 ${
-                      imageLoaded ? "opacity-100" : "opacity-0"
-                    }`}
-                    onLoad={() => setImageLoaded(true)}
-                  />
+                  <div className="absolute inset-0">
+                    <img
+                      src={slide.img}
+                      alt="Herbal capsules on leaves"
+                      className={`absolute top-0 w-full h-full object-cover transition-opacity duration-500 ${
+                        imageLoaded ? "opacity-100" : "opacity-0"
+                      }`}
+                      onLoad={() => setImageLoaded(true)}
+                    />
+                  </div>
 
                   {/* ✅ Slide Content */}
-                  {/* <div className="relative z-10 flex flex-col items-start justify-center h-full px-8 container mx-auto">
+                  <div className="relative z-10 flex flex-col items-start justify-center h-full px-8 container mx-auto">
                     <h2 className="text-2xl md:text-5xl font-bold text-white mb-2">
                       {slide.title}
                     </h2>
@@ -162,7 +156,7 @@ const Hero = () => {
                         {slide.buttonText}
                       </Link>
                     )}
-                  </div> */}
+                  </div>
                 </div>
               </SwiperSlide>
             ))}
