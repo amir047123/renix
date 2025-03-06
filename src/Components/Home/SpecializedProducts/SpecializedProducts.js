@@ -65,6 +65,8 @@ const SpecializedProducts = () => {
     ],
   };
 
+  //
+
   return (
     <div
       className=" bg-opacity-30 bg-gradient-to-r from-thirdLightPrimary via-whiteSmoke to-thirdLightPrimary p-8 md:p-12"
