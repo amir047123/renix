@@ -4,16 +4,13 @@ import { FaCheckCircle, FaFlask, FaMicroscope } from "react-icons/fa";
 const ResearchDevelopment = () => {
   return (
     <div className="bg-gradient-to-r from-thirdLightPrimary via-whiteSmoke to-thirdLightPrimary py-16 px-6 md:px-12">
-      <div className="container mx-auto text-center">
-        {/* Section Title */}
-        <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">
-          Our Research & Development
-        </h2>
-        <p className="text-secondary text-md md:w-3/4 mx-auto">
-          At Renix Unani Laboratories, we invest in cutting-edge research to
-          develop high-quality herbal products that ensure safety, efficacy, and
-          purity.
-        </p>
+      <div className="text-center mb-10">
+        <h3 className="bg-thirdLightPrimary w-44 mx-auto text-sm font-semibold text-gray-700 py-1 rounded-md text-center">
+          🌿 NATURE WITH RENIX
+        </h3>
+        <h1 className="text-secondary text-center font-bold text-3xl md:text-4xl mt-3 uppercase">
+          Discover Innovation
+        </h1>
       </div>
 
       {/* R&D Features */}

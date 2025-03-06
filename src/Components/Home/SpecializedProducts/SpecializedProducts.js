@@ -3,6 +3,7 @@ import React from "react";
 import { BsArrowUpRight } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { server_url } from "../../../Config/API";
+import Slider from "react-slick";
 
 const ProductCard = ({ name, image, slug }) => (
   <Link
@@ -48,9 +49,25 @@ const SpecializedProducts = () => {
 
   const products = data?.data || [];
 
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    arrows: true,
+    responsive: [
+      { breakpoint: 1024, settings: { slidesToShow: 3, slidesToScroll: 1 } },
+      { breakpoint: 992, settings: { slidesToShow: 2, slidesToScroll: 1 } },
+      { breakpoint: 768, settings: { slidesToShow: 1, slidesToScroll: 1 } },
+    ],
+  };
+
   return (
     <div
-      className=" bg-opacity-30 bg-whiteSmoke  p-8 md:p-12"
+      className=" bg-opacity-30 bg-gradient-to-r from-thirdLightPrimary via-whiteSmoke to-thirdLightPrimary p-8 md:p-12"
       id="specializedProducts"
     >
       <div className="mb-10">
@@ -79,15 +96,18 @@ const SpecializedProducts = () => {
             No Specialized Products Found!
           </h4>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-4 gap-6 mt-10">
-            {products.map((product) => (
-              <ProductCard
-                key={product._id}
-                name={product.name}
-                image={product.img}
-                slug={product.slug}
-              />
-            ))}
+          <div className="mt-10">
+            <Slider {...settings}>
+              {products.map((product) => (
+                <div key={product._id} className="px-3">
+                  <ProductCard
+                    name={product.name}
+                    image={product.img}
+                    slug={product.slug}
+                  />
+                </div>
+              ))}
+            </Slider>
           </div>
         )}
       </div>

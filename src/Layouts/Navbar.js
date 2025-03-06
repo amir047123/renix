@@ -35,10 +35,10 @@ const Navbar = () => {
   ];
 
   return (
-    <header className="bg-white sticky top-0 z-50">
+    <header className="bg-gradient-to-r from-thirdLightPrimary via-whiteSmoke to-thirdLightPrimary sticky top-0 z-50">
       <TopBar />
 
-      <nav className="bg-white shadow-sm relative">
+      <nav className="bg-gradient-to-r from-thirdLightPrimary via-whiteSmoke to-thirdLightPrimary shadow-sm relative">
         <div className=" mx-auto px-4 sm:px-6 lg:px-8 xl:px-16 sticky top-0">
           <div className="flex items-center justify-between md:h-20 h-[70px]">
             {/* Logo */}
