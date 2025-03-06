@@ -43,23 +43,15 @@ const NewsAndMedia = () => {
     <section className="bg-gradient-to-r from-thirdLightPrimary via-whiteSmoke to-thirdLightPrimary">
       <div className="w-[90%] container mx-auto py-10 text-center ">
         {/* ✅ Section Header */}
-        <div className="text-center mb-10">
-          <h3 className="bg-thirdLightPrimary w-44 mx-auto text-sm font-semibold text-gray-700 py-1 rounded-md text-center">
-            🌿 NATURE WITH RENIX
+        <div className="text-center mb-12">
+          <h3 className="bg-thirdLightPrimary  w-44 font-semibold  mx-auto text-sm text-gray-700 py-1 rounded-md">
+            🎥 MEDIA{" "}
           </h3>
-          <h1 className="text-secondary text-center font-bold text-3xl md:text-4xl mt-3 uppercase">
-            Discover Innovation
+          <h1 className="text-secondary font-bold text-2xl md:text-3xl mt-3 uppercase">
+            Watch Our Journey Unfold
           </h1>
+          <p> Stay updated with our latest videos and media.</p>
         </div>
-
-        <motion.p
-          className="mt-3 text-gray-600 text-lg"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          Stay updated with our latest videos and media highlights.
-        </motion.p>
 
         {/* ✅ Swiper Video Slider */}
         <div className="mt-10 container mx-auto">

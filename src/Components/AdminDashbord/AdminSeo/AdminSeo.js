@@ -64,7 +64,7 @@ const AdminSeo = () => {
       </div>
       <form
         onSubmit={handleSubmit}
-        className=" shadow-gray-300 px-8 py-10 rounded flex flex-col gap-4 text-left"
+        className=" shadow-gray-300 px-10 py-10 rounded flex flex-col gap-4 text-left bg-white "
       >
         {/* code  */}
         <div className="mb-1  w-full  mr-0 md:mr-2">

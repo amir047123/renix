@@ -2,15 +2,15 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { BsArrowUpRight } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import { server_url } from "../../../Config/API";
 import Slider from "react-slick";
+import { server_url } from "../../../Config/API";
 
 const ProductCard = ({ name, image, slug }) => (
   <Link
     to={`/product/${slug}`}
     className="relative group cursor-pointer rounded-2xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-[1.03]"
   >
-    <div className="rounded-2xl p-6 aspect-[4/3] bg-white transform transition-transform duration-300 hover:scale-[1.02]">
+    <div className="rounded-2xl p-6 aspect-[4/3] border-2 border-primary  bg-white transform transition-transform duration-300 hover:scale-[1.02]">
       <div className="flex justify-between">
         <img
           src={image}
@@ -26,7 +26,7 @@ const ProductCard = ({ name, image, slug }) => (
           </p>
         </div>
 
-        <BsArrowUpRight className="absolute top-4 right-4 text-primary w-6 h-6 opacity-70 transition-opacity duration-300 group-hover:opacity-100" />
+        <BsArrowUpRight className="absolute top-4 ring-1 ring-primary right-4 text-primary w-6 h-6 opacity-70 transition-opacity duration-300 group-hover:opacity-100" />
       </div>
     </div>
   </Link>
@@ -64,6 +64,8 @@ const SpecializedProducts = () => {
       { breakpoint: 768, settings: { slidesToShow: 1, slidesToScroll: 1 } },
     ],
   };
+
+  //
 
   return (
     <div

@@ -17,7 +17,7 @@ const Navbar = () => {
   const navLinks = [
     { name: "Home", to: "/" },
     { name: "About Us", to: "/about" },
-    { name: "Security Check", to: "/security-check" },
+    // { name: "Security Check", to: "/security-check" },
     { name: "Our Products", to: "/products" },
     {
       name: "News & Media",
@@ -41,11 +41,15 @@ const Navbar = () => {
       <nav className="bg-gradient-to-r from-thirdLightPrimary via-whiteSmoke to-thirdLightPrimary shadow-sm relative">
         <div className=" mx-auto px-4 sm:px-6 lg:px-8 xl:px-16 sticky top-0">
           <div className="flex items-center justify-between md:h-20 h-[70px]">
-            {/* Logo */}
-            <Link to="/" className="flex-shrink-0">
-              <img className="md:w-[75px] w-16" src={logo} alt="logo" />
-            </Link>
-
+            {/* Logo */}{" "}
+            <div className="flex items-center gap-4">
+              <Link to="/" className="flex-shrink-0">
+                <img className="md:w-[75px] w-16" src={logo} alt="logo" />
+              </Link>
+              <p class="block md:hidden text-[0.8rem]">
+                Natural Solution For Health Life
+              </p>
+            </div>
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center ">
               {navLinks.map((link) => (
@@ -85,7 +89,6 @@ const Navbar = () => {
                 </div>
               ))}
             </div>
-
             {/* Login Button */}
             {userInfo?.role ? (
               <Link
@@ -103,7 +106,6 @@ const Navbar = () => {
                 </Button>
               </Link>
             )}
-
             {/* Mobile menu button */}
             <div className="lg:hidden">
               <button

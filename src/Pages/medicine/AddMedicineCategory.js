@@ -61,7 +61,7 @@ const AddMedicineCategory = () => {
 
           <form
             onSubmit={handelSubmit}
-            className="shadow-lg shadow-gray-300 p-8 rounded"
+            className="shadow-lg shadow-gray-300 p-8  bg-white rounded"
           >
             <div className="mb-6">
               <label

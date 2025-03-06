@@ -1,43 +1,48 @@
 import React from "react";
 import doctorsAppointment from "../../../Assets/images/Dorctors/doctorsAppointment.jpg";
-import { Link } from "react-router-dom";
 
 const HomeAppointment = () => {
   return (
-    <div className="mx-auto py-20 bg-gradient-to-r from-thirdLightPrimary via-whiteSmoke to-thirdLightPrimary">
+    <div className="mx-auto py-10 bg-gradient-to-r from-thirdLightPrimary via-whiteSmoke to-thirdLightPrimary">
       <div className="w-[90%] lg:w-[80%] mx-auto">
         {/* ✅ Section Title */}
-        <div className="text-center mb-10">
-          <h3 className="bg-thirdLightPrimary w-44 mx-auto text-sm font-semibold text-gray-700 py-1 rounded-md text-center">
-            🌿 NATURE WITH RENIX
+        <div className="text-center mb-12">
+          <h3 className="bg-thirdLightPrimary  w-48 font-semibold  mx-auto text-sm text-gray-700 py-1 rounded-md">
+            🌿 Expert Care, Anytime
           </h3>
-          <h1 className="text-secondary text-center font-bold text-3xl md:text-4xl mt-3 uppercase">
-            Discover Innovation
+          <h1 className="text-secondary font-bold text-2xl md:text-3xl mt-3 uppercase">
+            Book a Free Health Consultation Today!
           </h1>
         </div>
 
         {/* ✅ Card Container */}
-        <div className="mt-10 grid grid-cols-1 mdl:grid-cols-2 items-center gap-8">
-          <div className="flex items-center justify-center w-full order-2 mdl:order-1 mt-6 mdl:mt-0">
+        <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-8">
+          {/* ✅ Text & Button */}
+          <div className="flex items-start justify-center w-full order-2 md:order-1">
             <div>
-              <h2 className="text-xl font-semibold mb-4">
-                Connect with our Health Experts
+              <h2 className="text-lg md:text-xl font-semibold mb-3 text-secondary">
+                Connect with Our Health Experts
               </h2>
-              <p>Get a free consultation with just a click!</p>
-              <Link
-                to="/contact"
-                className="px-5 py-3 border-2  rounded-full block mt-4 w-fit"
+              <p className="text-gray-600 text-sm md:text-base">
+                Get personalized health advice with just one click.
+              </p>
+              <a
+                href="https://renixcare.com/doctor"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-3 bg-primary text-white  text-sm md:text-base font-medium rounded-full mt-4 inline-block hover:bg-opacity-90 transition duration-300 ease-in-out shadow-md hover:shadow-lg"
               >
                 Get Appointment
-              </Link>
+              </a>
             </div>
           </div>
 
-          <div className="rounded-xl overflow-hidden w-full h-full max-h-[400px] order-1 mdl:order-2">
+          {/* ✅ Image Section */}
+          <div className="rounded-xl overflow-hidden w-full h-full max-h-[350px] order-1 md:order-2 shadow-lg border-2 border-primary">
             <img
               src={doctorsAppointment}
-              alt="appointment"
-              className="w-full h-full object-cover "
+              alt="Doctor Appointment"
+              className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
             />
           </div>
         </div>
