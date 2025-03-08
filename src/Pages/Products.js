@@ -1,7 +1,7 @@
 import { Box, CircularProgress } from "@mui/material"; // ✅ Import MUI Loader
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Card from "../Components/Card/Card";
 import DynamicMetaTitle from "../Components/DynamicMetaTitle";
@@ -20,6 +20,8 @@ const fetchProducts = async ({ queryKey }) => {
     url = `${server_url}/medicine/specific?fieldName1=medicineCategory&fieldValue1=${categoryId}&size=${pageSize}&page=${page}`;
   }
 
+  console.log("Fetching Products:", url); // Debugging log
+
   const { data } = await axios.get(url);
   return data;
 };
@@ -31,8 +33,10 @@ const fetchCategories = async () => {
 
 const Products = () => {
   const { id } = useParams();
+  const queryClient = useQueryClient();
   const metaData = useGetSeo("our_product_page");
   const [page, setPage] = useState(0);
+  const [selectedCategory, setSelectedCategory] = useState(id || "");
 
   // Fetch Products using TanStack Query
   const {
@@ -40,7 +44,7 @@ const Products = () => {
     isLoading: productLoading,
     error: productError,
   } = useQuery({
-    queryKey: ["products", id, page],
+    queryKey: ["products", selectedCategory, page],
     queryFn: fetchProducts,
     keepPreviousData: true, // Keeps previous data while fetching new data
   });
@@ -54,6 +58,12 @@ const Products = () => {
     queryKey: ["categories"],
     queryFn: fetchCategories,
   });
+
+  useEffect(() => {
+    console.log("Category Changed:", selectedCategory);
+    setPage(0); // Reset page when category changes
+    queryClient.invalidateQueries(["products"]); // Force refetch
+  }, [selectedCategory, queryClient]);
 
   const totalPages = Math.ceil(productData?.total / pageSize);
 
@@ -72,7 +82,7 @@ const Products = () => {
       )}
 
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-        {/* ✅ Mobile-Friendly Category Bar (Appears on Top in Mobile) */}
+        {/* ✅ Mobile-Friendly Category Bar */}
         <div className="md:hidden bg-white shadow-md rounded-lg overflow-x-auto whitespace-nowrap p-2">
           <h2 className="text-xl font-bold text-white bg-primary p-4 uppercase tracking-wide mb-2 text-center">
             Product Categories
@@ -86,7 +96,12 @@ const Products = () => {
               categories?.map((category) => (
                 <li
                   key={category._id}
-                  className="px-2 py-2 bg-gray-100 rounded-lg cursor-pointer"
+                  className={`px-2 py-2 ${
+                    selectedCategory === category._id
+                      ? "bg-blue-500 text-white"
+                      : "bg-gray-100"
+                  } rounded-lg cursor-pointer`}
+                  onClick={() => setSelectedCategory(category._id)}
                 >
                   <CategoryItems category={category?.name} />
                 </li>
@@ -95,7 +110,7 @@ const Products = () => {
           </ul>
         </div>
 
-        {/* ✅ Sidebar Category Section (Appears as Sidebar in Desktop) */}
+        {/* ✅ Sidebar Category Section (Desktop) */}
         <div className="hidden md:block md:col-span-4 lg:col-span-3 order-1">
           <div className="bg-white shadow-lg rounded-xl overflow-hidden">
             <h2 className="text-lg font-bold text-white bg-primary p-4 uppercase tracking-wide">
@@ -111,7 +126,12 @@ const Products = () => {
                 categories.map((category) => (
                   <li
                     key={category._id}
-                    className="p-4 hover:bg-gray-100 transition duration-300 cursor-pointer"
+                    className={`p-4 ${
+                      selectedCategory === category._id
+                        ? "bg-blue-500 text-white"
+                        : "hover:bg-gray-100"
+                    } transition duration-300 cursor-pointer`}
+                    onClick={() => setSelectedCategory(category._id)}
                   >
                     <CategoryItems category={category?.name} />
                   </li>
@@ -121,7 +141,7 @@ const Products = () => {
           </div>
         </div>
 
-        {/* ✅ Product Grid Section (Appears Below in Mobile, Right in Desktop) */}
+        {/* ✅ Product Grid Section */}
         <div className="col-span-full md:col-span-8 lg:col-span-9 order-2">
           {productLoading ? (
             <Box className="flex justify-center items-center h-40">
@@ -130,20 +150,22 @@ const Products = () => {
           ) : productData?.data?.length === 0 ? (
             <h4 className="py-10 text-center w-full">No Product Found</h4>
           ) : (
-            <div className="grid exxl:grid-cols-5 exl:grid-cols-4 lg:grid-cols-3 sml:grid-cols-2 sm:grid-col-1  gap-4">
+            <div className="grid exxl:grid-cols-5 exl:grid-cols-4 lg:grid-cols-3 sml:grid-cols-2 sm:grid-col-1 gap-4">
               {productData?.data?.map((item) => (
                 <Card key={item?._id} item={item} />
               ))}
             </div>
           )}
 
-          {/* ✅ Pagination Below Products */}
-          <Pagination
-            currentPage={page + 1}
-            totalPages={totalPages}
-            onPageChange={(pageNumber) => setPage(pageNumber - 1)}
-            className="flex justify-center mt-6"
-          />
+          {/* ✅ Pagination */}
+          {totalPages > 1 && (
+            <Pagination
+              currentPage={page + 1}
+              totalPages={totalPages}
+              onPageChange={(pageNumber) => setPage(pageNumber - 1)}
+              className="flex justify-center mt-6"
+            />
+          )}
         </div>
       </div>
     </div>

@@ -24,7 +24,7 @@ const HomeAppointment = () => {
                 Connect with Our Health Experts
               </h2>
               <p className="text-gray-600 text-sm md:text-base">
-                Get personalized health advice with just one click.
+                Get a free consultation with just a click!{" "}
               </p>
               <a
                 href="https://renixcare.com/doctor"

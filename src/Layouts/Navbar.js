@@ -5,7 +5,7 @@ import { FaChevronDown } from "react-icons/fa";
 import { IoMenu } from "react-icons/io5";
 import { RxCross2 } from "react-icons/rx";
 import { Link, NavLink } from "react-router-dom";
-import logo from "../../src/Assets/images/logo.svg";
+import logo from "../../src/Assets/images/renix-blue-logo.png";
 import AuthUser from "../Hooks/authUser";
 import TopBar from "./TopBar";
 
@@ -44,7 +44,7 @@ const Navbar = () => {
             {/* Logo */}{" "}
             <div className="flex items-center gap-4">
               <Link to="/" className="flex-shrink-0">
-                <img className="md:w-[75px] w-16" src={logo} alt="logo" />
+                <img className="md:w-[100px] w-20 " src={logo} alt="logo" />
               </Link>
               <p class="block md:hidden text-[0.8rem]">
                 Natural Solution For Health Life

@@ -1,11 +1,11 @@
 import React from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import homeAbout from "../../../Assets/images/about/homeAbout.webp";
+import homeAbout from "../../../Assets/images/about-us.jpg";
 const HomeAbout = () => {
   return (
     <div className="mx-auto py-10  bg-gradient-to-r from-thirdLightPrimary via-whiteSmoke to-thirdLightPrimary">
-      <div className="w-[90%] lg:w-[95%] mx-auto">
+      <div className="w-[90%] lg:w-[90%] mx-auto">
         {/* ✅ Section Title */}
         <div className="text-center mb-10">
           <h3 className="bg-thirdLightPrimary w-44 mx-auto text-sm font-semibold text-gray-700 py-1 rounded-md text-center">
@@ -29,7 +29,7 @@ const HomeAbout = () => {
 
           <div>
             <h2 className="text-xl font-semibold mb-4 text-secondary">
-              Renix – The Leading Unani Medicine Brand
+              Best Unani Medicine Manufacturing Company In Bangladesh
             </h2>
 
             <p className="text-justify">

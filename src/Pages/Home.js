@@ -8,8 +8,6 @@ import NewsLetter from "../Components/Home/NewsLetter/NewsLetter";
 import OurAchivement from "../Components/Home/OurAchivement/OurAchivement";
 import OurMotto from "../Components/Home/OurMotto/OurMotto";
 import Qualities from "../Components/Home/Qualities/Qualities";
-import RenixOverview from "../Components/Home/RenixOverview/RenixOverview";
-import ResearchDevelopment from "../Components/Home/ResearchDevelopment/ResearchDevelopment";
 import SpecializedProducts from "../Components/Home/SpecializedProducts/SpecializedProducts";
 import useGetSeo from "../Hooks/useGetSeo";
 
@@ -27,10 +25,10 @@ const Home = () => {
       {/* <HomeSlider /> */}
       {/* <WhoWeAre /> */}
       <HomeAbout />
-      <RenixOverview />
+      {/* <RenixOverview /> */}
       <Qualities />
       <SpecializedProducts />
-      <ResearchDevelopment />
+      {/* <ResearchDevelopment /> */}
       {/* <HealthCareProducts /> */}
       {/* <NaturalSolution /> */}
       {/* <FeatureProducts /> */}
