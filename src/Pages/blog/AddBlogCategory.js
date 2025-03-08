@@ -58,7 +58,7 @@ const AddBlogCategory = () => {
           </h2>
           <form
             onSubmit={handelSubmit}
-            className="shadow-lg shadow-gray-300 p-8 rounded"
+            className="shadow-lg shadow-gray-300 p-8 rounded bg-white"
           >
             <div className="mb-6">
               <label

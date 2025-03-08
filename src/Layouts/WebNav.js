@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { RxCaretDown } from "react-icons/rx";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../Assets/images/logo.svg";
-import { GiHamburgerMenu } from "react-icons/gi";
-import "./WebNav.css";
-import TopBar from "./TopBar";
-import AuthUser from "../Hooks/authUser";
 import { server_url } from "../Config/API";
-import { RxCaretDown } from "react-icons/rx";
+import AuthUser from "../Hooks/authUser";
+import TopBar from "./TopBar";
+import "./WebNav.css";
 
 const WebNav = () => {
   const [user, setUser] = useState();

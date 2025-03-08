@@ -1,17 +1,13 @@
 import DynamicMetaTitle from "../Components/DynamicMetaTitle";
-import WhoWeAre from "../Components/Home/AboutSection/WhoWeAre";
-import FeatureProducts from "../Components/Home/FeatureProducts/FeatureProducts";
-import HealthCareProducts from "../Components/Home/HealthCareProducts/HealthCareProducts/HealthCareProducts";
-import HealthSolutions from "../Components/Home/HealthSolutions/HealthSolutions";
+import HomeAbout from "../Components/Home/About/HomeAbout";
+import HomeAppointment from "../Components/Home/Appointment/HomeAppointment";
 import Hero from "../Components/Home/Hero/Hero";
 import LocationMap from "../Components/Home/LocationMap/LocationMap";
-import NaturalSolution from "../Components/Home/NaturalSolution/NaturalSolution";
 import NewsAndMedia from "../Components/Home/newAndMedia/NewsAndMedia";
-import NewArrivals from "../Components/Home/NewArrivals/NewArrivals";
 import NewsLetter from "../Components/Home/NewsLetter/NewsLetter";
-import ShowCase from "../Components/Home/ProductShowcase/ShowCase";
-import RenixOverview from "../Components/Home/RenixOverview/RenixOverview";
-import ResearchDevelopment from "../Components/Home/ResearchDevelopment/ResearchDevelopment";
+import OurAchivement from "../Components/Home/OurAchivement/OurAchivement";
+import OurMotto from "../Components/Home/OurMotto/OurMotto";
+import Qualities from "../Components/Home/Qualities/Qualities";
 import SpecializedProducts from "../Components/Home/SpecializedProducts/SpecializedProducts";
 import useGetSeo from "../Hooks/useGetSeo";
 
@@ -27,19 +23,24 @@ const Home = () => {
       />
       <Hero />
       {/* <HomeSlider /> */}
-      <RenixOverview />
+      {/* <WhoWeAre /> */}
+      <HomeAbout />
+      {/* <RenixOverview /> */}
+      <Qualities />
       <SpecializedProducts />
-      <ResearchDevelopment />
-      <HealthCareProducts />
-      <NaturalSolution />
-      <WhoWeAre />
-      <FeatureProducts />
-      <HealthSolutions />
+      {/* <ResearchDevelopment /> */}
+      {/* <HealthCareProducts /> */}
+      {/* <NaturalSolution /> */}
+      {/* <FeatureProducts /> */}
+      {/* <HealthSolutions /> */}
 
-      <NewArrivals />
+      {/* <NewArrivals /> */}
       {/* <BestDoctors /> */}
       {/* <Contact /> */}
-      <ShowCase />
+      {/* <ShowCase /> */}
+      <HomeAppointment />
+      <OurMotto />
+      <OurAchivement />
       <NewsAndMedia />
       <NewsLetter />
       <LocationMap />

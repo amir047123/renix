@@ -1,8 +1,8 @@
 import React from "react";
-import logo from "../Assets/images/logo.svg";
-import { Link } from "react-router-dom";
-import SocialIcon from "../shared/socialIcon/SocialIcon";
 import { FaWhatsapp } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import logo from "../Assets/images/renix-white-logo.png";
+import SocialIcon from "../shared/socialIcon/SocialIcon";
 
 const Footer = () => {
   return (
@@ -26,7 +26,7 @@ const Footer = () => {
             <div className="w-full  lg:w-4/12  ">
               <div className="">
                 <Link to={"/"} className="flex items-center mb-5">
-                  <img src={logo} className="h-8 mr-3" alt="Renix Logo" />
+                  <img src={logo} className=" w-20 mr-3" alt="Renix Logo" />
                 </Link>
                 <p className=" text-lightTextColor text-sm leading-7 ">
                   Renix Laboratories (Unani) Ltd. is a healthcare company that

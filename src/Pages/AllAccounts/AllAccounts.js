@@ -5,10 +5,10 @@ import toast from "react-hot-toast";
 import { CiSearch } from "react-icons/ci";
 import { RiDeleteBin2Fill } from "react-icons/ri";
 import { TbEdit } from "react-icons/tb";
+import Swal from "sweetalert2";
 import { server_url } from "../../Config/API";
 import UpdateHooks from "../../Hooks/UpdateHooks";
 import Pagination from "../../shared/Pagination/Pagination";
-import Swal from "sweetalert2";
 
 // ✅ Fetch Users Function
 const fetchUsers = async ({ queryKey }) => {

@@ -49,13 +49,13 @@ const RenixOverview = () => {
   const product = data?.data?.[0] || [];
 
   return (
-    <div className="bg-gradient-to-r from-thirdLightPrimary via-whiteSmoke to-thirdLightPrimary py-20">
+    <div className="bg-gradient-to-r from-thirdLightPrimary via-whiteSmoke to-thirdLightPrimary py-10">
       {/* Section Header */}
       <div className="text-center mb-10">
         <h3 className="bg-thirdLightPrimary w-44 mx-auto text-sm font-semibold text-gray-700 py-1 rounded-md text-center">
           🌿 NATURE WITH RENIX
         </h3>
-        <h1 className="text-secondary text-center font-bold text-3xl md:text-4xl mt-3 uppercase">
+        <h1 className="text-secondary font-bold text-2xl md:text-3xl mt-3 uppercase">
           Discover Innovation
         </h1>
       </div>
@@ -82,11 +82,11 @@ const RenixOverview = () => {
             </p>
 
             {/* ✅ Updated Call Button */}
-            <a href="tel:01618883045">
+            <Link to="/blogs">
               <button className="mt-4 flex items-center justify-center bg-primary text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition-all">
-                Call Now <BsArrowRight className="ml-2" />
+                Articles <BsArrowRight className="ml-2" />
               </button>
-            </a>
+            </Link>
           </div>
 
           {/* ✅ Newly Launched Product Card */}
@@ -189,7 +189,7 @@ const RenixOverview = () => {
         </div>
 
         {/* ✅ Company Overview */}
-        <div className="mt-20 w-[90%] ">
+        <div className="mt-20 w-[100%] ">
           <div className="">
             <img className="w-20" src={logo} alt="Renix Logo" />
             <h2 className="text-3xl font-bold text-accent mt-5">
@@ -198,7 +198,7 @@ const RenixOverview = () => {
             <p className="text-gray-600 text-lg mt-3">
               Healthy Living Natural Solution
             </p>
-            <p>
+            <p className="text-justify">
               Renix Unani Laboratories Limited is a company dedicated to
               producing high-quality, natural medicines for healthy living. They
               specialize in the Unani treatment system, which has been used for
@@ -211,8 +211,9 @@ const RenixOverview = () => {
           </div>
 
           <Link to="/about">
-            <button className="mt-4 px-8 py-3  bg-primary text-white rounded-full hover:bg-opacity-90 transition">
+            <button className="mt-4 px-6 sm:px-8 py-3 bg-primary text-white text-sm sm:text-base font-medium rounded-full hover:bg-opacity-90 transition flex items-center">
               Learn More About Us
+              <BsArrowRight className="ml-2 text-lg sm:text-xl" />
             </button>
           </Link>
         </div>

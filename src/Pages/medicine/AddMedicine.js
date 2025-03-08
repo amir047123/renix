@@ -95,14 +95,14 @@ const AddMedicine = () => {
 
   return (
     <section className="py-10 md:py-14">
-      <div className=" form_wrapper bg-white px-10  w-full mx-auto md:max-w-4xl lg:max-w-4xl rounded">
+      <div className=" form_wrapper  px-10  w-full mx-auto md:max-w-4xl lg:max-w-4xl rounded">
         <h2 className="text-3xl font-semibold text-dark  mb-10 text-center">
           Add Medicine
         </h2>
 
         <form
           onSubmit={handleSubmit(handleAddMedicine)}
-          className="shadow-lg shadow-gray-300 px-8 py-10 rounded flex flex-col gap-4 text-left"
+          className="shadow-lg shadow-gray-300 px-8 py-10 rounded flex flex-col gap-4 text-left bg-white"
           // autocomplete="off"
         >
           <div className="md:flex items-center">

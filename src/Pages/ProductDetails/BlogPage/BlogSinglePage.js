@@ -37,10 +37,10 @@ const BlogSinglePage = () => {
   const des = blog?.description?.replace(/<\/?p>/g, "");
 
   return (
-    <div>
-      <div className="lgl:flex m-5 mx-auto">
-        {/* Blog Details Section */}
-        <div className="lgl:p-4 sm:p-4 sm:w-full">
+    <div className="max-w-6xl mx-auto px-4 py-10">
+      <div className="lg:flex gap-10">
+        {/* ✅ Blog Details Section */}
+        <div className="lg:w-2/3 bg-white p-6 rounded-lg shadow-lg">
           {loading ? (
             <div className="flex justify-center items-center h-40">
               <CircularProgress size={50} thickness={4} color="primary" />
@@ -50,41 +50,48 @@ const BlogSinglePage = () => {
               <img
                 src={blog?.img}
                 alt={blog?.title}
-                className="mb-4 w-full h-auto sm:rounded"
+                className="w-full rounded-lg shadow-md mb-6 object-cover max-h-[300px]"
               />
-              <h1 className="text-3xl font-bold mb-2">{blog?.title}</h1>
-              <p className="text-gray-500 text-sm mb-2">
-                By {blog?.author} - {blog?.date} - {blog?.month} - {blog?.year}
+              <h1 className="text-2xl sm:text-3xl font-bold mb-3 text-gray-800 break-words">
+                {blog?.title}
+              </h1>
+              <p className="text-gray-500 text-sm mb-4">
+                ✍️ By <strong>{blog?.author}</strong> | 📅 {blog?.date}{" "}
+                {blog?.month}, {blog?.year}
               </p>
-              <p
+              <div
                 dangerouslySetInnerHTML={{ __html: des }}
-                className="text-gray-600 mb-4 text-justify"
-              ></p>
+                className="text-gray-700 leading-relaxed text-justify break-words overflow-wrap"
+                style={{ wordBreak: "break-word", maxWidth: "100%" }}
+              ></div>
             </>
           )}
         </div>
 
-        {/* Recent Blogs Section */}
-        <div className="sm:w-full lgl:p-4 lgl:w-[500px] sm:p-3 shadow-md">
-          <h2 className="text-lg font-bold mb-4">Recent Blog Posts</h2>
-          <div className="border-t border-gray-300 w-full mb-3"></div>
+        {/* ✅ Recent Blogs Section */}
+        <div className="lg:w-1/3 mt-10 lg:mt-0 bg-white p-6 rounded-lg shadow-lg">
+          <h2 className="text-xl font-bold mb-4 text-gray-800">
+            📌 Recent Blog Posts
+          </h2>
+          <div className="border-t border-gray-300 w-full mb-4"></div>
           {loading ? (
             <div className="flex justify-center items-center h-20">
               <CircularProgress size={40} thickness={4} color="primary" />
             </div>
           ) : (
-            <ol>
+            <div className="space-y-4">
               {recent.map((recentBlog) => (
-                <li
+                <div
                   key={recentBlog?._id}
-                  className="mb-2 flex hover:text-primary cursor-pointer uppercase"
+                  className="p-3 bg-gray-50 hover:bg-gray-100 transition duration-300 rounded-md shadow-sm cursor-pointer"
+                  onClick={() => setId(recentBlog?._id)}
                 >
-                  <p onClick={() => setId(recentBlog?._id)}>
+                  <h3 className="text-md font-semibold text-gray-700 hover:text-primary break-words">
                     {recentBlog?.title}
-                  </p>
-                </li>
+                  </h3>
+                </div>
               ))}
-            </ol>
+            </div>
           )}
         </div>
       </div>

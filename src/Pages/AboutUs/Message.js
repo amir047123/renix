@@ -11,7 +11,7 @@ const Message = () => {
         </h2>
 
         {/* ✅ Content Container */}
-        <div className="lg:flex items-start gap-8 bg-white shadow-lg p-6 rounded-b-lg">
+        <div className="lg:flex items-start gap-8 bg-#d3e7b5 shadow-lg p-6 rounded-b-lg">
           {/* ✅ Founder Image */}
           <div className="flex-shrink-0 text-center lg:text-left">
             <img

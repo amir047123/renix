@@ -25,7 +25,7 @@ const About = () => {
 
       <section className=""></section>
 
-      <section className="py-14 bg-[#f7f7f7]">
+      <section className="py-14 bg-#d3e7b5">
         <div className="container lg:w-[90%] w-full mx-auto px-6 ">
           <div className="flex flex-wrap lg:flex-nowrap">
             <div className="w-full lg:w-[33%]">
