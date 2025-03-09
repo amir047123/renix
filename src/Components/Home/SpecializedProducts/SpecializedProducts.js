@@ -74,17 +74,14 @@ const SpecializedProducts = () => {
   };
 
   return (
-    <div
-      className="bg-opacity-30 bg-gradient-to-r from-thirdLightPrimary via-whiteSmoke to-thirdLightPrimary p-8 md:p-12"
-      id="specializedProducts"
-    >
+    <div className="bg-opacity-30  p-8 md:p-12" id="specializedProducts">
       <div className="mb-10">
-        <h3 className="bg-thirdLightPrimary w-44 mx-auto text-sm font-semibold text-gray-700 py-1 uppercase rounded-md text-center">
+        {/* <h3 className="bg-thirdLightPrimary w-44 mx-auto text-sm font-semibold text-gray-700 py-1 uppercase rounded-md text-center">
           🌿 Specialized
-        </h3>
-        <h1 className="text-secondary text-center font-bold text-3xl mt-3 uppercase">
+        </h3> */}
+        <h2 className="text-secondary text-center font-bold text-3xl mt-3 uppercase">
           Discover Innovation
-        </h1>
+        </h2>
       </div>
 
       <div className="container mx-auto mt-10">

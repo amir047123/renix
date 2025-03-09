@@ -5,7 +5,7 @@ import { FaChevronDown } from "react-icons/fa";
 import { IoMenu } from "react-icons/io5";
 import { RxCross2 } from "react-icons/rx";
 import { Link, NavLink } from "react-router-dom";
-import logo from "../../src/Assets/images/renix-blue-logo.png";
+import logo from "../../src/Assets/images/Renix logo-01.png";
 import AuthUser from "../Hooks/authUser";
 import TopBar from "./TopBar";
 
@@ -44,10 +44,15 @@ const Navbar = () => {
             {/* Logo */}{" "}
             <div className="flex items-center gap-4">
               <Link to="/" className="flex-shrink-0">
-                <img className="md:w-[100px] w-20 " src={logo} alt="logo" />
+                <img className="md:w-[120px]  w-20 " src={logo} alt="logo" />
               </Link>
-              <p class="block md:hidden text-[0.8rem]">
-                Natural Solution For Health Life
+              <p className="block md:hidden text-[0.8rem] leading-tight">
+                <span className="font-semibold block mb-[1px]">
+                  Renix Unani Laboratories Ltd.
+                </span>
+                <span className="text-[0.6rem] block">
+                  Natural Solution For Health Life.
+                </span>
               </p>
             </div>
             {/* Desktop Navigation */}

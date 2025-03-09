@@ -5,16 +5,16 @@ import trust03 from "../../../Assets/images/Trust/trust03.png";
 
 const Qualities = () => {
   return (
-    <div className="mx-auto py-16 bg-gradient-to-r from-thirdLightPrimary via-whiteSmoke to-thirdLightPrimary">
+    <div className="mx-auto py-16 ">
       <div className="w-[90%] lg:w-[80%] mx-auto">
         {/* ✅ Section Title */}
         <div className="text-center mb-12">
-          <h3 className="bg-thirdLightPrimary w-44 mx-auto text-sm font-semibold text-gray-700 py-1 rounded-md">
+          {/* <h3 className="bg-thirdLightPrimary w-44 mx-auto text-sm font-semibold text-gray-700 py-1 rounded-md">
             🔬 Lab Tested
-          </h3>
-          <h1 className="text-secondary font-bold text-2xl md:text-3xl mt-3 uppercase">
+          </h3> */}
+          <h2 className="text-secondary font-bold text-2xl md:text-3xl mt-3 uppercase">
             100% Safe & Natural
-          </h1>
+          </h2>
         </div>
 
         {/* ✅ Card Container */}

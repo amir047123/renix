@@ -4,20 +4,20 @@ import { Link } from "react-router-dom";
 import homeAbout from "../../../Assets/images/about-us.jpg";
 const HomeAbout = () => {
   return (
-    <div className="mx-auto py-10  bg-gradient-to-r from-thirdLightPrimary via-whiteSmoke to-thirdLightPrimary">
+    <div className="mx-auto mt-5  ">
       <div className="w-[90%] lg:w-[90%] mx-auto">
         {/* ✅ Section Title */}
-        <div className="text-center mb-10">
-          <h3 className="bg-thirdLightPrimary w-44 mx-auto text-sm font-semibold text-gray-700 py-1 rounded-md text-center">
+        <div className="text-center">
+          {/* <h3 className="bg-thirdLightPrimary w-44 mx-auto text-sm font-semibold text-gray-700 py-1 rounded-md text-center">
             🌿 Know Us
-          </h3>
-          <h1 className="text-secondary font-bold text-2xl md:text-3xl mt-3 uppercase">
+          </h3> */}
+          <h2 className="text-secondary font-bold text-2xl md:text-3xl mt-3 uppercase">
             About Us
-          </h1>
+          </h2>
         </div>
 
         {/* ✅ Card Container */}
-        <div className="mt-10 grid grid-cols-1 mdl:grid-cols-2 items-center gap-8">
+        <div className=" mt-5 grid grid-cols-1 mdl:grid-cols-2 items-center gap-8">
           <div className="relative border-2 border-primary rounded-xl overflow-hidden w-full h-full max-h-[600px]  ">
             <img
               src={homeAbout}

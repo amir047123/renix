@@ -3,16 +3,16 @@ import achivement from "../../../Assets/images/achivement.png";
 
 const OurAchivement = () => {
   return (
-    <div className="mx-auto py-10 bg-gradient-to-r from-thirdLightPrimary via-whiteSmoke to-thirdLightPrimary">
+    <div className="mx-auto py-10 ">
       <div className="w-[90%] lg:w-[80%] mx-auto">
         {/* ✅ Section Title */}
         <div className="text-center mb-10">
-          <h3 className="bg-thirdLightPrimary  w-48 font-semibold  mx-auto text-sm text-gray-700 py-1 rounded-md">
+          {/* <h3 className="bg-thirdLightPrimary  w-48 font-semibold  mx-auto text-sm text-gray-700 py-1 rounded-md">
             🌱 HOLISTIC WELLNESS
-          </h3>
-          <h1 className="text-secondary font-bold text-2xl md:text-3xl mt-3 uppercase">
+          </h3> */}
+          <h2 className="text-secondary font-bold text-2xl md:text-3xl mt-3 uppercase">
             Achivement
-          </h1>
+          </h2>
         </div>
 
         {/* ✅ Card Container */}

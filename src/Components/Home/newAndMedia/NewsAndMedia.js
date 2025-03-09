@@ -40,16 +40,16 @@ const NewsAndMedia = () => {
   ]);
 
   return (
-    <section className="bg-gradient-to-r from-thirdLightPrimary via-whiteSmoke to-thirdLightPrimary">
+    <section className="">
       <div className="w-[90%] container mx-auto py-10 text-center ">
         {/* ✅ Section Header */}
         <div className="text-center mb-12">
-          <h3 className="bg-thirdLightPrimary  w-44 font-semibold  mx-auto text-sm text-gray-700 py-1 rounded-md">
+          {/* <h3 className="bg-thirdLightPrimary  w-44 font-semibold  mx-auto text-sm text-gray-700 py-1 rounded-md">
             🎥 MEDIA{" "}
-          </h3>
-          <h1 className="text-secondary font-bold text-2xl md:text-3xl mt-3 uppercase">
+          </h3> */}
+          <h2 className="text-secondary font-bold text-2xl md:text-3xl mt-3 uppercase">
             Watch Our Journey Unfold
-          </h1>
+          </h2>
           <p> Stay updated with our latest videos and media.</p>
         </div>
 

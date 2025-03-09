@@ -32,7 +32,7 @@ const SocialIcon = () => {
 
       <div className="w-7 h-7 rounded-full bg-primary hover:bg-lightOrange text-[#191919]  hover:bg-lightPrimary flex items-center justify-center">
         <Link
-          to={"https://www.youtube.com/@RenixLaboratoriesLtd."}
+          to={"https://www.youtube.com/@renixlaboratoriesltd"}
           className="text-sm "
         >
           <AiFillYoutube />

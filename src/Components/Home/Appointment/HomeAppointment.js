@@ -3,16 +3,16 @@ import doctorsAppointment from "../../../Assets/images/Dorctors/doctorsAppointme
 
 const HomeAppointment = () => {
   return (
-    <div className="mx-auto py-10 bg-gradient-to-r from-thirdLightPrimary via-whiteSmoke to-thirdLightPrimary">
+    <div className="mx-auto py-10 ">
       <div className="w-[90%] lg:w-[80%] mx-auto">
         {/* ✅ Section Title */}
         <div className="text-center mb-12">
-          <h3 className="bg-thirdLightPrimary  w-48 font-semibold  mx-auto text-sm text-gray-700 py-1 rounded-md">
+          {/* <h3 className="bg-thirdLightPrimary  w-48 font-semibold  mx-auto text-sm text-gray-700 py-1 rounded-md">
             🌿 Expert Care, Anytime
-          </h3>
-          <h1 className="text-secondary font-bold text-2xl md:text-3xl mt-3 uppercase">
+          </h3> */}
+          <h2 className="text-secondary font-bold text-2xl md:text-3xl mt-3 uppercase">
             Book a Free Health Consultation Today!
-          </h1>
+          </h2>
         </div>
 
         {/* ✅ Card Container */}
